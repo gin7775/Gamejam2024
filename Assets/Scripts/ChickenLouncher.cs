@@ -10,9 +10,13 @@ public class ChickenLouncher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Shoot(ChickenType);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Attack(ChickenType);
         }
     }
     void Shoot(int AmmoType)
@@ -28,6 +32,19 @@ public class ChickenLouncher : MonoBehaviour
                 Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[0], transform);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+                break;
+        }
+    }
+
+    void Attack(int AmmoType)
+    {
+        switch (AmmoType)
+        {
+            case 0:
+                Debug.Log("Got no chickens");
+                break;
+            case 1:
+                Debug.Log("Attacking");
                 break;
         }
     }
