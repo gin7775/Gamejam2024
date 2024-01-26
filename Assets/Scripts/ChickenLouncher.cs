@@ -26,8 +26,8 @@ public class ChickenLouncher : MonoBehaviour
                 break;
             case 1:
                 Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[0], this.transform);
-                proyectile.GetComponent<Rigidbody>().AddForce(Vector3.forward * proyectileForce);
+                proyectile = Instantiate(proyectiles[0], transform);
+                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
                 break;
         }
     }
