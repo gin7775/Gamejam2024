@@ -18,7 +18,7 @@ public class riki_PlayerMovement : MonoBehaviour
     void Update()
     {
         Movement();
-        Rotate();
+        //Rotate();
     }
 
     private void Movement()
