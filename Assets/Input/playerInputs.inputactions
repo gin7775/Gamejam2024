@@ -1,0 +1,98 @@
+{
+    "name": "playerInputs",
+    "maps": [
+        {
+            "name": "movement",
+            "id": "4fa4dcf6-c6d2-43c7-ac81-8058fe60d562",
+            "actions": [
+                {
+                    "name": "up",
+                    "type": "Button",
+                    "id": "85e1ade8-8539-4bbc-8329-2b29f9af823f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "down",
+                    "type": "Button",
+                    "id": "8faceafb-ccfa-47af-9dca-a0f18a02abdd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7fb3090d-7e27-4e15-8462-1e12ddb8d741",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "schemeChikenPlayer",
+                    "action": "up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2d94e0ff-4f97-4e59-91f7-49aecf081e8f",
+                    "path": "<Keyboard>/#(W)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1b63571-d37a-43f6-92a3-325e6595ac7d",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25ce1751-3135-4801-a154-19a90f6b7897",
+                    "path": "<Keyboard>/#(S)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "playermap",
+            "id": "abb68d2d-890e-47d1-981a-9d264c590778",
+            "actions": [
+                {
+                    "name": "move",
+                    "type": "Button",
+                    "id": "ecd39263-286d-478f-a7ee-a2de5094f2d6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": []
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "schemeChikenPlayer",
+            "bindingGroup": "schemeChikenPlayer",
+            "devices": []
+        }
+    ]
+}
