@@ -29,13 +29,13 @@ public class ChickenLouncher : MonoBehaviour
     public void RotateRay()
     {
         float angle = 90;
-        bool angleReached = true;
+        bool angleReached = false;
         int reyDistance = 5;
         int maxAngle = 90;
 
 
         float VelociadDeRecorrido = 300f * 4;
-        if (angleReached == false)
+        if (angleReached == true)
         {
             if (angle >= maxAngle)
             {
@@ -48,7 +48,7 @@ public class ChickenLouncher : MonoBehaviour
                 angle += Time.deltaTime * VelociadDeRecorrido;
             }
         }
-        if (angleReached == true)
+        if (angleReached == false)
         {
             if (angle <= -maxAngle)
             {
