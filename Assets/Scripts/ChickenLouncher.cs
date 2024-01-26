@@ -10,9 +10,7 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] GameObject[] proyectiles = null;
     [SerializeField] float proyectileForce = 10;
 
-    Vector3 raycastPosition;
-    Vector3 raycastObjetive;
-
+    [SerializeField] Collider headBox;
     [SerializeField] Collider swingBox;
 
     private void Update()
@@ -40,6 +38,8 @@ public class ChickenLouncher : MonoBehaviour
                 Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[0], transform);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+
+                ChickenType = 0;
                 break;
         }
     }
@@ -50,6 +50,7 @@ public class ChickenLouncher : MonoBehaviour
         {
             case 0:
                 Debug.Log("Got no chickens");
+                HeadBut();
                 break;
             case 1:
                 ChickenSwing();
@@ -57,6 +58,18 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
+    public void HeadBut()
+    {
+        if (headBox != null)
+        {
+            Debug.Log("Headbutting");
+            StartCoroutine(ActivateCollider(headBox));
+        }
+        else
+        {
+            Debug.Log("Headbut Collider is missing");
+        }
+    }
     public void ChickenSwing()
     {
         if (swingBox != null)

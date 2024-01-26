@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 1568119816}
   - component: {fileID: 1568119815}
   - component: {fileID: 1568119819}
+  - component: {fileID: 1568119820}
   - component: {fileID: 1568119814}
   m_Layer: 0
   m_Name: Chicken
@@ -459,10 +460,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb513c0b17973b43be721bf00250327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChickenType: 1
+  ChickenType: 0
   proyectiles:
   - {fileID: 8464458607440672315, guid: 8c79022265091864688888d86ccafe34, type: 3}
   proyectileForce: 5000
+  headBox: {fileID: 1568119820}
   swingBox: {fileID: 1568119819}
 --- !u!136 &1568119815
 CapsuleCollider:
@@ -569,12 +571,33 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.2982588, y: 0.60232896, z: 1.0886734}
   m_Center: {x: 0.004928589, y: 0.19116452, z: 1.1403116}
+--- !u!65 &1568119820
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568119813}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.97797704, y: 0.60232896, z: 2.0928712}
+  m_Center: {x: 0.031671166, y: 0.19116452, z: 1.6424105}
 --- !u!1 &2029402941
 GameObject:
   m_ObjectHideFlags: 0
