@@ -369,6 +369,10 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 0, z: 0}
   randomIterastor: 0
   enemyNumber: 10
+  enemyCount: 0
+  waveNumber: 3
+  currentWave: 0
+  dificultiLevel: 0
 --- !u!1 &1956471083
 GameObject:
   m_ObjectHideFlags: 0

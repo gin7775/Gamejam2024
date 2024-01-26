@@ -16,7 +16,7 @@ public class SpawnPollos : MonoBehaviour
     void Start()
     {
         randomIterastor = Random.Range(0, pollosToSpawn.Length);
-        
+        UpdateWave();
 
     }
 
