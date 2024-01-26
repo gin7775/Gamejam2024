@@ -1,35 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class AI_Ataque_Enemy1 : StateMachineBehaviour
+public class AI_Muerte_Enemigo1 : StateMachineBehaviour
 {
-    NavMeshAgent enemy;
-    ContenedorEnemigo1 contenedorEnemy;
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        enemy = animator.gameObject.GetComponent<NavMeshAgent>();
-        contenedorEnemy = animator.gameObject.GetComponent<ContenedorEnemigo1>();
-        contenedorEnemy.animEnemy.SetTrigger("Ataque");
+        
+
+
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player"); 
-        if (player != null)
-        {
-            float distanceToPlayer = Vector3.Distance(player.transform.position, animator.transform.position);
-            if (distanceToPlayer >= contenedorEnemy.distanceToEnemy)
-            {
-                
-                animator.SetTrigger("Movimiento");
+       
 
-            }
-           
 
-        }
+
 
     }
 
@@ -37,6 +27,7 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         
+
 
     }
 

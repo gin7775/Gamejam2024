@@ -14,16 +14,17 @@ public class AI_Movimiento_Enemigo1 : StateMachineBehaviour
         enemy = animator.gameObject.GetComponent<NavMeshAgent>();
         destination = animator.gameObject.GetComponent<ContenedorEnemigo1>().player;
         contenedorEnemy = animator.gameObject.GetComponent<ContenedorEnemigo1>();
+        enemy.speed = 3.5f;
         //contenedorEnemy.animEnemy.SetTrigger("Walk");
     }
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        enemy.speed = 3.5f;
+    {       
         enemy.destination = destination.position;
         if (Vector3.Distance(enemy.transform.position, destination.position) <= contenedorEnemy.distanceToEnemy)
         {
             animator.SetTrigger("Ataque");
-            //contenedorEnemy.animEnemy.SetTrigger("Attack");
+            enemy.speed = 0f;
+            
 
         }
     }
