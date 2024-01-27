@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2674078856524945877}
   - component: {fileID: 2153647650333293064}
-  - component: {fileID: 7297171693887650930}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,34 +45,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
-  currentWave: 0
-  waveNumber: 0
-  dificultiLevel: 0
---- !u!114 &7297171693887650930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2971675188607524225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d855fa5e09c0e5f4b8a86c649d699d8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   pollosToSpawn:
   - {fileID: 1702281271950949738, guid: a48b35744cd62ff459d7a8ba3a83bd38, type: 3}
   - {fileID: 1702281271950949738, guid: a48b35744cd62ff459d7a8ba3a83bd38, type: 3}
   - {fileID: 1702281271950949738, guid: a48b35744cd62ff459d7a8ba3a83bd38, type: 3}
   - {fileID: 1702281271950949738, guid: a48b35744cd62ff459d7a8ba3a83bd38, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
-  randomIterastor: 1
-  timeWave: 0
-  timeGeneration: 1
-  enemyNumber: 10
+  randomIterastor: 0
+  timeWave: 5
+  timeGeneration: 0
+  enemyNumber: 0
   enemyInitial: 0
   enemyCount: 0
   waveCurrent: 0
-  waveNumber: 3
+  waveNumber: 0
   currentWave: 0
   dificultiLevel: 0
+  canvasRound: {fileID: 0}
+  canvasAnimator: {fileID: 0}
+  textMesh: {fileID: 0}
