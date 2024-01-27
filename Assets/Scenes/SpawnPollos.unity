@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 254156431}
   - component: {fileID: 254156430}
   - component: {fileID: 254156429}
+  - component: {fileID: 254156432}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -205,13 +206,57 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254156428}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.2517738, y: -0, z: -0, w: 0.96778613}
+  m_LocalPosition: {x: 0, y: 8.24, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 29.165, y: 0, z: 0}
+--- !u!114 &254156432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254156428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &724054486
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,8 +613,8 @@ MonoBehaviour:
   proyectileForce: 5000
   chickenCurrentUses: 0
   chickenMaxUses: 3
-  headBox: {fileID: 2079152088}
-  swingBox: {fileID: 2079152089}
+  headBox: {fileID: 0}
+  swingBox: {fileID: 0}
 --- !u!114 &1231811105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,18 +842,6 @@ PrefabInstance:
 --- !u!143 &2079152087 stripped
 CharacterController:
   m_CorrespondingSourceObject: {fileID: 4432289674183715062, guid: 0ca4002cc288a604589d2651f1275c66,
-    type: 3}
-  m_PrefabInstance: {fileID: 2079152086}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &2079152088 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 1044963699118135949, guid: 0ca4002cc288a604589d2651f1275c66,
-    type: 3}
-  m_PrefabInstance: {fileID: 2079152086}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &2079152089 stripped
-BoxCollider:
-  m_CorrespondingSourceObject: {fileID: 2237274110575215285, guid: 0ca4002cc288a604589d2651f1275c66,
     type: 3}
   m_PrefabInstance: {fileID: 2079152086}
   m_PrefabAsset: {fileID: 0}
