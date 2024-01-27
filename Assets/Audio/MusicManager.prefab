@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 1447363902064040122}
   - component: {fileID: 5675451881541462715}
   m_Layer: 0
-  m_Name: RickRollPLaceHolder
+  m_Name: Music_PrimeraOleada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,12 +446,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2355579257731845540}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2804223176364044459}
+  m_Father: {fileID: 8441544721357335883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &5675451881541462715
 AudioSource:
@@ -464,11 +464,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -83003221725447759, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a3664474ffe0fa748a970f9b9bc34e59, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a4a90d839b6582442904e23a4cff5e9c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.515
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 5162465985997153807}
   - component: {fileID: 1829759839015037371}
   m_Layer: 0
-  m_Name: "SegundaCanci\xF3n"
+  m_Name: Music_SegundaOleada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,7 +580,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2804223176364044459}
+  m_Father: {fileID: 8441544721357335883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1829759839015037371
 AudioSource:
@@ -597,7 +597,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -937,6 +937,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4828005572629612925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8441544721357335883}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8441544721357335883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828005572629612925}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1447363902064040122}
+  - {fileID: 5162465985997153807}
+  m_Father: {fileID: 2804223176364044459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5062942779843477181
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,8 +1008,7 @@ Transform:
   - {fileID: 8108282381871240532}
   - {fileID: 2746154391663268574}
   - {fileID: 8797304561315423523}
-  - {fileID: 1447363902064040122}
-  - {fileID: 5162465985997153807}
+  - {fileID: 8441544721357335883}
   - {fileID: 2413989487100431004}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
