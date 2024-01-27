@@ -11,6 +11,8 @@ public class ContenedorEnemigo1 : MonoBehaviour
     public Transform destination;
     [SerializeField] public int lifes = 3;
 
+    public float speed;
+
     public void ReciveDamage(int damage)
     {
         lifes -= damage;

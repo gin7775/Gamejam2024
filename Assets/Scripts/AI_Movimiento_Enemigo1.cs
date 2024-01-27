@@ -14,7 +14,7 @@ public class AI_Movimiento_Enemigo1 : StateMachineBehaviour
         enemy = animator.gameObject.GetComponent<NavMeshAgent>();
         
         contenedorEnemy = animator.gameObject.GetComponent<ContenedorEnemigo1>();
-        enemy.speed = 3.5f;
+        enemy.speed = contenedorEnemy.speed;
         //contenedorEnemy.animEnemy.SetTrigger("Walk");
     }
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

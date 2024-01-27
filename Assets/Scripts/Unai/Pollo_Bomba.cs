@@ -48,21 +48,22 @@ public class Pollo_Bomba : MonoBehaviour
     public void Explosion()
     {
 
-        chickensToDie = GameObject.FindGameObjectsWithTag("CHICKEN");
+        chickensToDie = GameObject.FindGameObjectsWithTag("Enemy");
 
             foreach (GameObject chicken in chickensToDie)
             {
                 if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
                 {
-                    Prueba_explosion hemuerto_script = chicken.GetComponent<Prueba_explosion>();
-                    if (hemuerto_script != null)
+                    HowToDie howToDie = chicken.GetComponent<HowToDie>();
+                    if (howToDie != null)
                     {
-                        hemuerto_script.he_explotado(); // matar pollos, INCLUIDO JUGADOR SI COINCIDE QUE ESTÁ EN EL RADIO
+                        howToDie.he_explotado(); // matar pollos, INCLUIDO JUGADOR SI COINCIDE QUE ESTÁ EN EL RADIO
                     }
 
                 }
 
             }
+
     }
 }
 
