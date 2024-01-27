@@ -26,6 +26,9 @@ public class NewBehaviourScript : MonoBehaviour
                 SceneManager.LoadScene("Credits");
                 break;
             case 4:
+                SceneManager.LoadScene("Principal");
+                break;
+            case 5;
                 Application.Quit();
                 break;
 
