@@ -8,10 +8,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] public int score;
-    [SerializeField] public int currentWave;
-    [SerializeField] public int waveNumber;
-    [SerializeField] public int dificultiLevel;
+    [SerializeField] public int score = 0;
+    [SerializeField] public int currentWave = 0;
+    [SerializeField] public int waveNumber = 3;
+    [SerializeField] public int dificultiLevel = 1;
 
     private void Awake()
     {
@@ -29,10 +29,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score = 0;
-        currentWave = 0;
-        waveNumber = 3;
-        dificultiLevel = 1;
     }
 
     public void chikenEnemyDeath(GameObject enemy)

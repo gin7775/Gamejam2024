@@ -6,12 +6,28 @@ public class SpawnPollos_rik : MonoBehaviour
 {
     public static SpawnPollos_rik Instance { get; private set; }
 
-    [SerializeField] private GameObject [] pollosToSpawn;
+    [SerializeField] private GameObject[] pollosToSpawn;
     [SerializeField] private Vector3 spawnPosition;
-    [SerializeField] private float timeGeneration;
     [SerializeField] private int randomIterastor;
-    [SerializeField] private int enemyNumber, enemyCount;
-    [SerializeField] private int waveNumber, currentWave, dificultiLevel;
+    // Tiempo por el que espera para generar enemigos por segundo
+    [SerializeField] private float timeWave;
+    // Tiempo por el que espera para generar enemigos por segundo
+    [SerializeField] private float timeGeneration;
+    // Numero total de enemigos en la ronda
+    [SerializeField] private int enemyNumber;
+    // Numero de enemigos por oleada inicial
+    [SerializeField] private int enemyInitial;
+    // Numero de enemigos que quedan en la ronda
+    [SerializeField] private int enemyCount;
+    // Numero de ronda totales
+    [SerializeField] private int waveCurrent;
+    // Numero de ronda totales
+    [SerializeField] private int waveNumber = 3;
+    // Numero de ronda actual
+    [SerializeField] private int currentWave;
+    // Nivel de dificultad -- No se usa
+    [SerializeField] private int dificultiLevel;
+    // Objeto para la espera
     [SerializeField] private Coroutine myCorutine;
 
     private void Awake()
@@ -30,47 +46,48 @@ public class SpawnPollos_rik : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomIterastor = Random.Range(0, pollosToSpawn.Length);
+        timeWave = 10f;
+        enemyInitial = 5;
+        enemyNumber = 0;
+        enemyCount = 0;
+        GameManager.Instance.waveNumber = waveNumber;
         UpdateWave();
     }
 
     public void InstantiatePollos(int enemys)
     {
-        enemyCount = enemys;
-
-        for (int i = 0; i < enemys; i++)
-        {
-            randomIterastor = Random.Range(0, pollosToSpawn.Length);
-            spawnPosition = new Vector3(Random.Range(8.5f,-8.5f ), 10, Random.Range(8.5f, -8.5f));
-            GameObject toInstantiate = Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
-        }
-
-        generateWithTime();
+        StartCoroutine(startWave(timeWave, enemys));
     }
 
     public void UpdateWave()
     {
-        if (GameManager.Instance.currentWave <= GameManager.Instance.waveNumber)
+        Debug.Log("UpdateWave");
+
+        GameManager.Instance.currentWave++;
+        waveCurrent = GameManager.Instance.currentWave;
+        Debug.Log("Wave: " + GameManager.Instance.currentWave);
+        Debug.Log("WaveTotal: " + GameManager.Instance.waveNumber);
+
+        if (waveCurrent <= GameManager.Instance.waveNumber)
         {
-            if (GameManager.Instance.currentWave <= 1)
+            if (waveCurrent <= 1)
             {
                 GameManager.Instance.dificultiLevel = 1;
-                //InstantiatePollos(enemyNumber);
-                generateWithTime();
+                InstantiatePollos(enemyInitial);
+                //generateWithTime();
             }
-            else if (GameManager.Instance.currentWave == 2)
+            else if (waveCurrent == 2)
             {
                 GameManager.Instance.dificultiLevel = 2;
-                //InstantiatePollos(enemyNumber * 2);
-                generateWithTime();
+                InstantiatePollos(enemyInitial * 2);
+                //generateWithTime();
             }
             else
             {
                 GameManager.Instance.dificultiLevel = 3;
-                //InstantiatePollos(enemyNumber * 4);
-                generateWithTime();
+                InstantiatePollos(enemyInitial * 3);
+                //generateWithTime();
             }
-            GameManager.Instance.currentWave++;
         }
     }
 
@@ -78,7 +95,7 @@ public class SpawnPollos_rik : MonoBehaviour
     {
         enemyCount--;
 
-        if(enemyCount <= 0)
+        if (enemyCount <= 0)
         {
             UpdateWave();
         }
@@ -92,12 +109,16 @@ public class SpawnPollos_rik : MonoBehaviour
 
     IEnumerator EsperarYExecutar()
     {
-        enemyCount = 0;
-        enemyNumber = GameManager.Instance.currentWave <= 1 ? 20 : 0;
-        enemyNumber = GameManager.Instance.currentWave == 2 ? 50 : 20;
-        enemyNumber = GameManager.Instance.currentWave >= 3 ? 120 : 60;
+        int auxEnemyNumber = GameManager.Instance.currentWave <= 1 ? 25 : 0;
+        Debug.Log("currentwave1: " + GameManager.Instance.currentWave);
+        Debug.Log("currentwave1: " + currentWave);
+        Debug.Log("num aux1: " + auxEnemyNumber);
+        auxEnemyNumber = GameManager.Instance.currentWave == 2 ? 50 : auxEnemyNumber;
+        Debug.Log("num aux2: " + auxEnemyNumber);
+        auxEnemyNumber = GameManager.Instance.currentWave >= 3 ? 105 : auxEnemyNumber;
+        Debug.Log("num aux3: " + auxEnemyNumber);
 
-        for (int i = 0; i < enemyNumber; i++)
+        for (int i = 0; i < auxEnemyNumber; i++)
         {
             // Espera 3 segundos
             yield return new WaitForSeconds(timeGeneration);
@@ -106,9 +127,27 @@ public class SpawnPollos_rik : MonoBehaviour
             Debug.Log("Se ejecutó después de 3 segundos");
             randomIterastor = Random.Range(0, pollosToSpawn.Length);
             spawnPosition = new Vector3(Random.Range(8.5f, -8.5f), 1.2f, Random.Range(8.5f, -8.5f));
-            GameObject toInstantiate = Instantiate(pollosToSpawn[1], spawnPosition, Quaternion.identity);
+            GameObject toInstantiate = Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
             enemyCount++;
         }
+    }
+
+    IEnumerator startWave(float seconds, int totalEnemies)
+    {
+        Debug.Log("Esperamos 10 segundos");
+        // Espera 10 segundos
+        yield return new WaitForSeconds(seconds);
+        Debug.Log("Han pasado");
+
+        for (int i = 0; i < totalEnemies; i++)
+        {
+            randomIterastor = Random.Range(0, pollosToSpawn.Length);
+            spawnPosition = new Vector3(Random.Range(8.5f, -8.5f), 1.2f, Random.Range(8.5f, -8.5f));
+            GameObject toInstantiate = Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
+            enemyCount++;
+        }
+
+        generateWithTime();
     }
 
     public void CancelarCorutina()
