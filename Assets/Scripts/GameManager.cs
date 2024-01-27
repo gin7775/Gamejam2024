@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator canvasAnimator;
     [SerializeField] private GameObject textMesh;
 
+    private CinemachineImpulseSource cinemachineImpulseSource;
+
     private void Awake()
     {
         // If there is an instance and it's not me, delete myself.
@@ -74,13 +77,23 @@ public class GameManager : MonoBehaviour
 
         if (auxLife <= 0)
         {
+            cinemachineImpulseSource = enemy.gameObject.GetComponent<CinemachineImpulseSource>();
+            cinemachineImpulseSource.GenerateImpulse();
+            StartCoroutine(FrameFreeze(0.03f));
             score++;
             Destroy(enemy);
             enemyDeath();
         }
     }
 
+    private IEnumerator FrameFreeze(float duration)
+    {
+        Time.timeScale = 0f;
 
+        yield return new WaitForSecondsRealtime(duration);
+
+        Time.timeScale = 1f;
+    }
 
     public void InstantiatePollos(int enemys)
     {

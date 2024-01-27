@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,34 +7,39 @@ using UnityEngine.Rendering;
 public class ContenedorEnemigo1 : MonoBehaviour
 {
     public Animator animEnemy;
-    
+    public GameObject playerReference;
     public float distanceToEnemy;
     public Transform destination;
     [SerializeField] public int lifes = 3;
-
+    private CinemachineImpulseSource cinemachineImpulseSource;
     public float speed;
     public float distanceToAttack = 1f;
-
+    public void Start()
+    {
+        cinemachineImpulseSource = this.GetComponent<CinemachineImpulseSource>();
+         playerReference = GameObject.FindGameObjectWithTag("Player");
+    }
     public void ReciveDamage(int damage)
     {
+        cinemachineImpulseSource.GenerateImpulse();
         lifes -= damage;
-
-        if(lifes <= 0)
+        StartCoroutine(FrameFreeze(0.1f));
+        if (lifes <= 0)
         {
             //GameManager.Instance.chikenEnemyDeath(gameObject);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
-    //public void CheckDistance()
-    //{
-    //    GameObject player = GameObject.FindGameObjectWithTag("Player");
+    private IEnumerator FrameFreeze(float duration)
+    {
+        Time.timeScale = 0f;
+        Debug.Log("Parao");
+        yield return new WaitForSecondsRealtime(duration);
 
-    //    if (Vector3.Distance(transform.position, player.transform.position) <= distanceToAttack)
-    //    {
-    //        player.GetComponent<ChickenLouncher>().ReciveDamage(1);
+        Time.timeScale = 1f;
+    }
 
-    //    }
-    //}
+   
 
 }

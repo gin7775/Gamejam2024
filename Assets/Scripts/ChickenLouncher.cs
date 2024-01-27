@@ -24,9 +24,15 @@ public class ChickenLouncher : MonoBehaviour
 
     [SerializeField] GameObject[] eggs;
 
+    private Animator anim;
+
     private void Update()
     {
        
+    }
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
     }
 
     public void OnShoot(InputValue value)
@@ -37,6 +43,7 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
+        anim.SetTrigger("Attack");
         Attack(chickenType);
         Debug.Log("Ataca");
     }
@@ -67,6 +74,7 @@ public class ChickenLouncher : MonoBehaviour
     }
     public void ReciveDamage(int damage)
     {
+
         //UpdateLifeUI();
         health -= damage;
         if (health <= 0)
@@ -166,8 +174,9 @@ public class ChickenLouncher : MonoBehaviour
     }
     IEnumerator ActivateCollider(GameObject collider)
     {
+        yield return new WaitForSeconds(0.2f);
         collider.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         collider.SetActive(false);
     }
 
