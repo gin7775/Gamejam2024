@@ -120,6 +120,142 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 1e8fab4e9c6702849a71f5bf9953a3e8, type: 2}
+--- !u!1001 &5087089
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.465
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.842
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190735179830611108, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_Name
+      value: PolloAnimadoEnemy (4)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a5818c387a4bde42af4026ed854f042, type: 3}
+--- !u!1001 &5288251
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.379
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190735179830611108, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_Name
+      value: PolloAnimadoEnemy (6)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a5818c387a4bde42af4026ed854f042, type: 3}
 --- !u!1 &58981252 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1947571075482830066, guid: 1f04c81c7ab9089439ca7fb839d849c7,
@@ -287,6 +423,74 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1001 &677004525
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190735179830611108, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_Name
+      value: PolloAnimadoEnemy (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a5818c387a4bde42af4026ed854f042, type: 3}
 --- !u!1 &724054486
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +652,74 @@ MonoBehaviour:
   waveNumber: 3
   currentWave: 0
   dificultiLevel: 0
+--- !u!1001 &763814324
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190735179830611108, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_Name
+      value: PolloAnimadoEnemy (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a5818c387a4bde42af4026ed854f042, type: 3}
 --- !u!1 &902718030
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,6 +788,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1221415512
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.703
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190735179830611108, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_Name
+      value: PolloAnimadoEnemy (5)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a5818c387a4bde42af4026ed854f042, type: 3}
 --- !u!1 &1338454245
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +961,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 25.856}
+--- !u!1001 &1339882593
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525839175707858462, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190735179830611108, guid: 6a5818c387a4bde42af4026ed854f042,
+        type: 3}
+      propertyPath: m_Name
+      value: PolloAnimadoEnemy (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a5818c387a4bde42af4026ed854f042, type: 3}
 --- !u!1001 &1584469812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1824,3 +2232,9 @@ SceneRoots:
   - {fileID: 1948357358}
   - {fileID: 1338454249}
   - {fileID: 2087098152749506358}
+  - {fileID: 763814324}
+  - {fileID: 677004525}
+  - {fileID: 5087089}
+  - {fileID: 1221415512}
+  - {fileID: 5288251}
+  - {fileID: 1339882593}
