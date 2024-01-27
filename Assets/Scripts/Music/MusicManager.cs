@@ -49,7 +49,7 @@ public class MusicManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Play_FX_Jugador_PolloMuerto();
+            Play_FX_Player_PolloMuerto();
         }
 
         if (Input.GetKeyDown(KeyCode.N))
