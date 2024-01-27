@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ba49c63f95597984896b9867e81b19e5
+guid: 9271233324e6a2740be2036e3cfadcab
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -42,7 +42,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -151,7 +151,7 @@ ModelImporter:
       takeName: Armature|PolloLanzar
       internalID: -2196748267029508664
       firstFrame: 0
-      lastFrame: 11
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -180,7 +180,7 @@ ModelImporter:
       takeName: Armature|PolloSwing
       internalID: -3026057093854772632
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -208,8 +208,8 @@ ModelImporter:
       name: Armature|PolloWalk
       takeName: Armature|PolloWalk
       internalID: 6444043093129212508
-      firstFrame: 6
-      lastFrame: 25
+      firstFrame: 0
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -245,7 +245,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -266,8 +266,8 @@ ModelImporter:
       name: Armature|WalkDefinitivo
       takeName: Armature|WalkDefinitivo
       internalID: 7724722145784539633
-      firstFrame: 5
-      lastFrame: 24
+      firstFrame: 0
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -358,7 +358,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
