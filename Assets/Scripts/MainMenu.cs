@@ -28,7 +28,7 @@ public class NewBehaviourScript : MonoBehaviour
             case 4:
                 SceneManager.LoadScene("Principal");
                 break;
-            case 5;
+            case 5:
                 Application.Quit();
                 break;
 
