@@ -113,16 +113,19 @@ public class GameManager : MonoBehaviour
             if (waveCurrent <= 1)
             {
                 dificultiLevel = 1;
+                timeGeneration = 3f;
                 InstantiatePollos(enemyInitial);
             }
             else if (waveCurrent == 2)
             {
                 dificultiLevel = 2;
+                timeGeneration = 1.5f;
                 InstantiatePollos(enemyInitial * 2);
             }
             else
             {
                 dificultiLevel = 3;
+                timeGeneration = 0.75f;
                 InstantiatePollos(enemyInitial * 3);
             }
         }
