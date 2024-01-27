@@ -15,6 +15,7 @@ public class ContenedorEnemigo1 : MonoBehaviour
     private CinemachineImpulseSource cinemachineImpulseSource;
     public float speed;
     public float distanceToAttack = 1f;
+    public GameObject corpse;
 
     public void Start()
     {
@@ -25,7 +26,9 @@ public class ContenedorEnemigo1 : MonoBehaviour
     {
         cinemachineImpulseSource.GenerateImpulse();
         lifes -= damage;
+        PolloMansy();
         StartCoroutine(FrameFreeze(0.1f));
+
         if (lifes <= 0)
         {
             //GameManager.Instance.chikenEnemyDeath(gameObject);
@@ -41,7 +44,11 @@ public class ContenedorEnemigo1 : MonoBehaviour
 
         Time.timeScale = 1f;
     }
-
+    public void PolloMansy()
+    {
+        GameObject toInstantiate = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
+        
+    }
    
 
 }
