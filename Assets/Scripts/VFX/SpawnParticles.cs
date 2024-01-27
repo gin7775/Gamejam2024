@@ -20,7 +20,17 @@ public class SpawnParticles : MonoBehaviour
 
     public void SpawnBothParticles()
     {
-        SpawnParticle();
-        SpawnSecondaryParticle();
+        if (particle != null)
+        {
+            SpawnParticle();
+            if (secondaryParticle != null)
+            {
+                SpawnSecondaryParticle();
+            }
+        }
+
+
+        
+        
     }
 }
