@@ -41,7 +41,7 @@ public class SpawnPollos_rik : MonoBehaviour
         for (int i = 0; i < enemys; i++)
         {
             randomIterastor = Random.Range(0, pollosToSpawn.Length);
-            spawnPosition = new Vector3(Random.Range(8.5f,-8.5f ), 1.2f, Random.Range(8.5f, -8.5f));
+            spawnPosition = new Vector3(Random.Range(8.5f,-8.5f ), 10, Random.Range(8.5f, -8.5f));
             GameObject toInstantiate = Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
         }
 

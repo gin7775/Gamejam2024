@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 1e8fab4e9c6702849a71f5bf9953a3e8, type: 2}
+--- !u!143 &58981255 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 2428427412932631823, guid: 1f04c81c7ab9089439ca7fb839d849c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5614855244762748656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &254156428
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,11 +672,16 @@ PrefabInstance:
         type: 3}
       propertyPath: controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 58981255}
     - target: {fileID: 1947571075482830066, guid: 1f04c81c7ab9089439ca7fb839d849c7,
         type: 3}
       propertyPath: m_Name
       value: PolloAnimadoDef1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947571075482830066, guid: 1f04c81c7ab9089439ca7fb839d849c7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
