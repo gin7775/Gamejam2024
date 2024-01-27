@@ -67,6 +67,17 @@ public class Pollo_Bomba : MonoBehaviour
 
             }
 
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) <= radius)
+            {
+                player.GetComponent<ChickenLouncher>().ReciveDamage(1);
+                Debug.Log("Explosion ha herido al jugador");
+
+            }
+        }
         
 
     }
