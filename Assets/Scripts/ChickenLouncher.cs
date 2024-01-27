@@ -6,22 +6,43 @@ using UnityEngine.UIElements;
 
 public class ChickenLouncher : MonoBehaviour
 {
-    [SerializeField] int ChickenType = 0;
+    [SerializeField] int chickenType = 0;
     [SerializeField] GameObject[] proyectiles = null;
     [SerializeField] float proyectileForce = 10;
+    [SerializeField] int chickenCurrentUses = 0;
+    [SerializeField] int chickenMaxUses = 3;
 
     [SerializeField] Collider headBox;
     [SerializeField] Collider swingBox;
+
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Shoot(ChickenType);
+            Shoot(chickenType);
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Attack(ChickenType);
+            Attack(chickenType);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RetrieveChicken(1);
+        }
+    }
+
+    void RetrieveChicken(int chickenNumber)
+    {
+        chickenType = chickenNumber;
+    }
+
+    void UpdateWeapon()
+    {
+        chickenCurrentUses++;
+        if(chickenCurrentUses == chickenMaxUses)
+        {
+            chickenType = 0;
         }
     }
 
@@ -39,7 +60,7 @@ public class ChickenLouncher : MonoBehaviour
                 proyectile = Instantiate(proyectiles[0], transform);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
-                ChickenType = 0;
+                chickenType = 0;
                 break;
         }
     }
@@ -54,6 +75,7 @@ public class ChickenLouncher : MonoBehaviour
                 break;
             case 1:
                 ChickenSwing();
+                UpdateWeapon();
                 break;
         }
     }
