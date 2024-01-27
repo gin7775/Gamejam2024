@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         score = 0;
-        currentWave = 1;
+        currentWave = 0;
         waveNumber = 3;
         dificultiLevel = 1;
     }
@@ -38,8 +38,19 @@ public class GameManager : MonoBehaviour
     public void chikenEnemyDeath(GameObject enemy)
     {
         score++;
-        Destroy(enemy);
         SpawnPollos_rik.Instance.enemyDeath();
+    }
+
+    public void chickenEnemyTakeDamage(GameObject enemy, int damage)
+    {
+        int auxLife = enemy.GetComponent<ContenedorEnemigo1>().lifes -= damage;
+
+        if (auxLife <= 0)
+        {
+            score++;
+            Destroy(enemy);
+            SpawnPollos_rik.Instance.enemyDeath();
+        }
     }
 
     /*public int getCurrentWave()

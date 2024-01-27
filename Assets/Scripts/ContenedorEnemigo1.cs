@@ -9,15 +9,15 @@ public class ContenedorEnemigo1 : MonoBehaviour
     
     public float distanceToEnemy;
     public Transform destination;
+    [SerializeField] public int lifes = 3;
 
-    [SerializeField] int lifes = 3;
     public void ReciveDamage(int damage)
     {
         lifes -= damage;
 
         if(lifes <= 0)
         {
-            GameManager.Instance.score++;
+            //GameManager.Instance.chikenEnemyDeath(gameObject);
             Destroy(gameObject);
         }
     }

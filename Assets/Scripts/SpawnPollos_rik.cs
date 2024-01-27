@@ -55,17 +55,20 @@ public class SpawnPollos_rik : MonoBehaviour
             if (GameManager.Instance.currentWave <= 1)
             {
                 GameManager.Instance.dificultiLevel = 1;
-                InstantiatePollos(enemyNumber);
+                //InstantiatePollos(enemyNumber);
+                generateWithTime();
             }
             else if (GameManager.Instance.currentWave == 2)
             {
                 GameManager.Instance.dificultiLevel = 2;
-                InstantiatePollos(enemyNumber * 2);
+                //InstantiatePollos(enemyNumber * 2);
+                generateWithTime();
             }
             else
             {
                 GameManager.Instance.dificultiLevel = 3;
-                InstantiatePollos(enemyNumber * 4);
+                //InstantiatePollos(enemyNumber * 4);
+                generateWithTime();
             }
             GameManager.Instance.currentWave++;
         }
@@ -89,9 +92,10 @@ public class SpawnPollos_rik : MonoBehaviour
 
     IEnumerator EsperarYExecutar()
     {
-        enemyNumber = currentWave <= 1 ? 30 : 0;
-        enemyNumber = currentWave == 2 ? 60 : 30;
-        enemyNumber = currentWave >= 3 ? 120 : 60;
+        enemyCount = 0;
+        enemyNumber = GameManager.Instance.currentWave <= 1 ? 20 : 0;
+        enemyNumber = GameManager.Instance.currentWave == 2 ? 50 : 20;
+        enemyNumber = GameManager.Instance.currentWave >= 3 ? 120 : 60;
 
         for (int i = 0; i < enemyNumber; i++)
         {

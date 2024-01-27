@@ -43,7 +43,8 @@ public class ProjectileLife : MonoBehaviour
 
     private void DealDamage(GameObject objetive, int damage)
     {
-        objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
+        //objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
+        GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
     }
 
 }
