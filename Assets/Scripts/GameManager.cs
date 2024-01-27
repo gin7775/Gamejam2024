@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeGeneration = 3f;
         timeWave = 6f;
         enemyInitial = 5;
         enemyNumber = 0;

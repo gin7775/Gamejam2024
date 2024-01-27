@@ -115,6 +115,7 @@ public class ChickenLouncher : MonoBehaviour
                 Vector3 projectilePos;
                 projectilePos = transform.position;
                 projectilePos += transform.forward;
+                projectilePos += transform.up;
                 Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);

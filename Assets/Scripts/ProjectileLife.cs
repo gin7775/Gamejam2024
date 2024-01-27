@@ -6,10 +6,12 @@ public class ProjectileLife : MonoBehaviour
 {
     [SerializeField] int Life = 5;
     [SerializeField] int effectLife = 2;
-    [SerializeField] Collider collider;
+    [SerializeField] Collider[] colliders;
+    [SerializeField] GameObject[] ragdolls;
     void Start()
     {
         SetObjectLifeTime();
+        StartCoroutine(SetRagdoll());
     }
 
     void SetObjectLifeTime()
@@ -19,9 +21,13 @@ public class ProjectileLife : MonoBehaviour
     IEnumerator ObjectEffectLife()
     {
         yield return new WaitForSeconds(effectLife);
-        if(collider != null)
+        if(colliders != null)
         {
-            collider.enabled = false;
+            foreach(Collider col in colliders)
+            {
+                col.enabled = false;
+            }
+            
         }
         StartCoroutine(ObjectLife());
     }
@@ -45,6 +51,14 @@ public class ProjectileLife : MonoBehaviour
     {
         //objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
         GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
+    }
+    IEnumerator SetRagdoll()
+    {
+        yield return new WaitForSeconds(0.5f);
+        foreach(GameObject obj in ragdolls)
+        {
+            obj.SetActive(true);
+        }
     }
 
 }
