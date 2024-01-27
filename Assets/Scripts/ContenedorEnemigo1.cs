@@ -12,6 +12,7 @@ public class ContenedorEnemigo1 : MonoBehaviour
     [SerializeField] public int lifes = 3;
 
     public float speed;
+    public float distanceToAttack = 1f;
 
     public void ReciveDamage(int damage)
     {
@@ -23,5 +24,16 @@ public class ContenedorEnemigo1 : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    //public void CheckDistance()
+    //{
+    //    GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+    //    if (Vector3.Distance(transform.position, player.transform.position) <= distanceToAttack)
+    //    {
+    //        player.GetComponent<ChickenLouncher>().ReciveDamage(1);
+
+    //    }
+    //}
 
 }

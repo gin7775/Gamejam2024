@@ -33,8 +33,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void Animations()
     {
-        float characterSpeed = controller.velocity.magnitude;
-        animator.SetFloat("SpeedBlendTree", characterSpeed);
+        float characterSpeed = controller.velocity.magnitude; 
+        if(animator != null)
+        {
+            animator.SetFloat("SpeedBlendTree", characterSpeed);
+
+        }
     }
 
     // Método público llamado por el Player Input Component para movimiento

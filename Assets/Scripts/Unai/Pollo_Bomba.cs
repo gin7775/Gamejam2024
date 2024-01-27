@@ -67,11 +67,7 @@ public class Pollo_Bomba : MonoBehaviour
 
             }
 
-        if (Vector3.Distance(transform.position, player.transform.position) <= radius)
-        {
-            player.GetComponent<ChickenLouncher>().ReciveDamage(1);
-
-        }
+        
 
     }
 }

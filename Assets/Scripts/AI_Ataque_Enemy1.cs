@@ -11,7 +11,8 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
     {
         enemy = animator.gameObject.GetComponent<NavMeshAgent>();
         contenedorEnemy = animator.gameObject.GetComponent<ContenedorEnemigo1>();
-        contenedorEnemy.animEnemy.SetTrigger("Attack");
+        //contenedorEnemy.animEnemy.SetTrigger("Attack");
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,7 +24,8 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
             float distanceToPlayer = Vector3.Distance(player.transform.position, animator.transform.position);
             if (distanceToPlayer >= contenedorEnemy.distanceToEnemy)
             {
-                
+                contenedorEnemy.animEnemy.SetTrigger("move"); //la animación
+
                 animator.SetTrigger("Movimiento");
 
             }
@@ -31,12 +33,14 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
 
         }
 
+
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+       
 
     }
 
