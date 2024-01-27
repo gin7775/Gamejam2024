@@ -95,7 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583e63977fa2d3e4d84b69519bb35fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 5
+  Life: 3
+  effectLife: 1
+  collider: {fileID: 4840851951825858916}
 --- !u!1001 &5168974223795449227
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 public class ProjectileLife : MonoBehaviour
 {
     [SerializeField] int Life = 5;
+    [SerializeField] int effectLife = 2;
+    [SerializeField] Collider collider;
     void Start()
     {
         SetObjectLifeTime();
@@ -12,6 +14,15 @@ public class ProjectileLife : MonoBehaviour
 
     void SetObjectLifeTime()
     {
+        StartCoroutine(ObjectEffectLife());
+    }
+    IEnumerator ObjectEffectLife()
+    {
+        yield return new WaitForSeconds(effectLife);
+        if(collider != null)
+        {
+            collider.enabled = false;
+        }
         StartCoroutine(ObjectLife());
     }
     IEnumerator ObjectLife()
@@ -22,22 +33,11 @@ public class ProjectileLife : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Debug.Log("name: " + other.gameObject.name);
-        // Debug.Log("tag: " + other.gameObject.tag);
         if (other.gameObject.CompareTag("Enemy"))
         {
-            /*switch (chickenType)
-            {
-                case 0:
-                    Debug.Log("Enemy hitted with headbut");
-                    DealDamage(other.gameObject, 1);
-                    break;
-                case 1:*/
+ 
                     Debug.Log("Enemy hitted with chicken");
                     DealDamage(other.gameObject, 2);
-                    /*break;
-
-            }*/
         }
     }
 
