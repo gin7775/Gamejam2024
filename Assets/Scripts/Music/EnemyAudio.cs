@@ -8,23 +8,24 @@ public class EnemyAudio : MonoBehaviour
     [SerializeField] AudioSource[] sonidoPolloEnemigo;
     [SerializeField] AudioSource polloMuerto;
 
+    int indexElegido;
+
     // Start is called before the first frame update
     void Start()
     {
-        sonidoPolloEnemigo[Random.Range(0, sonidoPolloEnemigo.Length)].Play();
+        indexElegido = Random.Range(0, sonidoPolloEnemigo.Length);
+        sonidoPolloEnemigo[indexElegido].Play();
     }
 
     // Update is called once per frame
-    void Update()
+  
+    public void Stop_CacareoJugador() //Frena el Cacareo
     {
+        sonidoPolloEnemigo[indexElegido].Stop();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Play_Enemy_Sound_PolloMuerto();
-        }
     }
 
-    public void Play_Enemy_Sound_PolloMuerto()
+    public void Play_Enemy_Sound_PolloMuerto() // PolloMuerto
     {
         polloMuerto.Play();
     }
