@@ -5,7 +5,9 @@ using UnityEngine;
 public class EnemyAudio : MonoBehaviour
 {
 
-    AudioSource[] sonidoPolloEnemigo;
+    [SerializeField] AudioSource[] sonidoPolloEnemigo;
+    [SerializeField] AudioSource polloMuerto;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,11 @@ public class EnemyAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
+
+    public void Sound_PolloMuerto()
+    {
+        polloMuerto.Play();
+    }
+
 }

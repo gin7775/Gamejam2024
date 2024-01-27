@@ -23,7 +23,7 @@ public class MusicManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-          Play_Sound_AtaquePollo();   
+            Play_Sound_AtaquePollo();
         }
     }
 
@@ -48,7 +48,7 @@ public class MusicManager : MonoBehaviour
         ataquePollo.Play();
     }
 
-    public void Sound_PolloMuerto()
+    public void Play_Sound_PolloMuerto()
     {
         polloMuerto.Play();
     }
