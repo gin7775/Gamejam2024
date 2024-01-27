@@ -8,12 +8,14 @@ public class ContenedorEnemigo1 : MonoBehaviour
 {
     public Animator animEnemy;
     public GameObject playerReference;
+    public int enemyTipe;
     public float distanceToEnemy;
     public Transform destination;
     [SerializeField] public int lifes = 3;
     private CinemachineImpulseSource cinemachineImpulseSource;
     public float speed;
     public float distanceToAttack = 1f;
+
     public void Start()
     {
         cinemachineImpulseSource = this.GetComponent<CinemachineImpulseSource>();

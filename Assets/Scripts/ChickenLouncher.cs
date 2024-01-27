@@ -23,6 +23,12 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] int maxHealth = 3;
 
     [SerializeField] GameObject[] eggs;
+    [SerializeField] Collider[] shickensDetected;
+    [SerializeField] int pickUpRange = 3;
+    [SerializeField] float distanciaComparativa,distanciaActual;
+    //[SerializeField] GameObject pollo;
+
+
 
     private Animator anim;
 
@@ -32,6 +38,8 @@ public class ChickenLouncher : MonoBehaviour
     }
     private void Start()
     {
+
+        distanciaComparativa = 1000;
         anim = GetComponent<Animator>();
     }
 
@@ -50,6 +58,24 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnPick(InputValue value)
     {
+        List<GameObject> pollos = new List<GameObject>();
+        shickensDetected = Physics.OverlapSphere(this.transform.position, pickUpRange);
+        foreach (var pollo in shickensDetected)
+        {
+            distanciaActual = Vector3.Distance(pollo.transform.position, this.transform.position);
+            if (distanciaActual <= distanciaComparativa && pollo.CompareTag("Corpse"))
+            {
+                distanciaActual = distanciaComparativa;
+                pollos.Add(pollo.gameObject);
+            }
+        }
+
+        GameObject auxPollo = pollos[pollos.Count - 1];
+        chickenType = auxPollo.GetComponent<ChickenCorpse>().chickenType;
+        Destroy(auxPollo);
+        pollos.Clear();
+
+
         RetrieveChicken(1);
         Debug.Log("Coge");
     }
@@ -59,6 +85,7 @@ public class ChickenLouncher : MonoBehaviour
         chickenType = chickenNumber;
         if (chickenType == 3)
         {
+
             LifeUp(1);
         }
     }
