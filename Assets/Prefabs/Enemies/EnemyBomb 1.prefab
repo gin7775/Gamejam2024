@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 708427585230906210}
   - component: {fileID: 1054972831791023816}
   - component: {fileID: 6473118521426134804}
-  - component: {fileID: 7255378064385453168}
-  - component: {fileID: 6839034404222430880}
   - component: {fileID: 2896922339301977694}
+  - component: {fileID: -8190619795984172847}
+  - component: {fileID: -2019783455265265758}
   m_Layer: 0
   m_Name: EnemyBomb 1
   m_TagString: Enemy
@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animEnemy: {fileID: 6975425823872994541}
+  playerReference: {fileID: 0}
   distanceToEnemy: 3
   destination: {fileID: 0}
   lifes: 1
@@ -113,52 +114,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &7255378064385453168
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454032083427569727}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.69
-  m_Height: 2.17
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.16, z: 0}
---- !u!136 &6839034404222430880
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454032083427569727}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2896922339301977694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +130,48 @@ MonoBehaviour:
   chickensToDie: []
   radius: 5
   player: {fileID: 0}
+--- !u!65 &-8190619795984172847
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454032083427569727}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.3248949, z: 0.8587241}
+  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
+--- !u!65 &-2019783455265265758
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454032083427569727}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
 --- !u!1001 &783261651361662663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -347,7 +344,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 5f3161e8cdff0754e92602f8811d3ad0, type: 2}
+      objectReference: {fileID: 2100000, guid: 17ce41fd6a3624d4aa3d8c1990ce2b49, type: 2}
     - target: {fileID: -5236436471903622262, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -597,7 +594,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 5f3161e8cdff0754e92602f8811d3ad0, type: 2}
+      objectReference: {fileID: 2100000, guid: 17ce41fd6a3624d4aa3d8c1990ce2b49, type: 2}
     - target: {fileID: 2466536336832685564, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -782,7 +779,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 5f3161e8cdff0754e92602f8811d3ad0, type: 2}
+      objectReference: {fileID: 2100000, guid: 17ce41fd6a3624d4aa3d8c1990ce2b49, type: 2}
     - target: {fileID: 7473902935734663220, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

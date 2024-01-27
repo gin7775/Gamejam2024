@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 180707192479496730}
   - component: {fileID: 8617774504508099708}
   - component: {fileID: 3246743953969444413}
-  - component: {fileID: 2319602977998861960}
-  - component: {fileID: 4060513165366366493}
+  - component: {fileID: 4366147083776382742}
+  - component: {fileID: -8693448828131651892}
   m_Layer: 0
   m_Name: EnemyNormal
   m_TagString: Enemy
@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animEnemy: {fileID: 3175585437531734586}
+  playerReference: {fileID: 0}
   distanceToEnemy: 3
   destination: {fileID: 0}
   lifes: 1
@@ -112,31 +113,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &2319602977998861960
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570130104802229714}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.69
-  m_Height: 2.17
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.16, z: 0}
---- !u!136 &4060513165366366493
-CapsuleCollider:
+--- !u!65 &4366147083776382742
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -153,11 +131,30 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.3248949, z: 0.8587241}
+  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
+--- !u!65 &-8693448828131651892
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570130104802229714}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2, y: 1.5, z: 0.9}
+  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
 --- !u!1001 &7444180263839118082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -321,6 +318,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.7936273
       objectReference: {fileID: 0}
+    - target: {fileID: -5315110944585890074, guid: 9180f7a89082245469129c61a9f8d359,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a222a1c316cff3442baec78418651d96, type: 2}
     - target: {fileID: -5236436471903622262, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -751,6 +753,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 8.728327
       objectReference: {fileID: 0}
+    - target: {fileID: 6542699601052195475, guid: 9180f7a89082245469129c61a9f8d359,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a222a1c316cff3442baec78418651d96, type: 2}
     - target: {fileID: 7473902935734663220, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
