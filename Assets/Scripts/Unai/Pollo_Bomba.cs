@@ -25,15 +25,15 @@ public class Pollo_Bomba : MonoBehaviour
             // Puedes imprimir mensajes de depuración en intervalos específicos, por ejemplo:
             if (timer <= 3f && timer > 2f)
             {
-                Debug.Log("Menos de 3 segundos");
+                //Debug.Log("Menos de 3 segundos");
             }
             else if (timer <= 2f && timer > 1f)
             {
-                Debug.Log("Menos de 2 segundos");
+                //Debug.Log("Menos de 2 segundos");
             }
             else if (timer <= 1f)
             {
-                Debug.Log("Menos de 1 segundo");
+                //.Log("Menos de 1 segundo");
             }
 
             // Esperar hasta el siguiente frame
