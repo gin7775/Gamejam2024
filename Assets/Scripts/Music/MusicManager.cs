@@ -15,7 +15,6 @@ public class MusicManager : MonoBehaviour
     //[SerializeField] AudioSource[] sonidosPollosEnemigos;
 
     //SoundFX
-    [SerializeField] AudioSource ataquePollo;
     [SerializeField] AudioSource polloJugadorMuerto;
     
 
@@ -23,6 +22,8 @@ public class MusicManager : MonoBehaviour
     [SerializeField] AudioSource tickingPollo;
 
     [SerializeField] AudioSource clicPollo;
+
+    [SerializeField] AudioSource comenzarOleadaFX;
 
     public static MusicManager Instance { get; private set; }
 
@@ -51,6 +52,15 @@ public class MusicManager : MonoBehaviour
             Play_FX_Jugador_PolloMuerto();
         }
 
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Play_FX_RecogerPollo();
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Play_FX_StartRound();
+        }
+
     }
 
     public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
@@ -59,10 +69,13 @@ public class MusicManager : MonoBehaviour
         {
             transitionTheme.Play();
             yield return new WaitForSeconds(1f);
+            mainTheme[oleadaAnterior].Stop();
+            yield return new WaitForSeconds(3f);
+            Play_FX_StartRound();
+            yield return new WaitForSeconds(1f);
             mainTheme[oleadaSiguiente].Play();
             yield return new WaitForSeconds(1f);
-            mainTheme[oleadaAnterior].Stop();
-
+       
 
         }
 
@@ -91,17 +104,12 @@ public class MusicManager : MonoBehaviour
 
 
     //FX
-    public void Play_FX_PlayerCacareoPollo() //Cacareo Jugador
+    public void Play_FX_Player_CacareoPollo() //Cacareo Jugador
     {
         sonidoPolloJugador.Play();
     }
-
-    public void Play_FX_Jugador_AtaquePollo()        // Ataque Pollo
-    {
-        ataquePollo.Play();
-    }
-
-    public void Play_FX_Jugador_PolloMuerto()        // Pollo Muerto
+ 
+    public void Play_FX_Player_PolloMuerto()        // Pollo Muerto
     {
         polloJugadorMuerto.Play();
     }
@@ -115,13 +123,18 @@ public class MusicManager : MonoBehaviour
     {
         tickingPollo.Play();
     }
-    public void Play_FX_ClicPollo()         //Clic Pollo
+    public void Play_FX_ClicPollo()         //Clic Pollo Menu Boton Jugar
     {
         clicPollo.Play();
     }
     public void Play_FX_RecogerPollo()         //Recoger Pollo
     {
         recogerPolloSuelo.Play();
+    }
+
+    public void Play_FX_StartRound()         //Quiquiriquí
+    {
+        comenzarOleadaFX.Play();
     }
 
 

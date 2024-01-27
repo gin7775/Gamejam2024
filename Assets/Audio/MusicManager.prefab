@@ -593,7 +593,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -83003221725447759, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: ee429222e148a78448ad678ca8fb16d1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: dc966e72b7462194baba53b28691ed5d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1030,11 +1030,11 @@ MonoBehaviour:
   transitionTheme: {fileID: 3937734775667956968}
   sonidoPolloJugador: {fileID: 8303579705167791097}
   recogerPolloSuelo: {fileID: 806447551305243153}
-  ataquePollo: {fileID: 5203496717882929130}
-  polloMuerto: {fileID: 1925517101758454059}
+  polloJugadorMuerto: {fileID: 1925517101758454059}
   explosionPollo: {fileID: 8571993073792301828}
   tickingPollo: {fileID: 3767689043289276888}
   clicPollo: {fileID: 5518015443513330212}
+  comenzarOleadaFX: {fileID: 4374925918846674006}
 --- !u!1 &6246168075892747757
 GameObject:
   m_ObjectHideFlags: 0
