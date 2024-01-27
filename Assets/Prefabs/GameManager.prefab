@@ -64,3 +64,6 @@ MonoBehaviour:
   canvasRound: {fileID: 0}
   canvasAnimator: {fileID: 0}
   textMesh: {fileID: 0}
+  vfxHitEffect: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,
+    type: 3}
+  scoreText: {fileID: 0}

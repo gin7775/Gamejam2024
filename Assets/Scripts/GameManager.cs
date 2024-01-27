@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject textMesh;
     [SerializeField] private GameObject vfxHitEffect;
     private CinemachineImpulseSource cinemachineImpulseSource;
+    public GameObject scoreText;
 
    
     private void Awake()
@@ -83,6 +85,7 @@ public class GameManager : MonoBehaviour
             Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0,1,0), Quaternion.identity);
             StartCoroutine(FrameFreeze(0.03f));
             score++;
+            scoreText.GetComponent<TextMeshProUGUI>().text = "score: " + score;
             Destroy(enemy);
             enemyDeath();
         }
