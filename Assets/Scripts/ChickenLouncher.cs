@@ -4,7 +4,6 @@ using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.InputSystem;
 
 public class ChickenLouncher : MonoBehaviour
 {
@@ -17,29 +16,54 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] GameObject headBox;
     [SerializeField] GameObject swingBox;
 
+    [SerializeField] int health = 3;
+    [SerializeField] int maxHealth = 3;
+
 
     private void Update()
     {
-        
-    }
-    public void OnShoot(InputValue value)
-    {
-        Shoot(chickenType);
-    }
-
-    public void OnAttack(InputValue value)
-    {
-        Attack(chickenType);
-    }
-
-    public void OnPick(InputValue value)
-    {
-        RetrieveChicken(1);
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton14))
+        {
+            Shoot(chickenType);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Attack(chickenType);
+        }
+        if (Input.GetKeyDown(KeyCode.R) )
+        {
+            RetrieveChicken(1);
+        }
     }
 
     void RetrieveChicken(int chickenNumber)
     {
         chickenType = chickenNumber;
+        if (chickenType == 3)
+        {
+            LifeUp(1);
+        }
+    }
+
+    void LifeUp(int extraLife)
+    {
+         health += extraLife;
+         if (health > maxHealth)
+         {
+                health = maxHealth;
+         }
+    }
+    void RecieveDamage(int damage)
+    {
+        health -= damage;
+        if (health <=  0)
+        {
+            PlayerDeath();
+        }
+    }
+    void PlayerDeath()
+    {
+        Debug.Log("Ye dead!");
     }
 
     void UpdateWeapon()
@@ -61,8 +85,11 @@ public class ChickenLouncher : MonoBehaviour
                 Debug.Log("Got no chickens");
                 break;
             case 1:
+                Vector3 projectilePos;
+                projectilePos = transform.position;
+                projectilePos += transform.forward;
                 Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[0], transform);
+                proyectile = Instantiate(proyectiles[0], projectilePos,Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
                 chickenType = 0;
@@ -121,27 +148,4 @@ public class ChickenLouncher : MonoBehaviour
         objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
     }
 
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("name: " + other.gameObject.tag);
-        Debug.Log("tag: " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            switch (chickenType)
-            {
-                case 0:
-                    Debug.Log("Enemy hitted with headbut");
-                    DealDamage(other.gameObject, 1);
-                    break;
-                case 1:
-                    Debug.Log("Enemy hitted with chicken");
-                    DealDamage(other.gameObject, 2);
-                    break;
-
-            }
-        }
-
-    }
-    */
 }
