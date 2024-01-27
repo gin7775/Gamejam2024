@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -8190619795984172847}
   - component: {fileID: -2019783455265265758}
   - component: {fileID: -898724769259229652}
+  - component: {fileID: 6792435967550949195}
   m_Layer: 0
   m_Name: EnemyBomb 1
   m_TagString: Enemy
@@ -76,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animEnemy: {fileID: 6975425823872994541}
   playerReference: {fileID: 0}
+  enemyTipe: 0
   distanceToEnemy: 3
   destination: {fileID: 0}
   lifes: 1
@@ -226,6 +228,22 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: 0.3, z: 0}
+--- !u!114 &6792435967550949195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454032083427569727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdb0ef213e37f444b6c342f8a16bdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 5498576077815233785, guid: 0f7f1da482b587b499a269149d1af9a2,
+    type: 3}
+  secondaryParticle: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,
+    type: 3}
 --- !u!1 &2964846872047660328
 GameObject:
   m_ObjectHideFlags: 0

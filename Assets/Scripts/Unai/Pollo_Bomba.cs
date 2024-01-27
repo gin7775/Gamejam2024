@@ -50,6 +50,8 @@ public class Pollo_Bomba : MonoBehaviour
 
     public void Explosion()
     {
+        //Instancia particulas
+        GetComponent<SpawnParticles>().SpawnBothParticles();
 
         chickensToDie = GameObject.FindGameObjectsWithTag("Enemy");
 
