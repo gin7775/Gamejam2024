@@ -8,4 +8,106 @@ AvatarMask:
   m_PrefabAsset: {fileID: 0}
   m_Name: PolloASS
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-  m_Elements: []
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Body1
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2/Arm1.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L/Arm4.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L/Arm4.L/Arm5.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L/Arm4.L/Arm5.L/Arm6.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L/Arm4.L/Arm5.L/Arm6.L/Arm7.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L/Arm4.L/Arm5.L/Arm6.L/Arm7.L/Arm8.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L/Arm4.L/Arm5.L/Arm6.L/Arm7.L/Arm8.L/Arm9.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L/Arm4.L/Arm5.L/Arm6.L/Arm7.L/Arm8.L/Arm9.L/Arm10.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L/Arm4.L/Arm5.L/Arm6.L/Arm7.L/Arm8.L/Arm9.L/Arm10.L/Arm11.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.L/Arm2.L/Arm3.L/Arm4.L/Arm5.L/Arm6.L/Arm7.L/Arm8.L/Arm9.L/Arm10.L/Arm11.L/Hand.L
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R/Arm4.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R/Arm4.R/Arm5.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R/Arm4.R/Arm5.R/Arm6.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R/Arm4.R/Arm5.R/Arm6.R/Arm7.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R/Arm4.R/Arm5.R/Arm6.R/Arm7.R/Arm8.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R/Arm4.R/Arm5.R/Arm6.R/Arm7.R/Arm8.R/Arm9.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R/Arm4.R/Arm5.R/Arm6.R/Arm7.R/Arm8.R/Arm9.R/Arm10.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R/Arm4.R/Arm5.R/Arm6.R/Arm7.R/Arm8.R/Arm9.R/Arm10.R/Arm11.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Arm1.R/Arm2.R/Arm3.R/Arm4.R/Arm5.R/Arm6.R/Arm7.R/Arm8.R/Arm9.R/Arm10.R/Arm11.R/Hand.R
+    m_Weight: 0
+  - m_Path: Armature/Body1/Body2/Neck1
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2/Neck1/Neck2
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2/Neck1/Neck2/Beard1
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2/Neck1/Neck2/Beard1/Beard2
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2/Neck1/Neck2/Head
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2/Neck1/Neck2/Head/HighCrest1
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2/Neck1/Neck2/Head/HighCrest1/HighCrest2
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2/Neck1/Neck2/Head/LowCrest1
+    m_Weight: 1
+  - m_Path: Armature/Body1/Body2/Neck1/Neck2/Head/LowCrest1/LowCrest2
+    m_Weight: 1
+  - m_Path: Armature/Body1/Butt
+    m_Weight: 1
+  - m_Path: Armature/Body1/Leg.L
+    m_Weight: 1
+  - m_Path: Armature/Body1/Leg.L/Foot.L
+    m_Weight: 1
+  - m_Path: Armature/Body1/Leg.R
+    m_Weight: 1
+  - m_Path: Armature/Body1/Leg.R/Foot.R
+    m_Weight: 1
+  - m_Path: Armature/HandIK.L
+    m_Weight: 0
+  - m_Path: Armature/HandIK.R
+    m_Weight: 0
+  - m_Path: Cubo.001
+    m_Weight: 1
+  - m_Path: Cubo.002
+    m_Weight: 1
+  - m_Path: "C\xEDrculo"
+    m_Weight: 1
+  - m_Path: "C\xEDrculo.001"
+    m_Weight: 1
+  - m_Path: Pollo
+    m_Weight: 1
+  - m_Path: Pollo.001
+    m_Weight: 1
+  - m_Path: Pollo.002
+    m_Weight: 1
