@@ -16,4 +16,11 @@ public class SpawnParticles : MonoBehaviour
     {
         Instantiate (secondaryParticle, this.transform.position, Quaternion.identity);
     }
+
+
+    public void SpawnBothParticles()
+    {
+        SpawnParticle();
+        SpawnSecondaryParticle();
+    }
 }
