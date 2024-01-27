@@ -52,11 +52,34 @@ public class PlayerMovement : MonoBehaviour
 
     private void Rotate()
     {
-        // Aplicar rotación basada en el joystick derecho
-        if (rotateInput.sqrMagnitude > 0.01f) // Umbral para evitar movimientos pequeños involuntarios
+        if (Mouse.current != null) // Verificar si hay un mouse conectado
         {
-            float rotation = rotateInput.x * rotationSpeed * Time.deltaTime;
-            transform.Rotate(0, rotation, 0);
+            Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            {
+                Vector3 targetPosition = hitInfo.point;
+                targetPosition.y = transform.position.y; // Mantener la altura constante
+                Vector3 direction = targetPosition - transform.position;
+                if (direction.sqrMagnitude > 0.01f) // Verificar si hay un cambio significativo en la posición
+                {
+                    Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+                }
+            }
+        }
+        else if (rotateInput.sqrMagnitude > 0.01f) // Umbral para evitar movimientos pequeños involuntarios
+        {
+            Vector3 direction = new Vector3(rotateInput.x, 0f, rotateInput.y);
+            RotateTowardsDirection(direction);
+        }
+
+    }
+    private void RotateTowardsDirection(Vector3 direction)
+    {
+        if (direction.sqrMagnitude > 0.01f)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
     }
 }
