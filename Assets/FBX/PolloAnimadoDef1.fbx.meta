@@ -208,8 +208,8 @@ ModelImporter:
       name: Armature|PolloWalk
       takeName: Armature|PolloWalk
       internalID: 6444043093129212508
-      firstFrame: 0
-      lastFrame: 40
+      firstFrame: 6
+      lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -266,8 +266,8 @@ ModelImporter:
       name: Armature|WalkDefinitivo
       takeName: Armature|WalkDefinitivo
       internalID: 7724722145784539633
-      firstFrame: 0
-      lastFrame: 40
+      firstFrame: 5
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -358,7 +358,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

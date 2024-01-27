@@ -4,6 +4,7 @@ using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class ChickenLouncher : MonoBehaviour
 {
@@ -25,18 +26,25 @@ public class ChickenLouncher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton14))
-        {
-            Shoot(chickenType);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Attack(chickenType);
-        }
-        if (Input.GetKeyDown(KeyCode.R) )
-        {
-            RetrieveChicken(1);
-        }
+       
+    }
+
+    public void OnShoot(InputValue value)
+    {
+        Shoot(chickenType);
+        Debug.Log("Dispara");
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        Attack(chickenType);
+        Debug.Log("Ataca");
+    }
+
+    public void OnPick(InputValue value)
+    {
+        RetrieveChicken(1);
+        Debug.Log("Coge");
     }
 
     void RetrieveChicken(int chickenNumber)
@@ -51,17 +59,17 @@ public class ChickenLouncher : MonoBehaviour
 
     void LifeUp(int extraLife)
     {
-         health += extraLife;
-         if (health > maxHealth)
-         {
-                health = maxHealth;
-         }
+        health += extraLife;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
     }
     void ReciveDamage(int damage)
     {
         UpdateLifeUI();
         health -= damage;
-        if (health <=  0)
+        if (health <= 0)
         {
             PlayerDeath();
         }
@@ -69,12 +77,12 @@ public class ChickenLouncher : MonoBehaviour
 
     private void UpdateLifeUI()
     {
-        if(eggs != null)
+        if (eggs != null)
         {
             eggs[health - 1].GetComponent<Animator>().SetTrigger("Break");
         }
     }
-    
+
     void PlayerDeath()
     {
         Debug.Log("Ye dead!");
@@ -85,7 +93,7 @@ public class ChickenLouncher : MonoBehaviour
     void UpdateWeapon()
     {
         chickenCurrentUses++;
-        if(chickenCurrentUses == chickenMaxUses)
+        if (chickenCurrentUses == chickenMaxUses)
         {
             chickenType = 0;
         }
@@ -105,7 +113,7 @@ public class ChickenLouncher : MonoBehaviour
                 projectilePos = transform.position;
                 projectilePos += transform.forward;
                 Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[0], projectilePos,Quaternion.identity);
+                proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
                 chickenType = 0;
@@ -163,5 +171,4 @@ public class ChickenLouncher : MonoBehaviour
     {
         objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
     }
-    // Algo para hacer pull
 }

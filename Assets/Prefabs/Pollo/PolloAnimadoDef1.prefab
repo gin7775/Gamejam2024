@@ -8,20 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8755641774878879332, guid: 9271233324e6a2740be2036e3cfadcab,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a222a1c316cff3442baec78418651d96, type: 2}
     - target: {fileID: -8679921383154817045, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3137531
+      value: -2.6690469
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4560418
+      value: 0.582
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.00279
+      value: 1.7751226
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
@@ -58,11 +63,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1414570505228678314, guid: 9271233324e6a2740be2036e3cfadcab,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -5761903855786713811, guid: 7f8bfcdeef6b4814ebb49315146a57e9,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
       propertyPath: m_Name
       value: PolloAnimadoDef1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9271233324e6a2740be2036e3cfadcab,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1778054542341934093, guid: 9271233324e6a2740be2036e3cfadcab,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -5728197680097314551, guid: 178ed7c58dccc104cb32dfe5a2f47942,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -91,6 +113,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7995615235429337733}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9271233324e6a2740be2036e3cfadcab,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1802258076183706607}
   m_SourcePrefab: {fileID: 100100000, guid: 9271233324e6a2740be2036e3cfadcab, type: 3}
 --- !u!1 &1947571075482830066 stripped
 GameObject:
@@ -118,9 +144,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.9687345
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.86824334, z: 0}
 --- !u!114 &1257883076447266651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,8 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rotationSpeed: 100
-  controller: {fileID: 0}
+  rotationSpeed: 500
+  controller: {fileID: 2428427412932631823}
 --- !u!114 &4175587132064062941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +207,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.88, z: 0}
 --- !u!114 &3613994492404100987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,3 +261,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!54 &1802258076183706607
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947571075482830066}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
