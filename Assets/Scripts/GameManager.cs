@@ -42,7 +42,10 @@ public class GameManager : MonoBehaviour
     private CinemachineImpulseSource cinemachineImpulseSource;
     public GameObject scoreText;
 
-   
+
+    [SerializeField] private MusicManager musicManager;
+
+
     private void Awake()
     {
         // If there is an instance and it's not me, delete myself.
@@ -54,11 +57,13 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
+      
         timeGeneration = 3f;
         timeWave = 6f;
         enemyInitial = 5;
@@ -85,9 +90,9 @@ public class GameManager : MonoBehaviour
             Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0,1,0), Quaternion.identity);
             StartCoroutine(FrameFreeze(0.03f));
             score++;
-            scoreText.GetComponent<TextMeshProUGUI>().text = "score: " + score;
+            //scoreText.GetComponent<TextMeshProUGUI>().text = "score: " + score;
             Destroy(enemy);
-            enemyDeath();
+            //enemyDeath();
         }
     }
 
@@ -117,19 +122,25 @@ public class GameManager : MonoBehaviour
             {
                 dificultiLevel = 1;
                 timeGeneration = 3f;
+              
                 InstantiatePollos(enemyInitial);
+                musicManager.ChangeRaidTheme(0, 0); //Audio 0
             }
             else if (waveCurrent == 2)
             {
+            
                 dificultiLevel = 2;
                 timeGeneration = 1.5f;
                 InstantiatePollos(enemyInitial * 2);
+                musicManager.ChangeRaidTheme(currentWave - 1, currentWave); //Audio 1
             }
             else
             {
+             
                 dificultiLevel = 3;
                 timeGeneration = 0.75f;
                 InstantiatePollos(enemyInitial * 3);
+                musicManager.ChangeRaidTheme(currentWave - 1, currentWave); // Audio 2
             }
         }
     }
@@ -137,6 +148,8 @@ public class GameManager : MonoBehaviour
     public void enemyDeath()
     {
         enemyCount--;
+
+        //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
 
         if (enemyCount <= 0)
         {

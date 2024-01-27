@@ -42,24 +42,24 @@ public class MusicManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(ChangeRaidTheme(0,1));
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    StartCoroutine(ChangeRaidTheme(0,1));
+        //}
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            //Play_FX_Jugador_PolloMuerto();
-        }
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    //Play_FX_Jugador_PolloMuerto();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            Play_FX_RecogerPollo();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Play_FX_StartRound();
-        }
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    Play_FX_RecogerPollo();
+        //}
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    Play_FX_StartRound();
+        //}
 
     }
 
