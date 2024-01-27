@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
                 SceneManager.LoadScene("Credits");
                 break;
             case 4:
-                SceneManager.LoadScene("Principal");
+                SceneManager.LoadScene("UnaiScene (BLOCKING)");
                 break;
             case 5:
                 Application.Quit();

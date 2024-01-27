@@ -18,23 +18,36 @@ public class PauseMenu : MonoBehaviour
     public Slider SFXSlider;
 
 
-    public void Start()
+    public void Awake()
     {
-        pausemenu.SetActive(false);
+        DontDestroyOnLoad(this.gameObject);
+
     }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey("escape") && paused == false)
-        {
-            pause();
-        }
-
-        if (Input.GetKey("r") && paused)
+        if (Input.GetKey("escape") && paused)
         {
             exit_pause_menu();
 
         }
+
+        if (Input.GetKey("escape") && paused == false)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            if (currentSceneName != "MenuPrincipal")
+            {
+                pause();
+            }
+            if(currentSceneName == "MenuPrincipal")
+            {
+                Debug.Log("Estás en la Escena principal");
+
+            }
+
+        }
+
+        
     }
 
     public void exit_pause_menu()

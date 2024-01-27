@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Principal.unity
     guid: d5efa44bb0bac87458a3652fb790fbe1
+  - enabled: 1
+    path: Assets/Scenes/UnaiScene (BLOCKING).unity
+    guid: 008273ddc6d95954ba0fe9d65a01091f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
