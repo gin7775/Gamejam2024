@@ -5,9 +5,10 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     //Themes
-    [SerializeField] AudioSource mainTheme;
+    [SerializeField] AudioSource[] mainTheme;
+    [SerializeField] AudioSource transitionTheme;
 
-
+    bool reproduciendoMusic;
     //CacareoPollo
     [SerializeField] AudioSource sonidoPolloJugador;
     //[SerializeField] AudioSource[] sonidosPollosEnemigos;
@@ -19,25 +20,42 @@ public class MusicManager : MonoBehaviour
     [SerializeField] AudioSource explosionPollo;
     [SerializeField] AudioSource tickingPollo;
 
+    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Play_Sound_AtaquePollo();
+            StartCoroutine(ChangeRaidTheme(0,1));
         }
     }
 
-    //Menu  
-    public void PlayMaintheme()
+    public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
     {
-        mainTheme.Play();
-    }
-  
-    public void StopMainTheme()
-    {
-        mainTheme.Stop();
+       
+        transitionTheme.Play();
+        yield return new WaitForSeconds(1f);
+        mainTheme[oleadaSiguiente].Play();
+        yield return new WaitForSeconds(1f);
+        mainTheme[oleadaAnterior].Stop();
+
+
     }
 
+    //Themes  
+    public void PlayMaintheme(int track)
+    {
+        mainTheme[track].Play();
+    }
+  
+    public void StopMainTheme(int track)
+    {
+        mainTheme[track].Stop();
+    }
+    
+
+
+    //FX
     public void Play_Sound_PlayerCacareoPollo()
     {
         sonidoPolloJugador.Play();

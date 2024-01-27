@@ -17,9 +17,14 @@ public class EnemyAudio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Play_Enemy_Sound_PolloMuerto();
+        }
     }
 
-    public void Sound_PolloMuerto()
+    public void Play_Enemy_Sound_PolloMuerto()
     {
         polloMuerto.Play();
     }
