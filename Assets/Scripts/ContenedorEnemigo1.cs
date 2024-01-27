@@ -13,10 +13,13 @@ public class ContenedorEnemigo1 : MonoBehaviour
     [SerializeField] int lifes = 3;
     public void ReciveDamage(int damage)
     {
-        lifes-= damage;
+        lifes -= damage;
+
         if(lifes <= 0)
         {
+            GameManager.Instance.score++;
             Destroy(gameObject);
         }
     }
+
 }

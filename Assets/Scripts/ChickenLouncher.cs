@@ -61,7 +61,7 @@ public class ChickenLouncher : MonoBehaviour
                 proyectile = Instantiate(proyectiles[0], transform);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
-                chickenType = 0;
+                //chickenType = 0;
                 break;
         }
     }
@@ -119,6 +119,8 @@ public class ChickenLouncher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("name: " + other.gameObject.tag);
+        Debug.Log("tag: " + other.gameObject.name);
         if (other.gameObject.CompareTag("Enemy"))
         {
             switch (chickenType)
