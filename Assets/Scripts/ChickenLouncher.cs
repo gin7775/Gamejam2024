@@ -16,9 +16,12 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] GameObject headBox;
     [SerializeField] GameObject swingBox;
 
+
+    // Gestor de Vidas Player
     [SerializeField] int health = 3;
     [SerializeField] int maxHealth = 3;
 
+    [SerializeField] GameObject[] eggs;
 
     private void Update()
     {
@@ -45,6 +48,7 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
+
     void LifeUp(int extraLife)
     {
          health += extraLife;
@@ -53,18 +57,30 @@ public class ChickenLouncher : MonoBehaviour
                 health = maxHealth;
          }
     }
-    void RecieveDamage(int damage)
+    void ReciveDamage(int damage)
     {
+        UpdateLifeUI();
         health -= damage;
         if (health <=  0)
         {
             PlayerDeath();
         }
     }
+
+    private void UpdateLifeUI()
+    {
+        if(eggs != null)
+        {
+            eggs[health - 1].GetComponent<Animator>().SetTrigger("Break");
+        }
+    }
+    
     void PlayerDeath()
     {
         Debug.Log("Ye dead!");
     }
+
+
 
     void UpdateWeapon()
     {
