@@ -171,6 +171,6 @@ public class ChickenLouncher : MonoBehaviour
 
     public void DealDamage(GameObject objetive, int damage)
     {
-        objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
+        GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
     }
 }
