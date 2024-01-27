@@ -7,19 +7,19 @@ using UnityEngine.UIElements;
 
 public class ChickenLouncher : MonoBehaviour
 {
-    [SerializeField] int chickenType = 0;
+    public int chickenType = 0;
     [SerializeField] GameObject[] proyectiles = null;
     [SerializeField] float proyectileForce = 10;
     [SerializeField] int chickenCurrentUses = 0;
     [SerializeField] int chickenMaxUses = 3;
 
-    [SerializeField] Collider headBox;
-    [SerializeField] Collider swingBox;
+    [SerializeField] GameObject headBox;
+    [SerializeField] GameObject swingBox;
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton14))
         {
             Shoot(chickenType);
         }
@@ -27,7 +27,7 @@ public class ChickenLouncher : MonoBehaviour
         {
             Attack(chickenType);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) )
         {
             RetrieveChicken(1);
         }
@@ -61,12 +61,12 @@ public class ChickenLouncher : MonoBehaviour
                 proyectile = Instantiate(proyectiles[0], transform);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
-                //chickenType = 0;
+                chickenType = 0;
                 break;
         }
     }
 
-    void Attack(int AmmoType)
+    public void Attack(int AmmoType)
     {
         switch (AmmoType)
         {
@@ -105,18 +105,19 @@ public class ChickenLouncher : MonoBehaviour
             Debug.Log("Swing Collider is missing");
         }
     }
-    IEnumerator ActivateCollider(Collider collider)
+    IEnumerator ActivateCollider(GameObject collider)
     {
-        collider.enabled = true;
-        yield return new WaitForSeconds(2);
-        collider.enabled = false;
+        collider.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        collider.SetActive(false);
     }
 
-    void DealDamage(GameObject objetive, int damage)
+    public void DealDamage(GameObject objetive, int damage)
     {
         objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
     }
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("name: " + other.gameObject.tag);
@@ -138,4 +139,5 @@ public class ChickenLouncher : MonoBehaviour
         }
 
     }
+    */
 }

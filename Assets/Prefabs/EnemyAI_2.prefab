@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animEnemy: {fileID: 7099202929955863385}
-  distanceToEnemy: 2
+  distanceToEnemy: 5
   destination: {fileID: 0}
   lifes: 3
 --- !u!136 &3736858981318599250
@@ -115,10 +115,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.5804918
+  m_Height: 2.286572
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.026269674, y: 0.9326968, z: 0}
 --- !u!1 &8810362558113194752
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
