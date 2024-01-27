@@ -57,8 +57,11 @@ public class ChickenLouncher : MonoBehaviour
                 Debug.Log("Got no chickens");
                 break;
             case 1:
+                Vector3 projectilePos;
+                projectilePos = transform.position;
+                projectilePos += transform.forward;
                 Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[0], transform);
+                proyectile = Instantiate(proyectiles[0], projectilePos,Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
                 chickenType = 0;
