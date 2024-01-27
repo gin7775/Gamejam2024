@@ -333,7 +333,7 @@ AudioSource:
   m_GameObject: {fileID: 1652219510997147207}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7241452533472616878, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
+  OutputAudioMixerGroup: {fileID: 7050847095564836593, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 0da57b822b51c2642964f9e857822f96, type: 3}
   m_PlayOnAwake: 0
@@ -1175,7 +1175,7 @@ GameObject:
   - component: {fileID: 8797304561315423523}
   - component: {fileID: 5203496717882929130}
   m_Layer: 0
-  m_Name: SoftExplosion
+  m_Name: ExplodingChicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1338,7 +1338,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d66d8d18a3c7eaa4fa558db886967121, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.582
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1591,7 +1591,7 @@ AudioSource:
   m_GameObject: {fileID: 8189912445215201841}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7241452533472616878, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
+  OutputAudioMixerGroup: {fileID: 7050847095564836593, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d7c371e65e4902240a7cf474ac0563d4, type: 3}
   m_PlayOnAwake: 0
@@ -1720,7 +1720,7 @@ AudioSource:
   m_GameObject: {fileID: 8677137222208479037}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -7241452533472616878, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
+  OutputAudioMixerGroup: {fileID: 7050847095564836593, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 7e5ab6e2ba7f2954b8174c792ebfc49f, type: 3}
   m_PlayOnAwake: 0

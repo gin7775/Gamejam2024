@@ -16,8 +16,8 @@ public class MusicManager : MonoBehaviour
 
     //SoundFX
     [SerializeField] AudioSource ataquePollo;
-    [SerializeField] AudioSource polloMuerto;
-
+    [SerializeField] AudioSource polloJugadorMuerto;
+    
 
     [SerializeField] AudioSource explosionPollo;
     [SerializeField] AudioSource tickingPollo;
@@ -45,6 +45,12 @@ public class MusicManager : MonoBehaviour
         {
             StartCoroutine(ChangeRaidTheme(0,1));
         }
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Play_FX_Jugador_PolloMuerto();
+        }
+
     }
 
     public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
@@ -90,14 +96,14 @@ public class MusicManager : MonoBehaviour
         sonidoPolloJugador.Play();
     }
 
-    public void Play_FX_AtaquePollo()        // Ataque Pollo
+    public void Play_FX_Jugador_AtaquePollo()        // Ataque Pollo
     {
         ataquePollo.Play();
     }
 
-    public void Play_FX_PolloMuerto()        // Pollo Muerto
+    public void Play_FX_Jugador_PolloMuerto()        // Pollo Muerto
     {
-        polloMuerto.Play();
+        polloJugadorMuerto.Play();
     }
 
     public void Play_FX_ExplosionPollo()          //Explosion Pollo
