@@ -48,16 +48,15 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
     {
-       
+
         transitionTheme.Play();
         yield return new WaitForSeconds(1f);
         mainTheme[oleadaSiguiente].Play();
         yield return new WaitForSeconds(1f);
         mainTheme[oleadaAnterior].Stop();
 
-
-
     }
+
 
     //Themes  
     public void PlayMaintheme(int track)
@@ -81,7 +80,7 @@ public class MusicManager : MonoBehaviour
 
 
     //FX
-    public void Play_Sound_PlayerCacareoPollo() //Cacareo Jugador
+    public void Play_FX_PlayerCacareoPollo() //Cacareo Jugador
     {
         sonidoPolloJugador.Play();
     }
@@ -100,7 +99,6 @@ public class MusicManager : MonoBehaviour
     {
         explosionPollo.Play();
     }
-
 
     public void Play_FX_TickingPollo()          //Tic tac pollo
     {
