@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -109,5 +110,30 @@ public class ChickenLouncher : MonoBehaviour
         collider.enabled = true;
         yield return new WaitForSeconds(2);
         collider.enabled = false;
+    }
+
+    void DealDamage(GameObject objetive, int damage)
+    {
+        objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            switch (chickenType)
+            {
+                case 0:
+                    Debug.Log("Enemy hitted with headbut");
+                    DealDamage(other.gameObject, 1);
+                    break;
+                case 1:
+                    Debug.Log("Enemy hitted with chicken");
+                    DealDamage(other.gameObject, 2);
+                    break;
+
+            }
+        }
+
     }
 }

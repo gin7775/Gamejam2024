@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8350880503488265833}
   - component: {fileID: 1308369753999853550}
   - component: {fileID: 2846178644121226901}
+  - component: {fileID: 3736858981318599250}
   m_Layer: 0
   m_Name: EnemyAI
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,9 +93,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animEnemy: {fileID: 7099202929955863385}
-  player: {fileID: 0}
   distanceToEnemy: 2
   destination: {fileID: 0}
+  lifes: 3
+--- !u!136 &3736858981318599250
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702281271950949738}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8810362558113194752
 GameObject:
   m_ObjectHideFlags: 0

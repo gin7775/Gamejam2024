@@ -10,5 +10,13 @@ public class ContenedorEnemigo1 : MonoBehaviour
     public float distanceToEnemy;
     public Transform destination;
 
-   
+    [SerializeField] int lifes = 3;
+    public void ReciveDamage(int damage)
+    {
+        lifes-= damage;
+        if(lifes <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
