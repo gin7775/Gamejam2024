@@ -1,17 +1,41 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     [SerializeField] public int score = 0;
-    [SerializeField] public int currentWave = 0;
-    [SerializeField] public int waveNumber = 3;
-    [SerializeField] public int dificultiLevel = 1;
+    [SerializeField] private GameObject[] pollosToSpawn;
+    [SerializeField] private Vector3 spawnPosition;
+    [SerializeField] private int randomIterastor;
+    // Tiempo por el que espera para generar enemigos por segundo
+    [SerializeField] private float timeWave;
+    // Tiempo por el que espera para generar enemigos por segundo
+    [SerializeField] private float timeGeneration;
+    // Numero total de enemigos en la ronda
+    [SerializeField] private int enemyNumber;
+    // Numero de enemigos por oleada inicial
+    [SerializeField] private int enemyInitial;
+    // Numero de enemigos que quedan en la ronda
+    [SerializeField] private int enemyCount;
+    // Numero de ronda totales
+    [SerializeField] private int waveCurrent;
+    // Numero de ronda totales
+    [SerializeField] private int waveNumber;
+    // Numero de ronda actual
+    [SerializeField] private int currentWave;
+    // Nivel de dificultad -- No se usa
+    [SerializeField] private int dificultiLevel;
+    // Nivel de dificultad -- No se usa
+    [SerializeField] private Canvas canvasRound;
+    [SerializeField] private Animator canvasAnimator;
+    [SerializeField] private GameObject textMesh;
 
     private void Awake()
     {
@@ -29,13 +53,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeWave = 6f;
+        enemyInitial = 5;
+        enemyNumber = 0;
+        enemyCount = 0;
+        waveNumber = 3;
+        UpdateWave();
     }
 
-    public void chikenEnemyDeath(GameObject enemy)
+    /*public void chikenEnemyDeath(GameObject enemy)
     {
         score++;
-        SpawnPollos_rik.Instance.enemyDeath();
-    }
+        enemyDeath();
+    }*/
 
     public void chickenEnemyTakeDamage(GameObject enemy, int damage)
     {
@@ -45,28 +75,97 @@ public class GameManager : MonoBehaviour
         {
             score++;
             Destroy(enemy);
-            SpawnPollos_rik.Instance.enemyDeath();
+            enemyDeath();
         }
     }
 
-    /*public int getCurrentWave()
+
+
+    public void InstantiatePollos(int enemys)
     {
-        return currentWave;
+        StartCoroutine(startWave(timeWave, enemys));
     }
 
-    public void setCurrentWave(int currentWave)
+    public void UpdateWave()
     {
-        this.currentWave = currentWave;
+        currentWave++;
+        waveCurrent = currentWave;
+
+        if (waveCurrent <= waveNumber)
+        {
+            textMesh.GetComponent<TextMeshProUGUI>().text = "Round " + waveCurrent;
+            if (waveCurrent <= 1)
+            {
+                dificultiLevel = 1;
+                InstantiatePollos(enemyInitial);
+            }
+            else if (waveCurrent == 2)
+            {
+                dificultiLevel = 2;
+                InstantiatePollos(enemyInitial * 2);
+            }
+            else
+            {
+                dificultiLevel = 3;
+                InstantiatePollos(enemyInitial * 3);
+            }
+        }
     }
 
-    public int getScore()
+    public void enemyDeath()
     {
-        return score;
+        enemyCount--;
+
+        if (enemyCount <= 0)
+        {
+            UpdateWave();
+        }
     }
 
-    public void setScore(int score)
+    IEnumerator EsperarYExecutar()
     {
-        this.score = score;
-    }*/
+        int auxEnemyNumber = currentWave <= 1 ? 25 : 0;
+        auxEnemyNumber = currentWave == 2 ? 50 : auxEnemyNumber;
+        auxEnemyNumber = currentWave >= 3 ? 105 : auxEnemyNumber;
+
+        for (int i = 0; i < auxEnemyNumber; i++)
+        {
+            // Espera 3 segundos
+            yield return new WaitForSeconds(timeGeneration);
+
+            // Tu lógica aquí
+            randomIterastor = UnityEngine.Random.Range(0, pollosToSpawn.Length);
+            spawnPosition = new Vector3(UnityEngine.Random.Range(8.5f, -8.5f), 1.2f, UnityEngine.Random.Range(8.5f, -8.5f));
+            GameObject toInstantiate = Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
+            enemyCount++;
+        }
+    }
+
+    IEnumerator startWave(float seconds, int totalEnemies)
+    {
+        // Iniciar el canvas
+        canvasRound.gameObject.SetActive(true);
+        // Espera 10 segundos
+        yield return new WaitForSeconds(seconds);
+
+        // lanzar el quitar el canvas
+        if(canvasAnimator != null)
+        {
+            canvasAnimator.SetTrigger("Change");
+        }
+
+        yield return new WaitForSeconds(2f);
+        canvasRound.gameObject.SetActive(false);
+
+        for (int i = 0; i < totalEnemies; i++)
+        {
+            randomIterastor = UnityEngine.Random.Range(0, pollosToSpawn.Length);
+            spawnPosition = new Vector3(UnityEngine.Random.Range(8.5f, -8.5f), 1.2f, UnityEngine.Random.Range(8.5f, -8.5f));
+            GameObject toInstantiate = Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
+            enemyCount++;
+        }
+
+        StartCoroutine(EsperarYExecutar());
+    }
 
 }
