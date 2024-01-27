@@ -4,6 +4,7 @@ using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 public class ChickenLouncher : MonoBehaviour
 {
@@ -19,18 +20,21 @@ public class ChickenLouncher : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton14))
-        {
-            Shoot(chickenType);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Attack(chickenType);
-        }
-        if (Input.GetKeyDown(KeyCode.R) )
-        {
-            RetrieveChicken(1);
-        }
+        
+    }
+    public void OnShoot(InputValue value)
+    {
+        Shoot(chickenType);
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        Attack(chickenType);
+    }
+
+    public void OnPick(InputValue value)
+    {
+        RetrieveChicken(1);
     }
 
     void RetrieveChicken(int chickenNumber)
@@ -57,11 +61,8 @@ public class ChickenLouncher : MonoBehaviour
                 Debug.Log("Got no chickens");
                 break;
             case 1:
-                Vector3 projectilePos;
-                projectilePos = transform.position;
-                projectilePos += transform.forward;
                 Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[0], projectilePos,Quaternion.identity);
+                proyectile = Instantiate(proyectiles[0], transform);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
                 chickenType = 0;

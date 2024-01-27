@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector2 rotateInput;
-
+   
     private Camera mainCamera;
 
     private void Awake()
@@ -32,9 +32,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Método público llamado por el Player Input Component para rotación
-    public void OnRotate(InputValue value)
+    public void OnLook(InputValue value)
     {
         rotateInput = value.Get<Vector2>();
+        
     }
 
     private void Movement()
@@ -52,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Rotate()
     {
-        if (Mouse.current != null) // Verificar si hay un mouse conectado
+        if (Mouse.current != null ) // Verificar si hay un mouse conectado
         {
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hitInfo))
@@ -67,10 +68,11 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (rotateInput.sqrMagnitude > 0.01f) // Umbral para evitar movimientos pequeños involuntarios
+        else if (rotateInput.sqrMagnitude > 0.01f) // Rotación con el joystick derecho
         {
             Vector3 direction = new Vector3(rotateInput.x, 0f, rotateInput.y);
             RotateTowardsDirection(direction);
+            Debug.Log("Mueve");
         }
 
     }
@@ -78,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (direction.sqrMagnitude > 0.01f)
         {
+            direction.Normalize(); // Normalizar la dirección
             Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
