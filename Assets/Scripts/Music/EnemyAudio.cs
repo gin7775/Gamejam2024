@@ -7,6 +7,7 @@ public class EnemyAudio : MonoBehaviour
 
     [SerializeField] AudioSource[] sonidoPolloEnemigo;
     [SerializeField] AudioSource polloMuerto;
+    [SerializeField] AudioSource tickingPollo;
 
     int indexElegido;
 
@@ -17,17 +18,33 @@ public class EnemyAudio : MonoBehaviour
         sonidoPolloEnemigo[indexElegido].Play();
     }
 
-    // Update is called once per frame
-  
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Stop_CacareoJugador();
+            Play_Enemy_FX_PolloMuerto();
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            Play_Enemy_FX_TickingPollo();
+        }
+    }
+
     public void Stop_CacareoJugador() //Frena el Cacareo
     {
         sonidoPolloEnemigo[indexElegido].Stop();
 
     }
 
-    public void Play_Enemy_Sound_PolloMuerto() // PolloMuerto
+    public void Play_Enemy_FX_PolloMuerto() // PolloMuerto
     {
         polloMuerto.Play();
+    }
+
+    public void Play_Enemy_FX_TickingPollo()
+    {
+        tickingPollo.Play();
     }
 
 }

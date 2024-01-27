@@ -11,6 +11,7 @@ public class MusicManager : MonoBehaviour
     bool reproduciendoMusic;
     //CacareoPollo
     [SerializeField] AudioSource sonidoPolloJugador;
+    [SerializeField] AudioSource recogerPolloSuelo;
     //[SerializeField] AudioSource[] sonidosPollosEnemigos;
 
     //SoundFX
@@ -48,12 +49,16 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
     {
+        if(oleadaSiguiente < mainTheme.Length)
+        {
+            transitionTheme.Play();
+            yield return new WaitForSeconds(1f);
+            mainTheme[oleadaSiguiente].Play();
+            yield return new WaitForSeconds(1f);
+            mainTheme[oleadaAnterior].Stop();
 
-        transitionTheme.Play();
-        yield return new WaitForSeconds(1f);
-        mainTheme[oleadaSiguiente].Play();
-        yield return new WaitForSeconds(1f);
-        mainTheme[oleadaAnterior].Stop();
+
+        }
 
     }
 
@@ -108,6 +113,11 @@ public class MusicManager : MonoBehaviour
     {
         clicPollo.Play();
     }
+    public void Play_FX_RecogerPollo()         //Recoger Pollo
+    {
+        recogerPolloSuelo.Play();
+    }
+
 
 
 

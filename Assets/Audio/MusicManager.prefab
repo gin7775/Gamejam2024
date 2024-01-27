@@ -339,7 +339,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1029,6 +1029,7 @@ MonoBehaviour:
   - {fileID: 1829759839015037371}
   transitionTheme: {fileID: 3937734775667956968}
   sonidoPolloJugador: {fileID: 8303579705167791097}
+  recogerPolloSuelo: {fileID: 806447551305243153}
   ataquePollo: {fileID: 5203496717882929130}
   polloMuerto: {fileID: 1925517101758454059}
   explosionPollo: {fileID: 8571993073792301828}
