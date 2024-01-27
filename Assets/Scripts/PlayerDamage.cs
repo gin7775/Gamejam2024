@@ -14,7 +14,7 @@ public class PlayerDamage : MonoBehaviour
 
     public void TakeDamage()
     {
-        eggs[vidas].GetComponent<Animator>().SetTrigger("Break");
+        eggs[vidas-1].GetComponent<Animator>().SetTrigger("Break");
         vidas--;
         if (vidas <= 0)
         {
