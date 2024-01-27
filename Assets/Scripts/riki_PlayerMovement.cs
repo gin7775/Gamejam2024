@@ -4,10 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.WSA;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class riki_PlayerMovement : MonoBehaviour
 {
-    public float speed = 0.05f;
+    public float speed = 10f;
     public float rotationSpeed = 2f;
     public float minY = -90f;
     public float maxY = 90f;
@@ -28,14 +29,15 @@ public class riki_PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        Vector3 movement = transform.position;
+        // Vector3 movement = transform.position;
 
+        /*
         if (Input.GetKey(KeyCode.A))
         {
             float horizontal = Input.GetAxis("Horizontal");
             //float vertical = Input.GetAxis("Vertical");
             float vertical = transform.position.y;
-            movement = new Vector3(transform.position.x + speed, 0.5f, vertical);
+            movement = new Vector3(transform.position.x - speed, 0.5f, vertical);
         }
         if (Input.GetKey(KeyCode.W))
         {
@@ -56,10 +58,24 @@ public class riki_PlayerMovement : MonoBehaviour
             float horizontal = Input.GetAxis("Horizontal");
             //float vertical = Input.GetAxis("Vertical");
             float vertical = transform.position.y;
-            movement = new Vector3(transform.position.x - speed, 0.5f, vertical);
+            movement = new Vector3(transform.position.x + speed, 0.5f, vertical);
         }
+        */
 
-        transform.position = movement;
+        // movement = new Vector3(transform.position.x + Input.GetAxis("Vertical") * speed * Time.deltaTime, transform.position.y, transform.position.z + Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+
+        Vector3 movement = (cameraForward * verticalInput + cameraRight * horizontalInput).normalized;
+
+        float speed = 5.0f;
+        transform.Translate(movement * speed * Time.deltaTime);
+
+        // transform.position = movement;
     }
 
     private void Rotate()
