@@ -308,6 +308,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DinnerDinnerChickenWinner_LP
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7f8bfcdeef6b4814ebb49315146a57e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7511558181221131132, guid: 7f8bfcdeef6b4814ebb49315146a57e9, type: 3}
     m_RemovedGameObjects: []
@@ -3686,6 +3691,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Feather_Explosion
       objectReference: {fileID: 0}
+    - target: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3703,6 +3713,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: VFX_Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 5498576077815233785, guid: 0f7f1da482b587b499a269149d1af9a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5934887663904909275, guid: 0f7f1da482b587b499a269149d1af9a2,
         type: 3}
@@ -3822,6 +3837,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: VFX_Smoke_0.5_Secs
       objectReference: {fileID: 0}
+    - target: {fileID: 7579877171014678872, guid: d1c74ce6a5d64e244bbed7da2316ed97,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3834,12 +3854,12 @@ SceneRoots:
   - {fileID: 6681600989770427491}
   - {fileID: 2109171200480072140}
   - {fileID: 4576142683307693407}
+  - {fileID: 1200969003}
   - {fileID: 661799729}
   - {fileID: 1893153998}
   - {fileID: 1190976844}
   - {fileID: 2039726089}
   - {fileID: 1015879048}
-  - {fileID: 1200969003}
   - {fileID: 1544911673}
   - {fileID: 1356729027}
   - {fileID: 1443375949}
