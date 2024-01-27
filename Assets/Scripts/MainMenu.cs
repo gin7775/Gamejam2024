@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
                 SceneManager.LoadScene("Credits");
                 break;
             case 4:
-                SceneManager.LoadScene("UnaiScene (BLOCKING)");
+                CargarCorutinaNivel();
                 break;
             case 5:
                 Application.Quit();
@@ -36,7 +36,16 @@ public class MainMenu : MonoBehaviour
 
     }
 
+    public void CargarCorutinaNivel( )
+    {
+        StartCoroutine(CorutinaCargarNivel());
+    }
 
+    IEnumerator CorutinaCargarNivel()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("UnaiScene (BLOCKING)");
+    }
 
     public void CargarNivel(string nombreNivel)
     {
