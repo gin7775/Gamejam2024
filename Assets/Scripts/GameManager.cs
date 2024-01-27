@@ -37,9 +37,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Canvas canvasRound;
     [SerializeField] private Animator canvasAnimator;
     [SerializeField] private GameObject textMesh;
-
+    [SerializeField] private GameObject vfxHitEffect;
     private CinemachineImpulseSource cinemachineImpulseSource;
 
+   
     private void Awake()
     {
         // If there is an instance and it's not me, delete myself.
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
         {
             cinemachineImpulseSource = enemy.gameObject.GetComponent<CinemachineImpulseSource>();
             cinemachineImpulseSource.GenerateImpulse();
+            Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0,1,0), Quaternion.identity);
             StartCoroutine(FrameFreeze(0.03f));
             score++;
             Destroy(enemy);

@@ -3501,6 +3501,12 @@ PrefabInstance:
       objectReference: {fileID: 425708678}
     - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
         type: 3}
+      propertyPath: vfxHitEffect
+      value: 
+      objectReference: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,
+        type: 3}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
       propertyPath: canvasAnimator
       value: 
       objectReference: {fileID: 1819054884}
