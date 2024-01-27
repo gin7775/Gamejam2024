@@ -11,7 +11,7 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
     {
         enemy = animator.gameObject.GetComponent<NavMeshAgent>();
         contenedorEnemy = animator.gameObject.GetComponent<ContenedorEnemigo1>();
-        contenedorEnemy.animEnemy.SetTrigger("Ataque");
+        contenedorEnemy.animEnemy.SetTrigger("Attack");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

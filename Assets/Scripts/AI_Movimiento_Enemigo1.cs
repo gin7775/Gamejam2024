@@ -26,7 +26,9 @@ public class AI_Movimiento_Enemigo1 : StateMachineBehaviour
             enemy.destination = player.transform.position;
             if (Vector3.Distance(enemy.transform.position, player.transform.position) <= contenedorEnemy.distanceToEnemy)
             {
+                
                 animator.SetTrigger("Ataque");
+                //animacion ataque
                 enemy.speed = 0f;
 
 

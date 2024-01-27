@@ -8,11 +8,14 @@ public class Pollo_Bomba : MonoBehaviour
     public float timer = 5f;
     public GameObject[] chickensToDie;
     public float radius = 5f;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(CountdownAndExplode());
+         player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     // Corrutina para contar hacia atrás y realizar la explosión
@@ -63,6 +66,12 @@ public class Pollo_Bomba : MonoBehaviour
                 }
 
             }
+
+        if (Vector3.Distance(transform.position, player.transform.position) <= radius)
+        {
+            player.GetComponent<ChickenLouncher>().ReciveDamage(1);
+
+        }
 
     }
 }

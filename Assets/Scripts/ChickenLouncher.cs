@@ -65,7 +65,7 @@ public class ChickenLouncher : MonoBehaviour
             health = maxHealth;
         }
     }
-    void ReciveDamage(int damage)
+    public void ReciveDamage(int damage)
     {
         UpdateLifeUI();
         health -= damage;
@@ -74,6 +74,7 @@ public class ChickenLouncher : MonoBehaviour
             PlayerDeath();
         }
     }
+
 
     private void UpdateLifeUI()
     {
@@ -86,6 +87,7 @@ public class ChickenLouncher : MonoBehaviour
     void PlayerDeath()
     {
         Debug.Log("Ye dead!");
+        Destroy(this.gameObject);
     }
 
 
