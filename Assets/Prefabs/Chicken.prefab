@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 6145892462976220823}
   - component: {fileID: 4432289674183715062}
   - component: {fileID: 8179491159582070890}
+  - component: {fileID: 1030934681462794984}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Player
@@ -252,7 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  mouseSensitivity: 100
+  rotationSpeed: 100
   controller: {fileID: 4432289674183715062}
 --- !u!114 &6145892462976220823
 MonoBehaviour:
@@ -331,3 +332,25 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!95 &1030934681462794984
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048293030563304571}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 950d92a720ad0674fbae9144be1f4943, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
