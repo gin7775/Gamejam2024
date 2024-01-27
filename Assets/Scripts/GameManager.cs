@@ -81,7 +81,12 @@ public class GameManager : MonoBehaviour
 
     public void chickenEnemyTakeDamage(GameObject enemy, int damage)
     {
-        int auxLife = enemy.GetComponent<ContenedorEnemigo1>().lifes -= damage;
+        int auxLife = 0;
+        if (enemy != null) 
+        {
+            auxLife = enemy.GetComponent<ContenedorEnemigo1>().lifes -= damage;
+        }
+        
 
         if (auxLife <= 0)
         {
