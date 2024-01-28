@@ -72,6 +72,10 @@ public class ChickenLouncher : MonoBehaviour
 
             LifeUp(1);
         }
+        if (chickenType >= 5 || chickenType < 0)
+        {
+            chickenType = 1;
+        }
     }
 
 
@@ -240,20 +244,15 @@ public class ChickenLouncher : MonoBehaviour
         GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("He colisionado con " + collision.gameObject.name);
-        if (collision.collider.gameObject.CompareTag("Corpse"))
-        {
-            RetrieveChicken(collision.gameObject.GetComponent<ChickenCorpse>().chickenType);
-        }
-    }
+    
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("He colisionado con " + other.gameObject.name);
+       // Debug.Log("He colisionado con " + other.gameObject.name);
         if (other.gameObject.CompareTag("Corpse"))
         {
-            RetrieveChicken(other.gameObject.GetComponentInParent<ChickenCorpse>().chickenType);
+            Debug.Log("Detecta Corpse");
+
+            RetrieveChicken(other.gameObject.GetComponent<ChickenCorpse>().chickenType);
 
         }
     }
