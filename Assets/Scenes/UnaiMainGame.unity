@@ -53131,6 +53131,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3403381114733540634, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403381114733540634, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403381114733540634, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403381114733540634, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403381114733540634, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403381114733540634, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166421025428782125, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500298346830669855, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 67.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500298346830669855, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 18f9ebd69d8d8dd4eacb6b0ec608d72c,
+        type: 2}
+    - target: {fileID: 7500298346830669855, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 67.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 7500298346830669855, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
