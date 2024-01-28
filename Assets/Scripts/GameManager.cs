@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Animator canvasAnimator;
     [SerializeField] private GameObject textMesh;
     [SerializeField] private GameObject vfxHitEffect;
+    [SerializeField] private GameObject vfxHitWaveEffect;
+    [SerializeField] private GameObject SmokeEffect;
     private CinemachineImpulseSource cinemachineImpulseSource;
     public GameObject scoreText;
 
@@ -72,6 +74,8 @@ public class GameManager : MonoBehaviour
     public void chickenEnemyTakeDamage(GameObject enemy, int damage)
     {
         int auxLife = 0;
+        // Spawn particula de hit
+        Instantiate(vfxHitWaveEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
         if (enemy != null)
         {
             if (enemy.GetComponent<ContenedorEnemigo1>() != null)
@@ -191,6 +195,7 @@ public class GameManager : MonoBehaviour
         {
             randomIterastor = UnityEngine.Random.Range(0, pollosToSpawn.Length);
             spawnPosition = new Vector3(UnityEngine.Random.Range(8.5f, -8.5f), 1.2f, UnityEngine.Random.Range(8.5f, -8.5f));
+            Instantiate(SmokeEffect, spawnPosition, Quaternion.identity);
             Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
             enemyCount++;
         }

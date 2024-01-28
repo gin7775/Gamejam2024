@@ -11095,6 +11095,12 @@ PrefabInstance:
       objectReference: {fileID: 1819054882}
     - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
         type: 3}
+      propertyPath: SmokeEffect
+      value: 
+      objectReference: {fileID: 7579877171014678872, guid: d1c74ce6a5d64e244bbed7da2316ed97,
+        type: 3}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
       propertyPath: canvasRound
       value: 
       objectReference: {fileID: 425708678}
@@ -11109,6 +11115,12 @@ PrefabInstance:
       propertyPath: canvasAnimator
       value: 
       objectReference: {fileID: 1819054884}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: vfxHitWaveEffect
+      value: 
+      objectReference: {fileID: 4348974990801810084, guid: e4fb1cf6447e02c4d97dc08c15ded07a,
+        type: 3}
     - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
         type: 3}
       propertyPath: 'pollosToSpawn.Array.data[0]'
