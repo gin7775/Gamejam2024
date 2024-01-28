@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         enemyCount = 0;
         waveNumber = 3;
 
-        numMaxWave1 = 25;
+        numMaxWave1 = 30;
         numMaxWave2 = 60;
         numMaxWave3 = 120;
         UpdateWave();
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
         //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
         musicManager.Play_FX_ExplosionPollo();
 
-        if (enemyCount <= 0)
+        if (enemyCount <= 0 && score == 30 || enemyCount <= 0 && score == 60)
         {
             UpdateWave();
         }
@@ -181,10 +181,15 @@ public class GameManager : MonoBehaviour
 
     IEnumerator chikenWaitSpawner()
     {
+        Debug.Log("111-" + enemyNumber);
         enemyNumber = waveCurrent <= 1 ? numMaxWave1 - enemyInitial * 1 : 0;
+        Debug.Log("222-" + enemyNumber);
         enemyNumber = waveCurrent == 2 ? numMaxWave2 - enemyInitial * 2 : enemyNumber;
+        Debug.Log("333-" + enemyNumber);
         enemyNumber = waveCurrent == 3 ? numMaxWave3 - enemyInitial * 3 : enemyNumber;
+        Debug.Log("444-" + enemyNumber);
         enemyNumber = waveCurrent >= 4 ? 0 : enemyNumber;
+        Debug.Log("555-" + enemyNumber);
 
         for (int i = 0; i < enemyNumber; i++)
         {

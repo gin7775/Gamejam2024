@@ -15,7 +15,7 @@ public class TextUiScript : MonoBehaviour
     void Update()
     {
         textMeshNumWave.GetComponent<TextMeshProUGUI>().text = "0" + GameManager.Instance.waveCurrent + " / 0" + GameManager.Instance.waveNumber;
-        textMeshNumEnemies.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.enemyCount + " / " + GameManager.Instance.enemyNumber + GameManager.Instance.enemyInitial;
+        textMeshNumEnemies.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.enemyCount + " / " + (GameManager.Instance.enemyNumber + GameManager.Instance.enemyInitial);
         textMeshScore.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.score + "";
     }
 
