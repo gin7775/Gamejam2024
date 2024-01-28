@@ -1104,7 +1104,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 14.66
+  orthographic size: 6.8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2723,7 +2723,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1796150356}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 14.66
+    OrthographicSize: 6.8
     NearClipPlane: -50.8
     FarClipPlane: 1000
     Dutch: 0
@@ -8256,7 +8256,7 @@ Transform:
   m_LocalRotation: {x: 0.41269884, y: 0.41870368, z: -0.22215068, w: 0.7778278}
   m_LocalPosition: {x: -6.915929, y: 29.194534, z: 198.17636}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 192011432}
   m_Father: {fileID: 615499556}
@@ -8283,7 +8283,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1796150356}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 6
+    OrthographicSize: 23.38
     NearClipPlane: -50.8
     FarClipPlane: 1000
     Dutch: 0

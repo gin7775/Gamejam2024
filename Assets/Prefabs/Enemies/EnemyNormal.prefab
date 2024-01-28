@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8617774504508099708}
   - component: {fileID: 3246743953969444413}
   - component: {fileID: 4366147083776382742}
-  - component: {fileID: -8693448828131651892}
   - component: {fileID: -5190322014280398007}
   m_Layer: 0
   m_Name: EnemyNormal
@@ -75,11 +74,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animEnemy: {fileID: 3175585437531734586}
   playerReference: {fileID: 0}
+  enemyTipe: 0
   distanceToEnemy: 3
   destination: {fileID: 0}
   lifes: 1
   speed: 3.5
   distanceToAttack: 2
+  corpse: {fileID: 7062845070779954322, guid: 87184fae2b3eff349be7848278e9befb, type: 3}
 --- !u!114 &8617774504508099708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,27 +135,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1.3248949, z: 0.8587241}
-  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
---- !u!65 &-8693448828131651892
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570130104802229714}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2, y: 1.5, z: 0.9}
   m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
 --- !u!114 &-5190322014280398007
 MonoBehaviour:

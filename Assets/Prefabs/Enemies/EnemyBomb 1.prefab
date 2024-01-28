@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6473118521426134804}
   - component: {fileID: 2896922339301977694}
   - component: {fileID: -8190619795984172847}
-  - component: {fileID: -2019783455265265758}
   - component: {fileID: -898724769259229652}
   - component: {fileID: 6792435967550949195}
   m_Layer: 0
@@ -83,6 +82,7 @@ MonoBehaviour:
   lifes: 1
   speed: 3.5
   distanceToAttack: 2
+  corpse: {fileID: 7062845070779954322, guid: 2303dd37ec93314498e6682bee5499c7, type: 3}
 --- !u!114 &1054972831791023816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,27 +153,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1.3248949, z: 0.8587241}
-  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
---- !u!65 &-2019783455265265758
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 454032083427569727}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2, y: 1.5, z: 1}
   m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
 --- !u!114 &-898724769259229652
 MonoBehaviour:

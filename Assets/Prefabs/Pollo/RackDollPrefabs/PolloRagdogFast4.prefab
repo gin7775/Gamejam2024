@@ -62,22 +62,27 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a222a1c316cff3442baec78418651d96, type: 2}
+      objectReference: {fileID: 2100000, guid: 18cb376967e03004382ebeb3e5bb1cdc, type: 2}
     - target: {fileID: 919132149155446097, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: m_Name
-      value: PolloRagdog1 3
+      value: PolloRagdogFast4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9180f7a89082245469129c61a9f8d359,
+        type: 3}
+      propertyPath: m_TagString
+      value: Corpse
       objectReference: {fileID: 0}
     - target: {fileID: 2151391123530177859, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a222a1c316cff3442baec78418651d96, type: 2}
+      objectReference: {fileID: 2100000, guid: 18cb376967e03004382ebeb3e5bb1cdc, type: 2}
     - target: {fileID: 6542699601052195475, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a222a1c316cff3442baec78418651d96, type: 2}
+      objectReference: {fileID: 2100000, guid: 18cb376967e03004382ebeb3e5bb1cdc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -199,7 +204,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.0000000019859, y: 0.0038776854, z: 3.201419e-10}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -357,7 +362,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.000028500934, y: 0.0052025723, z: -0.00027507154}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -409,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf61fdcc03726040a71238aa59b7b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chickenType: 3
+  chickenType: 4
 --- !u!1 &8996372009689352545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7918272248795561822, guid: 9180f7a89082245469129c61a9f8d359,
@@ -478,7 +483,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.0000000060763483, y: 0.0028927664, z: 4.6566134e-10}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:

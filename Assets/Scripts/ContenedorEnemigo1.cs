@@ -22,19 +22,16 @@ public class ContenedorEnemigo1 : MonoBehaviour
         cinemachineImpulseSource = this.GetComponent<CinemachineImpulseSource>();
          playerReference = GameObject.FindGameObjectWithTag("Player");
     }
+
+    
     public void ReciveDamage(int damage)
     {
         cinemachineImpulseSource.GenerateImpulse();
         lifes -= damage;
-        PolloMansy();
+        
         StartCoroutine(FrameFreeze(0.1f));
-
-        if (lifes <= 0)
-        {
-            //GameManager.Instance.chikenEnemyDeath(gameObject);
-            //Destroy(gameObject);
-        }
     }
+    
 
     private IEnumerator FrameFreeze(float duration)
     {
@@ -46,6 +43,7 @@ public class ContenedorEnemigo1 : MonoBehaviour
     }
     public void PolloMansy()
     {
+        Debug.Log("I manifest the greatest of phoes! A chicken! WORSE... A Deadly Chicken... it's dead... oh...");
         GameObject toInstantiate = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
         
     }

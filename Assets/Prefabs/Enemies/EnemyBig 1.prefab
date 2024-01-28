@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2654472911535782767}
   - component: {fileID: 4390752865680015780}
   - component: {fileID: 6797099323153653968}
-  - component: {fileID: -2880067035554808664}
   - component: {fileID: -5485316269093323193}
   m_Layer: 0
   m_Name: EnemyBig 1
@@ -75,11 +74,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animEnemy: {fileID: 5707649614749914721}
   playerReference: {fileID: 0}
+  enemyTipe: 0
   distanceToEnemy: 3
   destination: {fileID: 0}
   lifes: 3
   speed: 1
   distanceToAttack: 2
+  corpse: {fileID: 7062845070779954322, guid: 35efb8904c4d70b4494b56c310651763, type: 3}
 --- !u!114 &2654472911535782767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,29 +134,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.3248949, z: 0.8587241}
-  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
---- !u!65 &-2880067035554808664
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1723300209522017659}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2, y: 1.5, z: 1}
-  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
+  m_Size: {x: 1, y: 1.6200463, z: 0.8587241}
+  m_Center: {x: 0, y: 0.89244044, z: -0.078508854}
 --- !u!114 &-5485316269093323193
 MonoBehaviour:
   m_ObjectHideFlags: 0

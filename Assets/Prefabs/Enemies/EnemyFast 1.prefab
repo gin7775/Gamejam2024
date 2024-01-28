@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 9086005642684457506}
   - component: {fileID: 4584185370742652186}
   - component: {fileID: 5292473553391112257}
-  - component: {fileID: -2884870794451948287}
   - component: {fileID: 4745780941302509565}
   m_Layer: 0
   m_Name: EnemyFast 1
@@ -75,11 +74,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animEnemy: {fileID: 7965123140641105686}
   playerReference: {fileID: 0}
+  enemyTipe: 0
   distanceToEnemy: 3
   destination: {fileID: 0}
   lifes: 1
   speed: 10
   distanceToAttack: 2
+  corpse: {fileID: 7062845070779954322, guid: ee9bfb3d9884cc947a03262d7d7bcb60, type: 3}
 --- !u!114 &9086005642684457506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,27 +135,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1.3248949, z: 0.8587241}
-  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
---- !u!65 &-2884870794451948287
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4184036453883938847}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.2, y: 1.5, z: 1}
   m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
 --- !u!114 &4745780941302509565
 MonoBehaviour:
@@ -600,7 +580,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1027224107346117909, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
@@ -884,10 +864,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7160535034655431911}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9180f7a89082245469129c61a9f8d359,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4564578025864340216}
     - targetCorrespondingSourceObject: {fileID: -4258411891960909470, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       insertIndex: -1
@@ -962,27 +938,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToAttack: 3
---- !u!65 &4564578025864340216
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5819414321459367094}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.3248949, z: 0.8587241}
-  m_Center: {x: 0, y: 1.0400162, z: -0.078508854}
 --- !u!4 &6595916184575038988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9180f7a89082245469129c61a9f8d359,
