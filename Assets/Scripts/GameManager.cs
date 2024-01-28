@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
                 dificultiLevel = 2;
                 timeGeneration = 1.5f;
                 InstantiatePollos(enemyInitial * 2);
-                musicManager.ChangeRaidTheme(waveCurrent - 1, waveCurrent); //Audio 1
+                musicManager.ChangeRaidTheme(0, 1); //Audio 1
             }
             else
             {
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
                 dificultiLevel = 3;
                 timeGeneration = 0.75f;
                 InstantiatePollos(enemyInitial * 3);
-                musicManager.ChangeRaidTheme(waveCurrent - 1, waveCurrent); // Audio 2
+                musicManager.ChangeRaidTheme(1, 2); // Audio 2
             }
         }
     }
