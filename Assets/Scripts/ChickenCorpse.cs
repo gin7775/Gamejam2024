@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ChickenCorpse : MonoBehaviour
 {
-    public int chickenType = 0;
+    public int chickenType = 1;
 }

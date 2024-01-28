@@ -9236,6 +9236,34 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1796150358}
+    - target: {fileID: 2567457919124909453, guid: dd4856e723c2a48459379682064eb1aa,
+        type: 3}
+      propertyPath: pickUpRange
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567457919124909453, guid: dd4856e723c2a48459379682064eb1aa,
+        type: 3}
+      propertyPath: proyectiles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567457919124909453, guid: dd4856e723c2a48459379682064eb1aa,
+        type: 3}
+      propertyPath: 'proyectiles.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8464458607440672315, guid: 31fbe86feaad5a0479d7dc37329db290,
+        type: 3}
+    - target: {fileID: 2567457919124909453, guid: dd4856e723c2a48459379682064eb1aa,
+        type: 3}
+      propertyPath: 'proyectiles.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8464458607440672315, guid: 4daa061a417ab9a4ca6fe15f881e7d23,
+        type: 3}
+    - target: {fileID: 2567457919124909453, guid: dd4856e723c2a48459379682064eb1aa,
+        type: 3}
+      propertyPath: 'proyectiles.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8464458607440672315, guid: 0a3ef1ed9a95eb14195df951bd54f212,
+        type: 3}
     - target: {fileID: 2801286482783346283, guid: dd4856e723c2a48459379682064eb1aa,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11163,6 +11191,12 @@ PrefabInstance:
       objectReference: {fileID: 1819054882}
     - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
         type: 3}
+      propertyPath: SmokeEffect
+      value: 
+      objectReference: {fileID: 7579877171014678872, guid: d1c74ce6a5d64e244bbed7da2316ed97,
+        type: 3}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
       propertyPath: canvasRound
       value: 
       objectReference: {fileID: 425708678}
@@ -11177,6 +11211,12 @@ PrefabInstance:
       propertyPath: canvasAnimator
       value: 
       objectReference: {fileID: 1819054884}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: vfxHitWaveEffect
+      value: 
+      objectReference: {fileID: 4348974990801810084, guid: e4fb1cf6447e02c4d97dc08c15ded07a,
+        type: 3}
     - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
         type: 3}
       propertyPath: 'pollosToSpawn.Array.data[0]'
