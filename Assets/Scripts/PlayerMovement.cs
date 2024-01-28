@@ -16,6 +16,10 @@ public class PlayerMovement : MonoBehaviour
 
     public float gravity = 9.81f; // Valor típico de gravedad, ajusta según necesites.
     private Vector3 velocity;
+
+    private GameManager gameManager;
+
+
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -54,6 +58,12 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    public void OnMenu(InputValue value)
+    {
+        gameManager = FindAnyObjectByType<GameManager>();
+        gameManager.pause();
+
+    }
     private void Movement()
     {
         Vector3 forward = mainCamera.transform.forward;

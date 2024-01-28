@@ -2,6 +2,9 @@ using Cinemachine;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -42,6 +45,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int numMaxWave3;
 
     [SerializeField] private MusicManager musicManager;
+
+    public bool paused = false;
+    public GameObject pausemenu;
+
+    //Music Variables
+    public AudioMixer myMixer;
+    public Slider musicSlider;
+    public Slider SFXSlider;
 
 
     private void Awake()
@@ -234,4 +245,71 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Menu pausa
+
+
+
+    public void exit_pause_menu()
+    {
+
+        Time.timeScale = 1;
+        paused = false;
+        pausemenu.SetActive(false);
+    }
+
+    public void pause()
+    {
+
+        if (paused)
+        {
+            exit_pause_menu();
+
+        }
+
+        if (paused == false)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            if (currentSceneName != "MenuPrincipal")
+            {
+                paused = true;
+                pausemenu.gameObject.SetActive(true);
+                Time.timeScale = 0;
+            }
+            if (currentSceneName == "MenuPrincipal")
+            {
+                Debug.Log("Estás en la Escena principal");
+
+            }
+
+        }
+
+        
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void Back_to_Main_Menu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("0_MenuPrincipal");
+    }
+
+    //Music Manager
+
+    public void SetMusicVolume()
+    {
+        Debug.Log("Music modified");
+        float volume = musicSlider.value;
+        Debug.Log(musicSlider.value);
+        myMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
+    }
+    public void SetSFXVolume()
+    {
+
+        float volume = SFXSlider.value;
+        myMixer.SetFloat("FX", Mathf.Log10(volume) * 20);
+    }
 }

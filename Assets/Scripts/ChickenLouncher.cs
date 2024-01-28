@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
-using UnityEditor.Experimental.GraphView;
+
 
 public class ChickenLouncher : MonoBehaviour
 {
@@ -95,14 +95,13 @@ public class ChickenLouncher : MonoBehaviour
 
     public void ReciveDamage(int damage)
     {
-       // UpdateLifeUI();
+        UpdateLifeUI();
         health -= damage;
         musicManager.Play_FX_PLayer_RecibirDaño();
         if (health <= 0)
         {
             PlayerDeath();
         }
-        //Debug.Log(health);
     }
 
     private void UpdateLifeUI()

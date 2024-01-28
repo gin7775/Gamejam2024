@@ -21,4 +21,14 @@ public class Retry : MonoBehaviour
     {
         SceneManager.LoadScene("1_MainGame");
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void Back_to_Main_Menu()
+    {
+        SceneManager.LoadScene("0_MenuPrincipal");
+    }
 }
