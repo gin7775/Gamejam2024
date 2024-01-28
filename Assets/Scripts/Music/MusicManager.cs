@@ -61,18 +61,18 @@ public class MusicManager : MonoBehaviour
         //    Play_FX_StartRound();
         //}
 
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    StartCoroutine(ChangeRaidTheme(0, 0));
-        //}
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    StartCoroutine(ChangeRaidTheme(0, 1));
-        //}
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    StartCoroutine(ChangeRaidTheme(1, 2));
-        //}
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            StartCoroutine(ChangeRaidTheme(0, 0));
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            StartCoroutine(ChangeRaidTheme(0, 1));
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(ChangeRaidTheme(1, 2));
+        }
 
 
 

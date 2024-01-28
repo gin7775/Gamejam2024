@@ -20,15 +20,15 @@ public class EnemyAudio : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Stop_CacareoJugador();
-            Play_Enemy_FX_PolloMuerto();
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            Play_Enemy_FX_TickingPollo();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Stop_CacareoJugador();
+        //    Play_Enemy_FX_PolloMuerto();
+        //}
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    Play_Enemy_FX_TickingPollo();
+        //}
     }
 
     public void Stop_CacareoJugador() //Frena el Cacareo

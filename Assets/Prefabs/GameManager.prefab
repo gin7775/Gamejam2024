@@ -58,15 +58,16 @@ MonoBehaviour:
   enemyNumber: 0
   enemyInitial: 0
   enemyCount: 0
-  waveCurrent: 0
   waveNumber: 0
-  currentWave: 0
+  waveCurrent: 0
   dificultiLevel: 0
   canvasRound: {fileID: 0}
   canvasAnimator: {fileID: 0}
   textMesh: {fileID: 0}
   vfxHitEffect: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,
     type: 3}
+  vfxHitWaveEffect: {fileID: 0}
+  SmokeEffect: {fileID: 0}
   scoreText: {fileID: 0}
   musicManager: {fileID: 5533431687952053835}
 --- !u!1001 &698903159088241978
@@ -126,6 +127,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374925918846674006, guid: 837c9331d2787f64fb65c73e533334be,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.117
       objectReference: {fileID: 0}
     - target: {fileID: 5062942779843477181, guid: 837c9331d2787f64fb65c73e533334be,
         type: 3}
