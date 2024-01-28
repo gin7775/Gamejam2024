@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 22802d52bb0fd2c4a9900c4a11d7837c
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: '{"shaderPath":"Shader Graphs/VertexColorShader","attributes":[]}'
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
