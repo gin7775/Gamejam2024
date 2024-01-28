@@ -30,7 +30,7 @@ public class MusicManager : MonoBehaviour
 
     [SerializeField] AudioSource comenzarOleadaFX;
 
-    public GameManager gm;
+  
 
     public static MusicManager Instance { get; private set; }
 
