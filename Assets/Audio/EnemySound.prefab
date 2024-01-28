@@ -45,7 +45,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 6ffac0e7af87aed4ebffef6a985525e7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.737
+  m_Volume: 0.794
   m_Pitch: 0.91
   Loop: 0
   Mute: 0
@@ -174,8 +174,8 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 9dbe47cfbc6d4654a92e194c4c087668, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.168
-  m_Pitch: 1
+  m_Volume: 0.37
+  m_Pitch: 0.81
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -302,9 +302,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 7050847095564836593, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 7e5ab6e2ba7f2954b8174c792ebfc49f, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.504
-  m_Pitch: 1
+  m_Pitch: 1.12
   Loop: 1
   Mute: 0
   Spatialize: 0
@@ -440,6 +440,7 @@ MonoBehaviour:
   - {fileID: 3586764440363496717}
   polloMuerto: {fileID: 6050962324456217765}
   tickingPollo: {fileID: 9102566603555012500}
+  isExplosive: 0
 --- !u!1 &4800176455870565840
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,10 +485,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 7050847095564836593, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d7c371e65e4902240a7cf474ac0563d4, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.494
-  m_Pitch: 1
-  Loop: 0
+  m_Pitch: 1.2
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -9,6 +9,8 @@ public class EnemyAudio : MonoBehaviour
     [SerializeField] AudioSource polloMuerto;
     [SerializeField] AudioSource tickingPollo;
 
+    [SerializeField] bool isExplosive;
+
     int indexElegido;
 
     // Start is called before the first frame update
@@ -16,6 +18,10 @@ public class EnemyAudio : MonoBehaviour
     {
         indexElegido = Random.Range(0, sonidoPolloEnemigo.Length);
         sonidoPolloEnemigo[indexElegido].Play();
+        if (isExplosive)
+        {
+            tickingPollo.Play();
+        }
     }
 
     private void Update()
