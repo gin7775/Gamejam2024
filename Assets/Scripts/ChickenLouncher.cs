@@ -33,6 +33,7 @@ public class ChickenLouncher : MonoBehaviour
     private Animator anim;
     //Esto es para la muerte
     bool muriendo;
+    [SerializeField] private bool gameModeFrenezzi = false;
 
     public GameObject RetryButton;
 
@@ -148,67 +149,126 @@ public class ChickenLouncher : MonoBehaviour
         projectilePos += transform.forward;
         projectilePos += transform.up;
 
-        switch (AmmoType)
+        if (!gameModeFrenezzi)
         {
-            case 0:
-                //Debug.Log("Got no chickens");
-                break;
-
-            case 1:
-                //Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
-                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-                musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
-
-                chickenType = 0;
-                break;
-
-            case 2:
-                projectilePos = transform.position;
-                projectilePos += transform.forward;
-                projectilePos += transform.up;
-                //Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[1], projectilePos, Quaternion.identity);
-                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-                musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
-
-
-                chickenType = 0;
-                break;
-
-            case 3:
-                projectilePos = transform.position;
-                projectilePos += transform.forward;
-                projectilePos += transform.up;
-                //Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[2], projectilePos, Quaternion.identity);
-                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-                musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
-
-
-                chickenType = 0;
-                break;
-
-            case 4:
-                projectilePos = transform.position;
-                projectilePos += transform.forward;
-                projectilePos += transform.up;
-                //Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[3], projectilePos, Quaternion.identity);
-                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-                musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
-
-                chickenType = 0;
-                break;
-        }
-        if (currentProyectile != null)
-        {
-            foreach (GameObject pollo in currentProyectile)
+            switch (AmmoType)
             {
-                pollo.transform.SetParent(handPosition, false);
-                Destroy(pollo);
+                case 0:
+                    //Debug.Log("Got no chickens");
+                    break;
+
+                case 1:
+                    //Debug.Log("Lounching Chicken");
+                    proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
+                    proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+                    musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
+
+                    chickenType = 0;
+                    break;
+
+                case 2:
+                    projectilePos = transform.position;
+                    projectilePos += transform.forward;
+                    projectilePos += transform.up;
+                    //Debug.Log("Lounching Chicken");
+                    proyectile = Instantiate(proyectiles[1], projectilePos, Quaternion.identity);
+                    proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+                    musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
+
+
+                    chickenType = 0;
+                    break;
+
+                case 3:
+                    projectilePos = transform.position;
+                    projectilePos += transform.forward;
+                    projectilePos += transform.up;
+                    //Debug.Log("Lounching Chicken");
+                    proyectile = Instantiate(proyectiles[2], projectilePos, Quaternion.identity);
+                    proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+                    musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
+
+
+                    chickenType = 0;
+                    break;
+
+                case 4:
+                    projectilePos = transform.position;
+                    projectilePos += transform.forward;
+                    projectilePos += transform.up;
+                    //Debug.Log("Lounching Chicken");
+                    proyectile = Instantiate(proyectiles[3], projectilePos, Quaternion.identity);
+                    proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+                    musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
+
+                    chickenType = 0;
+                    break;
             }
-            currentProyectile.Clear();
+        }
+        else
+        {
+            if (currentProyectile != null)
+            {
+                foreach (GameObject pollo in currentProyectile)
+                {
+                    if (pollo.GetComponent<ChickenCorpse>() != null)
+                    {
+                        pollo.transform.SetParent(handPosition, false);
+                        RetrieveChicken(pollo.GetComponent<ChickenCorpse>().chickenType);
+                        switch (pollo.GetComponent<ChickenCorpse>().chickenType)
+                        {
+                            case 0:
+                                //Debug.Log("Got no chickens");
+                                break;
+
+                            case 1:
+                                //Debug.Log("Lounching Chicken");
+                                proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
+                                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+
+                                //chickenType = 0;
+                                break;
+
+                            case 2:
+                                projectilePos = transform.position;
+                                projectilePos += transform.forward;
+                                projectilePos += transform.up;
+                                //Debug.Log("Lounching Chicken");
+                                proyectile = Instantiate(proyectiles[1], projectilePos, Quaternion.identity);
+                                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+
+                                //chickenType = 0;
+                                break;
+
+                            case 3:
+                                projectilePos = transform.position;
+                                projectilePos += transform.forward;
+                                projectilePos += transform.up;
+                                //Debug.Log("Lounching Chicken");
+                                proyectile = Instantiate(proyectiles[2], projectilePos, Quaternion.identity);
+                                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+
+                                //chickenType = 0;
+                                break;
+
+                            case 4:
+                                projectilePos = transform.position;
+                                projectilePos += transform.forward;
+                                projectilePos += transform.up;
+                                //Debug.Log("Lounching Chicken");
+                                proyectile = Instantiate(proyectiles[3], projectilePos, Quaternion.identity);
+                                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+
+                                //chickenType = 0;
+                                break;
+                        }
+                        //currentProyectile.Remove(pollo);
+                        Destroy(pollo);
+                    }
+                }
+                chickenType = 0;
+                currentProyectile.Clear();
+            }
         }
     }
 
