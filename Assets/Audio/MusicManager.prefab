@@ -1037,6 +1037,9 @@ MonoBehaviour:
   tickingPollo: {fileID: 3767689043289276888}
   clicPollo: {fileID: 5518015443513330212}
   comenzarOleadaFX: {fileID: 4374925918846674006}
+  estaSonando1: 0
+  estaSonando2: 0
+  estaSonando3: 0
 --- !u!1 &6246168075892747757
 GameObject:
   m_ObjectHideFlags: 0

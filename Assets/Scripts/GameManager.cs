@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
                 dificultiLevel = 1;
                 timeGeneration = 3f;
                 InstantiatePollos(enemyInitial);
-                musicManager.ChangeRaidTheme(0, 0); //Audio 0
+               
             }
             else if (waveCurrent == 2)
             {
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
                 dificultiLevel = 2;
                 timeGeneration = 1.5f;
                 InstantiatePollos(enemyInitial * 2);
-                musicManager.ChangeRaidTheme(0, 1); //Audio 1
+                
             }
             else
             {
@@ -143,7 +143,7 @@ public class GameManager : MonoBehaviour
                 dificultiLevel = 3;
                 timeGeneration = 0.75f;
                 InstantiatePollos(enemyInitial * 3);
-                musicManager.ChangeRaidTheme(1, 2); // Audio 2
+               
             }
         }
     }
@@ -180,6 +180,7 @@ public class GameManager : MonoBehaviour
     IEnumerator startWave(float seconds, int totalEnemies)
     {
         canvasRound.gameObject.SetActive(true);
+        musicManager.FX_ActivarCorutina(waveCurrent - 1, waveCurrent);
 
         yield return new WaitForSeconds(seconds - 2f);
 
