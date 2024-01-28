@@ -47,10 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   pollosToSpawn:
-  - {fileID: 1702281271950949738, guid: a48b35744cd62ff459d7a8ba3a83bd38, type: 3}
-  - {fileID: 1702281271950949738, guid: a48b35744cd62ff459d7a8ba3a83bd38, type: 3}
-  - {fileID: 1702281271950949738, guid: a48b35744cd62ff459d7a8ba3a83bd38, type: 3}
-  - {fileID: 1702281271950949738, guid: a48b35744cd62ff459d7a8ba3a83bd38, type: 3}
+  - {fileID: 1570130104802229714, guid: 9fb28a391b887db4db9086cd85de82c9, type: 3}
+  - {fileID: 1723300209522017659, guid: 466fab495fabb824f9aee8381bb00e51, type: 3}
+  - {fileID: 454032083427569727, guid: 5921031b03d6c4b408a3e91a96db6a61, type: 3}
+  - {fileID: 4184036453883938847, guid: 884705e063edfe74f9d053f20ba2aaf0, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
   randomIterastor: 0
   timeWave: 5
@@ -66,8 +66,10 @@ MonoBehaviour:
   textMesh: {fileID: 0}
   vfxHitEffect: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,
     type: 3}
-  vfxHitWaveEffect: {fileID: 0}
-  SmokeEffect: {fileID: 0}
+  vfxHitWaveEffect: {fileID: 4348974990801810084, guid: e4fb1cf6447e02c4d97dc08c15ded07a,
+    type: 3}
+  SmokeEffect: {fileID: 7579877171014678872, guid: d1c74ce6a5d64e244bbed7da2316ed97,
+    type: 3}
   scoreText: {fileID: 0}
   musicManager: {fileID: 5533431687952053835}
 --- !u!1001 &698903159088241978
