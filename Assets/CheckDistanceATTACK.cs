@@ -22,11 +22,14 @@ public class CheckDistanceATTACK : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (Vector3.Distance(transform.position, player.transform.position) <= distanceToAttack)
+        if (player != null)
         {
-            Debug.Log("He atacado");
-            player.GetComponent<ChickenLouncher>().ReciveDamage(1);
+            if (Vector3.Distance(transform.position, player.transform.position) <= distanceToAttack)
+            {
+                Debug.Log("He atacado");
+                player.GetComponent<ChickenLouncher>().ReciveDamage(1);
 
+            }
         }
     }
 }

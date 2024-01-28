@@ -1,12 +1,7 @@
 using Cinemachine;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,11 +22,9 @@ public class GameManager : MonoBehaviour
     // Numero de enemigos que quedan en la ronda
     [SerializeField] private int enemyCount;
     // Numero de ronda totales
-    [SerializeField] private int waveCurrent;
-    // Numero de ronda totales
     [SerializeField] private int waveNumber;
     // Numero de ronda actual
-    [SerializeField] private int currentWave;
+    [SerializeField] private int waveCurrent;
     // Nivel de dificultad -- No se usa
     [SerializeField] private int dificultiLevel;
     // Nivel de dificultad -- No se usa
@@ -41,7 +34,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject vfxHitEffect;
     private CinemachineImpulseSource cinemachineImpulseSource;
     public GameObject scoreText;
-
 
     [SerializeField] private MusicManager musicManager;
 
@@ -57,13 +49,11 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-      
         timeGeneration = 3f;
         timeWave = 6f;
         enemyInitial = 5;
@@ -82,23 +72,27 @@ public class GameManager : MonoBehaviour
     public void chickenEnemyTakeDamage(GameObject enemy, int damage)
     {
         int auxLife = 0;
-        if (enemy != null) 
+        if (enemy != null)
         {
-            auxLife = enemy.GetComponent<ContenedorEnemigo1>().lifes -= damage;
+            if (enemy.GetComponent<ContenedorEnemigo1>() != null)
+            {
+                auxLife = enemy.GetComponent<ContenedorEnemigo1>().lifes -= damage;
+            }
         }
-        
 
         if (auxLife <= 0)
         {
+            Debug.Log("Enemy " + enemy);
+            Debug.Log("Enemy1 " + enemy.GetComponent<ContenedorEnemigo1>());
+
             cinemachineImpulseSource = enemy.gameObject.GetComponent<CinemachineImpulseSource>();
             cinemachineImpulseSource.GenerateImpulse();
-            Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0,1,0), Quaternion.identity);
+            Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             StartCoroutine(FrameFreeze(0.03f));
             score++;
             //scoreText.GetComponent<TextMeshProUGUI>().text = "score: " + score;
-            enemy.GetComponent<ContenedorEnemigo1>().PolloMansy();
             Destroy(enemy);
-            //enemyDeath();
+            enemyDeath();
         }
     }
 
@@ -118,8 +112,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateWave()
     {
-        currentWave++;
-        waveCurrent = currentWave;
+        waveCurrent++;
 
         if (waveCurrent <= waveNumber)
         {
@@ -128,25 +121,24 @@ public class GameManager : MonoBehaviour
             {
                 dificultiLevel = 1;
                 timeGeneration = 3f;
-              
                 InstantiatePollos(enemyInitial);
                 musicManager.ChangeRaidTheme(0, 0); //Audio 0
             }
             else if (waveCurrent == 2)
             {
-            
+
                 dificultiLevel = 2;
                 timeGeneration = 1.5f;
                 InstantiatePollos(enemyInitial * 2);
-                musicManager.ChangeRaidTheme(currentWave - 1, currentWave); //Audio 1
+                musicManager.ChangeRaidTheme(waveCurrent - 1, waveCurrent); //Audio 1
             }
             else
             {
-             
+
                 dificultiLevel = 3;
                 timeGeneration = 0.75f;
                 InstantiatePollos(enemyInitial * 3);
-                musicManager.ChangeRaidTheme(currentWave - 1, currentWave); // Audio 2
+                musicManager.ChangeRaidTheme(waveCurrent - 1, waveCurrent); // Audio 2
             }
         }
     }
@@ -165,32 +157,28 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EsperarYExecutar()
     {
-        int auxEnemyNumber = currentWave <= 1 ? 25 : 0;
-        auxEnemyNumber = currentWave == 2 ? 50 : auxEnemyNumber;
-        auxEnemyNumber = currentWave >= 3 ? 105 : auxEnemyNumber;
+        int auxEnemyNumber = waveCurrent <= 1 ? 25 : 0;
+        auxEnemyNumber = waveCurrent == 2 ? 50 : auxEnemyNumber;
+        auxEnemyNumber = waveCurrent >= 3 ? 105 : auxEnemyNumber;
 
         for (int i = 0; i < auxEnemyNumber; i++)
         {
-            // Espera 3 segundos
             yield return new WaitForSeconds(timeGeneration);
 
-            // Tu lógica aquí
             randomIterastor = UnityEngine.Random.Range(0, pollosToSpawn.Length);
             spawnPosition = new Vector3(UnityEngine.Random.Range(8.5f, -8.5f), 1.2f, UnityEngine.Random.Range(8.5f, -8.5f));
-            GameObject toInstantiate = Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
+            Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
             enemyCount++;
         }
     }
 
     IEnumerator startWave(float seconds, int totalEnemies)
     {
-        // Iniciar el canvas
         canvasRound.gameObject.SetActive(true);
-        // Espera 10 segundos
-        yield return new WaitForSeconds(seconds);
 
-        // lanzar el quitar el canvas
-        if(canvasAnimator != null)
+        yield return new WaitForSeconds(seconds - 2f);
+
+        if (canvasAnimator != null)
         {
             canvasAnimator.SetTrigger("Change");
         }
@@ -202,7 +190,7 @@ public class GameManager : MonoBehaviour
         {
             randomIterastor = UnityEngine.Random.Range(0, pollosToSpawn.Length);
             spawnPosition = new Vector3(UnityEngine.Random.Range(8.5f, -8.5f), 1.2f, UnityEngine.Random.Range(8.5f, -8.5f));
-            GameObject toInstantiate = Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
+            Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
             enemyCount++;
         }
 

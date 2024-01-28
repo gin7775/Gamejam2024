@@ -14,8 +14,7 @@ public class Pollo_Bomba : MonoBehaviour
     void Start()
     {
         StartCoroutine(CountdownAndExplode());
-         player = GameObject.FindGameObjectWithTag("Player");
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Corrutina para contar hacia atrás y realizar la explosión
@@ -52,22 +51,22 @@ public class Pollo_Bomba : MonoBehaviour
     {
         //Instancia particulas
         GetComponent<SpawnParticles>().SpawnBothParticles();
-
         chickensToDie = GameObject.FindGameObjectsWithTag("Enemy");
 
-            foreach (GameObject chicken in chickensToDie)
+        foreach (GameObject chicken in chickensToDie)
+        {
+            if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
             {
-                if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
-                {
-                    HowToDie howToDie = chicken.GetComponent<HowToDie>();
-                    if (howToDie != null)
-                    {
-                        howToDie.he_explotado(); // matar pollos, INCLUIDO JUGADOR SI COINCIDE QUE ESTÁ EN EL RADIO
-                    }
+                /*HowToDie howToDie = chicken.GetComponent<HowToDie>();
+                if (howToDie != null)
+                {*/
+                    //   howToDie.he_explotado(); // matar pollos, INCLUIDO JUGADOR SI COINCIDE QUE ESTÁ EN EL RADIO
 
-                }
-
+                    Debug.Log("He muerto en una explosión jo qué pena, no sabía que acabaría tan inesperadamente. La vida es tan corta, tan rápida... quiero seguir viviendo, no quiero morir...");
+                    GameManager.Instance.chickenEnemyTakeDamage(chicken, 99);
+                //}
             }
+        }
 
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -77,7 +76,6 @@ public class Pollo_Bomba : MonoBehaviour
             {
                 player.GetComponent<ChickenLouncher>().ReciveDamage(1);
                 Debug.Log("Explosion ha herido al jugador");
-
             }
         }
         
