@@ -63,15 +63,15 @@ public class MusicManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            StartCoroutine(ChangeRaidTheme(0, 1));
+            StartCoroutine(ChangeRaidTheme(0, 0));
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            StartCoroutine(ChangeRaidTheme(1, 2));
+            StartCoroutine(ChangeRaidTheme(0, 1));
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            StartCoroutine(ChangeRaidTheme(2, 0));
+            StartCoroutine(ChangeRaidTheme(1, 2));
         }
 
 
