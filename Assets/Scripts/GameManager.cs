@@ -182,6 +182,8 @@ public class GameManager : MonoBehaviour
     IEnumerator startWave(float seconds, int totalEnemies)
     {
         canvasRound.gameObject.SetActive(true);
+       
+        //Audio
         musicManager.FX_ActivarCorutina(waveCurrent - 1, waveCurrent);
 
         yield return new WaitForSeconds(seconds - 2f);
@@ -204,6 +206,11 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(EsperarYExecutar());
+    }
+
+    public void ActivarFXMuerte()
+    {
+
     }
 
 }

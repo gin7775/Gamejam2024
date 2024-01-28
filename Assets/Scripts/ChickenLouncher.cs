@@ -29,14 +29,20 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] float distanciaComparativa,distanciaActual;
     [SerializeField] GameObject polloElegido;
 
+    [SerializeField] MusicManager musicManager;
+
     GameObject proyectile;
     Vector3 projectilePos;
 
     private Animator anim;
 
+    //Esto es para la muerte
+    bool muriendo;
+
     private void Start()
     {
-
+        musicManager = FindAnyObjectByType<MusicManager>();
+        muriendo = false;
         distanciaComparativa = 1000;
         anim = GetComponent<Animator>();
     }
@@ -47,6 +53,7 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnShoot(InputValue value)
     {
+        musicManager.Play_FX_RecogerPollo();
         Shoot(chickenType);
         Debug.Log("Dispara");
     }
@@ -60,7 +67,8 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnPick(InputValue value)
     {
-            RetrieveChicken(chickenType);
+        musicManager.Play_FX_RecogerPollo();
+        RetrieveChicken(chickenType);
         Debug.Log("Coge");
     }
 
@@ -110,6 +118,19 @@ public class ChickenLouncher : MonoBehaviour
 
     void PlayerDeath()
     {
+        if(!muriendo) 
+        {
+            //AQUI DEBERÍAN IR PARTICULAS DE PLUMAS TMB
+            muriendo = true;
+            StartCoroutine(TransicionMuerte());
+            
+        }
+      
+    }
+    IEnumerator TransicionMuerte()
+    {
+        musicManager.Play_FX_Player_PolloMuerto();
+        yield return new WaitForSeconds(2f);
         Debug.Log("Ye dead!");
         Destroy(this.gameObject);
     }
