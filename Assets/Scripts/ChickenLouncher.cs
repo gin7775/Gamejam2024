@@ -64,7 +64,7 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnPick(InputValue value)
     {
-        musicManager.Play_FX_RecogerPollo();
+        
         RetrieveChicken(chickenType);
         //Debug.Log("Coge");
     }
@@ -94,8 +94,9 @@ public class ChickenLouncher : MonoBehaviour
 
     public void ReciveDamage(int damage)
     {
-        UpdateLifeUI();
+       // UpdateLifeUI();
         health -= damage;
+        musicManager.Play_FX_PLayer_RecibirDaño();
         if (health <= 0)
         {
             PlayerDeath();
@@ -142,6 +143,7 @@ public class ChickenLouncher : MonoBehaviour
 
     void Shoot(int AmmoType)
     {
+      
         projectilePos = transform.position;
         projectilePos += transform.forward;
         projectilePos += transform.up;
@@ -156,6 +158,7 @@ public class ChickenLouncher : MonoBehaviour
                 //Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+                musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
 
                 chickenType = 0;
                 break;
@@ -167,6 +170,8 @@ public class ChickenLouncher : MonoBehaviour
                 //Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[1], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+                musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
+
 
                 chickenType = 0;
                 break;
@@ -178,6 +183,8 @@ public class ChickenLouncher : MonoBehaviour
                 //Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[2], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+                musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
+
 
                 chickenType = 0;
                 break;
@@ -189,6 +196,7 @@ public class ChickenLouncher : MonoBehaviour
                 //Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[3], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+                musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
 
                 chickenType = 0;
                 break;
@@ -272,7 +280,8 @@ public class ChickenLouncher : MonoBehaviour
         if (other.gameObject.CompareTag("Corpse"))
         {
             //Debug.Log("Detecta Corpse");
-            if(other.gameObject.GetComponent<ChickenCorpse>()!=null)
+            musicManager.Play_FX_RecogerPollo();
+            if (other.gameObject.GetComponent<ChickenCorpse>()!=null)
             RetrieveChicken(other.gameObject.GetComponent<ChickenCorpse>().chickenType);
             GameObject cadaver= other.gameObject;
             cadaver.transform.position = handPosition.position;

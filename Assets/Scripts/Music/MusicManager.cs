@@ -93,9 +93,11 @@ public class MusicManager : MonoBehaviour
     {
         if (oleadaSiguiente < mainTheme.Length)
         {
-            sirena.Play();
+           
+           
             transitionTheme.Play();
             yield return new WaitForSeconds(1f);
+            sirena.Play();
             mainTheme[oleadaAnterior].Stop();
             yield return new WaitForSeconds(3f);
             Play_FX_StartRound();
