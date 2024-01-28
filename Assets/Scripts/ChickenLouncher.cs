@@ -34,6 +34,9 @@ public class ChickenLouncher : MonoBehaviour
     //Esto es para la muerte
     bool muriendo;
 
+    public GameObject RetryButton;
+
+
     private void Start()
     {
         musicManager = FindAnyObjectByType<MusicManager>();
@@ -121,8 +124,10 @@ public class ChickenLouncher : MonoBehaviour
     IEnumerator TransicionMuerte()
     {
         musicManager.Play_FX_Player_PolloMuerto();
+        anim.SetTrigger("Die");
         yield return new WaitForSeconds(2f);
         //Debug.Log("Ye dead!");
+        RetryButton.gameObject.SetActive(true);
         Destroy(this.gameObject);
     }
 
