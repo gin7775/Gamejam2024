@@ -44121,7 +44121,7 @@ PrefabInstance:
     - target: {fileID: 492107747516206953, guid: 893d6078704c8454595896efa5b12f8e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: 2_Credits
+      value: 2_Creditos
       objectReference: {fileID: 0}
     - target: {fileID: 4426541627913046420, guid: 893d6078704c8454595896efa5b12f8e,
         type: 3}

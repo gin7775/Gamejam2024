@@ -494,7 +494,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 1_MenuPrincipal
+          m_StringArgument: 0_MenuPrincipal
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &443044905
@@ -745,7 +745,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: Credits
+          m_StringArgument: 2_Creditos
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1138888893
@@ -917,6 +917,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d26cc4d0342034d9dc731c48f2b192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonidoClic: {fileID: 0}
+  musica: {fileID: 0}
 --- !u!4 &1564983284
 Transform:
   m_ObjectHideFlags: 0
