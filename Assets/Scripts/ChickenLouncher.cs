@@ -31,7 +31,7 @@ public class ChickenLouncher : MonoBehaviour
 
     [SerializeField] MusicManager musicManager;
     [SerializeField] Transform handPosition;
-    public GameObject currentProyectile;
+    public List <GameObject> currentProyectile;
     public GameObject[] shildCounter;
 
 
@@ -207,13 +207,13 @@ public class ChickenLouncher : MonoBehaviour
         }
         if (currentProyectile != null)
         {
-            shildCounter = handPosition.gameObject.GetComponentsInChildren<GameObject>();
-            for (int i = 0; i < shildCounter.Length; i++)
+            //shildCounter = handPosition.gameObject.GetComponentsInChildren<GameObject>();
+            foreach (GameObject pollo in currentProyectile)
             {
-                Destroy(shildCounter[i]);
+                pollo.transform.SetParent(handPosition, false);
+                Destroy(pollo);
             }
-
-            Destroy(currentProyectile);
+            currentProyectile.Clear();
         }
     }
 
@@ -288,12 +288,12 @@ public class ChickenLouncher : MonoBehaviour
         if (other.gameObject.CompareTag("Corpse"))
         {
             Debug.Log("Detecta Corpse");
-
+            if(other.gameObject.GetComponent<ChickenCorpse>()!=null)
             RetrieveChicken(other.gameObject.GetComponent<ChickenCorpse>().chickenType);
             GameObject cadaver= other.gameObject;
             cadaver.transform.position = handPosition.position;
             cadaver.transform.SetParent(handPosition, true);
-            currentProyectile = cadaver;
+            currentProyectile.Add(cadaver);
 
         }
     }
