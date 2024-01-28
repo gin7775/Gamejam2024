@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour
     private CinemachineImpulseSource cinemachineImpulseSource;
     public GameObject scoreText;
     public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;
-    [SerializeField] private int numMaxWave1 = 5;
-    [SerializeField] private int numMaxWave2 = 10;
-    [SerializeField] private int numMaxWave3 = 20;
+    [SerializeField] private int numMaxWave1;
+    [SerializeField] private int numMaxWave2;
+    [SerializeField] private int numMaxWave3;
 
     [SerializeField] private MusicManager musicManager;
 
@@ -67,9 +67,9 @@ public class GameManager : MonoBehaviour
         enemyCount = 0;
         waveNumber = 3;
 
-        numMaxWave1 = 5;
-        numMaxWave2 = 10;
-        numMaxWave3 = 20;
+        numMaxWave1 = 25;
+        numMaxWave2 = 60;
+        numMaxWave3 = 120;
         UpdateWave();
     }
 
