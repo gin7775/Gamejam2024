@@ -23,10 +23,10 @@ public class MainMenu : MonoBehaviour
                 CargarCorutinaNivel();
                 break;
             case 2:
-                SceneManager.LoadScene("Opciones");
+                SceneManager.LoadScene("3_Opciones");
                 break;
             case 3:
-                SceneManager.LoadScene("Credits");
+                SceneManager.LoadScene("2_Credits");
                 break;
             case 4:
                 CargarCorutinaNivel();
@@ -49,7 +49,6 @@ public class MainMenu : MonoBehaviour
         sonidoClic.Play();
         yield return new WaitForSeconds(1f);
         musica.Stop();
-        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("1_MainGame");
     }
 
