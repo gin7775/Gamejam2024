@@ -16,9 +16,11 @@ public class ContenedorEnemigo1 : MonoBehaviour
     public float speed;
     public float distanceToAttack = 1f;
     public GameObject corpse;
+    public bool canDamage;
 
     public void Start()
     {
+        canDamage = true;
         cinemachineImpulseSource = this.GetComponent<CinemachineImpulseSource>();
         playerReference = GameObject.FindGameObjectWithTag("Player");
     }
@@ -26,10 +28,15 @@ public class ContenedorEnemigo1 : MonoBehaviour
     
     public void ReciveDamage(int damage)
     {
-        cinemachineImpulseSource.GenerateImpulse();
-        lifes -= damage;
-        
-        StartCoroutine(FrameFreeze(0.1f));
+        if (canDamage)
+        {
+            cinemachineImpulseSource.GenerateImpulse();
+            lifes -= damage;
+            canDamage = false;
+            StartCoroutine(FrameFreeze(0.1f));
+            //StartCoroutine(Contador());
+        }
+       
     }
     
 
@@ -40,6 +47,11 @@ public class ContenedorEnemigo1 : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration);
 
         Time.timeScale = 1f;
+    }
+    public IEnumerator Contador()
+    {
+        yield return new WaitForSeconds(1);
+        canDamage = true;
     }
 
     public void PolloMansy()

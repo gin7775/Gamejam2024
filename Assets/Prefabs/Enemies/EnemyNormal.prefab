@@ -80,6 +80,7 @@ MonoBehaviour:
   speed: 3.5
   distanceToAttack: 2
   corpse: {fileID: 7062845070779954322, guid: 87184fae2b3eff349be7848278e9befb, type: 3}
+  canDamage: 0
 --- !u!95 &3246743953969444413
 Animator:
   serializedVersion: 7
