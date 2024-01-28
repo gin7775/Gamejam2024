@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5429725980024380340}
   - component: {fileID: 8415023614812494994}
   - component: {fileID: 15515134687541479}
-  - component: {fileID: 9086005642684457506}
   - component: {fileID: 4584185370742652186}
   - component: {fileID: 5292473553391112257}
   - component: {fileID: 4745780941302509565}
@@ -81,18 +80,6 @@ MonoBehaviour:
   speed: 10
   distanceToAttack: 2
   corpse: {fileID: 7062845070779954322, guid: ee9bfb3d9884cc947a03262d7d7bcb60, type: 3}
---- !u!114 &9086005642684457506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4184036453883938847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cfef95db663181478ce51e00fd50f82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &4584185370742652186
 Animator:
   serializedVersion: 7

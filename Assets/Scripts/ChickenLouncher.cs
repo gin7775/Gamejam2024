@@ -254,6 +254,7 @@ public class ChickenLouncher : MonoBehaviour
         if (other.gameObject.CompareTag("Corpse"))
         {
             RetrieveChicken(other.gameObject.GetComponentInParent<ChickenCorpse>().chickenType);
+
         }
     }
 }
