@@ -873,11 +873,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_v2
       objectReference: {fileID: 0}
+    - target: {fileID: 4089145313363307045, guid: 95924edfcdd76224c867eb7916e4f32e,
+        type: 3}
+      propertyPath: textMeshScore
+      value: 
+      objectReference: {fileID: 1589792655374250002}
+    - target: {fileID: 4089145313363307045, guid: 95924edfcdd76224c867eb7916e4f32e,
+        type: 3}
+      propertyPath: textMeshNumEnemies
+      value: 
+      objectReference: {fileID: 48787717892732575}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95924edfcdd76224c867eb7916e4f32e, type: 3}
+--- !u!1 &48787717892732575 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6206372455705926592, guid: 95924edfcdd76224c867eb7916e4f32e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6236398025510169951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1589792655374250002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4655650031236308301, guid: 95924edfcdd76224c867eb7916e4f32e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6236398025510169951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4612798429390778150 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1625748119149478521, guid: 95924edfcdd76224c867eb7916e4f32e,

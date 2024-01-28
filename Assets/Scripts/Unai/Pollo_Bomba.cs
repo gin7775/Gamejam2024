@@ -36,7 +36,7 @@ public class Pollo_Bomba : MonoBehaviour
             }
             else if (timer <= 1f)
             {
-                //.Log("Menos de 1 segundo");
+                //Debug.Log("Menos de 1 segundo");
             }
 
             // Esperar hasta el siguiente frame
@@ -62,7 +62,6 @@ public class Pollo_Bomba : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
                 {
-                    Debug.Log("Hey Listen-" + chicken.name);
                     GameManager.Instance.chickenEnemyTakeDamage(chicken, 99);
                 }
             }
@@ -77,7 +76,6 @@ public class Pollo_Bomba : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) <= radius)
             {
                 player.GetComponent<ChickenLouncher>().ReciveDamage(1);
-                //Debug.Log("Explosion ha herido al jugador");
             }
         }
         

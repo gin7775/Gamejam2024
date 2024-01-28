@@ -40,6 +40,15 @@ public class ProjectileLife : MonoBehaviour
         Destroy(gameObject);
     }
 
+    IEnumerator SetRagdoll()
+    {
+        yield return new WaitForSeconds(0.5f);
+        foreach(GameObject obj in ragdolls)
+        {
+            obj.SetActive(true);
+        }
+    }
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Enemy"))
@@ -53,15 +62,6 @@ public class ProjectileLife : MonoBehaviour
     {
         //objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
         GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
-    }
-
-    IEnumerator SetRagdoll()
-    {
-        yield return new WaitForSeconds(0.5f);
-        foreach(GameObject obj in ragdolls)
-        {
-            obj.SetActive(true);
-        }
     }
 
 }

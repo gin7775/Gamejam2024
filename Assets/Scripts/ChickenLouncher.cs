@@ -41,10 +41,6 @@ public class ChickenLouncher : MonoBehaviour
         distanciaComparativa = 1000;
         anim = GetComponent<Animator>();
     }
-    private void Update()
-    {
-
-    }
 
     public void OnShoot(InputValue value)
     {
@@ -76,7 +72,6 @@ public class ChickenLouncher : MonoBehaviour
         chickenType = chickenNumber;
         if (chickenType == 3)
         {
-
             LifeUp(1);
         }
         if (chickenType >= 5 || chickenType < 0)
@@ -84,7 +79,6 @@ public class ChickenLouncher : MonoBehaviour
             chickenType = 1;
         }
     }
-
 
     void LifeUp(int extraLife)
     {
@@ -94,9 +88,9 @@ public class ChickenLouncher : MonoBehaviour
             health = maxHealth;
         }
     }
+
     public void ReciveDamage(int damage)
     {
-
         //UpdateLifeUI();
         health -= damage;
         if (health <= 0)
@@ -105,7 +99,6 @@ public class ChickenLouncher : MonoBehaviour
         }
         //Debug.Log(health);
     }
-
 
     private void UpdateLifeUI()
     {
@@ -122,10 +115,9 @@ public class ChickenLouncher : MonoBehaviour
             //AQUI DEBERÍAN IR PARTICULAS DE PLUMAS TMB
             muriendo = true;
             StartCoroutine(TransicionMuerte());
-            
         }
-      
     }
+
     IEnumerator TransicionMuerte()
     {
         musicManager.Play_FX_Player_PolloMuerto();
@@ -133,8 +125,6 @@ public class ChickenLouncher : MonoBehaviour
         //Debug.Log("Ye dead!");
         Destroy(this.gameObject);
     }
-
-
 
     void UpdateWeapon()
     {
@@ -200,7 +190,6 @@ public class ChickenLouncher : MonoBehaviour
         }
         if (currentProyectile != null)
         {
-            //shildCounter = handPosition.gameObject.GetComponentsInChildren<GameObject>();
             foreach (GameObject pollo in currentProyectile)
             {
                 pollo.transform.SetParent(handPosition, false);
@@ -249,6 +238,7 @@ public class ChickenLouncher : MonoBehaviour
             //Debug.Log("Headbut Collider is missing");
         }
     }
+
     public void ChickenSwing()
     {
         if (swingBox != null)
@@ -261,6 +251,7 @@ public class ChickenLouncher : MonoBehaviour
             //Debug.Log("Swing Collider is missing");
         }
     }
+
     IEnumerator ActivateCollider(GameObject collider)
     {
         yield return new WaitForSeconds(0.2f);
@@ -268,11 +259,6 @@ public class ChickenLouncher : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         collider.SetActive(false);
     }
-
-    /*public void DealDamage(GameObject objetive, int damage)
-    {
-        GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
-    }*/
 
     
     private void OnTriggerEnter(Collider other)
@@ -290,4 +276,5 @@ public class ChickenLouncher : MonoBehaviour
 
         }
     }
+
 }

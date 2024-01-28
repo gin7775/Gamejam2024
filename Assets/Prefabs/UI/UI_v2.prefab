@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 493919668729577201}
   - component: {fileID: 5449422870873890241}
   m_Layer: 5
-  m_Name: textNumEnemies
+  m_Name: textNumScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 1769578067441145322}
   - component: {fileID: 186052373520834024}
   m_Layer: 5
-  m_Name: textNumScore
+  m_Name: textNumEnemies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1385,9 +1385,9 @@ RectTransform:
   - {fileID: 1054819627319225663}
   - {fileID: 2149159511178050331}
   - {fileID: 8714928916531371502}
-  - {fileID: 9037188430763632863}
-  - {fileID: 9190239792439130457}
   - {fileID: 6824517687348354075}
+  - {fileID: 9190239792439130457}
+  - {fileID: 9037188430763632863}
   m_Father: {fileID: 8115434505881631729}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
@@ -1450,4 +1450,4 @@ MonoBehaviour:
   textTimer: 00 / 00
   textMeshNumWave: {fileID: 1093579280940030912}
   textMeshNumEnemies: {fileID: 4655650031236308301}
-  textMeshTimer: {fileID: 6206372455705926592}
+  textMeshScore: {fileID: 0}
