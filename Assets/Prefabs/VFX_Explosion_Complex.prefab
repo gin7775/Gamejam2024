@@ -24813,8 +24813,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4994833327559448205, guid: fb99b6781c7c2f7449629c1cf82ec73d,
         type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 2.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994833327559448205, guid: fb99b6781c7c2f7449629c1cf82ec73d,
+        type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4994833327559448205, guid: fb99b6781c7c2f7449629c1cf82ec73d,
         type: 3}
