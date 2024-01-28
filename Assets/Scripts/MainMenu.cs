@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
         switch (sceneToChange)
         {
             case 1:
-                SceneManager.LoadScene("Menu");
+                SceneManager.LoadScene("1_MenuPrincipal");
                 break;
             case 2:
                 SceneManager.LoadScene("Opciones");
