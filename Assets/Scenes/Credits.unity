@@ -331,7 +331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -142, y: -168}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &733215170
@@ -354,9 +354,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Unai P\xE9rez \nDaniel Paniagua\nJavier Reyes\nFernando Molina\nDavid
-    \xC1lvarez \nMar\xEDa Rivas\nCarlos Piqueras\nIgnacio Rubio \nAndr\xE9s Rodr\xEDguez\nRicardo
-    \nGianmarcos"
+  m_text: "Unai P\xE9rez Tubia\nDaniel  Adri\xE1n Paniagua Maz\xF3n\nJavier Reyes
+    Rubio\nFernando Molina Madrid\nDavid \xC1lvarez Bl\xE1zquez \nMar\xEDa Rivas
+    Ramos\nCarlos Piqueras Gago\nIgnacio Rubio Mart\xEDn\nAndr\xE9s Rodr\xEDguez
+    L\xF3pez\nRicardo Garc\xEDa Ruiz\nGianmarcos Alfonso Bezares"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -419,7 +420,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -199.51874, w: 0}
+  m_margin: {x: 0, y: 0, z: -404.0174, w: -408.5091}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
