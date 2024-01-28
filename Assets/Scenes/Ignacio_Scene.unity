@@ -3739,6 +3739,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1056186833391820471, guid: e4fb1cf6447e02c4d97dc08c15ded07a,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056186833391820471, guid: e4fb1cf6447e02c4d97dc08c15ded07a,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078568442258236164, guid: e4fb1cf6447e02c4d97dc08c15ded07a,
+        type: 3}
+      propertyPath: ShapeModule.angle
+      value: 8.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078568442258236164, guid: e4fb1cf6447e02c4d97dc08c15ded07a,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.0001
+      objectReference: {fileID: 0}
     - target: {fileID: 4348974990801810084, guid: e4fb1cf6447e02c4d97dc08c15ded07a,
         type: 3}
       propertyPath: m_Name
@@ -3945,6 +3965,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4994833327559448205, guid: fb99b6781c7c2f7449629c1cf82ec73d,
+        type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994833327559448205, guid: fb99b6781c7c2f7449629c1cf82ec73d,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4994833327559448205, guid: fb99b6781c7c2f7449629c1cf82ec73d,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4100,12 +4135,12 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 4576142683307693407}
+  - {fileID: 223712146}
   - {fileID: 6681600989770427491}
   - {fileID: 2109171200480072140}
-  - {fileID: 4576142683307693407}
-  - {fileID: 3224302051273462195}
-  - {fileID: 223712146}
   - {fileID: 1945949746091315862}
+  - {fileID: 3224302051273462195}
   - {fileID: 1200969003}
   - {fileID: 661799729}
   - {fileID: 1893153998}
