@@ -16,15 +16,15 @@ public class GameManager : MonoBehaviour
     // Tiempo por el que espera para generar enemigos por segundo
     [SerializeField] private float timeGeneration;
     // Numero total de enemigos en la ronda
-    [SerializeField] private int enemyNumber;
+    [SerializeField] public int enemyNumber;
     // Numero de enemigos por oleada inicial
     [SerializeField] private int enemyInitial;
     // Numero de enemigos que quedan en la ronda
-    public int enemyCount;
+    [SerializeField] public int enemyCount;
     // Numero de ronda totales
-    [SerializeField] private int waveNumber;
+    [SerializeField] public int waveNumber;
     // Numero de ronda actual
-    [SerializeField] private int waveCurrent;
+    [SerializeField] public int waveCurrent;
     // Nivel de dificultad -- No se usa
     [SerializeField] private int dificultiLevel;
     // Nivel de dificultad -- No se usa
@@ -165,16 +165,16 @@ public class GameManager : MonoBehaviour
 
     IEnumerator EsperarYExecutar()
     {
-        int auxEnemyNumber = waveCurrent <= 1 ? 25 : 0;
-        auxEnemyNumber = waveCurrent == 2 ? 50 : auxEnemyNumber;
-        auxEnemyNumber = waveCurrent >= 3 ? 105 : auxEnemyNumber;
+        enemyNumber = waveCurrent <= 1 ? 25 : 0;
+        enemyNumber = waveCurrent == 2 ? 50 : enemyNumber;
+        enemyNumber = waveCurrent >= 3 ? 105 : enemyNumber;
 
-        for (int i = 0; i < auxEnemyNumber; i++)
+        for (int i = 0; i < enemyNumber; i++)
         {
             yield return new WaitForSeconds(timeGeneration);
 
-            randomIterastor = UnityEngine.Random.Range(0, pollosToSpawn.Length);
-            spawnPosition = new Vector3(UnityEngine.Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, UnityEngine.Random.Range(limiteZNegativo, LimiteZPositivo));
+            randomIterastor = Random.Range(0, pollosToSpawn.Length);
+            spawnPosition = new Vector3(Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, Random.Range(limiteZNegativo, LimiteZPositivo));
             Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
             enemyCount++;
         }
@@ -199,8 +199,8 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < totalEnemies; i++)
         {
-            randomIterastor = UnityEngine.Random.Range(0, pollosToSpawn.Length);
-            spawnPosition = new Vector3(UnityEngine.Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, UnityEngine.Random.Range(limiteZNegativo, LimiteZPositivo));
+            randomIterastor = Random.Range(0, pollosToSpawn.Length);
+            spawnPosition = new Vector3(Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, Random.Range(limiteZNegativo, LimiteZPositivo));
             Instantiate(SmokeEffect, spawnPosition, Quaternion.identity);
             Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
             enemyCount++;

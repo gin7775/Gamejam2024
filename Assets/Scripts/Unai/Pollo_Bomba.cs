@@ -9,6 +9,7 @@ public class Pollo_Bomba : MonoBehaviour
     public GameObject[] chickensToDie;
     public float radius = 5f;
     public GameObject player;
+    private bool isCodeExecuting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -51,21 +52,22 @@ public class Pollo_Bomba : MonoBehaviour
     {
         //Instancia particulas
         GetComponent<SpawnParticles>().SpawnBothParticles();
-        chickensToDie = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject chicken in chickensToDie)
+        if (!isCodeExecuting)
         {
-            if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
-            {
-                /*HowToDie howToDie = chicken.GetComponent<HowToDie>();
-                if (howToDie != null)
-                {*/
-                    //   howToDie.he_explotado(); // matar pollos, INCLUIDO JUGADOR SI COINCIDE QUE ESTÁ EN EL RADIO
+            isCodeExecuting = true;
 
-                    Debug.Log("He muerto en una explosión jo qué pena, no sabía que acabaría tan inesperadamente. La vida es tan corta, tan rápida... quiero seguir viviendo, no quiero morir...");
+            chickensToDie = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject chicken in chickensToDie)
+            {
+                if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
+                {
+                    Debug.Log("Hey Listen-" + chicken.name);
                     GameManager.Instance.chickenEnemyTakeDamage(chicken, 99);
-                //}
+                }
             }
+
+            isCodeExecuting = false;
         }
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -75,7 +77,7 @@ public class Pollo_Bomba : MonoBehaviour
             if (Vector3.Distance(transform.position, player.transform.position) <= radius)
             {
                 player.GetComponent<ChickenLouncher>().ReciveDamage(1);
-                Debug.Log("Explosion ha herido al jugador");
+                //Debug.Log("Explosion ha herido al jugador");
             }
         }
         

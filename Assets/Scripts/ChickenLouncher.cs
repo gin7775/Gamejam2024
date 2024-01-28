@@ -14,33 +14,23 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] float proyectileForce = 10;
     [SerializeField] int chickenCurrentUses = 0;
     [SerializeField] int chickenMaxUses = 3;
-
     [SerializeField] GameObject headBox;
     [SerializeField] GameObject swingBox;
-
-
     // Gestor de Vidas Player
     [SerializeField] int health = 3;
     [SerializeField] int maxHealth = 3;
-
     [SerializeField] GameObject[] eggs;
     [SerializeField] Collider[] shickensDetected;
     [SerializeField] int pickUpRange = 3;
     [SerializeField] float distanciaComparativa,distanciaActual;
     [SerializeField] GameObject polloElegido;
-
     [SerializeField] MusicManager musicManager;
     [SerializeField] Transform handPosition;
     public List <GameObject> currentProyectile;
     public GameObject[] shildCounter;
-
-
-
     GameObject proyectile;
     Vector3 projectilePos;
-
     private Animator anim;
-
     //Esto es para la muerte
     bool muriendo;
 
@@ -63,21 +53,21 @@ public class ChickenLouncher : MonoBehaviour
         musicManager.Play_FX_RecogerPollo();
         Shoot(chickenType);
 
-        Debug.Log("Dispara");
+        //Debug.Log("Dispara");
     }
 
     public void OnAttack(InputValue value)
     {
         anim.SetTrigger("Attack");
         Attack(chickenType);
-        Debug.Log("Ataca");
+        //Debug.Log("Ataca");
     }
 
     public void OnPick(InputValue value)
     {
         musicManager.Play_FX_RecogerPollo();
         RetrieveChicken(chickenType);
-        Debug.Log("Coge");
+        //Debug.Log("Coge");
     }
 
     void RetrieveChicken(int chickenNumber)
@@ -113,7 +103,7 @@ public class ChickenLouncher : MonoBehaviour
         {
             PlayerDeath();
         }
-        Debug.Log(health);
+        //Debug.Log(health);
     }
 
 
@@ -140,7 +130,7 @@ public class ChickenLouncher : MonoBehaviour
     {
         musicManager.Play_FX_Player_PolloMuerto();
         yield return new WaitForSeconds(2f);
-        Debug.Log("Ye dead!");
+        //Debug.Log("Ye dead!");
         Destroy(this.gameObject);
     }
 
@@ -164,11 +154,11 @@ public class ChickenLouncher : MonoBehaviour
         switch (AmmoType)
         {
             case 0:
-                Debug.Log("Got no chickens");
+                //Debug.Log("Got no chickens");
                 break;
 
             case 1:
-                Debug.Log("Lounching Chicken");
+                //Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
@@ -179,7 +169,7 @@ public class ChickenLouncher : MonoBehaviour
                 projectilePos = transform.position;
                 projectilePos += transform.forward;
                 projectilePos += transform.up;
-                Debug.Log("Lounching Chicken");
+                //Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[1], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
@@ -190,7 +180,7 @@ public class ChickenLouncher : MonoBehaviour
                 projectilePos = transform.position;
                 projectilePos += transform.forward;
                 projectilePos += transform.up;
-                Debug.Log("Lounching Chicken");
+                //Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[2], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
@@ -201,7 +191,7 @@ public class ChickenLouncher : MonoBehaviour
                 projectilePos = transform.position;
                 projectilePos += transform.forward;
                 projectilePos += transform.up;
-                Debug.Log("Lounching Chicken");
+                //Debug.Log("Lounching Chicken");
                 proyectile = Instantiate(proyectiles[3], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
@@ -225,7 +215,7 @@ public class ChickenLouncher : MonoBehaviour
         switch (AmmoType)
         {
             case 0:
-                Debug.Log("Got no chickens");
+                //Debug.Log("Got no chickens");
                 HeadBut();
                 break;
             case 1:
@@ -251,24 +241,24 @@ public class ChickenLouncher : MonoBehaviour
     {
         if (headBox != null)
         {
-            Debug.Log("Headbutting");
+            //Debug.Log("Headbutting");
             StartCoroutine(ActivateCollider(headBox));
         }
         else
         {
-            Debug.Log("Headbut Collider is missing");
+            //Debug.Log("Headbut Collider is missing");
         }
     }
     public void ChickenSwing()
     {
         if (swingBox != null)
         {
-            Debug.Log("Swinging a chicken");
+            //Debug.Log("Swinging a chicken");
             StartCoroutine(ActivateCollider(swingBox));
         }
         else
         {
-            Debug.Log("Swing Collider is missing");
+            //Debug.Log("Swing Collider is missing");
         }
     }
     IEnumerator ActivateCollider(GameObject collider)
@@ -279,10 +269,10 @@ public class ChickenLouncher : MonoBehaviour
         collider.SetActive(false);
     }
 
-    public void DealDamage(GameObject objetive, int damage)
+    /*public void DealDamage(GameObject objetive, int damage)
     {
         GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
-    }
+    }*/
 
     
     private void OnTriggerEnter(Collider other)
@@ -290,7 +280,7 @@ public class ChickenLouncher : MonoBehaviour
        // Debug.Log("He colisionado con " + other.gameObject.name);
         if (other.gameObject.CompareTag("Corpse"))
         {
-            Debug.Log("Detecta Corpse");
+            //Debug.Log("Detecta Corpse");
             if(other.gameObject.GetComponent<ChickenCorpse>()!=null)
             RetrieveChicken(other.gameObject.GetComponent<ChickenCorpse>().chickenType);
             GameObject cadaver= other.gameObject;

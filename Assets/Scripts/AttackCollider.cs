@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackCollider : MonoBehaviour
@@ -19,19 +18,34 @@ public class AttackCollider : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if ("Enemy".Equals(other.gameObject.tag))
         {
-            switch (attackType)
+            /*if (other.GetComponent<ContenedorEnemigo1>().vulnerable)
             {
-                case 0:
-                    //Debug.Log("Enemy hitted with headbut");
-                    attacker.DealDamage(other.gameObject, 1);
-                    break;
-                case 1:
-                    //Debug.Log("Enemy hitted with chicken");
-                    attacker.DealDamage(other.gameObject, 2);
-                    break;
-            }
+                other.GetComponent<ContenedorEnemigo1>().vulnerable = false;*/
+                switch (attackType)
+                {
+                    case 0:
+                        //Debug.Log("Enemy hitted with headbut");
+                        //attacker.DealDamage(other.gameObject, 1);
+                        GameManager.Instance.chickenEnemyTakeDamage(other.GetComponent<ContenedorEnemigo1>().gameObject, 1);
+                        break;
+                    case 1:
+                        //Debug.Log("Enemy hitted with chicken");
+                        //attacker.DealDamage(other.gameObject, 2);
+                        GameManager.Instance.chickenEnemyTakeDamage(other.GetComponent<ContenedorEnemigo1>().gameObject, 2);
+                        break;
+                }
+            //}
+
+           // StartCoroutine(DesactivarInvulnerabilidad(other.GetComponent<ContenedorEnemigo1>()));
         }
     }
+
+    IEnumerator DesactivarInvulnerabilidad(ContenedorEnemigo1 enemigo)
+    {
+        yield return new WaitForSeconds(2f);
+        //enemigo.vulnerable = true;
+    }
+
 }
