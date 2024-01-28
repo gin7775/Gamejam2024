@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
         {
             dificultiLevel = 4;
             timeGeneration = 0.67f;
-            InstantiatePollos(50 * 3);
+            InstantiatePollos(6 * 3);
         }
     }
 
