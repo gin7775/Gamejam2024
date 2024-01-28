@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     // Numero de ronda actual
     [SerializeField] public int waveCurrent;
     // Nivel de dificultad -- No se usa
-    [SerializeField] private int dificultiLevel;
+    [SerializeField] public int dificultiLevel;
     // Nivel de dificultad -- No se usa
     [SerializeField] private Canvas canvasRound;
     [SerializeField] private Animator canvasAnimator;
@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int numMaxWave1;
     [SerializeField] private int numMaxWave2;
     [SerializeField] private int numMaxWave3;
+    [SerializeField] private bool siguiente;
 
     [SerializeField] private MusicManager musicManager;
 
@@ -53,7 +54,6 @@ public class GameManager : MonoBehaviour
     public AudioMixer myMixer;
     public Slider musicSlider;
     public Slider SFXSlider;
-
 
     private void Awake()
     {
@@ -78,9 +78,10 @@ public class GameManager : MonoBehaviour
         enemyCount = 0;
         waveNumber = 3;
 
-        numMaxWave1 = 30;
-        numMaxWave2 = 60;
-        numMaxWave3 = 120;
+        numMaxWave1 = 20;
+        numMaxWave2 = 50;
+        numMaxWave3 = 100;
+        siguiente = false;
         UpdateWave();
     }
 
@@ -99,7 +100,7 @@ public class GameManager : MonoBehaviour
             if (waveCurrent <= 1)
             {
                 dificultiLevel = 1;
-                timeGeneration = 3f;
+                timeGeneration = 2.5f;
                 InstantiatePollos(enemyInitial);
             }
             else if (waveCurrent == 2)
@@ -111,15 +112,15 @@ public class GameManager : MonoBehaviour
             else
             {
                 dificultiLevel = 3;
-                timeGeneration = 0.75f;
+                timeGeneration = 0.85f;
                 InstantiatePollos(enemyInitial * 3);
             }
         }
         else
         {
             dificultiLevel = 4;
-            timeGeneration = 0.67f;
-            InstantiatePollos(6 * 3);
+            timeGeneration = 0.75f;
+            InstantiatePollos(20);
         }
     }
 
@@ -130,7 +131,7 @@ public class GameManager : MonoBehaviour
         //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
         musicManager.Play_FX_ExplosionPollo();
 
-        if (enemyCount <= 0 && score == 30 || enemyCount <= 0 && score >= 60)
+        if (enemyCount <= 0 && score == numMaxWave1 || enemyCount <= 0 && score == numMaxWave2 || enemyCount <= 0 && score == numMaxWave3 || enemyCount <= 0 && siguiente)
         {
             UpdateWave();
         }
@@ -198,6 +199,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator chikenWaitSpawner()
     {
+        siguiente = false;
         Debug.Log("111-" + enemyNumber);
         enemyNumber = waveCurrent <= 1 ? numMaxWave1 - enemyInitial * 1 : 0;
         Debug.Log("222-" + enemyNumber);
@@ -205,7 +207,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("333-" + enemyNumber);
         enemyNumber = waveCurrent == 3 ? numMaxWave3 - enemyInitial * 3 : enemyNumber;
         Debug.Log("444-" + enemyNumber);
-        enemyNumber = waveCurrent >= 4 ? numMaxWave3 - enemyInitial * 4 : enemyNumber;
+        enemyNumber = waveCurrent >= 4 ? numMaxWave3 : enemyNumber;
         Debug.Log("555-" + enemyNumber);
 
         for (int i = 0; i < enemyNumber; i++)
@@ -213,6 +215,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(timeGeneration);
             chikenGenerator();
         }
+
+        siguiente = true;
     }
 
 
@@ -248,9 +252,6 @@ public class GameManager : MonoBehaviour
     }
 
     //Menu pausa
-
-
-
     public void exit_pause_menu()
     {
 
@@ -261,11 +262,9 @@ public class GameManager : MonoBehaviour
 
     public void pause()
     {
-
         if (paused)
         {
             exit_pause_menu();
-
         }
 
         if (paused == false)
@@ -282,10 +281,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Estás en la Escena principal");
 
             }
-
         }
-
-        
     }
 
     public void Quit()
