@@ -95,6 +95,7 @@ public class MusicManager : MonoBehaviour
             Play_FX_StartRound();
             yield return new WaitForSeconds(1f);
             mainTheme[oleadaSiguiente].Play();
+            transitionTheme.Stop();
             yield return new WaitForSeconds(1f);
 
 
@@ -106,31 +107,7 @@ public class MusicManager : MonoBehaviour
         StartCoroutine(ChangeRaidTheme(oleadaAnterior,oleadaSiguiente));
     }
 
-    public void FX_ActivarPrimeraCorutina()
-    {
-        if (!mainTheme[0].isPlaying && estaSonando1 == false)
-        {
-            estaSonando1 = true;
-            ChangeRaidTheme(0, 0);
-        }
-    }
-    public void FX_ActivarSegundaCorutina()
-    {
-        if (!mainTheme[1].isPlaying && estaSonando2 == false)
-        {
-            estaSonando2 = true;
-            ChangeRaidTheme(0, 1);
-        }
-    }
-
-    public void FX_ActivarTerceraCorutina()
-    {
-        if (!mainTheme[3].isPlaying && estaSonando3 == false)
-        {
-            estaSonando3 = true;
-            ChangeRaidTheme(1, 2);
-        }
-    }
+  
 
     //Themes  
     public void PlayMaintheme(int track)

@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
         enemyCount--;
 
         //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
+        musicManager.Play_FX_ExplosionPollo();
 
         if (enemyCount <= 0)
         {
