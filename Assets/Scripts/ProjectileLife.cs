@@ -37,13 +37,13 @@ public class ProjectileLife : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
- 
-                    Debug.Log("Enemy hitted with chicken");
-                    DealDamage(other.gameObject, 2);
+
+            Debug.Log("Enemy hitted with chicken");
+            DealDamage(other.gameObject, 2);
         }
     }
 

@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
+using UnityEditor.Experimental.GraphView;
 
 public class ChickenLouncher : MonoBehaviour
 {
@@ -26,21 +27,22 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] Collider[] shickensDetected;
     [SerializeField] int pickUpRange = 3;
     [SerializeField] float distanciaComparativa,distanciaActual;
-    //[SerializeField] GameObject pollo;
+    [SerializeField] GameObject polloElegido;
 
-
+    GameObject proyectile;
+    Vector3 projectilePos;
 
     private Animator anim;
 
-    private void Update()
-    {
-       
-    }
     private void Start()
     {
 
         distanciaComparativa = 1000;
         anim = GetComponent<Animator>();
+    }
+    private void Update()
+    {
+
     }
 
     public void OnShoot(InputValue value)
@@ -58,30 +60,7 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnPick(InputValue value)
     {
-        List<GameObject> pollos = new List<GameObject>();
-        shickensDetected = Physics.OverlapSphere(this.transform.position, pickUpRange);
-        foreach (var pollo in shickensDetected)
-        {
-            distanciaActual = Vector3.Distance(pollo.transform.position, this.transform.position);
-            if (distanciaActual <= distanciaComparativa && pollo.CompareTag("Corpse"))
-            {
-                distanciaActual = distanciaComparativa;
-                pollos.Add(pollo.gameObject);
-            }
-        }
-        GameObject auxPollo;
-        if (pollos.Count >= 1)
-        {
-            auxPollo = pollos[pollos.Count - 1];
-            chickenType = auxPollo.GetComponent<ChickenCorpse>().chickenType;
-            Destroy(auxPollo);
-            pollos.Clear();
-        }
-        
-        
-
-
-        RetrieveChicken(1);
+            RetrieveChicken(chickenType);
         Debug.Log("Coge");
     }
 
@@ -144,20 +123,52 @@ public class ChickenLouncher : MonoBehaviour
 
     void Shoot(int AmmoType)
     {
-        GameObject proyectile;
+        projectilePos = transform.position;
+        projectilePos += transform.forward;
+        projectilePos += transform.up;
 
         switch (AmmoType)
         {
             case 0:
                 Debug.Log("Got no chickens");
                 break;
+
             case 1:
-                Vector3 projectilePos;
+                Debug.Log("Lounching Chicken");
+                proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
+                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+
+                chickenType = 0;
+                break;
+
+            case 2:
                 projectilePos = transform.position;
                 projectilePos += transform.forward;
                 projectilePos += transform.up;
                 Debug.Log("Lounching Chicken");
-                proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
+                proyectile = Instantiate(proyectiles[1], projectilePos, Quaternion.identity);
+                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+
+                chickenType = 0;
+                break;
+
+            case 3:
+                projectilePos = transform.position;
+                projectilePos += transform.forward;
+                projectilePos += transform.up;
+                Debug.Log("Lounching Chicken");
+                proyectile = Instantiate(proyectiles[2], projectilePos, Quaternion.identity);
+                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+
+                chickenType = 0;
+                break;
+
+            case 4:
+                projectilePos = transform.position;
+                projectilePos += transform.forward;
+                projectilePos += transform.up;
+                Debug.Log("Lounching Chicken");
+                proyectile = Instantiate(proyectiles[3], projectilePos, Quaternion.identity);
                 proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
 
                 chickenType = 0;
@@ -174,6 +185,18 @@ public class ChickenLouncher : MonoBehaviour
                 HeadBut();
                 break;
             case 1:
+                ChickenSwing();
+                UpdateWeapon();
+                break;
+            case 2:
+                ChickenSwing();
+                UpdateWeapon();
+                break;
+            case 3:
+                ChickenSwing();
+                UpdateWeapon();
+                break;
+            case 4:
                 ChickenSwing();
                 UpdateWeapon();
                 break;
@@ -215,5 +238,22 @@ public class ChickenLouncher : MonoBehaviour
     public void DealDamage(GameObject objetive, int damage)
     {
         GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("He colisionado con " + collision.gameObject.name);
+        if (collision.collider.gameObject.CompareTag("Corpse"))
+        {
+            RetrieveChicken(collision.gameObject.GetComponent<ChickenCorpse>().chickenType);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("He colisionado con " + other.gameObject.name);
+        if (other.gameObject.CompareTag("Corpse"))
+        {
+            RetrieveChicken(other.gameObject.GetComponentInParent<ChickenCorpse>().chickenType);
+        }
     }
 }
