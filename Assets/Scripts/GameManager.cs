@@ -104,6 +104,12 @@ public class GameManager : MonoBehaviour
                 InstantiatePollos(enemyInitial * 3);
             }
         }
+        else
+        {
+            dificultiLevel = 4;
+            timeGeneration = 0.67f;
+            InstantiatePollos(50 * 3);
+        }
     }
 
     public void enemyDeath()
@@ -113,7 +119,7 @@ public class GameManager : MonoBehaviour
         //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
         musicManager.Play_FX_ExplosionPollo();
 
-        if (enemyCount <= 0 && score == 30 || enemyCount <= 0 && score == 60)
+        if (enemyCount <= 0 && score == 30 || enemyCount <= 0 && score >= 60)
         {
             UpdateWave();
         }
@@ -188,7 +194,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("333-" + enemyNumber);
         enemyNumber = waveCurrent == 3 ? numMaxWave3 - enemyInitial * 3 : enemyNumber;
         Debug.Log("444-" + enemyNumber);
-        enemyNumber = waveCurrent >= 4 ? 0 : enemyNumber;
+        enemyNumber = waveCurrent >= 4 ? numMaxWave3 - enemyInitial * 4 : enemyNumber;
         Debug.Log("555-" + enemyNumber);
 
         for (int i = 0; i < enemyNumber; i++)
