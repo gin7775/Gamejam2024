@@ -7,6 +7,7 @@ public class MusicManager : MonoBehaviour
     //Themes
     [SerializeField] AudioSource[] mainTheme;
     [SerializeField] AudioSource transitionTheme;
+    [SerializeField] AudioSource sirena;
 
     bool reproduciendoMusic;
     //CacareoPollo
@@ -16,6 +17,10 @@ public class MusicManager : MonoBehaviour
 
     //SoundFX
     [SerializeField] AudioSource polloJugadorMuerto;
+
+
+    [SerializeField] AudioSource recibirDañoJugador;
+    [SerializeField] AudioSource disparoPolloJugador;
 
 
     [SerializeField] AudioSource explosionPollo;
@@ -29,7 +34,7 @@ public class MusicManager : MonoBehaviour
 
     public static MusicManager Instance { get; private set; }
 
-    public bool estaSonando1, estaSonando2, estaSonando3;
+
 
     private void Awake()
     {
@@ -48,7 +53,7 @@ public class MusicManager : MonoBehaviour
     {
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
-        //    StartCoroutine(ChangeRaidTheme(0,1));
+           
         //}
 
         //if (Input.GetKeyDown(KeyCode.W))
@@ -88,6 +93,7 @@ public class MusicManager : MonoBehaviour
     {
         if (oleadaSiguiente < mainTheme.Length)
         {
+            sirena.Play();
             transitionTheme.Play();
             yield return new WaitForSeconds(1f);
             mainTheme[oleadaAnterior].Stop();
@@ -164,6 +170,15 @@ public class MusicManager : MonoBehaviour
         comenzarOleadaFX.Play();
     }
 
+    public void Play_FX_PLayer_RecibirDaño()         //Sonido de dolor del Jugador
+    {
+        recibirDañoJugador.Play();
+    }
+
+    public void Play_FX_PLayer_DispararPollo()         //Sonido de disparo del Jugador
+    {
+        disparoPolloJugador.Play();
+    }
 
 
 
