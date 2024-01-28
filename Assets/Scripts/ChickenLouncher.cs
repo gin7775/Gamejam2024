@@ -58,6 +58,8 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnShoot(InputValue value)
     {
+        anim.SetBool("Carrying", false);
+        anim.SetTrigger("Throw");
         musicManager.Play_FX_RecogerPollo();
         Shoot(chickenType);
 
@@ -80,6 +82,7 @@ public class ChickenLouncher : MonoBehaviour
 
     void RetrieveChicken(int chickenNumber)
     {
+        anim.SetBool("Carrying", true);
         chickenType = chickenNumber;
         if (chickenType == 3)
         {
