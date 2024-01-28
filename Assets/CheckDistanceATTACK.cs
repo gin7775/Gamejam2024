@@ -26,7 +26,7 @@ public class CheckDistanceATTACK : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, player.transform.position) <= distanceToAttack)
             {
-                Debug.Log("He atacado");
+                //Debug.Log("He atacado");
                 player.GetComponent<ChickenLouncher>().ReciveDamage(1);
 
             }

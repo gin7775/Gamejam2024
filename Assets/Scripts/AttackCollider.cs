@@ -24,20 +24,14 @@ public class AttackCollider : MonoBehaviour
             switch (attackType)
             {
                 case 0:
-                    Debug.Log("Enemy hitted with headbut");
-                    
+                    //Debug.Log("Enemy hitted with headbut");
                     attacker.DealDamage(other.gameObject, 1);
-
                     break;
                 case 1:
-                    Debug.Log("Enemy hitted with chicken");
+                    //Debug.Log("Enemy hitted with chicken");
                     attacker.DealDamage(other.gameObject, 2);
                     break;
             }
-                    
-            
-
-
         }
     }
 }

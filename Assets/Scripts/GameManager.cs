@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
             Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             StartCoroutine(FrameFreeze(0.03f));
             score++;
+            enemyCount--;
             //scoreText.GetComponent<TextMeshProUGUI>().text = "score: " + score;
             enemy.GetComponent<ContenedorEnemigo1>().PolloMansy();
             Destroy(enemy);

@@ -20,7 +20,7 @@ public class ContenedorEnemigo1 : MonoBehaviour
     public void Start()
     {
         cinemachineImpulseSource = this.GetComponent<CinemachineImpulseSource>();
-         playerReference = GameObject.FindGameObjectWithTag("Player");
+        playerReference = GameObject.FindGameObjectWithTag("Player");
     }
 
     
@@ -36,14 +36,15 @@ public class ContenedorEnemigo1 : MonoBehaviour
     private IEnumerator FrameFreeze(float duration)
     {
         Time.timeScale = 0f;
-        Debug.Log("Parao");
+        //Debug.Log("Parao");
         yield return new WaitForSecondsRealtime(duration);
 
         Time.timeScale = 1f;
     }
+
     public void PolloMansy()
     {
-        Debug.Log("I manifest the greatest of phoes! A chicken! WORSE... A Deadly Chicken... it's dead... oh...");
+        //Debug.Log("I manifest the greatest of phoes! A chicken! WORSE... A Deadly Chicken... it's dead... oh...");
         GameObject toInstantiate = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
         
     }
