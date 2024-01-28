@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     // Numero de enemigos por oleada inicial
     [SerializeField] private int enemyInitial;
     // Numero de enemigos que quedan en la ronda
-    [SerializeField] private int enemyCount;
+    public int enemyCount;
     // Numero de ronda totales
     [SerializeField] private int waveNumber;
     // Numero de ronda actual
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
             StartCoroutine(FrameFreeze(0.03f));
             score++;
-            enemyCount--;
+            //enemyCount--;
             //scoreText.GetComponent<TextMeshProUGUI>().text = "score: " + score;
             enemy.GetComponent<ContenedorEnemigo1>().PolloMansy();
             Destroy(enemy);

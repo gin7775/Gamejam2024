@@ -28,13 +28,14 @@ public class ContenedorEnemigo1 : MonoBehaviour
     
     public void ReciveDamage(int damage)
     {
-        if (canDamage)
+        if (canDamage == true)
         {
             cinemachineImpulseSource.GenerateImpulse();
             lifes -= damage;
             canDamage = false;
             StartCoroutine(FrameFreeze(0.1f));
             //StartCoroutine(Contador());
+            GameManager.Instance.enemyCount--;
         }
        
     }
