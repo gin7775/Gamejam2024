@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
+    public AudioSource sonidoClic;
+    public AudioSource musica;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +20,7 @@ public class MainMenu : MonoBehaviour
         switch (sceneToChange)
         {
             case 1:
-                SceneManager.LoadScene("1_MenuPrincipal");
+                CargarCorutinaNivel();
                 break;
             case 2:
                 SceneManager.LoadScene("Opciones");
@@ -36,15 +39,18 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    public void CargarCorutinaNivel( )
+    public void CargarCorutinaNivel()
     {
         StartCoroutine(CorutinaCargarNivel());
     }
 
     IEnumerator CorutinaCargarNivel()
     {
+        sonidoClic.Play();
+        yield return new WaitForSeconds(1f);
+        musica.Stop();
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("UnaiScene (BLOCKING)");
+        SceneManager.LoadScene("1_MainGame");
     }
 
     public void CargarNivel(string nombreNivel)
