@@ -30,6 +30,11 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] GameObject polloElegido;
 
     [SerializeField] MusicManager musicManager;
+    [SerializeField] Transform handPosition;
+    public GameObject currentProyectile;
+    public GameObject[] shildCounter;
+
+
 
     GameObject proyectile;
     Vector3 projectilePos;
@@ -55,6 +60,7 @@ public class ChickenLouncher : MonoBehaviour
     {
         musicManager.Play_FX_RecogerPollo();
         Shoot(chickenType);
+
         Debug.Log("Dispara");
     }
 
@@ -199,6 +205,16 @@ public class ChickenLouncher : MonoBehaviour
                 chickenType = 0;
                 break;
         }
+        if (currentProyectile != null)
+        {
+            shildCounter = handPosition.gameObject.GetComponentsInChildren<GameObject>();
+            for (int i = 0; i < shildCounter.Length; i++)
+            {
+                Destroy(shildCounter[i]);
+            }
+
+            Destroy(currentProyectile);
+        }
     }
 
     public void Attack(int AmmoType)
@@ -274,6 +290,10 @@ public class ChickenLouncher : MonoBehaviour
             Debug.Log("Detecta Corpse");
 
             RetrieveChicken(other.gameObject.GetComponent<ChickenCorpse>().chickenType);
+            GameObject cadaver= other.gameObject;
+            cadaver.transform.position = handPosition.position;
+            cadaver.transform.SetParent(handPosition, true);
+            currentProyectile = cadaver;
 
         }
     }

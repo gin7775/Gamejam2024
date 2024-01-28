@@ -2207,6 +2207,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ed47ac4dd3e66242bc1e7d9d7950037, type: 3}
+--- !u!4 &448359186 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7257534045974285928, guid: dd4856e723c2a48459379682064eb1aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1796150355}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &455171222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9241,6 +9247,11 @@ PrefabInstance:
       propertyPath: pickUpRange
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 2567457919124909453, guid: dd4856e723c2a48459379682064eb1aa,
+        type: 3}
+      propertyPath: handPosition
+      value: 
+      objectReference: {fileID: 448359186}
     - target: {fileID: 2567457919124909453, guid: dd4856e723c2a48459379682064eb1aa,
         type: 3}
       propertyPath: proyectiles.Array.size
