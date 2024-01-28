@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(FrameFreeze(0.03f));
             score++;
             //scoreText.GetComponent<TextMeshProUGUI>().text = "score: " + score;
+            enemy.GetComponent<ContenedorEnemigo1>().PolloMansy();
             Destroy(enemy);
             enemyDeath();
         }
