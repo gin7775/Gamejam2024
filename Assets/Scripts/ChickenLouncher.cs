@@ -69,11 +69,16 @@ public class ChickenLouncher : MonoBehaviour
                 pollos.Add(pollo.gameObject);
             }
         }
-
-        GameObject auxPollo = pollos[pollos.Count - 1];
-        chickenType = auxPollo.GetComponent<ChickenCorpse>().chickenType;
-        Destroy(auxPollo);
-        pollos.Clear();
+        GameObject auxPollo;
+        if (pollos.Count >= 1)
+        {
+            auxPollo = pollos[pollos.Count - 1];
+            chickenType = auxPollo.GetComponent<ChickenCorpse>().chickenType;
+            Destroy(auxPollo);
+            pollos.Clear();
+        }
+        
+        
 
 
         RetrieveChicken(1);
