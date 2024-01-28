@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject SmokeEffect;
     private CinemachineImpulseSource cinemachineImpulseSource;
     public GameObject scoreText;
+    public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;
 
     [SerializeField] private MusicManager musicManager;
 
@@ -172,7 +173,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(timeGeneration);
 
             randomIterastor = UnityEngine.Random.Range(0, pollosToSpawn.Length);
-            spawnPosition = new Vector3(UnityEngine.Random.Range(8.5f, -8.5f), 1.2f, UnityEngine.Random.Range(8.5f, -8.5f));
+            spawnPosition = new Vector3(UnityEngine.Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, UnityEngine.Random.Range(limiteZNegativo, LimiteZPositivo));
             Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
             enemyCount++;
         }
@@ -196,7 +197,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < totalEnemies; i++)
         {
             randomIterastor = UnityEngine.Random.Range(0, pollosToSpawn.Length);
-            spawnPosition = new Vector3(UnityEngine.Random.Range(8.5f, -8.5f), 1.2f, UnityEngine.Random.Range(8.5f, -8.5f));
+            spawnPosition = new Vector3(UnityEngine.Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, UnityEngine.Random.Range(limiteZNegativo, LimiteZPositivo));
             Instantiate(SmokeEffect, spawnPosition, Quaternion.identity);
             Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
             enemyCount++;
