@@ -9,6 +9,12 @@ public class ProjectileLife : MonoBehaviour
     [SerializeField] Collider[] colliders;
     [SerializeField] GameObject[] ragdolls;
 
+    private bool isCodeExecuting = false;
+    public GameObject[] chickensToDie;
+    public float radius = 5f;
+
+
+
     void Start()
     {
         SetObjectLifeTime();
@@ -51,17 +57,48 @@ public class ProjectileLife : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") && this.gameObject.GetComponent<ChickenCorpse>() == null)
+        {
+            DealDamage(other.gameObject, 2);
+        }
+
+        else if (other.gameObject.CompareTag("Enemy") && this.gameObject.GetComponent<ChickenCorpse>().chickenType == 3)
         {
             //Debug.Log("Enemy hitted with chicken");
             DealDamage(other.gameObject, 2);
+            Explosion();
         }
+
+        
     }
 
     private void DealDamage(GameObject objetive, int damage)
     {
         //objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
         GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
+    }
+
+    public void Explosion()
+    {
+        GetComponent<SpawnParticles>().SpawnBothParticles();
+        if (!isCodeExecuting)
+        {
+            isCodeExecuting = true;
+
+            chickensToDie = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject chicken in chickensToDie)
+            {
+                if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
+                {
+                    GameManager.Instance.chickenEnemyTakeDamage(chicken, 99);
+                }
+            }
+
+            isCodeExecuting = false;
+        }
+
+        Destroy(this.gameObject);
     }
 
 }

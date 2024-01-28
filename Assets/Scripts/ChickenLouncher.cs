@@ -91,7 +91,7 @@ public class ChickenLouncher : MonoBehaviour
 
     public void ReciveDamage(int damage)
     {
-        //UpdateLifeUI();
+        UpdateLifeUI();
         health -= damage;
         if (health <= 0)
         {

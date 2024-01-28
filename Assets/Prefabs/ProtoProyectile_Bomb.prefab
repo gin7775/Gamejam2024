@@ -1579,6 +1579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8575342667636680498}
   - component: {fileID: 3781987112196250430}
+  - component: {fileID: 6784622143169461159}
   m_Layer: 0
   m_Name: Pollo_LP.005
   m_TagString: Untagged
@@ -1696,6 +1697,21 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00048341218, y: 0.0016586003, z: -0.0053896215}
     m_Extent: {x: 0.004151594, y: 0.005948614, z: 0.0083349515}
   m_DirtyAABB: 0
+--- !u!114 &6784622143169461159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7805932894774675942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdb0ef213e37f444b6c342f8a16bdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 5498576077815233785, guid: 0f7f1da482b587b499a269149d1af9a2,
+    type: 3}
+  secondaryParticle: {fileID: 0}
 --- !u!1 &7872295566720317215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,6 +2100,8 @@ GameObject:
   - component: {fileID: 4840851951825858916}
   - component: {fileID: 3353794482949223439}
   - component: {fileID: 7762939117392060085}
+  - component: {fileID: 3945866801387248626}
+  - component: {fileID: 8357981344472506316}
   m_Layer: 0
   m_Name: ProtoProyectile_Bomb
   m_TagString: Untagged
@@ -2167,8 +2185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583e63977fa2d3e4d84b69519bb35fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 3
-  effectLife: 1
+  Life: 10
+  effectLife: 9
   colliders:
   - {fileID: 4840851951825858916}
   - {fileID: 5984016339983109732}
@@ -2177,6 +2195,36 @@ MonoBehaviour:
   - {fileID: 3915427517133167876}
   ragdolls:
   - {fileID: 8427427352162472809}
+  chickensToDie: []
+  radius: 5
+--- !u!114 &3945866801387248626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464458607440672315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf61fdcc03726040a71238aa59b7b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chickenType: 3
+--- !u!114 &8357981344472506316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464458607440672315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bdb0ef213e37f444b6c342f8a16bdbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 5498576077815233785, guid: 0f7f1da482b587b499a269149d1af9a2,
+    type: 3}
+  secondaryParticle: {fileID: 0}
 --- !u!1 &8619857555060344572
 GameObject:
   m_ObjectHideFlags: 0
