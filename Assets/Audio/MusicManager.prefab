@@ -1288,6 +1288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainTheme:
   - {fileID: 5675451881541462715}
+  - {fileID: 5675451881541462715}
   - {fileID: 1829759839015037371}
   - {fileID: 3362770723290418120}
   transitionTheme: {fileID: 3937734775667956968}
@@ -1301,7 +1302,6 @@ MonoBehaviour:
   tickingPollo: {fileID: 3767689043289276888}
   clicPollo: {fileID: 5518015443513330212}
   comenzarOleadaFX: {fileID: 4374925918846674006}
-  gm: {fileID: 0}
 --- !u!1 &6246168075892747757
 GameObject:
   m_ObjectHideFlags: 0

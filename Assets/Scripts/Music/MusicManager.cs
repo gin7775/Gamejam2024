@@ -91,10 +91,13 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
     {
-        if (oleadaSiguiente < mainTheme.Length)
+        if (oleadaSiguiente <= mainTheme.Length)
         {
            
-           
+           if(oleadaSiguiente >= mainTheme.Length)
+            {
+                oleadaSiguiente = 3;
+            }
             transitionTheme.Play();
             yield return new WaitForSeconds(1f);
             sirena.Play();
