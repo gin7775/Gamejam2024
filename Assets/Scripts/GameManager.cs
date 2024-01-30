@@ -10,46 +10,43 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] public int score = 0;
-    [SerializeField] private GameObject[] pollosToSpawn;
-    [SerializeField] private Vector3 spawnPosition;
-    [SerializeField] private int randomIterastor, probabilityIterator;
+    [SerializeField] GameObject[] pollosToSpawn;
+    [SerializeField] Vector3 spawnPosition;
+    [SerializeField] int randomIterastor, probabilityIterator;
     // Tiempo por el que espera para generar enemigos por segundo
-    [SerializeField] private float timeWave;
+    [SerializeField] float timeWave;
     // Tiempo por el que espera para generar enemigos por segundo
-    [SerializeField] private float timeGeneration;
+    [SerializeField] float timeGeneration;
+    public int score = 0;
     // Numero total de enemigos en la ronda
-    [SerializeField] public int enemyNumber;
+    public int enemyNumber;
     // Numero de enemigos por oleada inicial
-    [SerializeField] public int enemyInitial;
+    public int enemyInitial;
     // Numero de enemigos que quedan en la ronda
-    [SerializeField] public int enemyCount;
+    public int enemyCount;
     // Numero de ronda totales
-    [SerializeField] public int waveNumber;
+    public int waveNumber;
     // Numero de ronda actual
-    [SerializeField] public int waveCurrent;
+    public int waveCurrent;
     // Nivel de dificultad -- No se usa
-    [SerializeField] public int dificultiLevel;
+    public int dificultiLevel;
     // Nivel de dificultad -- No se usa
-    [SerializeField] private Canvas canvasRound;
-    [SerializeField] private Animator canvasAnimator;
-    [SerializeField] private GameObject textMesh;
-    [SerializeField] private GameObject vfxHitEffect;
-    [SerializeField] private GameObject vfxHitWaveEffect;
-    [SerializeField] private GameObject SmokeEffect;
-    private CinemachineImpulseSource cinemachineImpulseSource;
+    [SerializeField] Canvas canvasRound;
+    [SerializeField] Animator canvasAnimator;
+    [SerializeField] GameObject textMesh;
+    [SerializeField] GameObject vfxHitEffect;
+    [SerializeField] GameObject vfxHitWaveEffect;
+    [SerializeField] GameObject SmokeEffect;
+    [SerializeField] CinemachineImpulseSource cinemachineImpulseSource;
+    [SerializeField] int numMaxWave1;
+    [SerializeField] int numMaxWave2;
+    [SerializeField] int numMaxWave3;
+    [SerializeField] bool siguiente;
+    [SerializeField] MusicManager musicManager;
     public GameObject scoreText;
     public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;
-    [SerializeField] private int numMaxWave1;
-    [SerializeField] private int numMaxWave2;
-    [SerializeField] private int numMaxWave3;
-    [SerializeField] private bool siguiente;
-
-    [SerializeField] private MusicManager musicManager;
-
     public bool paused = false;
     public GameObject pausemenu;
-
     //Music Variables
     public AudioMixer myMixer;
     public Slider musicSlider;
@@ -57,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // If there is an instance and it's not me, delete myself.
+        // Si hay una instancia y no es esta, borrala.
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -77,7 +74,6 @@ public class GameManager : MonoBehaviour
         enemyNumber = 0;
         enemyCount = 0;
         waveNumber = 3;
-
         numMaxWave1 = 20;
         numMaxWave2 = 50;
         numMaxWave3 = 100;
@@ -85,85 +81,43 @@ public class GameManager : MonoBehaviour
         UpdateWave();
     }
 
-    public void InstantiatePollos(int enemys)
-    {
-        StartCoroutine(startWave(timeWave, enemys));
-    }
-
     public void UpdateWave()
     {
+        enemyCount = 0;
         waveCurrent++;
 
         if (waveCurrent <= waveNumber)
         {
             textMesh.GetComponent<TextMeshProUGUI>().text = "Round " + waveCurrent;
+
             if (waveCurrent <= 1)
             {
                 dificultiLevel = 1;
                 timeGeneration = 2.5f;
-                InstantiatePollos(enemyInitial);
             }
             else if (waveCurrent == 2)
             {
                 dificultiLevel = 2;
                 timeGeneration = 1.5f;
-                InstantiatePollos(enemyInitial * 2);
             }
             else
             {
                 dificultiLevel = 3;
                 timeGeneration = 0.85f;
-                InstantiatePollos(enemyInitial * 3);
             }
+
+            StartCoroutine(StartWave(timeWave, enemyInitial * waveCurrent));
         }
         else
         {
             dificultiLevel = 4;
             timeGeneration = 0.75f;
-            InstantiatePollos(20);
+            StartCoroutine(StartWave(timeWave, enemyInitial * 4));
         }
     }
 
-    public void enemyDeath()
+    public void ChikenGenerator()
     {
-        enemyCount--;
-
-        //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
-        musicManager.Play_FX_ExplosionPollo();
-
-        if (enemyCount <= 0 && score == numMaxWave1 || enemyCount <= 0 && score == numMaxWave2 || enemyCount <= 0 && score == numMaxWave3 || enemyCount <= 0 && siguiente)
-        {
-            UpdateWave();
-        }
-    }
-
-    public void chickenEnemyTakeDamage(GameObject enemy, int damage)
-    {
-        int auxLife = 0;
-        // Spawn particula de hit
-        Instantiate(vfxHitWaveEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-        if (enemy != null)
-        {
-            if (enemy.GetComponent<ContenedorEnemigo1>() != null)
-            {
-                auxLife = enemy.GetComponent<ContenedorEnemigo1>().lifes -= damage;
-            }
-        }
-
-        if (auxLife <= 0)
-        {
-            cinemachineImpulseSource = enemy.gameObject.GetComponent<CinemachineImpulseSource>();
-            cinemachineImpulseSource.GenerateImpulse();
-            Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-            StartCoroutine(FrameFreeze(0.03f));
-            score++;
-            enemy.GetComponent<ContenedorEnemigo1>().PolloMansy();
-            Destroy(enemy);
-            enemyDeath();
-        }
-    }
-
-    public void chikenGenerator() {
         probabilityIterator = Random.Range(0, 100);
 
         if (probabilityIterator >= 0 && probabilityIterator <= 60)
@@ -185,7 +139,99 @@ public class GameManager : MonoBehaviour
 
         spawnPosition = new Vector3(Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, Random.Range(limiteZNegativo, LimiteZPositivo));
         Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
+        //enemyCount++;
+    }
+
+    public void ChickenEnemyTakeDamage(GameObject enemy, int damage)
+    {
+        int auxLife = 0;
+        // Spawn particula de hit
+        Instantiate(vfxHitWaveEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        if (enemy != null)
+        {
+            if (enemy.GetComponent<ContenedorEnemigo1>() != null)
+            {
+                auxLife = enemy.GetComponent<ContenedorEnemigo1>().lifes -= damage;
+            }
+        }
+
+        if (auxLife <= 0)
+        {
+            cinemachineImpulseSource = enemy.gameObject.GetComponent<CinemachineImpulseSource>();
+            cinemachineImpulseSource.GenerateImpulse();
+            Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            StartCoroutine(FrameFreeze(0.03f));
+            score++;
+            enemy.GetComponent<ContenedorEnemigo1>().PolloMansy();
+            Destroy(enemy);
+            EnemyDeath();
+        }
+    }
+
+    public void EnemyDeath()
+    {
         enemyCount++;
+
+        //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
+        musicManager.Play_FX_ExplosionPollo();
+
+        if (enemyCount >= (enemyInitial * waveCurrent + enemyNumber) && siguiente)
+        {
+            UpdateWave();
+        }
+    }
+
+    IEnumerator StartWave(float seconds, int totalEnemies)
+    {
+        // Activa el canvas con la animacion de la ronda actual
+        canvasRound.gameObject.SetActive(true);
+        musicManager.FX_ActivarCorutina(waveCurrent - 1, waveCurrent);
+
+        yield return new WaitForSeconds(seconds - 2f);
+
+        // Hace que el texto de ronda se vaya a la derecha
+        if (canvasAnimator != null)
+        {
+            canvasAnimator.SetTrigger("Change");
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        // Desactiva el canvas con la animacion de la ronda actual
+        canvasRound.gameObject.SetActive(false);
+
+        // Hace que el texto de ronda vuelva al estado normal   
+        if (canvasAnimator != null)
+        {
+            canvasAnimator.SetTrigger("Change");
+        }
+
+        // Genera pollos segun la variable totalEnemies
+        for (int i = 0; i < totalEnemies; i++)
+        {
+            ChikenGenerator();
+        }
+
+        // Genera poco a poco pollos segun la variable totalEnemies
+        StartCoroutine(ChikenWaitSpawner());
+    }
+
+    IEnumerator ChikenWaitSpawner()
+    {
+        siguiente = false;
+
+        enemyNumber = waveCurrent <= 1 ? numMaxWave1 - enemyInitial * waveCurrent : 0;
+        enemyNumber = waveCurrent == 2 ? numMaxWave2 - enemyInitial * waveCurrent : enemyNumber;
+        enemyNumber = waveCurrent == 3 ? numMaxWave3 - enemyInitial * waveCurrent : enemyNumber;
+        enemyNumber = waveCurrent >= 4 ? numMaxWave3 - enemyInitial * waveCurrent : enemyNumber;
+
+        for (int i = 0; i < enemyNumber; i++)
+        {
+            yield return new WaitForSeconds(timeGeneration);
+            ChikenGenerator();
+        }
+
+        siguiente = true;
     }
 
     private IEnumerator FrameFreeze(float duration)
@@ -197,55 +243,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    IEnumerator chikenWaitSpawner()
-    {
-        siguiente = false;
-        Debug.Log("111-" + enemyNumber);
-        enemyNumber = waveCurrent <= 1 ? numMaxWave1 - enemyInitial * 1 : 0;
-        Debug.Log("222-" + enemyNumber);
-        enemyNumber = waveCurrent == 2 ? numMaxWave2 - enemyInitial * 2 : enemyNumber;
-        Debug.Log("333-" + enemyNumber);
-        enemyNumber = waveCurrent == 3 ? numMaxWave3 - enemyInitial * 3 : enemyNumber;
-        Debug.Log("444-" + enemyNumber);
-        enemyNumber = waveCurrent >= 4 ? numMaxWave3 : enemyNumber;
-        Debug.Log("555-" + enemyNumber);
-
-        for (int i = 0; i < enemyNumber; i++)
-        {
-            yield return new WaitForSeconds(timeGeneration);
-            chikenGenerator();
-        }
-
-        siguiente = true;
-    }
-
-
-  
-    IEnumerator startWave(float seconds, int totalEnemies)
-    {
-        canvasRound.gameObject.SetActive(true);
-       
-        //Audio
-        musicManager.FX_ActivarCorutina(waveCurrent - 1, waveCurrent);
-
-        yield return new WaitForSeconds(seconds - 2f);
-
-        if (canvasAnimator != null)
-        {
-            canvasAnimator.SetTrigger("Change");
-        }
-
-        yield return new WaitForSeconds(2f);
-        canvasRound.gameObject.SetActive(false);
-
-        for (int i = 0; i < totalEnemies; i++)
-        {
-            chikenGenerator();
-        }
-
-        StartCoroutine(chikenWaitSpawner());
-    }
-
     public void ActivarFXMuerte()
     {
 
@@ -254,7 +251,6 @@ public class GameManager : MonoBehaviour
     //Menu pausa
     public void exit_pause_menu()
     {
-
         Time.timeScale = 1;
         paused = false;
         pausemenu.SetActive(false);
@@ -270,16 +266,17 @@ public class GameManager : MonoBehaviour
         if (paused == false)
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
+
             if (currentSceneName != "MenuPrincipal")
             {
                 paused = true;
                 pausemenu.gameObject.SetActive(true);
                 Time.timeScale = 0;
             }
+
             if (currentSceneName == "MenuPrincipal")
             {
-                Debug.Log("Estás en la Escena principal");
-
+                // Estás en la Escena principal
             }
         }
     }
@@ -295,19 +292,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("0_MenuPrincipal");
     }
 
-    //Music Manager
-
+    // Music Manager
     public void SetMusicVolume()
     {
-        Debug.Log("Music modified");
+        // Debug.Log("Music modified");
         float volume = musicSlider.value;
-        Debug.Log(musicSlider.value);
         myMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
     }
+
     public void SetSFXVolume()
     {
-
         float volume = SFXSlider.value;
         myMixer.SetFloat("FX", Mathf.Log10(volume) * 20);
     }
+
 }

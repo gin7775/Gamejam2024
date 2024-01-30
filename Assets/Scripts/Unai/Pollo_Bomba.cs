@@ -5,13 +5,11 @@ using UnityEngine;
 
 public class Pollo_Bomba : MonoBehaviour
 {
-
     public float timer = 5f;
     public GameObject[] chickensToDie;
     public float radius = 5f;
     public GameObject player;
     private bool isCodeExecuting = false;
-
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +50,6 @@ public class Pollo_Bomba : MonoBehaviour
 
     public void Explosion()
     {
-
-
         //Instancia particulas
         GetComponent<SpawnParticles>().SpawnBothParticles();
         if (!isCodeExecuting)
@@ -66,9 +62,7 @@ public class Pollo_Bomba : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
                 {
-                    GameManager.Instance.chickenEnemyTakeDamage(chicken, 99);
-
-                    
+                    GameManager.Instance.ChickenEnemyTakeDamage(chicken, 99);
                 }
             }
 
@@ -84,32 +78,26 @@ public class Pollo_Bomba : MonoBehaviour
                 player.GetComponent<ChickenLouncher>().ReciveDamage(1);
             }
         }
-        Debug.Log("cickens a volar 1");
+
         // array para mandar a volar a los pollos
         StartCoroutine(ForceToChickens());
-        Debug.Log("cickens a volar 2");
     }
 
     IEnumerator ForceToChickens()
     {
-        Debug.Log("cickens corrutina");
         new WaitForSeconds(0.5f);
-         List<GameObject> listaChickens = new List<GameObject>(GameObject.FindGameObjectsWithTag("Corpse"));
-        Debug.Log("chicken lista es: " + listaChickens.Count);
+        List<GameObject> listaChickens = new List<GameObject>(GameObject.FindGameObjectsWithTag("Corpse"));
 
         for (int i = 0; i < listaChickens.Count; i++)
         {
-
             float dist = Vector3.Distance(this.gameObject.transform.position, listaChickens[i].transform.position);
+
             if (dist <= 100)
             {
-               GameObject bodyOne = listaChickens[i].gameObject.transform.GetChild(0).transform.GetChild(0).gameObject;
-               GameObject bodyTwo = bodyOne.gameObject.transform.GetChild(0).gameObject;
-               GameObject bodyNeck = bodyTwo.gameObject.transform.GetChild(2).gameObject;
-               GameObject bodyHead = bodyNeck.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
-
-
-
+                GameObject bodyOne = listaChickens[i].gameObject.transform.GetChild(0).transform.GetChild(0).gameObject;
+                GameObject bodyTwo = bodyOne.gameObject.transform.GetChild(0).gameObject;
+                GameObject bodyNeck = bodyTwo.gameObject.transform.GetChild(2).gameObject;
+                GameObject bodyHead = bodyNeck.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 100);
 
                 foreach(Collider collider in colliders)
@@ -129,13 +117,10 @@ public class Pollo_Bomba : MonoBehaviour
                     bodyNeck.GetComponent<CapsuleCollider>().enabled = true;
                     bodyHead.GetComponent<CapsuleCollider>().enabled = true;
                 }
-
             }
         }
 
-
         yield return null;
     }
+
 }
-
-

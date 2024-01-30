@@ -14,7 +14,8 @@ public class TextUiScript : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.waveCurrent >= 4)
+        if (GameManager.Instance
+            .waveCurrent >= 4)
         {
             textMeshNumWave.GetComponent<TextMeshProUGUI>().text = 999 + " / 0" + GameManager.Instance.waveNumber;
         }
@@ -22,7 +23,7 @@ public class TextUiScript : MonoBehaviour
         {
             textMeshNumWave.GetComponent<TextMeshProUGUI>().text = "0" + GameManager.Instance.waveCurrent + " / 0" + GameManager.Instance.waveNumber;
         }
-        textMeshNumEnemies.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.enemyCount + " / " + (GameManager.Instance.enemyNumber + GameManager.Instance.enemyInitial);
+        textMeshNumEnemies.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.enemyCount + " / " + (GameManager.Instance.enemyNumber + GameManager.Instance.enemyInitial * GameManager.Instance.waveCurrent);
         textMeshScore.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.score + "";
     }
 

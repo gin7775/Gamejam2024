@@ -8,12 +8,9 @@ public class ProjectileLife : MonoBehaviour
     [SerializeField] int effectLife = 2;
     [SerializeField] Collider[] colliders;
     [SerializeField] GameObject[] ragdolls;
-
-    private bool isCodeExecuting = false;
-    public GameObject[] chickensToDie;
-    public float radius = 5f;
-
-
+    [SerializeField] bool isCodeExecuting = false;
+    [SerializeField] public GameObject[] chickensToDie;
+    [SerializeField] public float radius = 5f;
 
     void Start()
     {
@@ -35,7 +32,6 @@ public class ProjectileLife : MonoBehaviour
             {
                 col.enabled = false;
             }
-            
         }
         StartCoroutine(ObjectLife());
     }
@@ -67,21 +63,19 @@ public class ProjectileLife : MonoBehaviour
             //Debug.Log("Enemy hitted with chicken");
             DealDamage(other.gameObject, 2);
             Explosion();
-            
         }
-
-        
     }
 
     private void DealDamage(GameObject objetive, int damage)
     {
         //objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
-        GameManager.Instance.chickenEnemyTakeDamage(objetive, damage);
+        GameManager.Instance.ChickenEnemyTakeDamage(objetive, damage);
     }
 
     public void Explosion()
     {
         GetComponent<SpawnParticles>().SpawnBothParticles();
+
         if (!isCodeExecuting)
         {
             isCodeExecuting = true;
@@ -92,12 +86,13 @@ public class ProjectileLife : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
                 {
-                    GameManager.Instance.chickenEnemyTakeDamage(chicken, 99);
+                    GameManager.Instance.ChickenEnemyTakeDamage(chicken, 99);
                 }
             }
 
             isCodeExecuting = false;
         }
+
         StartCoroutine(ForceToChickens());
         Destroy(this.gameObject);
     }
@@ -105,14 +100,11 @@ public class ProjectileLife : MonoBehaviour
 
     IEnumerator ForceToChickens()
     {
-        Debug.Log("cickens corrutina");
         new WaitForSeconds(0.5f);
         List<GameObject> listaChickens = new List<GameObject>(GameObject.FindGameObjectsWithTag("Corpse"));
-        Debug.Log("chicken lista es: " + listaChickens.Count);
 
         for (int i = 0; i < listaChickens.Count; i++)
         {
-
             float dist = Vector3.Distance(this.gameObject.transform.position, listaChickens[i].transform.position);
             if (dist <= 100)
             {
@@ -120,8 +112,6 @@ public class ProjectileLife : MonoBehaviour
                 GameObject bodyTwo = bodyOne.gameObject.transform.GetChild(0).gameObject;
                 GameObject bodyNeck = bodyTwo.gameObject.transform.GetChild(2).gameObject;
                 GameObject bodyHead = bodyNeck.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
-
-
 
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 100);
 
@@ -142,11 +132,10 @@ public class ProjectileLife : MonoBehaviour
                     bodyNeck.GetComponent<CapsuleCollider>().enabled = true;
                     bodyHead.GetComponent<CapsuleCollider>().enabled = true;
                 }
-
             }
         }
 
-
         yield return null;
     }
+
 }

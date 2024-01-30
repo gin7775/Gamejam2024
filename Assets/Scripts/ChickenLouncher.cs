@@ -34,9 +34,7 @@ public class ChickenLouncher : MonoBehaviour
     //Esto es para la muerte
     bool muriendo;
     [SerializeField] private bool gameModeFrenezzi = false;
-
     public GameObject RetryButton;
-
 
     private void Start()
     {
@@ -65,7 +63,6 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnPick(InputValue value)
     {
-        
         RetrieveChicken(chickenType);
         //Debug.Log("Coge");
     }
@@ -108,7 +105,14 @@ public class ChickenLouncher : MonoBehaviour
     {
         if (eggs != null)
         {
-            eggs[health - 1].GetComponent<Animator>().SetTrigger("Break");
+            try
+            {
+                eggs[health - 1].GetComponent<Animator>().SetTrigger("Break");
+            }
+            catch (System.Exception)
+            {
+                // No hacer nada
+            }
         }
     }
 
@@ -143,7 +147,6 @@ public class ChickenLouncher : MonoBehaviour
 
     void Shoot(int AmmoType)
     {
-      
         projectilePos = transform.position;
         projectilePos += transform.forward;
         projectilePos += transform.up;
@@ -173,7 +176,6 @@ public class ChickenLouncher : MonoBehaviour
                     proyectile = Instantiate(proyectiles[1], projectilePos, Quaternion.identity);
                     proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
                     musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
-
 
                     chickenType = 0;
                     break;
@@ -355,7 +357,6 @@ public class ChickenLouncher : MonoBehaviour
             cadaver.transform.position = handPosition.position;
             cadaver.transform.SetParent(handPosition, true);
             currentProyectile.Add(cadaver);
-
         }
     }
 

@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerDamage : MonoBehaviour
 {
     public int vidas,totalLife;
-    public GameObject[] eggs; 
+    public GameObject[] eggs;
+
     private void Start()
     {
         vidas = totalLife;
@@ -21,7 +22,5 @@ public class PlayerDamage : MonoBehaviour
             //inserte aqui muerte del jugador
         }
     }
-
-
 
 }
