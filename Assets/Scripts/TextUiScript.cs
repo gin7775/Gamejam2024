@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -14,16 +12,9 @@ public class TextUiScript : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.waveCurrent >= 4)
-        {
-            textMeshNumWave.GetComponent<TextMeshProUGUI>().text = 999 + " / 0" + GameManager.Instance.waveNumber;
-        }
-        else
-        {
-            textMeshNumWave.GetComponent<TextMeshProUGUI>().text = "0" + GameManager.Instance.waveCurrent + " / 0" + GameManager.Instance.waveNumber;
-        }
-        textMeshNumEnemies.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.enemyCount + " / " + (GameManager.Instance.enemyNumber + GameManager.Instance.enemyInitial);
-        textMeshScore.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.score + "";
+        textMeshNumWave.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.waveCurrent.ToString("D4");
+        textMeshNumEnemies.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.enemyCount.ToString("D3") + " / " + GameManager.Instance.totalChicken.ToString("D3");
+        textMeshScore.GetComponent<TextMeshProUGUI>().text = GameManager.Instance.score.ToString("D5");
     }
 
 }

@@ -25,22 +25,23 @@ public class ContenedorEnemigo1 : MonoBehaviour
         playerReference = GameObject.FindGameObjectWithTag("Player");
     }
 
-    
+    /*
     public void ReciveDamage(int damage)
     {
         if (canDamage == true)
         {
             cinemachineImpulseSource.GenerateImpulse();
             lifes -= damage;
+            //GameManager.Instance.chickenEnemyTakeDamage(damage);
             canDamage = false;
             StartCoroutine(FrameFreeze(0.1f));
             //StartCoroutine(Contador());
-            GameManager.Instance.enemyCount--;
+            //GameManager.Instance.enemyCount--;
         }
        
     }
+    */
     
-
     private IEnumerator FrameFreeze(float duration)
     {
         Time.timeScale = 0f;
@@ -49,6 +50,7 @@ public class ContenedorEnemigo1 : MonoBehaviour
 
         Time.timeScale = 1f;
     }
+
     public IEnumerator Contador()
     {
         yield return new WaitForSeconds(1);
@@ -59,8 +61,6 @@ public class ContenedorEnemigo1 : MonoBehaviour
     {
         //Debug.Log("I manifest the greatest of phoes! A chicken! WORSE... A Deadly Chicken... it's dead... oh...");
         GameObject toInstantiate = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
-        
     }
-   
 
 }

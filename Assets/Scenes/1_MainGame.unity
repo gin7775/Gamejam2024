@@ -52725,6 +52725,44 @@ PrefabInstance:
       propertyPath: musicSlider
       value: 
       objectReference: {fileID: 558874307}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[0].probability
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[1].probability
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[2].probability
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[0].chickenPrefab
+      value: 
+      objectReference: {fileID: 1570130104802229714, guid: 9fb28a391b887db4db9086cd85de82c9,
+        type: 3}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[1].chickenPrefab
+      value: 
+      objectReference: {fileID: 4184036453883938847, guid: 884705e063edfe74f9d053f20ba2aaf0,
+        type: 3}
+    - target: {fileID: 2153647650333293064, guid: 9bd20b44dc8eccb459f87da961ee0795,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[2].chickenPrefab
+      value: 
+      objectReference: {fileID: 1723300209522017659, guid: 466fab495fabb824f9aee8381bb00e51,
+        type: 3}
     - target: {fileID: 2674078856524945877, guid: 9bd20b44dc8eccb459f87da961ee0795,
         type: 3}
       propertyPath: m_LocalPosition.x

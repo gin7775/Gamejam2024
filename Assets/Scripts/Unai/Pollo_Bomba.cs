@@ -45,15 +45,15 @@ public class Pollo_Bomba : MonoBehaviour
             yield return null;
         }
 
+        Debug.Log(this.gameObject.name);
         // Cuando el temporizador llega a cero
         Explosion();
         Destroy(this.gameObject);
+        GameManager.Instance.enemyDeath();
     }
 
     public void Explosion()
     {
-
-
         //Instancia particulas
         GetComponent<SpawnParticles>().SpawnBothParticles();
         if (!isCodeExecuting)
@@ -67,8 +67,6 @@ public class Pollo_Bomba : MonoBehaviour
                 if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
                 {
                     GameManager.Instance.chickenEnemyTakeDamage(chicken, 99);
-
-                    
                 }
             }
 
@@ -84,6 +82,7 @@ public class Pollo_Bomba : MonoBehaviour
                 player.GetComponent<ChickenLouncher>().ReciveDamage(1);
             }
         }
+
         Debug.Log("cickens a volar 1");
         // array para mandar a volar a los pollos
         StartCoroutine(ForceToChickens());
@@ -94,7 +93,7 @@ public class Pollo_Bomba : MonoBehaviour
     {
         Debug.Log("cickens corrutina");
         new WaitForSeconds(0.5f);
-         List<GameObject> listaChickens = new List<GameObject>(GameObject.FindGameObjectsWithTag("Corpse"));
+        List<GameObject> listaChickens = new List<GameObject>(GameObject.FindGameObjectsWithTag("Corpse"));
         Debug.Log("chicken lista es: " + listaChickens.Count);
 
         for (int i = 0; i < listaChickens.Count; i++)
@@ -107,8 +106,6 @@ public class Pollo_Bomba : MonoBehaviour
                GameObject bodyTwo = bodyOne.gameObject.transform.GetChild(0).gameObject;
                GameObject bodyNeck = bodyTwo.gameObject.transform.GetChild(2).gameObject;
                GameObject bodyHead = bodyNeck.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
-
-
 
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 100);
 
@@ -132,7 +129,6 @@ public class Pollo_Bomba : MonoBehaviour
 
             }
         }
-
 
         yield return null;
     }

@@ -1,5 +1,6 @@
 using Cinemachine;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,88 +9,167 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    // Singleton
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] public int score = 0;
-    [SerializeField] private GameObject[] pollosToSpawn;
-    [SerializeField] private Vector3 spawnPosition;
-    [SerializeField] private int randomIterastor, probabilityIterator;
-    // Tiempo por el que espera para generar enemigos por segundo
-    [SerializeField] private float timeWave;
-    // Tiempo por el que espera para generar enemigos por segundo
-    [SerializeField] private float timeGeneration;
-    // Numero total de enemigos en la ronda
-    [SerializeField] public int enemyNumber;
-    // Numero de enemigos por oleada inicial
-    [SerializeField] public int enemyInitial;
-    // Numero de enemigos que quedan en la ronda
-    [SerializeField] public int enemyCount;
-    // Numero de ronda totales
-    [SerializeField] public int waveNumber;
-    // Numero de ronda actual
-    [SerializeField] public int waveCurrent;
-    // Nivel de dificultad -- No se usa
-    [SerializeField] public int dificultiLevel;
-    // Nivel de dificultad -- No se usa
-    [SerializeField] private Canvas canvasRound;
-    [SerializeField] private Animator canvasAnimator;
-    [SerializeField] private GameObject textMesh;
-    [SerializeField] private GameObject vfxHitEffect;
-    [SerializeField] private GameObject vfxHitWaveEffect;
-    [SerializeField] private GameObject SmokeEffect;
-    private CinemachineImpulseSource cinemachineImpulseSource;
-    public GameObject scoreText;
-    public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;
-    [SerializeField] private int numMaxWave1;
-    [SerializeField] private int numMaxWave2;
-    [SerializeField] private int numMaxWave3;
-    [SerializeField] private bool siguiente;
+    // ---- Control de oleadas ----
+    [SerializeField] private float timeWave;  // Tiempo por oleada
+    [SerializeField] private float timeGeneration;  // Tiempo entre generación de enemigos
+    [SerializeField] public int enemyNumber;  // Número total de enemigos en la ronda
+    [SerializeField] public int enemyInitial; // Número de enemigos por oleada inicial
+    [SerializeField] public int enemyCount;   // Número de enemigos que quedan en la ronda
+    [SerializeField] public int waveNumber;   // Número de rondas totales
+    [SerializeField] public int waveCurrent;  // Número de la ronda actual
+    [SerializeField] public int dificultiLevel;  // Nivel de dificultad
+    //[SerializeField] private bool siguiente;  // Control para saber si continúa a la siguiente oleada
 
-    [SerializeField] private MusicManager musicManager;
+    //[SerializeField] private int numMaxWave1;  // Máx. enemigos en la ola 1
+    //[SerializeField] private int numMaxWave2;  // Máx. enemigos en la ola 2
+    //[SerializeField] private int numMaxWave3;  // Máx. enemigos en la ola 3
 
-    public bool paused = false;
-    public GameObject pausemenu;
+    [SerializeField] private Canvas canvasRound;  // UI de la ronda
+    [SerializeField] private Animator canvasAnimator; // Animador para transiciones
+    [SerializeField] private GameObject textMesh; // Texto de la ronda
+    private CinemachineImpulseSource cinemachineImpulseSource; // Fuente del efecto de impulso
 
-    //Music Variables
-    public AudioMixer myMixer;
-    public Slider musicSlider;
-    public Slider SFXSlider;
+    // ---- Control de enemigos ----
+    [SerializeField] private List<ChickenConfig> chikenToSpawn; // Lista de enemigos y probabilidades
+    [SerializeField] private Vector3 spawnPosition; // Posición de generación
+    [SerializeField] private GameObject vfxHitEffect; // Efecto al recibir golpe
+    [SerializeField] private GameObject vfxHitWaveEffect; // Efecto al recibir golpe en oleada
+    [SerializeField] private GameObject SmokeEffect; // Efecto de humo al generar enemigo
+    public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo; // Límites de generación
 
+    // ---- Control del juego ----
+    [SerializeField] public int score = 0;  // Puntuación
+    public GameObject scoreText;  // Texto de la puntuación
+    public bool paused = false;   // Estado de pausa
+    public GameObject pausemenu;  // Menú de pausa
+    private int currentWaveScore = 0;  // Puntaje de la oleada actual
+    [SerializeField] public int totalChicken = 0;  // Puntaje de la oleada actual
+
+    // ---- Control de música ----
+    [SerializeField] private MusicManager musicManager; // Controlador de música
+    public AudioMixer myMixer;  // Mezclador de audio
+    public Slider musicSlider;  // Control deslizante de música
+    public Slider SFXSlider;    // Control deslizante de efectos
+
+    // Singleton pattern
     private void Awake()
     {
-        // If there is an instance and it's not me, delete myself.
+        // Si hay una instancia y no es esta, destruyela.
         if (Instance != null && Instance != this)
-        {
             Destroy(this);
-        }
         else
-        {
             Instance = this;
-        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("INI - GAMEMANAGER - Start");
         timeGeneration = 3f;
         timeWave = 6f;
         enemyInitial = 5;
         enemyNumber = 0;
         enemyCount = 0;
-        waveNumber = 3;
+        score = 0;
+        //waveNumber = 3;
 
-        numMaxWave1 = 20;
-        numMaxWave2 = 50;
-        numMaxWave3 = 100;
-        siguiente = false;
+        //numMaxWave1 = 20;
+        //numMaxWave2 = 50;
+        //numMaxWave3 = 100;
+        //siguiente = false;
         UpdateWave();
+        Debug.Log("FIN - GAMEMANAGER - Start");
     }
 
-    public void InstantiatePollos(int enemys)
+    public void InstantiatePollos(int initialEnemys, int enemys)
     {
-        StartCoroutine(startWave(timeWave, enemys));
+        var aux = initialEnemys;
+        Debug.Log("INI - GAMEMANAGER - InstantiatePollos");
+        StartCoroutine(startWave(timeWave, aux, enemys));
+        Debug.Log("FIN - GAMEMANAGER - InstantiatePollos");
     }
 
+    public void chickenEnemyTakeDamage(GameObject enemy, int damage)
+    {
+        Debug.Log("INI - GAMEMANAGER - chickenEnemyTakeDamage");
+
+        if (enemy != null)
+        {
+            // Spawn particula de hit
+            Instantiate(vfxHitWaveEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+
+            ContenedorEnemigo1 auxEnemy = enemy.GetComponent<ContenedorEnemigo1>();
+
+            if (auxEnemy != null && auxEnemy.lifes >= 1)
+            {
+                auxEnemy.lifes -= damage;
+
+                if (auxEnemy.lifes <= 0)
+                {
+                    // Generar efecto de cámara (impulso)
+                    cinemachineImpulseSource = enemy.gameObject.GetComponent<CinemachineImpulseSource>();
+                    cinemachineImpulseSource.GenerateImpulse();
+
+                    // Instanciar efectos visuales de impacto y muerte
+                    Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+
+                    // Pausa de la animación para dar efecto visual
+                    StartCoroutine(FrameFreeze(0.03f));
+
+                    auxEnemy.PolloMansy();
+                    Debug.Log(enemy.name);
+                    Destroy(enemy);
+                    enemyDeath();
+                }
+            }
+        }
+        Debug.Log("FIN - GAMEMANAGER - chickenEnemyTakeDamage");
+    }
+
+    public void enemyDeath()
+    {
+        Debug.Log("INI - GAMEMANAGER - enemyDeath");
+        /*
+        enemyCount--;
+
+        //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
+        musicManager.Play_FX_ExplosionPollo();
+
+        if (enemyCount <= 0 && score == numMaxWave1 || enemyCount <= 0 && score == numMaxWave2 || enemyCount <= 0 && score == numMaxWave3 || enemyCount <= 0 && siguiente)
+        {
+            UpdateWave();
+        }
+        */
+        score++;
+        // Actualizar puntaje de la oleada actual
+        currentWaveScore++;
+        enemyCount--;
+
+        // AUDIO: Ver si funciona en los enemigos sino, se pone aquí
+        musicManager.Play_FX_ExplosionPollo();
+        Debug.Log(
+            "\n\n\n" +
+            "Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.1f, waveCurrent))=" + Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.1f, waveCurrent)) + "\n" +
+            "enemyNumber=" + enemyNumber + "\n" +
+            "enemyCount=" + enemyCount + "\n" +
+            "numChicken=" + totalChicken + "\n" +
+            "currentWaveScore=" + currentWaveScore + "\n" +
+            "score=" + score + "\n\n\n"
+        );
+
+        // Si ya no quedan enemigos, actualizar la oleada
+        if (enemyCount <= 0 && currentWaveScore >= totalChicken)
+        {
+            UpdateWave();
+        }
+
+        Debug.Log("FIN - GAMEMANAGER - enemyDeath");
+    }
+
+    /*
     public void UpdateWave()
     {
         waveCurrent++;
@@ -123,108 +203,48 @@ public class GameManager : MonoBehaviour
             InstantiatePollos(20);
         }
     }
+    */
 
-    public void enemyDeath()
+    /// <summary>
+    /// Actualiza la oleada actual y escala la dificultad en función de la ola.
+    /// </summary>
+    public void UpdateWave()
     {
-        enemyCount--;
+        Debug.Log("INI - GAMEMANAGER - UpdateWave");
+        waveCurrent++;
 
-        //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
-        musicManager.Play_FX_ExplosionPollo();
+        // Restablecer el puntaje de la oleada actual
+        currentWaveScore = 0;
 
-        if (enemyCount <= 0 && score == numMaxWave1 || enemyCount <= 0 && score == numMaxWave2 || enemyCount <= 0 && score == numMaxWave3 || enemyCount <= 0 && siguiente)
-        {
-            UpdateWave();
-        }
+        // Mostrar el texto de la ronda actual
+        textMesh.GetComponent<TextMeshProUGUI>().text = "Round " + waveCurrent;
+
+        // Escalar la dificultad basado en la oleada actual
+        dificultiLevel = Mathf.FloorToInt(waveCurrent / 5) + 1; // Incrementa cada 5 oleadas
+
+        // Aumentar progresivamente la cantidad de enemigos a generar
+        int enemiesToSpawn = Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.2f, waveCurrent)); // Aumenta un 20% cada
+
+        // Calcula el total de enemigos
+        totalChicken = enemyInitial + enemiesToSpawn;
+
+        // Reducir el tiempo entre generación de enemigos para hacer el juego más desafiante
+        timeGeneration = Mathf.Max(0.5f, 3f - (0.1f * waveCurrent)); // El tiempo se reduce gradualmente hasta un mínimo de 0.5 segundos
+
+        // Iniciar la oleada con la cantidad de enemigos escalada
+        InstantiatePollos(enemyInitial, enemiesToSpawn);
+
+        // Incrementar enemyInitial levemente cada 5 rondas, basándose en el nivel de dificultad
+        enemyInitial = Mathf.FloorToInt(enemyInitial * (1 + (dificultiLevel * 0.05f))); // Incremento del 5% por nivel de dificultad
+
+        Debug.Log("FIN - GAMEMANAGER - UpdateWave");
     }
 
-    public void chickenEnemyTakeDamage(GameObject enemy, int damage)
+    IEnumerator startWave(float seconds, int initialEnemies, int numEnemies)
     {
-        int auxLife = 0;
-        // Spawn particula de hit
-        Instantiate(vfxHitWaveEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-        if (enemy != null)
-        {
-            if (enemy.GetComponent<ContenedorEnemigo1>() != null)
-            {
-                auxLife = enemy.GetComponent<ContenedorEnemigo1>().lifes -= damage;
-            }
-        }
-
-        if (auxLife <= 0)
-        {
-            cinemachineImpulseSource = enemy.gameObject.GetComponent<CinemachineImpulseSource>();
-            cinemachineImpulseSource.GenerateImpulse();
-            Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
-            StartCoroutine(FrameFreeze(0.03f));
-            score++;
-            enemy.GetComponent<ContenedorEnemigo1>().PolloMansy();
-            Destroy(enemy);
-            enemyDeath();
-        }
-    }
-
-    public void chikenGenerator() {
-        probabilityIterator = Random.Range(0, 100);
-
-        if (probabilityIterator >= 0 && probabilityIterator <= 60)
-        {
-            randomIterastor = 0;
-        }
-        else if (probabilityIterator > 60 && probabilityIterator <= 75)
-        {
-            randomIterastor = 1;
-        }
-        else if (probabilityIterator > 75 && probabilityIterator <= 90)
-        {
-            randomIterastor = 2;
-        }
-        else if (probabilityIterator > 90 && probabilityIterator <= 100)
-        {
-            randomIterastor = 3;
-        }
-
-        spawnPosition = new Vector3(Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, Random.Range(limiteZNegativo, LimiteZPositivo));
-        Instantiate(pollosToSpawn[randomIterastor], spawnPosition, Quaternion.identity);
-        enemyCount++;
-    }
-
-    private IEnumerator FrameFreeze(float duration)
-    {
-        Time.timeScale = 0f;
-
-        yield return new WaitForSecondsRealtime(duration);
-
-        Time.timeScale = 1f;
-    }
-
-    IEnumerator chikenWaitSpawner()
-    {
-        siguiente = false;
-        Debug.Log("111-" + enemyNumber);
-        enemyNumber = waveCurrent <= 1 ? numMaxWave1 - enemyInitial * 1 : 0;
-        Debug.Log("222-" + enemyNumber);
-        enemyNumber = waveCurrent == 2 ? numMaxWave2 - enemyInitial * 2 : enemyNumber;
-        Debug.Log("333-" + enemyNumber);
-        enemyNumber = waveCurrent == 3 ? numMaxWave3 - enemyInitial * 3 : enemyNumber;
-        Debug.Log("444-" + enemyNumber);
-        enemyNumber = waveCurrent >= 4 ? numMaxWave3 : enemyNumber;
-        Debug.Log("555-" + enemyNumber);
-
-        for (int i = 0; i < enemyNumber; i++)
-        {
-            yield return new WaitForSeconds(timeGeneration);
-            chikenGenerator();
-        }
-
-        siguiente = true;
-    }
-
-
-  
-    IEnumerator startWave(float seconds, int totalEnemies)
-    {
+        Debug.Log("INI - GAMEMANAGER - startWave");
         canvasRound.gameObject.SetActive(true);
-       
+
         //Audio
         musicManager.FX_ActivarCorutina(waveCurrent - 1, waveCurrent);
 
@@ -238,12 +258,97 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         canvasRound.gameObject.SetActive(false);
 
-        for (int i = 0; i < totalEnemies; i++)
+        for (int i = 0; i < initialEnemies; i++)
         {
             chikenGenerator();
         }
 
-        StartCoroutine(chikenWaitSpawner());
+        StartCoroutine(chikenWaitSpawner(numEnemies));
+        Debug.Log("FIN - GAMEMANAGER - startWave");
+    }
+
+    IEnumerator chikenWaitSpawner(int numEnemies)
+    {
+        Debug.Log("INI - GAMEMANAGER - chikenWaitSpawner");
+        //siguiente = false;
+
+        for (int i = 0; i < numEnemies; i++)
+        {
+            yield return new WaitForSeconds(timeGeneration);
+            chikenGenerator();
+        }
+
+        //siguiente = true;
+        Debug.Log("FIN - GAMEMANAGER - chikenWaitSpawner");
+    }
+
+    public void chikenGenerator()
+    {
+        Debug.Log("INI - GAMEMANAGER - chikenGenerator");
+        // Generar un número aleatorio para determinar el pollo a generar
+        float randomNumber = Random.Range(0, 100);
+        GameObject selectedPollo = null;
+        AdjustProbabilities();
+
+        // Iterar a través de la lista de pollos y seleccionar uno basado en las probabilidades acumuladas
+        foreach (ChickenConfig chikenConfig in chikenToSpawn)
+        {
+            if (randomNumber < chikenConfig.probability)
+            {
+                selectedPollo = chikenConfig.chickenPrefab;
+                break; // Salir del loop una vez que el pollo es seleccionado
+            }
+
+            // Restar la probabilidad actual para la próxima comparación
+            randomNumber -= chikenConfig.probability;
+        }
+
+        // Si hemos seleccionado un pollo válido, generarlo
+        if (selectedPollo != null)
+        {
+            Debug.Log("INI - GAMEMANAGER - chikenGenerator - selectedPollo != null");
+            spawnPosition = new Vector3(Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, Random.Range(limiteZNegativo, LimiteZPositivo));
+            Instantiate(selectedPollo, spawnPosition, Quaternion.identity);
+            enemyCount++;
+            Debug.Log("FIN - GAMEMANAGER - chikenGenerator - selectedPollo != null");
+        }
+
+        Debug.Log("FIN - GAMEMANAGER - chikenGenerator");
+    }
+
+    // Método para ajustar las probabilidades de los pollos en el array chikenToSpawn
+    public void AdjustProbabilities()
+    {
+        // Sumar todas las probabilidades actuales
+        float totalProbability = 0;
+        foreach (ChickenConfig chicken in chikenToSpawn)
+        {
+            totalProbability += chicken.probability;
+        }
+
+        // Si la suma de probabilidades es 0, evitar la división por 0
+        if (totalProbability == 0)
+        {
+            Debug.LogError("Error: Las probabilidades suman 0, no se pueden ajustar.");
+            return;
+        }
+
+        // Ajustar cada probabilidad para que sumen 100%
+        foreach (ChickenConfig chicken in chikenToSpawn)
+        {
+            chicken.probability = ((chicken.probability / totalProbability) * 100);
+        }
+
+        Debug.Log("Probabilidades ajustadas correctamente para que sumen 100%.");
+    }
+
+    private IEnumerator FrameFreeze(float duration)
+    {
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(duration);
+
+        Time.timeScale = 1f;
     }
 
     public void ActivarFXMuerte()
@@ -254,7 +359,6 @@ public class GameManager : MonoBehaviour
     //Menu pausa
     public void exit_pause_menu()
     {
-
         Time.timeScale = 1;
         paused = false;
         pausemenu.SetActive(false);
