@@ -21,7 +21,7 @@ public class AI_Movimiento_Enemigo1 : StateMachineBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (player != null)
+        if (player != null && player.layer != LayerMask.NameToLayer("Invisible"))
         {
             enemy.destination = player.transform.position;
             if (Vector3.Distance(enemy.transform.position, player.transform.position) <= contenedorEnemy.distanceToEnemy)

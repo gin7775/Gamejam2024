@@ -1,31 +1,52 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
-    public float rotationSpeed = 100f;
-    public CharacterController controller;
+    
+    [Header("Movimiento y Dash Settings")]
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float rotationSpeed = 100f;
+    [SerializeField] private float dashSpeed = 15f;
+    [SerializeField] private float dashDuration = 0.5f;
+    [SerializeField] private float dashCooldown = 2f;
+    [SerializeField] private ParticleSystem dashParticle;
 
+   
+    [Header("Control de Input")]
     private Vector2 moveInput;
-    private Vector2 lookInput; // Input del ratón
-    private Vector2 lookInputController; // Input del joystick
-    private bool isUsingController = false; // Booleano que indica si se está usando el mando o el ratón
-    private Camera mainCamera;
-    public float gravity = 9.81f;
-    private Vector3 velocity;
-    private Animator animator;
+    private Vector2 lookInput;
+    private Vector2 lookInputController;
+    private bool isUsingController = false;
 
+    
+    [Header("Referencias a Componentes")]
+    [SerializeField] private CharacterController controller;
+    private Collider playerCollider;
+    private Camera mainCamera;
+    private Animator animator;
     private GameManager gameManager;
+
+   
+    [Header("Estados del Jugador")]
+    private bool isDashing = false;
+    private bool canDash = true;
+
+   
+    [Header("Física")]
+    [SerializeField] public float gravity = 9.81f;
+    private Vector3 velocity;
+
     private void Awake()
     {
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
+        playerCollider = this.GetComponent<Collider>();
     }
 
     void Update()
     {
-        Movement();
+        if (!isDashing) Movement();
         ApplyGravity();
         Animations();
         // Decidir si usar el input del mando o del ratón basado en el valor de `isUsingController`
@@ -50,6 +71,13 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+    }
+    public void OnDash(InputValue value)
+    {
+        if (canDash)
+        {
+            StartCoroutine(PerformDash());
+        }
     }
 
     // Método llamado por el Player Input para el ratón
@@ -92,6 +120,53 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 desiredMoveDirection = forward * moveInput.y + right * moveInput.x;
         controller.Move(desiredMoveDirection * speed * Time.deltaTime);
+    }
+
+    private IEnumerator PerformDash()
+    {
+        canDash = false;  // Desactivar el dash hasta que se complete el cooldown
+        isDashing = true;
+        dashParticle.Play();
+        
+        SetCollisionWithEnemies(false);                              // Hacer al jugador inmune y no detectable
+        gameObject.layer = LayerMask.NameToLayer("Invisible");      
+       
+
+        float dashStartTime = Time.time;
+        Vector3 dashDirection = mainCamera.transform.forward * moveInput.y + mainCamera.transform.right * moveInput.x;
+        dashDirection.y = 0; // No aplicar fuerza en el eje Y
+
+        // Movimiento del dash
+        while (Time.time < dashStartTime + dashDuration)
+        {
+            controller.Move(dashDirection.normalized * dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // Fin del dash
+        isDashing = false;
+        SetCollisionWithEnemies(true);
+        gameObject.layer = LayerMask.NameToLayer("Default"); // Cambiar de nuevo la capa para que sea detectable
+
+        // Cooldown del dash
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;  // Ahora el dash se puede usar nuevamente
+    }
+
+    // Método para activar o desactivar las colisiones con los enemigos
+    private void SetCollisionWithEnemies(bool enableCollision)
+    {
+        // Buscar todos los enemigos activos cada vez que se hace el dash
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Collider enemyCollider = enemy.GetComponent<Collider>();
+            if (enemyCollider != null)
+            {
+                Physics.IgnoreCollision(playerCollider, enemyCollider, !enableCollision);
+                
+            }
+        }
     }
 
     // Rotación basada en el input del joystick
