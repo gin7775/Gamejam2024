@@ -43386,6 +43386,16 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverDistance.scalar
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6776502234836773376, guid: dd4856e723c2a48459379682064eb1aa,
+        type: 3}
+      propertyPath: speed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6776502234836773376, guid: dd4856e723c2a48459379682064eb1aa,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
