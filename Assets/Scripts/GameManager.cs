@@ -13,46 +13,48 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // ---- Control de oleadas ----
-    [SerializeField] private float timeWave;  // Tiempo por oleada
-    [SerializeField] private float timeGeneration;  // Tiempo entre generación de enemigos
-    [SerializeField] public int enemyNumber;  // Número total de enemigos en la ronda
-    [SerializeField] public int enemyInitial; // Número de enemigos por oleada inicial
-    [SerializeField] public int enemyCount;   // Número de enemigos que quedan en la ronda
-    [SerializeField] public int waveNumber;   // Número de rondas totales
-    [SerializeField] public int waveCurrent;  // Número de la ronda actual
-    [SerializeField] public int dificultiLevel;  // Nivel de dificultad
-    //[SerializeField] private bool siguiente;  // Control para saber si continúa a la siguiente oleada
+    [SerializeField] public int level = 1;                                              // Nivel/Mapa
+    [SerializeField] private float timeWave = 15;                                       // Tiempo por oleada
+    [SerializeField] private float timeGeneration = 15;                                 // Tiempo entre generación de enemigos
+    [SerializeField] public int enemyNumber = 0;                                        // Número total de enemigos en la ronda
+    [SerializeField] public int enemyInitial = 5;                                       // Número de enemigos por oleada inicial
+    [SerializeField] public int enemyCount = 5;                                         // Número de enemigos que quedan en la ronda
+    [SerializeField] public int waveNumber = 0;                                         // Número de rondas totales
+    [SerializeField] public int waveCurrent = 0;                                        // Número de la ronda actual
+    [SerializeField] public int dificultiLevel = 0;                                     // Nivel de dificultad
+    //[SerializeField] private bool siguiente;                                          // Control para saber si continúa a la siguiente oleada
+    //[SerializeField] private int numMaxWave1;                                         // Máx. enemigos en la ola 1
+    //[SerializeField] private int numMaxWave2;                                         // Máx. enemigos en la ola 2
+    //[SerializeField] private int numMaxWave3;                                         // Máx. enemigos en la ola 3
 
-    //[SerializeField] private int numMaxWave1;  // Máx. enemigos en la ola 1
-    //[SerializeField] private int numMaxWave2;  // Máx. enemigos en la ola 2
-    //[SerializeField] private int numMaxWave3;  // Máx. enemigos en la ola 3
-
-    [SerializeField] private Canvas canvasRound;  // UI de la ronda
-    [SerializeField] private Animator canvasAnimator; // Animador para transiciones
-    [SerializeField] private GameObject textMesh; // Texto de la ronda
-    private CinemachineImpulseSource cinemachineImpulseSource; // Fuente del efecto de impulso
+    [SerializeField] private Canvas canvasRound;                                        // UI de la ronda
+    [SerializeField] private Animator canvasAnimator;                                   // Animador para transiciones
+    [SerializeField] private GameObject textMesh;                                       // Texto de la ronda
+    private CinemachineImpulseSource cinemachineImpulseSource;                          // Fuente del efecto de impulso
 
     // ---- Control de enemigos ----
-    [SerializeField] private List<ChickenConfig> chikenToSpawn; // Lista de enemigos y probabilidades
-    [SerializeField] private Vector3 spawnPosition; // Posición de generación
-    [SerializeField] private GameObject vfxHitEffect; // Efecto al recibir golpe
-    [SerializeField] private GameObject vfxHitWaveEffect; // Efecto al recibir golpe en oleada
-    [SerializeField] private GameObject SmokeEffect; // Efecto de humo al generar enemigo
-    public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo; // Límites de generación
+    [SerializeField] private List<ChickenConfig> chikenToSpawn;                         // Lista de enemigos, probabilidades y puntuacion
+    [SerializeField] private List<ChickenConfigWave> chikenToSpawnWave;                 // Lista de enemigos, probabilidades y puntuacion según oleada y mapa/nivel
+    [SerializeField] private List<ChickenConfigWave> difficult;                         // Lista de enemigos, probabilidades y puntuacion según oleada y mapa/nivel
+    [SerializeField] public int totalChicken = 0;                                       // Total de pollos
+    [SerializeField] private Vector3 spawnPosition;                                     // Posición de generación
+    [SerializeField] private GameObject vfxHitEffect;                                   // Efecto al recibir golpe
+    [SerializeField] private GameObject vfxHitWaveEffect;                               // Efecto al recibir golpe en oleada
+    [SerializeField] private GameObject SmokeEffect;                                    // Efecto de humo al generar enemigo
+    public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;    // Límites de generación
 
     // ---- Control del juego ----
-    [SerializeField] public int score = 0;  // Puntuación
-    public GameObject scoreText;  // Texto de la puntuación
-    public bool paused = false;   // Estado de pausa
-    public GameObject pausemenu;  // Menú de pausa
-    private int currentWaveScore = 0;  // Puntaje de la oleada actual
-    [SerializeField] public int totalChicken = 0;  // Puntaje de la oleada actual
+    [SerializeField] public bool paused = false;                                        // Estado de pausa
+    [SerializeField] public int score = 0;                                              // Puntuación
+    public GameObject scoreText;                                                        // Texto de la puntuación
+    public GameObject pausemenu;                                                        // Menú de pausa
+    [SerializeField] private int currentWaveScore = 0;                                  // Puntaje de la oleada actual
 
     // ---- Control de música ----
-    [SerializeField] private MusicManager musicManager; // Controlador de música
-    public AudioMixer myMixer;  // Mezclador de audio
-    public Slider musicSlider;  // Control deslizante de música
-    public Slider SFXSlider;    // Control deslizante de efectos
+    [SerializeField] private MusicManager musicManager;                                 // Controlador de música
+    public AudioMixer myMixer;                                                          // Mezclador de audio
+    public Slider musicSlider;                                                          // Control deslizante de música
+    public Slider SFXSlider;                                                            // Control deslizante de efectos
 
     // Singleton pattern
     private void Awake()
@@ -75,7 +77,6 @@ public class GameManager : MonoBehaviour
         enemyCount = 0;
         score = 0;
         //waveNumber = 3;
-
         //numMaxWave1 = 20;
         //numMaxWave2 = 50;
         //numMaxWave3 = 100;
@@ -132,11 +133,11 @@ public class GameManager : MonoBehaviour
     public void enemyDeath()
     {
         Debug.Log("INI - GAMEMANAGER - enemyDeath");
-        /*
-        enemyCount--;
-
         //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
         musicManager.Play_FX_ExplosionPollo();
+
+        /*
+        enemyCount--;
 
         if (enemyCount <= 0 && score == numMaxWave1 || enemyCount <= 0 && score == numMaxWave2 || enemyCount <= 0 && score == numMaxWave3 || enemyCount <= 0 && siguiente)
         {
@@ -169,42 +170,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("FIN - GAMEMANAGER - enemyDeath");
     }
 
-    /*
-    public void UpdateWave()
-    {
-        waveCurrent++;
-
-        if (waveCurrent <= waveNumber)
-        {
-            textMesh.GetComponent<TextMeshProUGUI>().text = "Round " + waveCurrent;
-            if (waveCurrent <= 1)
-            {
-                dificultiLevel = 1;
-                timeGeneration = 2.5f;
-                InstantiatePollos(enemyInitial);
-            }
-            else if (waveCurrent == 2)
-            {
-                dificultiLevel = 2;
-                timeGeneration = 1.5f;
-                InstantiatePollos(enemyInitial * 2);
-            }
-            else
-            {
-                dificultiLevel = 3;
-                timeGeneration = 0.85f;
-                InstantiatePollos(enemyInitial * 3);
-            }
-        }
-        else
-        {
-            dificultiLevel = 4;
-            timeGeneration = 0.75f;
-            InstantiatePollos(20);
-        }
-    }
-    */
-
     /// <summary>
     /// Actualiza la oleada actual y escala la dificultad en función de la ola.
     /// </summary>
@@ -220,7 +185,8 @@ public class GameManager : MonoBehaviour
         textMesh.GetComponent<TextMeshProUGUI>().text = "Round " + waveCurrent;
 
         // Escalar la dificultad basado en la oleada actual
-        dificultiLevel = Mathf.FloorToInt(waveCurrent / 5) + 1; // Incrementa cada 5 oleadas
+        //dificultiLevel = Mathf.FloorToInt(waveCurrent / 5) + 1; // Incrementa cada 5 oleadas
+        Dictionary<int, int> waveDifficulty = WaveManager.Instance.getWaveDificulty();
 
         // Aumentar progresivamente la cantidad de enemigos a generar
         int enemiesToSpawn = Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.2f, waveCurrent)); // Aumenta un 20% cada
@@ -235,7 +201,7 @@ public class GameManager : MonoBehaviour
         InstantiatePollos(enemyInitial, enemiesToSpawn);
 
         // Incrementar enemyInitial levemente cada 5 rondas, basándose en el nivel de dificultad
-        enemyInitial = Mathf.FloorToInt(enemyInitial * (1 + (dificultiLevel * 0.05f))); // Incremento del 5% por nivel de dificultad
+        //enemyInitial = Mathf.FloorToInt(enemyInitial * (1 + (dificultiLevel * 0.05f))); // Incremento del 5% por nivel de dificultad
 
         Debug.Log("FIN - GAMEMANAGER - UpdateWave");
     }
