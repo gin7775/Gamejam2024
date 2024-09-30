@@ -33,9 +33,10 @@ public class GameManager : MonoBehaviour
     private CinemachineImpulseSource cinemachineImpulseSource;                          // Fuente del efecto de impulso
 
     // ---- Control de enemigos ----
+    [SerializeField] private List<GameObject> listSpawns;                               // Lista de spawns
     [SerializeField] private List<ChickenConfig> chikenToSpawn;                         // Lista de enemigos, probabilidades y puntuacion
     [SerializeField] private List<ChickenConfigWave> chikenToSpawnWave;                 // Lista de enemigos, probabilidades y puntuacion según oleada y mapa/nivel
-    [SerializeField] private List<ChickenConfigWave> difficult;                         // Lista de enemigos, probabilidades y puntuacion según oleada y mapa/nivel
+    [SerializeField] private List<ChickenDifficult> difficult;                          // Lista de enemigos, probabilidades y puntuacion según oleada y mapa/nivel
     [SerializeField] public int totalChicken = 0;                                       // Total de pollos
     [SerializeField] private Vector3 spawnPosition;                                     // Posición de generación
     [SerializeField] private GameObject vfxHitEffect;                                   // Efecto al recibir golpe
@@ -184,9 +185,8 @@ public class GameManager : MonoBehaviour
         // Mostrar el texto de la ronda actual
         textMesh.GetComponent<TextMeshProUGUI>().text = "Round " + waveCurrent;
 
-        // Escalar la dificultad basado en la oleada actual
-        //dificultiLevel = Mathf.FloorToInt(waveCurrent / 5) + 1; // Incrementa cada 5 oleadas
-        Dictionary<int, int> waveDifficulty = WaveManager.Instance.getWaveDificulty();
+        // Obtenemos la dificultad en base a la oleada actual
+        dificultiLevel = WaveManager.Instance.GetDifficultyPointsByWave(waveCurrent);
 
         // Aumentar progresivamente la cantidad de enemigos a generar
         int enemiesToSpawn = Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.2f, waveCurrent)); // Aumenta un 20% cada
@@ -224,12 +224,13 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         canvasRound.gameObject.SetActive(false);
 
-        for (int i = 0; i < initialEnemies; i++)
-        {
-            chikenGenerator();
-        }
+        WaveManager.Instance.GenerateChickenSquad();
+        //for (int i = 0; i < initialEnemies; i++)
+        //{
+        //    chikenGenerator();
+        //}
 
-        StartCoroutine(chikenWaitSpawner(numEnemies));
+        // StartCoroutine(chikenWaitSpawner(numEnemies));
         Debug.Log("FIN - GAMEMANAGER - startWave");
     }
 
@@ -246,6 +247,31 @@ public class GameManager : MonoBehaviour
 
         //siguiente = true;
         Debug.Log("FIN - GAMEMANAGER - chikenWaitSpawner");
+    }
+
+    public GameObject prepareChikenGenerator()
+    {
+        Debug.Log("INI - GAMEMANAGER - prepareChikenGenerator");
+        // Generar un número aleatorio para determinar el pollo a generar
+        float randomNumber = Random.Range(0, 100);
+        GameObject selectedPollo = null;
+        AdjustProbabilities();
+
+        // Iterar a través de la lista de pollos y seleccionar uno basado en las probabilidades acumuladas
+        foreach (ChickenConfig chikenConfig in chikenToSpawn)
+        {
+            if (randomNumber < chikenConfig.probability)
+            {
+                selectedPollo = chikenConfig.chickenPrefab;
+                break; // Salir del loop una vez que el pollo es seleccionado
+            }
+
+            // Restar la probabilidad actual para la próxima comparación
+            randomNumber -= chikenConfig.probability;
+        }
+
+        Debug.Log("FIN - GAMEMANAGER - prepareChikenGenerator");
+        return selectedPollo;
     }
 
     public void chikenGenerator()
@@ -280,6 +306,11 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("FIN - GAMEMANAGER - chikenGenerator");
+    }
+
+    public Vector3 getRandomAreaSpawn()
+    {
+        return new Vector3(Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, Random.Range(limiteZNegativo, LimiteZPositivo));
     }
 
     // Método para ajustar las probabilidades de los pollos en el array chikenToSpawn
@@ -366,7 +397,6 @@ public class GameManager : MonoBehaviour
     }
 
     //Music Manager
-
     public void SetMusicVolume()
     {
         Debug.Log("Music modified");
@@ -376,7 +406,6 @@ public class GameManager : MonoBehaviour
     }
     public void SetSFXVolume()
     {
-
         float volume = SFXSlider.value;
         myMixer.SetFloat("FX", Mathf.Log10(volume) * 20);
     }

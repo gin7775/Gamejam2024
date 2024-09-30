@@ -19,7 +19,7 @@ public class Retry : MonoBehaviour
 
     public void Reload()
     {
-        SceneManager.LoadScene("1_MainGame");
+        SceneManager.LoadScene("8_Blocking_riky");
     }
 
     public void Quit()

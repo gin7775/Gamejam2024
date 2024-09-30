@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/3_Opciones.unity
     guid: 0b677c1313f57434ba4dec7bf564495c
+  - enabled: 1
+    path: Assets/0_Scenes/8_Blocking_riky.unity
+    guid: cd28f1881509f7b46a0b221a67afe98f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
