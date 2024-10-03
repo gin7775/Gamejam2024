@@ -78,7 +78,7 @@ MonoBehaviour:
   distanceToEnemy: 3
   destination: {fileID: 0}
   lifes: 3
-  speed: 1
+  speed: 3.5
   distanceToAttack: 2
   corpse: {fileID: 7062845070779954322, guid: 35efb8904c4d70b4494b56c310651763, type: 3}
   canDamage: 0
