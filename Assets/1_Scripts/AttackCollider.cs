@@ -20,6 +20,7 @@ public class AttackCollider : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+ 
         if ("Enemy".Equals(other.gameObject.tag))
         {
             switch (attackType)
@@ -31,7 +32,12 @@ public class AttackCollider : MonoBehaviour
                     GameManager.Instance.chickenEnemyTakeDamage(other.GetComponent<ContenedorEnemigo1>().gameObject, 2);
                     break;
             }
+
+            //this.gameObject.SetActive(false);
+
+
         }
+
     }
 
 }

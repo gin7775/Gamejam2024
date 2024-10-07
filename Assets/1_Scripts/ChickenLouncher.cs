@@ -16,6 +16,13 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] int chickenMaxUses = 3;
     [SerializeField] GameObject headBox;
     [SerializeField] GameObject swingBox;
+
+    // Control del Player
+    [SerializeField] bool CanAttack = true; // Cooldown del ataque a melee
+    [SerializeField] float AttackCooldown = 0.5f;
+    [SerializeField] float nextAttackTime = 0f;
+
+
     // Gestor de Vidas Player
     [SerializeField] int health = 3;
     [SerializeField] int maxHealth = 3;
@@ -31,6 +38,7 @@ public class ChickenLouncher : MonoBehaviour
     GameObject proyectile;
     Vector3 projectilePos;
     private Animator anim;
+
     //Esto es para la muerte
     bool muriendo;
     [SerializeField] private bool gameModeFrenezzi = false;
@@ -58,7 +66,7 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
-        anim.SetTrigger("Attack");
+        Debug.Log("ATTACK ANIMATION");
         Attack(chickenType);
         //Debug.Log("Ataca");
     }
@@ -126,10 +134,14 @@ public class ChickenLouncher : MonoBehaviour
     {
         musicManager.Play_FX_Player_PolloMuerto();
         anim.SetTrigger("Die");
-        yield return new WaitForSeconds(2f);
-        //Debug.Log("Ye dead!");
         RetryButton.gameObject.SetActive(true);
         Destroy(this.gameObject);
+
+        yield return new WaitForSeconds(2f);
+
+        //Debug.Log("Ye dead!");
+        //RetryButton.gameObject.SetActive(true);
+        //Destroy(this.gameObject);
     }
 
     void UpdateWeapon()
@@ -282,29 +294,44 @@ public class ChickenLouncher : MonoBehaviour
 
     public void Attack(int AmmoType)
     {
-        switch (AmmoType)
-        {
-            case 0:
-                //Debug.Log("Got no chickens");
-                HeadBut();
-                break;
-            case 1:
-                ChickenSwing();
-                UpdateWeapon();
-                break;
-            case 2:
-                ChickenSwing();
-                UpdateWeapon();
-                break;
-            case 3:
-                ChickenSwing();
-                UpdateWeapon();
-                break;
-            case 4:
-                ChickenSwing();
-                UpdateWeapon();
-                break;
-        }
+       
+            switch (AmmoType)
+            {
+                case 0:
+                    if (Time.time >= nextAttackTime) //Inicio Comprobación Cooldown Ataque
+                    {
+                        /*CanAttack = true;
+                    }
+                    if (CanAttack)
+                    {
+                        CanAttack = false;*/
+                        anim.SetTrigger("Attack");
+                        nextAttackTime = Time.time + AttackCooldown; //Final Comprobación Cooldown Ataque
+                        HeadBut();
+                    } 
+
+                    //Debug.Log("Got no chickens");
+                    //HeadBut();
+                    break;
+                case 1:
+                    ChickenSwing();
+                    UpdateWeapon();
+                    break;
+                case 2:
+                    ChickenSwing();
+                    UpdateWeapon();
+                    break;
+                case 3:
+                    ChickenSwing();
+                    UpdateWeapon();
+                    break;
+                case 4:
+                    ChickenSwing();
+                    UpdateWeapon();
+                    break;
+            }
+        
+        
     }
 
     public void HeadBut()
