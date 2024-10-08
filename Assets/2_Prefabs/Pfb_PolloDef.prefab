@@ -9909,17 +9909,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.67
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.39
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -35.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
@@ -10732,6 +10732,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 919176986409791427}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9271233324e6a2740be2036e3cfadcab,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 2567457919124909453}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9271233324e6a2740be2036e3cfadcab,
         type: 3}
@@ -10815,6 +10819,29 @@ MonoBehaviour:
   dashParticle: {fileID: 2866650558873586239}
   controller: {fileID: 6084375444248358302}
   gravity: 9.81
+--- !u!114 &919176986409791427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070763598195129822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf4cdc7830177b4f80f439615838461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  maxHealth: 3
+  eggs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  invulnerabilityDuration: 1
+  hitParticle: {fileID: 7984433099718515059}
+  RetryButton: {fileID: 0}
+  playerMaterial: {fileID: 2100000, guid: f55a29c15d40f1d4fa7138c10c0a506d, type: 2}
+  musicManager: {fileID: 0}
 --- !u!114 &2567457919124909453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10839,8 +10866,9 @@ MonoBehaviour:
   headBox: {fileID: 6894506992166503139}
   swingBox: {fileID: 3294839230419207745}
   CanAttack: 1
-  AttackCooldown: 0.5
+  AttackCooldown: 1
   nextAttackTime: 0
+  playerHealth: {fileID: 0}
   health: 3
   maxHealth: 3
   eggs:
@@ -10857,10 +10885,6 @@ MonoBehaviour:
   currentProyectile: []
   shildCounter: []
   gameModeFrenezzi: 0
-  invulnerabilityDuration: 1
-  hitParticle: {fileID: 7984433099718515059}
-  RetryButton: {fileID: 0}
-  playerMaterial: {fileID: 2100000, guid: f55a29c15d40f1d4fa7138c10c0a506d, type: 2}
 --- !u!143 &6084375444248358302
 CharacterController:
   m_ObjectHideFlags: 0
@@ -11017,7 +11041,7 @@ MonoBehaviour:
     m_ImpactRadius: 100
     m_DirectionMode: 0
     m_DissipationMode: 2
-    m_DissipationDistance: 25
+    m_DissipationDistance: 30
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 7, y: 7, z: 7}
 --- !u!4 &7257534045974285928 stripped

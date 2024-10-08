@@ -302,7 +302,7 @@ public class ChickenLouncher : MonoBehaviour
         if (headBox != null)
         {
             //Debug.Log("Headbutting");
-            StartCoroutine(ActivateCollider(headBox));
+            StartCoroutine(ActivateColliderChicken(headBox));
         }
         else
         {
@@ -330,8 +330,14 @@ public class ChickenLouncher : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         collider.SetActive(false);
     }
+    IEnumerator ActivateColliderChicken(GameObject collider)
+    {
+        yield return new WaitForSeconds(0.15f);
+        collider.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        collider.SetActive(false);
+    }
 
-    
     private void OnTriggerEnter(Collider other)
     {
        // Debug.Log("He colisionado con " + other.gameObject.name);

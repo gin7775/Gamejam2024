@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
@@ -17,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject RetryButton;
     [SerializeField] private Material playerMaterial;
     private static readonly int IsColorShift = Shader.PropertyToID("_Is_ColorShift");
-    private static readonly int IsRimLight = Shader.PropertyToID("_Is_RimLight");
+    private static readonly int IsRimLight = Shader.PropertyToID("_RimLight");
     private static readonly int IsViewShift = Shader.PropertyToID("_Is_ViewShift");
     private Coroutine invulnerabilityCoroutine;
     private bool muriendo = false;
@@ -26,8 +25,6 @@ public class PlayerHealth : MonoBehaviour
     private Animator anim;
     CinemachineImpulseSource cinemachineImpulseSource;
     [SerializeField] MusicManager musicManager;
-
-
 
     void Start()
     {
@@ -41,8 +38,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isInvulnerable)
         {
-
-
             StartCoroutine(InvulnerabilityCoroutine());
             cinemachineImpulseSource.GenerateImpulse();
             hitParticle.Play();
@@ -50,7 +45,6 @@ public class PlayerHealth : MonoBehaviour
             health -= damage;
 
             musicManager.Play_FX_PLayer_RecibirDaño();
-
 
             if (health <= 0)
             {
@@ -66,37 +60,42 @@ public class PlayerHealth : MonoBehaviour
         // Activa el color shifting, rim light y view shift
         playerMaterial.SetFloat(IsColorShift, 1);
         playerMaterial.SetFloat(IsRimLight, 1);
+
+
         playerMaterial.SetFloat(IsViewShift, 1);
 
+        // Aquí se cambia el valor a 1 al recibir daño
+        playerMaterial.SetFloat("_BaseColor_Step", 1f);
+
+        // Esperamos antes de realizar la transición
+        yield return new WaitForSeconds(invulnerabilityDuration);
+        
         // Tiempo total para la transición de desactivación
-        float duration = 1f;
+        float duration = invulnerabilityDuration;
         float elapsed = 0f;
-
-
-        yield return new WaitForSeconds(1f);
 
         // Desactiva progresivamente el color shifting, rim light y view shift
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
 
-
             float t = Mathf.Clamp01(elapsed / duration);
-
 
             playerMaterial.SetFloat(IsColorShift, 1 - t);
             playerMaterial.SetFloat(IsRimLight, 1 - t);
             playerMaterial.SetFloat(IsViewShift, 1 - t);
-
+            float baseColorStepValue = Mathf.Lerp(1f, 0.5f, t); // Cambia de 1 a 0.5
+            playerMaterial.SetFloat("_BaseColor_Step", baseColorStepValue);
             yield return null;
         }
-
 
         playerMaterial.SetFloat(IsColorShift, 0);
         playerMaterial.SetFloat(IsRimLight, 0);
         playerMaterial.SetFloat(IsViewShift, 0);
+        playerMaterial.SetFloat("_BaseColor_Step", 0.5f);
 
         isInvulnerable = false;
+
     }
 
     private void UpdateLifeUI()
@@ -112,7 +111,7 @@ public class PlayerHealth : MonoBehaviour
         if (!muriendo)
         {
             hitParticle.Play();
-            if (invulnerabilityCoroutine != null) // Detén la coroutine si está corriendo
+            if (invulnerabilityCoroutine != null) // Detiene la coroutine si está corriendo
             {
                 StopCoroutine(invulnerabilityCoroutine);
                 invulnerabilityCoroutine = null; // Reinicia la referencia
@@ -122,6 +121,8 @@ public class PlayerHealth : MonoBehaviour
             playerMaterial.SetFloat(IsColorShift, 0);
             playerMaterial.SetFloat(IsRimLight, 0);
             playerMaterial.SetFloat(IsViewShift, 0);
+            playerMaterial.SetFloat("_BaseColor_Step", 0.5f);
+
             muriendo = true;
             StartCoroutine(TransicionMuerte());
         }
@@ -135,10 +136,6 @@ public class PlayerHealth : MonoBehaviour
         Destroy(this.gameObject);
 
         yield return new WaitForSeconds(2f);
-
-        //Debug.Log("Ye dead!");
-        //RetryButton.gameObject.SetActive(true);
-        //Destroy(this.gameObject);
     }
 
     public void LifeUp(int extraLife)
@@ -149,5 +146,4 @@ public class PlayerHealth : MonoBehaviour
             health = maxHealth;
         }
     }
-
 }
