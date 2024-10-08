@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -910,6 +910,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &227580510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d4d720d002e5c6145a81674a49bd53b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 451734666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &227580514
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227580510}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8882786604329737734, guid: d4d720d002e5c6145a81674a49bd53b2, type: 3}
 --- !u!1 &250082270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,7 +1509,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6ea24169ffc42f442867ae7bf70da381,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.84
+      value: -6.908
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6ea24169ffc42f442867ae7bf70da381,
         type: 3}
@@ -2080,7 +2108,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d4d720d002e5c6145a81674a49bd53b2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 227580514}
   m_SourcePrefab: {fileID: 100100000, guid: d4d720d002e5c6145a81674a49bd53b2, type: 3}
 --- !u!1 &463710596 stripped
 GameObject:
@@ -6670,7 +6702,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2070763598195129822, guid: dd4856e723c2a48459379682064eb1aa,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1796150366}
   m_SourcePrefab: {fileID: 100100000, guid: dd4856e723c2a48459379682064eb1aa, type: 3}
 --- !u!4 &1796150356 stripped
 Transform:
@@ -6684,6 +6720,29 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1796150355}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1796150366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796150357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf4cdc7830177b4f80f439615838461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  maxHealth: 3
+  eggs:
+  - {fileID: 3856775006313460392}
+  - {fileID: 3856775006313460391}
+  - {fileID: 3856775006313460390}
+  invulnerabilityDuration: 1
+  hitParticle: {fileID: 583895226}
+  RetryButton: {fileID: 1777127790}
+  playerMaterial: {fileID: 2100000, guid: f55a29c15d40f1d4fa7138c10c0a506d, type: 2}
+  musicManager: {fileID: 0}
 --- !u!1001 &1809254577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8532,6 +8591,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 111138623149527729, guid: a349b031db0ba3743bac9e83dd684048,
+        type: 3}
+      propertyPath: m_Name
+      value: EggIcon 3
+      objectReference: {fileID: 0}
     - target: {fileID: 376532937628937811, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
       propertyPath: m_Follow
@@ -8892,6 +8956,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -28.7
       objectReference: {fileID: 0}
+    - target: {fileID: 6590426395454344195, guid: a349b031db0ba3743bac9e83dd684048,
+        type: 3}
+      propertyPath: m_Name
+      value: EggIcon 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6693330512813274117, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
       propertyPath: orthographic size
@@ -8928,6 +8997,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368099187788726919, guid: a349b031db0ba3743bac9e83dd684048,
+        type: 3}
+      propertyPath: m_Name
+      value: EggIcon 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
