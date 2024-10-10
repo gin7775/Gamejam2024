@@ -24,6 +24,11 @@ public class ContenedorEnemigo1 : MonoBehaviour
         cinemachineImpulseSource = this.GetComponent<CinemachineImpulseSource>();
         playerReference = GameObject.FindGameObjectWithTag("Player");
     }
+    public void PolloMansy()
+    {
+        //Debug.Log("I manifest the greatest of phoes! A chicken! WORSE... A Deadly Chicken... it's dead... oh...");
+        GameObject toInstantiate = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
+    }
 
     /*
     public void ReciveDamage(int damage)
@@ -40,7 +45,6 @@ public class ContenedorEnemigo1 : MonoBehaviour
         }
        
     }
-    */
     
     private IEnumerator FrameFreeze(float duration)
     {
@@ -55,12 +59,6 @@ public class ContenedorEnemigo1 : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         canDamage = true;
-    }
-
-    public void PolloMansy()
-    {
-        //Debug.Log("I manifest the greatest of phoes! A chicken! WORSE... A Deadly Chicken... it's dead... oh...");
-        GameObject toInstantiate = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
-    }
+    }*/
 
 }

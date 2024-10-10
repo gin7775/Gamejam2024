@@ -13,8 +13,6 @@ public class ProjectileLife : MonoBehaviour
     public GameObject[] chickensToDie;
     public float radius = 5f;
 
-
-
     void Start()
     {
         SetObjectLifeTime();
@@ -69,8 +67,7 @@ public class ProjectileLife : MonoBehaviour
             Explosion();
             
         }
-
-        
+ 
     }
 
     private void DealDamage(GameObject objetive, int damage)
@@ -101,8 +98,6 @@ public class ProjectileLife : MonoBehaviour
         StartCoroutine(ForceToChickens());
         Destroy(this.gameObject);
     }
-
-
     IEnumerator ForceToChickens()
     {
         Debug.Log("cickens corrutina");
@@ -145,7 +140,6 @@ public class ProjectileLife : MonoBehaviour
 
             }
         }
-
 
         yield return null;
     }

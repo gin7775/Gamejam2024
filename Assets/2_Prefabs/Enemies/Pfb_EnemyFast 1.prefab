@@ -236,40 +236,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 462915846516842860, guid: ba679c19f3b2d834bb665b4e508f104b,
-        type: 3}
-      propertyPath: isExplosive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1142800659499641930, guid: ba679c19f3b2d834bb665b4e508f104b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2793695328505242436, guid: ba679c19f3b2d834bb665b4e508f104b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3166712096239613257, guid: ba679c19f3b2d834bb665b4e508f104b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 4648791715248347498, guid: ba679c19f3b2d834bb665b4e508f104b,
         type: 3}
       propertyPath: m_Name
       value: EnemySound
-      objectReference: {fileID: 0}
-    - target: {fileID: 4648791715248347498, guid: ba679c19f3b2d834bb665b4e508f104b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4800176455870565840, guid: ba679c19f3b2d834bb665b4e508f104b,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1298,10 +1268,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.8613949, y: 0.8162526, z: 0.74860716}
-  m_Center: {x: 0.004096985, y: 0.7849168, z: 0.659822}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.004096985, y: 0.99, z: 0.659822}
 --- !u!4 &6595916184575038988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9180f7a89082245469129c61a9f8d359,

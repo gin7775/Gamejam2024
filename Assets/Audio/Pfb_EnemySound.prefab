@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8330651637153785768}
   - component: {fileID: 6050962324456217765}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chicken_Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 289170758997928139}
   - component: {fileID: 9102566603555012500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ExplodingChicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4618821889850249511}
   - component: {fileID: 3586764440363496717}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ChickenSound_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73547055823987539}
   - component: {fileID: 462915846516842860}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pfb_EnemySound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6621239015975566753}
   - component: {fileID: 5738794730101156367}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ChickenSound_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -35,7 +35,6 @@ public class AttackCollider : MonoBehaviour
 
             //this.gameObject.SetActive(false);
 
-
         }
 
     }

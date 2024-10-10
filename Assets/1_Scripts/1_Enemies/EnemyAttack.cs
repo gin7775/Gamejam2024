@@ -9,20 +9,17 @@ public class EnemyAttack : MonoBehaviour
     {
         attackCollider.enabled = false; 
     }
-
     
     public void ActivateCollider()
     {
         attackCollider.enabled = true;
     }
 
-    
     public void DeactivateCollider()
     {
         attackCollider.enabled = false;
     }
 
-    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) 

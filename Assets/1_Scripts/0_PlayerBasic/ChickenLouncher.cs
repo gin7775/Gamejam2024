@@ -16,7 +16,6 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] GameObject swingBox;
 
     // Control del Player
-    [SerializeField] bool CanAttack = true; // Cooldown del ataque a melee
     [SerializeField] float AttackCooldown = 0.5f;
     [SerializeField] float nextAttackTime = 0f;
 
@@ -24,9 +23,9 @@ public class ChickenLouncher : MonoBehaviour
     // Gestor de Vidas Player
     [SerializeField] PlayerHealth playerHealth;
     // Meter nuevo script gestor de vidas
-    [SerializeField] int health = 3;
-    [SerializeField] int maxHealth = 3;
-    [SerializeField] GameObject[] eggs;
+    //[SerializeField] int health = 3;
+    //[SerializeField] int maxHealth = 3;
+    //[SerializeField] GameObject[] eggs;
     [SerializeField] Collider[] shickensDetected;
     [SerializeField] int pickUpRange = 3;
     [SerializeField] float distanciaComparativa,distanciaActual;
@@ -40,7 +39,7 @@ public class ChickenLouncher : MonoBehaviour
     private Animator anim;
 
     //Esto es para la muerte
-    bool muriendo;
+    //bool muriendo;
     [SerializeField] private bool gameModeFrenezzi = false;
 
     /*
@@ -60,7 +59,7 @@ public class ChickenLouncher : MonoBehaviour
     {
         musicManager = FindAnyObjectByType<MusicManager>();
         //cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
-        muriendo = false;
+        //muriendo = false;
         distanciaComparativa = 1000;
         anim = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
@@ -292,8 +291,7 @@ public class ChickenLouncher : MonoBehaviour
                     ChickenSwing();
                     UpdateWeapon();
                     break;
-            }
-        
+            } 
         
     }
 
@@ -330,6 +328,7 @@ public class ChickenLouncher : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         collider.SetActive(false);
     }
+
     IEnumerator ActivateColliderChicken(GameObject collider)
     {
         yield return new WaitForSeconds(0.15f);
