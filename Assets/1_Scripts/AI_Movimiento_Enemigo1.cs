@@ -28,7 +28,7 @@ public class AI_Movimiento_Enemigo1 : StateMachineBehaviour
             {
                 contenedorEnemy.animEnemy.SetTrigger("Attack"); //la animación
                 animator.SetTrigger("Ataque"); //la IA
-                enemy.speed = 0f;
+                enemy.speed = 0.3f;
 
 
             }

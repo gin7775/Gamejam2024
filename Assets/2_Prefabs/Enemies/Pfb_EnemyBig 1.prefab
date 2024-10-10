@@ -1196,7 +1196,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6602147926507020431}
+      addedObject: {fileID: 8046455890020642635}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9180f7a89082245469129c61a9f8d359,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5487074049411961511}
     - targetCorrespondingSourceObject: {fileID: -4258411891960909470, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       insertIndex: -1
@@ -1258,7 +1262,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6602147926507020431
+--- !u!65 &8046455890020642635
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7271503873259526252}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.579412, y: 0.74151415, z: 0.4838933}
+  m_Center: {x: -0.019967033, y: 0.62579817, z: 0.4898088}
+--- !u!114 &5487074049411961511
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1267,10 +1292,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7271503873259526252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e77a76e57a6591648a90056bcff63baf, type: 3}
+  m_Script: {fileID: 11500000, guid: 231a5e35196148546979273454855e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceToAttack: 3
+  attackCollider: {fileID: 8046455890020642635}
+  damageAmount: 1
 --- !u!4 &8044065086755734230 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9180f7a89082245469129c61a9f8d359,
