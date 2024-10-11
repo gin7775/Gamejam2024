@@ -145,8 +145,12 @@ public class ChickenLouncher : MonoBehaviour
         {
             foreach (GameObject pollo in currentProyectile)
             {
-                pollo.transform.SetParent(handPosition, false);
-                Destroy(pollo);
+                try
+                {
+                    pollo.transform.SetParent(handPosition, false);
+                    Destroy(pollo);
+                }
+                catch (System.Exception) { }
             }
             currentProyectile.Clear();
         }

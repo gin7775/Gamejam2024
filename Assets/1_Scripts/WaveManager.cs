@@ -37,6 +37,7 @@ public class WaveManager : MonoBehaviour
     {
         // Asegurarnos de que GameManager.Instance está inicializado antes de llamarlo
         getWaveDificulty();
+        spawnPositions = GameManager.Instance.listSpawns;
     }
 
     private void LateUpdate()

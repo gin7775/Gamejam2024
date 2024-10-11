@@ -2092,7 +2092,7 @@ GameObject:
   - component: {fileID: 390793439868172444}
   - component: {fileID: 2888522809517136801}
   m_Layer: 0
-  m_Name: Pfb_GameManager
+  m_Name: Pfb_GameManager_map_one
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

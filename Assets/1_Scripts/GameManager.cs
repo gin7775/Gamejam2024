@@ -13,15 +13,15 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     // ---- Control de oleadas ----
-    [SerializeField] public int level = 1;                                              // Nivel/Mapa
+    public int level = 1;                                              // Nivel/Mapa
     [SerializeField] private float timeWave = 15;                                       // Tiempo por oleada
     [SerializeField] private float timeGeneration = 15;                                 // Tiempo entre generación de enemigos
-    [SerializeField] public int enemyNumber = 0;                                        // Número total de enemigos en la ronda
-    [SerializeField] public int enemyInitial = 5;                                       // Número de enemigos por oleada inicial
-    [SerializeField] public int enemyCount = 5;                                         // Número de enemigos que quedan en la ronda
-    [SerializeField] public int waveNumber = 0;                                         // Número de rondas totales
-    [SerializeField] public int waveCurrent = 0;                                        // Número de la ronda actual
-    [SerializeField] public int dificultiLevel = 0;                                     // Nivel de dificultad
+    public int enemyNumber = 0;                                        // Número total de enemigos en la ronda
+    public int enemyInitial = 5;                                       // Número de enemigos por oleada inicial
+    public int enemyCount = 5;                                         // Número de enemigos que quedan en la ronda
+    public int waveNumber = 0;                                         // Número de rondas totales
+    public int waveCurrent = 0;                                        // Número de la ronda actual
+    public int dificultiLevel = 0;                                     // Nivel de dificultad
     //[SerializeField] private bool siguiente;                                          // Control para saber si continúa a la siguiente oleada
     //[SerializeField] private int numMaxWave1;                                         // Máx. enemigos en la ola 1
     //[SerializeField] private int numMaxWave2;                                         // Máx. enemigos en la ola 2
@@ -33,11 +33,11 @@ public class GameManager : MonoBehaviour
     private CinemachineImpulseSource cinemachineImpulseSource;                          // Fuente del efecto de impulso
 
     // ---- Control de enemigos ----
-    [SerializeField] private List<GameObject> listSpawns;                               // Lista de spawns
+    public List<GameObject> listSpawns;                               // Lista de spawns
     [SerializeField] private List<ChickenConfig> chikenToSpawn;                         // Lista de enemigos, probabilidades y puntuacion
     [SerializeField] private List<ChickenConfigWave> chikenToSpawnWave;                 // Lista de enemigos, probabilidades y puntuacion según oleada y mapa/nivel
     [SerializeField] private List<ChickenDifficult> difficult;                          // Lista de enemigos, probabilidades y puntuacion según oleada y mapa/nivel
-    [SerializeField] public int totalChicken = 0;                                       // Total de pollos
+    public int totalChicken = 0;                                       // Total de pollos
     [SerializeField] private Vector3 spawnPosition;                                     // Posición de generación
     [SerializeField] private GameObject vfxHitEffect;                                   // Efecto al recibir golpe
     [SerializeField] private GameObject vfxHitWaveEffect;                               // Efecto al recibir golpe en oleada
