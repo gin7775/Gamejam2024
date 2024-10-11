@@ -24,10 +24,12 @@ public class ContenedorEnemigo1 : MonoBehaviour
         cinemachineImpulseSource = this.GetComponent<CinemachineImpulseSource>();
         playerReference = GameObject.FindGameObjectWithTag("Player");
     }
+
     public void PolloMansy()
     {
         //Debug.Log("I manifest the greatest of phoes! A chicken! WORSE... A Deadly Chicken... it's dead... oh...");
-        GameObject toInstantiate = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
+        GameObject corpseTimeLife = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
+        CorpseManager.Instance.addCorpseTimeLife(corpseTimeLife);
     }
 
     /*

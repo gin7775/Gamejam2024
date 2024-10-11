@@ -10,6 +10,7 @@ public class ChickenConfig
     public int difficultyScore;         // Puntuación de dificultad del pollo (1, 5, 10, etc.)
 }
 
+[System.Serializable]
 public class ChickenConfigWave
 {
     public int wave;                    // Oleada a la que se aplica
@@ -19,8 +20,23 @@ public class ChickenConfigWave
     public int difficultyScore;         // Puntuación de dificultad del pollo (1, 5, 10, etc.)
 }
 
+[System.Serializable]
 public class ChickenDifficult
 {
     public GameObject chickenPrefab;    // El tipo de enemigo
     public int difficultyScore;         // Puntuación de dificultad del pollo (1, 5, 10, etc.)
+}
+
+[System.Serializable]
+public class ChickenCorpseTimeLife
+{
+    public GameObject corpse;           // El tipo de enemigo
+    public float secondsLife;           // Tiempo de vida en segundos
+
+    // Constructor
+    public ChickenCorpseTimeLife(GameObject corpse, float secondsLife)
+    {
+        this.corpse = corpse;
+        this.secondsLife = secondsLife;
+    }
 }

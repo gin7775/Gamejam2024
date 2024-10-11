@@ -27,14 +27,15 @@ public class ProjectileLife : MonoBehaviour
     IEnumerator ObjectEffectLife()
     {
         yield return new WaitForSeconds(effectLife);
+
         if(colliders != null)
         {
             foreach(Collider col in colliders)
             {
                 col.enabled = false;
             }
-            
         }
+
         StartCoroutine(ObjectLife());
     }
 
@@ -65,9 +66,7 @@ public class ProjectileLife : MonoBehaviour
             //Debug.Log("Enemy hitted with chicken");
             DealDamage(other.gameObject, 2);
             Explosion();
-            
         }
- 
     }
 
     private void DealDamage(GameObject objetive, int damage)
@@ -82,7 +81,6 @@ public class ProjectileLife : MonoBehaviour
         if (!isCodeExecuting)
         {
             isCodeExecuting = true;
-
             chickensToDie = GameObject.FindGameObjectsWithTag("Enemy");
 
             foreach (GameObject chicken in chickensToDie)
@@ -95,9 +93,11 @@ public class ProjectileLife : MonoBehaviour
 
             isCodeExecuting = false;
         }
+
         StartCoroutine(ForceToChickens());
         Destroy(this.gameObject);
     }
+
     IEnumerator ForceToChickens()
     {
         Debug.Log("cickens corrutina");
@@ -107,16 +107,14 @@ public class ProjectileLife : MonoBehaviour
 
         for (int i = 0; i < listaChickens.Count; i++)
         {
-
             float dist = Vector3.Distance(this.gameObject.transform.position, listaChickens[i].transform.position);
+
             if (dist <= 100)
             {
                 GameObject bodyOne = listaChickens[i].gameObject.transform.GetChild(0).transform.GetChild(0).gameObject;
                 GameObject bodyTwo = bodyOne.gameObject.transform.GetChild(0).gameObject;
                 GameObject bodyNeck = bodyTwo.gameObject.transform.GetChild(2).gameObject;
                 GameObject bodyHead = bodyNeck.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
-
-
 
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 100);
 
@@ -137,10 +135,10 @@ public class ProjectileLife : MonoBehaviour
                     bodyNeck.GetComponent<CapsuleCollider>().enabled = true;
                     bodyHead.GetComponent<CapsuleCollider>().enabled = true;
                 }
-
             }
         }
 
         yield return null;
     }
+
 }

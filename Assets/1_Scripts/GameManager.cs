@@ -57,11 +57,7 @@ public class GameManager : MonoBehaviour
     public Slider musicSlider;                                                          // Control deslizante de música
     public Slider SFXSlider;                                                            // Control deslizante de efectos
 
-
-
-
     // Singleton pattern
-
     private void Awake()
     {
         // Si hay una instancia y no es esta, destruyela.

@@ -234,7 +234,13 @@ public class ChickenLouncher : MonoBehaviour
             int type = other.gameObject.GetComponentInParent<ChickenCorpse>().chickenType;
             Destroy(other.GetComponentInParent<ChickenCorpse>().gameObject);
             Destroy(arma);
-            arma = Instantiate(ragdolls[type - 1], handPosition.position, Quaternion.identity, GetComponent<ChickenLouncher>().gameObject.transform);
+            GameObject weaponChicken = ragdolls[type - 1];
+            GameObject player = GetComponent<ChickenLouncher>().gameObject;
+
+            // Inicializamos la position y la rotacion a 0
+            weaponChicken.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+
+            arma = Instantiate(weaponChicken, handPosition.position, Quaternion.Euler(player.transform.rotation.eulerAngles), player.gameObject.transform);
             RetrieveChicken(type);
 
             if (currentProyectile.Count == 0)

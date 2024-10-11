@@ -7,12 +7,12 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
 {
     NavMeshAgent enemy;
     ContenedorEnemigo1 contenedorEnemy;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy = animator.gameObject.GetComponent<NavMeshAgent>();
         contenedorEnemy = animator.gameObject.GetComponent<ContenedorEnemigo1>();
         //contenedorEnemy.animEnemy.SetTrigger("Attack");
-
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -26,16 +26,12 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
                 contenedorEnemy.animEnemy.SetTrigger("move"); //la animación
 
                 animator.SetTrigger("Movimiento");
-
             }
-           
         }
-
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       
 
     }
 
@@ -50,4 +46,5 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
+
 }
