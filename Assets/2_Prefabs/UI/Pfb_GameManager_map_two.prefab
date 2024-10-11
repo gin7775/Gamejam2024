@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b122476fd020c941aec1fc68b5632b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToCorpseLife: 60
+  timeToCorpseLife: 30
 --- !u!1 &566242579524987648
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79ad7dc74bf46743bd29733fc9dbe96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   level: 1
   timeWave: 5
   timeGeneration: 0
@@ -527,6 +528,8 @@ MonoBehaviour:
   canvasRound: {fileID: 3115325921857858187}
   canvasAnimator: {fileID: 6396889349025704915}
   textMesh: {fileID: 6881455755603950678}
+  listEnemies: []
+  listCorpses: []
   listSpawns:
   - {fileID: 0}
   - {fileID: 0}
@@ -3023,7 +3026,6 @@ MonoBehaviour:
     chickenPrefab: {fileID: 0}
     probability: 0
     difficultyScore: 0
-  player: {fileID: 0}
 --- !u!1 &8930268679532155957
 GameObject:
   m_ObjectHideFlags: 0

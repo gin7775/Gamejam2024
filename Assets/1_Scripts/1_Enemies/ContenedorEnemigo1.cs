@@ -28,8 +28,9 @@ public class ContenedorEnemigo1 : MonoBehaviour
     public void PolloMansy()
     {
         //Debug.Log("I manifest the greatest of phoes! A chicken! WORSE... A Deadly Chicken... it's dead... oh...");
-        GameObject corpseTimeLife = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
-        CorpseManager.Instance.addCorpseTimeLife(corpseTimeLife);
+        GameObject auxCorpse = GameObject.Instantiate(corpse, transform.position, Quaternion.identity);
+        GameManager.Instance.listCorpses.Add(auxCorpse);
+        CorpseManager.Instance.addCorpseTimeLife(auxCorpse);
     }
 
     /*

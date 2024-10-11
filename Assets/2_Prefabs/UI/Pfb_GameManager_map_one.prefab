@@ -616,7 +616,6 @@ MonoBehaviour:
     chickenPrefab: {fileID: 0}
     probability: 0
     difficultyScore: 0
-  player: {fileID: 0}
 --- !u!1 &1472480871666988612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b122476fd020c941aec1fc68b5632b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToCorpseLife: 60
+  timeToCorpseLife: 30
 --- !u!1 &3505898483721178743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,6 +2128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79ad7dc74bf46743bd29733fc9dbe96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   level: 1
   timeWave: 5
   timeGeneration: 0
@@ -2141,6 +2141,8 @@ MonoBehaviour:
   canvasRound: {fileID: 1487925544286375456}
   canvasAnimator: {fileID: 5863593879355949296}
   textMesh: {fileID: 3505898483721178743}
+  listEnemies: []
+  listCorpses: []
   listSpawns:
   - {fileID: 0}
   - {fileID: 0}
@@ -2169,6 +2171,8 @@ MonoBehaviour:
       type: 3}
     probability: 5
     difficultyScore: 0
+  chikenToSpawnWave: []
+  difficult: []
   totalChicken: 0
   spawnPosition: {x: 0, y: 0, z: 0}
   vfxHitEffect: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,

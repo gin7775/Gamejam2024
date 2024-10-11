@@ -42,12 +42,8 @@ public class Exploding_Chicken : MonoBehaviour
                     {
                         hemuerto_script.he_explotado(); // 
                     }
-
                 }
-
             }
         }
-
-
     }
 }

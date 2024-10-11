@@ -19,7 +19,6 @@ public class WaveManager : MonoBehaviour
     [SerializeField] Dictionary<int, int> waveDificulty = new Dictionary<int, int>();   // Dificultad segun oleadas
     [SerializeField] private List<GameObject> spawnPositions;                           // Lista de posiciones donde spawnearán los pollos
     [SerializeField] private ChickenConfig chickenConfig;                               // Configuración de los pollos (probabilidad y tipo)
-    [SerializeField] private GameObject player;                                         // Configuración de los pollos (probabilidad y tipo)
     private int totalDifficultyPoints;                                                  // Puntuación de dificultad total por oleada
 
     public static WaveManager Instance { get; private set; }                            // Singleton
@@ -77,7 +76,8 @@ public class WaveManager : MonoBehaviour
     private void SpawnRandomChicken(ref int difficultyPointsLeft)
     {
         GameObject chickenPrefab = GameManager.Instance.prepareChikenGenerator();
-        Instantiate(chickenPrefab, GameManager.Instance.getRandomAreaSpawn(), Quaternion.identity);
+        GameObject auxNewChicken = Instantiate(chickenPrefab, GameManager.Instance.getRandomAreaSpawn(), Quaternion.identity);
+        GameManager.Instance.listEnemies.Add(auxNewChicken);
         GameManager.Instance.enemyCount++;
         difficultyPointsLeft--;
     }
@@ -89,7 +89,8 @@ public class WaveManager : MonoBehaviour
         for (int i = 0; i < chickensToSpawn; i++)
         {
             GameObject chickenPrefab = GameManager.Instance.prepareChikenGenerator();
-            Instantiate(chickenPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+            GameObject auxNewChicken = Instantiate(chickenPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+            GameManager.Instance.listEnemies.Add(auxNewChicken);
             GameManager.Instance.enemyCount++;
         }
         difficultyPointsLeft -= chickensToSpawn;
@@ -103,7 +104,8 @@ public class WaveManager : MonoBehaviour
         {
             // Lógica para mezclar blancos y otros tipos de pollos
             GameObject chickenPrefab = GameManager.Instance.prepareChikenGenerator();
-            Instantiate(chickenPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+            GameObject auxNewChicken = Instantiate(chickenPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+            GameManager.Instance.listEnemies.Add(auxNewChicken);
             GameManager.Instance.enemyCount++;
         }
         difficultyPointsLeft -= chickensToSpawn; // Ajustar la puntuación según el escuadrón
@@ -113,7 +115,7 @@ public class WaveManager : MonoBehaviour
     private Vector3 GetRandomSpawnPosition()
     {
         // Posición del jugador
-        Vector3 playerPosition = player.transform.position;
+        Vector3 playerPosition = GameManager.Instance.player.transform.position;
 
         // Crear una lista de posiciones de spawn y su distancia al jugador
         List<(Vector3 position, float distance)> spawnDistances = new List<(Vector3, float)>();
@@ -170,10 +172,10 @@ public class WaveManager : MonoBehaviour
         }
 
         // Mostrar el resultado en consola
-        foreach (var wave in waveDificulty)
-        {
-            Debug.Log($"Ronda {wave.Key} -- {wave.Value} puntos");
-        }
+        //foreach (var wave in waveDificulty)
+        //{
+            //Debug.Log($"Ronda {wave.Key} -- {wave.Value} puntos");
+        //}
 
         return waveDificulty;
     }

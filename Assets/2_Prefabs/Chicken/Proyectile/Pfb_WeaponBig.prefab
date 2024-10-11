@@ -2502,7 +2502,7 @@ GameObject:
   - component: {fileID: 6450873432763801311}
   m_Layer: 7
   m_Name: Pfb_WeaponBig
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

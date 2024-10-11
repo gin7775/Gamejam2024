@@ -12,16 +12,17 @@ public class GameManager : MonoBehaviour
     // Singleton
     public static GameManager Instance { get; private set; }
 
+    public GameObject player;                                                           // Player
     // ---- Control de oleadas ----
-    public int level = 1;                                              // Nivel/Mapa
+    public int level = 1;                                                               // Nivel/Mapa
     [SerializeField] private float timeWave = 15;                                       // Tiempo por oleada
     [SerializeField] private float timeGeneration = 15;                                 // Tiempo entre generación de enemigos
-    public int enemyNumber = 0;                                        // Número total de enemigos en la ronda
-    public int enemyInitial = 5;                                       // Número de enemigos por oleada inicial
-    public int enemyCount = 5;                                         // Número de enemigos que quedan en la ronda
-    public int waveNumber = 0;                                         // Número de rondas totales
-    public int waveCurrent = 0;                                        // Número de la ronda actual
-    public int dificultiLevel = 0;                                     // Nivel de dificultad
+    public int enemyNumber = 0;                                                         // Número total de enemigos en la ronda
+    public int enemyInitial = 5;                                                        // Número de enemigos por oleada inicial
+    public int enemyCount = 5;                                                          // Número de enemigos que quedan en la ronda
+    public int waveNumber = 0;                                                          // Número de rondas totales
+    public int waveCurrent = 0;                                                         // Número de la ronda actual
+    public int dificultiLevel = 0;                                                      // Nivel de dificultad
     //[SerializeField] private bool siguiente;                                          // Control para saber si continúa a la siguiente oleada
     //[SerializeField] private int numMaxWave1;                                         // Máx. enemigos en la ola 1
     //[SerializeField] private int numMaxWave2;                                         // Máx. enemigos en la ola 2
@@ -33,11 +34,13 @@ public class GameManager : MonoBehaviour
     private CinemachineImpulseSource cinemachineImpulseSource;                          // Fuente del efecto de impulso
 
     // ---- Control de enemigos ----
-    public List<GameObject> listSpawns;                               // Lista de spawns
+    public List<GameObject> listEnemies;                                                // Lista de Enemigos
+    public List<GameObject> listCorpses;                                                // Lista de Corpses
+    public List<GameObject> listSpawns;                                                 // Lista de spawns
     [SerializeField] private List<ChickenConfig> chikenToSpawn;                         // Lista de enemigos, probabilidades y puntuacion
     [SerializeField] private List<ChickenConfigWave> chikenToSpawnWave;                 // Lista de enemigos, probabilidades y puntuacion según oleada y mapa/nivel
     [SerializeField] private List<ChickenDifficult> difficult;                          // Lista de enemigos, probabilidades y puntuacion según oleada y mapa/nivel
-    public int totalChicken = 0;                                       // Total de pollos
+    public int totalChicken = 0;                                                        // Total de pollos
     [SerializeField] private Vector3 spawnPosition;                                     // Posición de generación
     [SerializeField] private GameObject vfxHitEffect;                                   // Efecto al recibir golpe
     [SerializeField] private GameObject vfxHitWaveEffect;                               // Efecto al recibir golpe en oleada
@@ -70,7 +73,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("INI - GAMEMANAGER - Start");
+        //Debug.Log("INI - GAMEMANAGER - Start");
         timeGeneration = 3f;
         timeWave = 6f;
         enemyInitial = 5;
@@ -83,20 +86,20 @@ public class GameManager : MonoBehaviour
         //numMaxWave3 = 100;
         //siguiente = false;
         UpdateWave();
-        Debug.Log("FIN - GAMEMANAGER - Start");
+        //Debug.Log("FIN - GAMEMANAGER - Start");
     }
 
     public void InstantiatePollos(int initialEnemys, int enemys)
     {
         var aux = initialEnemys;
-        Debug.Log("INI - GAMEMANAGER - InstantiatePollos");
+        //Debug.Log("INI - GAMEMANAGER - InstantiatePollos");
         StartCoroutine(startWave(timeWave, aux, enemys));
-        Debug.Log("FIN - GAMEMANAGER - InstantiatePollos");
+        //Debug.Log("FIN - GAMEMANAGER - InstantiatePollos");
     }
 
     public void chickenEnemyTakeDamage(GameObject enemy, int damage)
     {
-        Debug.Log("INI - GAMEMANAGER - chickenEnemyTakeDamage");
+        //Debug.Log("INI - GAMEMANAGER - chickenEnemyTakeDamage");
 
         if (enemy != null)
         {
@@ -122,18 +125,18 @@ public class GameManager : MonoBehaviour
                     StartCoroutine(FrameFreeze(0.03f));
 
                     auxEnemy.PolloMansy();
-                    Debug.Log(enemy.name);
+                    //Debug.Log(enemy.name);
                     Destroy(enemy);
                     enemyDeath();
                 }
             }
         }
-        Debug.Log("FIN - GAMEMANAGER - chickenEnemyTakeDamage");
+        //Debug.Log("FIN - GAMEMANAGER - chickenEnemyTakeDamage");
     }
 
     public void enemyDeath()
     {
-        Debug.Log("INI - GAMEMANAGER - enemyDeath");
+        //Debug.Log("INI - GAMEMANAGER - enemyDeath");
         //AUDIO: Ver si funciona en lso enemigos sino, se pone aquí
         musicManager.Play_FX_ExplosionPollo();
 
@@ -168,7 +171,7 @@ public class GameManager : MonoBehaviour
             UpdateWave();
         }
 
-        Debug.Log("FIN - GAMEMANAGER - enemyDeath");
+        //Debug.Log("FIN - GAMEMANAGER - enemyDeath");
     }
 
     /// <summary>
@@ -176,7 +179,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void UpdateWave()
     {
-        Debug.Log("INI - GAMEMANAGER - UpdateWave");
+        //Debug.Log("INI - GAMEMANAGER - UpdateWave");
         waveCurrent++;
 
         // Restablecer el puntaje de la oleada actual
@@ -207,12 +210,12 @@ public class GameManager : MonoBehaviour
         }
         catch (System.Exception) { }
 
-        Debug.Log("FIN - GAMEMANAGER - UpdateWave");
+        //Debug.Log("FIN - GAMEMANAGER - UpdateWave");
     }
 
     IEnumerator startWave(float seconds, int initialEnemies, int numEnemies)
     {
-        Debug.Log("INI - GAMEMANAGER - startWave");
+        //Debug.Log("INI - GAMEMANAGER - startWave");
         canvasRound.gameObject.SetActive(true);
 
         //Audio
@@ -235,12 +238,12 @@ public class GameManager : MonoBehaviour
         //}
 
         // StartCoroutine(chikenWaitSpawner(numEnemies));
-        Debug.Log("FIN - GAMEMANAGER - startWave");
+        //Debug.Log("FIN - GAMEMANAGER - startWave");
     }
 
     IEnumerator chikenWaitSpawner(int numEnemies)
     {
-        Debug.Log("INI - GAMEMANAGER - chikenWaitSpawner");
+        //Debug.Log("INI - GAMEMANAGER - chikenWaitSpawner");
         //siguiente = false;
 
         for (int i = 0; i < numEnemies; i++)
@@ -250,12 +253,12 @@ public class GameManager : MonoBehaviour
         }
 
         //siguiente = true;
-        Debug.Log("FIN - GAMEMANAGER - chikenWaitSpawner");
+        //Debug.Log("FIN - GAMEMANAGER - chikenWaitSpawner");
     }
 
     public GameObject prepareChikenGenerator()
     {
-        Debug.Log("INI - GAMEMANAGER - prepareChikenGenerator");
+        //Debug.Log("INI - GAMEMANAGER - prepareChikenGenerator");
         // Generar un número aleatorio para determinar el pollo a generar
         float randomNumber = Random.Range(0, 100);
         GameObject selectedPollo = null;
@@ -274,13 +277,13 @@ public class GameManager : MonoBehaviour
             randomNumber -= chikenConfig.probability;
         }
 
-        Debug.Log("FIN - GAMEMANAGER - prepareChikenGenerator");
+        //Debug.Log("FIN - GAMEMANAGER - prepareChikenGenerator");
         return selectedPollo;
     }
 
     public void chikenGenerator()
     {
-        Debug.Log("INI - GAMEMANAGER - chikenGenerator");
+        //Debug.Log("INI - GAMEMANAGER - chikenGenerator");
         // Generar un número aleatorio para determinar el pollo a generar
         float randomNumber = Random.Range(0, 100);
         GameObject selectedPollo = null;
@@ -302,14 +305,14 @@ public class GameManager : MonoBehaviour
         // Si hemos seleccionado un pollo válido, generarlo
         if (selectedPollo != null)
         {
-            Debug.Log("INI - GAMEMANAGER - chikenGenerator - selectedPollo != null");
+            //Debug.Log("INI - GAMEMANAGER - chikenGenerator - selectedPollo != null");
             spawnPosition = new Vector3(Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, Random.Range(limiteZNegativo, LimiteZPositivo));
             Instantiate(selectedPollo, spawnPosition, Quaternion.identity);
             enemyCount++;
-            Debug.Log("FIN - GAMEMANAGER - chikenGenerator - selectedPollo != null");
+            //Debug.Log("FIN - GAMEMANAGER - chikenGenerator - selectedPollo != null");
         }
 
-        Debug.Log("FIN - GAMEMANAGER - chikenGenerator");
+        //Debug.Log("FIN - GAMEMANAGER - chikenGenerator");
     }
 
     public Vector3 getRandomAreaSpawn()
@@ -340,7 +343,7 @@ public class GameManager : MonoBehaviour
             chicken.probability = ((chicken.probability / totalProbability) * 100);
         }
 
-        Debug.Log("Probabilidades ajustadas correctamente para que sumen 100%.");
+        //Debug.Log("Probabilidades ajustadas correctamente para que sumen 100%.");
     }
 
     private IEnumerator FrameFreeze(float duration)
@@ -383,7 +386,7 @@ public class GameManager : MonoBehaviour
             }
             if (currentSceneName == "MenuPrincipal")
             {
-                Debug.Log("Estás en la Escena principal");
+                //Debug.Log("Estás en la Escena principal");
 
             }
         }
@@ -403,9 +406,9 @@ public class GameManager : MonoBehaviour
     //Music Manager
     public void SetMusicVolume()
     {
-        Debug.Log("Music modified");
+        //Debug.Log("Music modified");
         float volume = musicSlider.value;
-        Debug.Log(musicSlider.value);
+        //Debug.Log(musicSlider.value);
         myMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
     }
     public void SetSFXVolume()

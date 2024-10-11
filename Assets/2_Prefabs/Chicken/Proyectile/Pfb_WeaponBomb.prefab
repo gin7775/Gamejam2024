@@ -2718,7 +2718,7 @@ GameObject:
   - component: {fileID: 2281656848781306515}
   m_Layer: 0
   m_Name: Pfb_WeaponBomb
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2821,7 +2821,6 @@ MonoBehaviour:
   timer: 5
   chickensToDie: []
   radius: 5
-  player: {fileID: 0}
 --- !u!65 &5650820843589099176
 BoxCollider:
   m_ObjectHideFlags: 0
