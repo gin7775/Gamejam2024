@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Corpse
+  - CHICKEN
+  - CorpseCollider
+  - CorseCollider
   layers:
   - Default
   - TransparentFX

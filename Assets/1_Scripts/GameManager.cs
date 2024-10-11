@@ -186,26 +186,30 @@ public class GameManager : MonoBehaviour
         // Restablecer el puntaje de la oleada actual
         currentWaveScore = 0;
 
-        // Mostrar el texto de la ronda actual
-        textMesh.GetComponent<TextMeshProUGUI>().text = "Round " + waveCurrent;
+        try
+        {
+            // Mostrar el texto de la ronda actual
+            textMesh.GetComponent<TextMeshProUGUI>().text = "Round " + waveCurrent;
 
-        // Obtenemos la dificultad en base a la oleada actual
-        dificultiLevel = WaveManager.Instance.GetDifficultyPointsByWave(waveCurrent);
+            // Obtenemos la dificultad en base a la oleada actual
+            dificultiLevel = WaveManager.Instance.GetDifficultyPointsByWave(waveCurrent);
 
-        // Aumentar progresivamente la cantidad de enemigos a generar
-        int enemiesToSpawn = Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.2f, waveCurrent)); // Aumenta un 20% cada
+            // Aumentar progresivamente la cantidad de enemigos a generar
+            int enemiesToSpawn = Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.2f, waveCurrent)); // Aumenta un 20% cada
 
-        // Calcula el total de enemigos
-        totalChicken = enemyInitial + enemiesToSpawn;
+            // Calcula el total de enemigos
+            totalChicken = enemyInitial + enemiesToSpawn;
 
-        // Reducir el tiempo entre generación de enemigos para hacer el juego más desafiante
-        timeGeneration = Mathf.Max(0.5f, 3f - (0.1f * waveCurrent)); // El tiempo se reduce gradualmente hasta un mínimo de 0.5 segundos
+            // Reducir el tiempo entre generación de enemigos para hacer el juego más desafiante
+            timeGeneration = Mathf.Max(0.5f, 3f - (0.1f * waveCurrent)); // El tiempo se reduce gradualmente hasta un mínimo de 0.5 segundos
 
-        // Iniciar la oleada con la cantidad de enemigos escalada
-        InstantiatePollos(enemyInitial, enemiesToSpawn);
+            // Iniciar la oleada con la cantidad de enemigos escalada
+            InstantiatePollos(enemyInitial, enemiesToSpawn);
 
-        // Incrementar enemyInitial levemente cada 5 rondas, basándose en el nivel de dificultad
-        //enemyInitial = Mathf.FloorToInt(enemyInitial * (1 + (dificultiLevel * 0.05f))); // Incremento del 5% por nivel de dificultad
+            // Incrementar enemyInitial levemente cada 5 rondas, basándose en el nivel de dificultad
+            //enemyInitial = Mathf.FloorToInt(enemyInitial * (1 + (dificultiLevel * 0.05f))); // Incremento del 5% por nivel de dificultad
+        }
+        catch (System.Exception) { }
 
         Debug.Log("FIN - GAMEMANAGER - UpdateWave");
     }

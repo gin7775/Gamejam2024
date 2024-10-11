@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
-
 public class ChickenLouncher : MonoBehaviour
 {
     public int chickenType = 0;
     [SerializeField] GameObject[] proyectiles = null;
+    [SerializeField] GameObject[] ragdolls = null;
     [SerializeField] float proyectileForce = 10;
     [SerializeField] int chickenCurrentUses = 0;
     [SerializeField] int chickenMaxUses = 3;
@@ -55,6 +55,17 @@ public class ChickenLouncher : MonoBehaviour
     private Coroutine invulnerabilityCoroutine;
     CinemachineImpulseSource cinemachineImpulseSource;*/
 
+    private CapsuleCollider capsuleCollider;
+    private BoxCollider boxCollider;
+    private bool enableBoxCollider = false;
+    private GameObject arma;
+
+    private void Awake()
+    {
+        capsuleCollider = GetComponent<CapsuleCollider>();
+        boxCollider = GetComponent<BoxCollider>();
+    }
+
     private void Start()
     {
         musicManager = FindAnyObjectByType<MusicManager>();
@@ -85,9 +96,13 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnPick(InputValue value)
     {
-        
-        RetrieveChicken(chickenType);
+        Debug.Log("RECOGER");
+        boxCollider.enabled = true;
+        enableBoxCollider = true;
+        //RetrieveChicken(chickenType);
         //Debug.Log("Coge");
+
+        StartCoroutine(DisableColliderAfterTime(1.5f));
     }
 
 
@@ -106,6 +121,17 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
+    // Corutina para desactivar el BoxCollider después de un tiempo específico
+    IEnumerator DisableColliderAfterTime(float delay)
+    {
+        // Espera el tiempo especificado (1.5 segundos)
+        yield return new WaitForSeconds(delay);
+
+        // Desactiva el BoxCollider
+        boxCollider.enabled = false;
+        enableBoxCollider = false;
+    }
+
     void UpdateWeapon()
     {
         chickenCurrentUses++;
@@ -117,7 +143,6 @@ public class ChickenLouncher : MonoBehaviour
 
     void Shoot(int AmmoType)
     {
-      
         projectilePos = transform.position;
         projectilePos += transform.forward;
         projectilePos += transform.up;
@@ -339,18 +364,57 @@ public class ChickenLouncher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       // Debug.Log("He colisionado con " + other.gameObject.name);
+        // Si el trigger que activó el evento es el CapsuleCollider
+        if (other == capsuleCollider)
+        {
+            Debug.Log("El CapsuleCollider ha activado el trigger.");
+            // Lógica específica para el CapsuleCollider
+        }
+
+        // Si el trigger que activó el evento es el BoxCollider
+        if (other == boxCollider)
+        {
+            Debug.Log("El BoxCollider ha activado el trigger.");
+
+            if (other.gameObject.CompareTag("Corpse"))
+            {
+                Debug.Log("Detecta Corpse 1");
+            }
+            // Lógica específica para el BoxCollider
+        }
+
+        if (enableBoxCollider)
+        {
+            if (other.gameObject.CompareTag("CorpseCollider"))
+            {
+                Debug.Log("Detecta Corpse 2");
+
+                if (other.gameObject.GetComponentInParent<ChickenCorpse>() != null)
+                {
+                    musicManager.Play_FX_RecogerPollo();
+                    int type = other.gameObject.GetComponentInParent<ChickenCorpse>().chickenType;
+                    Destroy(other.GetComponentInParent<ChickenCorpse>().gameObject);
+                    Destroy(arma);
+                    Debug.Log("type:" + type);
+                    Debug.Log(ragdolls[type - 1]);
+
+                    arma = Instantiate(ragdolls[type - 1], handPosition.position, Quaternion.identity, GetComponent<ChickenLouncher>().gameObject.transform);
+                    RetrieveChicken(type);
+
+                    if (currentProyectile.Count == 0)
+                        currentProyectile.Add(arma);
+                    else
+                        currentProyectile[0] = arma;
+                }
+
+                enableBoxCollider = false;
+            }
+        }
+
+        // Debug.Log("He colisionado con " + other.gameObject.name);
         if (other.gameObject.CompareTag("Corpse"))
         {
-            //Debug.Log("Detecta Corpse");
-            musicManager.Play_FX_RecogerPollo();
-            if (other.gameObject.GetComponent<ChickenCorpse>()!=null)
-            RetrieveChicken(other.gameObject.GetComponent<ChickenCorpse>().chickenType);
-            GameObject cadaver= other.gameObject;
-            cadaver.transform.position = handPosition.position;
-            cadaver.transform.SetParent(handPosition, true);
-            currentProyectile.Add(cadaver);
-
+            Debug.Log("Detecta Corpse 3");
         }
     }
 
