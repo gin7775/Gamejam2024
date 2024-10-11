@@ -19,41 +19,21 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] float AttackCooldown = 0.5f;
     [SerializeField] float nextAttackTime = 0f;
 
-
     // Gestor de Vidas Player
     [SerializeField] PlayerHealth playerHealth;
-    // Meter nuevo script gestor de vidas
-    //[SerializeField] int health = 3;
-    //[SerializeField] int maxHealth = 3;
-    //[SerializeField] GameObject[] eggs;
     [SerializeField] Collider[] shickensDetected;
     [SerializeField] int pickUpRange = 3;
-    [SerializeField] float distanciaComparativa,distanciaActual;
+    [SerializeField] float distanciaComparativa, distanciaActual;
     [SerializeField] GameObject polloElegido;
     [SerializeField] MusicManager musicManager;
     [SerializeField] Transform handPosition;
-    public List <GameObject> currentProyectile;
+    public List<GameObject> currentProyectile;
     public GameObject[] shildCounter;
     GameObject proyectile;
     Vector3 projectilePos;
     private Animator anim;
 
-    //Esto es para la muerte
-    //bool muriendo;
     [SerializeField] private bool gameModeFrenezzi = false;
-
-    /*
-    [Header("RECIBIR DAÑO")]
-    [SerializeField] private float invulnerabilityDuration = 1f; 
-    private bool isInvulnerable = false;
-    [SerializeField] private ParticleSystem hitParticle;
-    public GameObject RetryButton;
-    [SerializeField] private Material playerMaterial; 
-    private static readonly int IsColorShift = Shader.PropertyToID("_Is_ColorShift");
-    private static readonly int IsRimLight = Shader.PropertyToID("_Is_RimLight");
-    private static readonly int IsViewShift = Shader.PropertyToID("_Is_ViewShift");
-    private Coroutine invulnerabilityCoroutine;
-    CinemachineImpulseSource cinemachineImpulseSource;*/
 
     private CapsuleCollider capsuleCollider;
     private BoxCollider boxCollider;
@@ -69,12 +49,9 @@ public class ChickenLouncher : MonoBehaviour
     private void Start()
     {
         musicManager = FindAnyObjectByType<MusicManager>();
-        //cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
-        //muriendo = false;
         distanciaComparativa = 1000;
         anim = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
-
     }
 
     public void OnShoot(InputValue value)
@@ -83,28 +60,24 @@ public class ChickenLouncher : MonoBehaviour
         anim.SetTrigger("Throw");
         musicManager.Play_FX_RecogerPollo();
         Shoot(chickenType);
-
-        //Debug.Log("Dispara");
     }
 
     public void OnAttack(InputValue value)
     {
-        Debug.Log("ATTACK ANIMATION");
-        Attack(chickenType);
-        //Debug.Log("Ataca");
+        if (Time.time >= nextAttackTime)
+        {
+            nextAttackTime = Time.time + AttackCooldown;
+            anim.SetTrigger("Attack");
+            PerformAttack(chickenType);
+        }
     }
 
     public void OnPick(InputValue value)
     {
-        Debug.Log("RECOGER");
         boxCollider.enabled = true;
         enableBoxCollider = true;
-        //RetrieveChicken(chickenType);
-        //Debug.Log("Coge");
-
         StartCoroutine(DisableColliderAfterTime(1.5f));
     }
-
 
     void RetrieveChicken(int chickenNumber)
     {
@@ -112,7 +85,6 @@ public class ChickenLouncher : MonoBehaviour
         chickenType = chickenNumber;
         if (chickenType == 3)
         {
-            //LifeUp(1);
             playerHealth.LifeUp(1);
         }
         if (chickenType >= 5 || chickenType < 0)
@@ -121,13 +93,9 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
-    // Corutina para desactivar el BoxCollider después de un tiempo específico
     IEnumerator DisableColliderAfterTime(float delay)
     {
-        // Espera el tiempo especificado (1.5 segundos)
         yield return new WaitForSeconds(delay);
-
-        // Desactiva el BoxCollider
         boxCollider.enabled = false;
         enableBoxCollider = false;
     }
@@ -143,193 +111,84 @@ public class ChickenLouncher : MonoBehaviour
 
     void Shoot(int AmmoType)
     {
-        projectilePos = transform.position;
-        projectilePos += transform.forward;
-        projectilePos += transform.up;
-
+        projectilePos = CalculateProjectileStartPosition();
         if (!gameModeFrenezzi)
         {
-            switch (AmmoType)
-            {
-                case 0:
-                    //Debug.Log("Got no chickens");
-                    break;
-
-                case 1:
-                    //Debug.Log("Lounching Chicken");
-                    proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
-                    proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-                    musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
-
-                    chickenType = 0;
-                    break;
-
-                case 2:
-                    projectilePos = transform.position;
-                    projectilePos += transform.forward;
-                    projectilePos += transform.up;
-                    //Debug.Log("Lounching Chicken");
-                    proyectile = Instantiate(proyectiles[1], projectilePos, Quaternion.identity);
-                    proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-                    musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
-
-
-                    chickenType = 0;
-                    break;
-
-                case 3:
-                    projectilePos = transform.position;
-                    projectilePos += transform.forward;
-                    projectilePos += transform.up;
-                    //Debug.Log("Lounching Chicken");
-                    proyectile = Instantiate(proyectiles[2], projectilePos, Quaternion.identity);
-                    proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-                    musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
-
-
-                    chickenType = 0;
-                    break;
-
-                case 4:
-                    projectilePos = transform.position;
-                    projectilePos += transform.forward;
-                    projectilePos += transform.up;
-                    //Debug.Log("Lounching Chicken");
-                    proyectile = Instantiate(proyectiles[3], projectilePos, Quaternion.identity);
-                    proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-                    musicManager.Play_FX_PLayer_DispararPollo();                                            //Audio
-
-                    chickenType = 0;
-                    break;
-            }
-            if (currentProyectile != null)
-            {
-                foreach (GameObject pollo in currentProyectile)
-                {
-                    pollo.transform.SetParent(handPosition, false);
-                    Destroy(pollo);
-                }
-                currentProyectile.Clear();
-            }
+            HandleProjectileLaunch(AmmoType);
+            ClearProjectiles();
         }
         else
         {
-            if (currentProyectile != null)
-            {
-                foreach (GameObject pollo in currentProyectile)
-                {
-                    if (pollo.GetComponent<ChickenCorpse>() != null)
-                    {
-                        pollo.transform.SetParent(handPosition, false);
-                        RetrieveChicken(pollo.GetComponent<ChickenCorpse>().chickenType);
-                        switch (pollo.GetComponent<ChickenCorpse>().chickenType)
-                        {
-                            case 0:
-                                //Debug.Log("Got no chickens");
-                                break;
-
-                            case 1:
-                                //Debug.Log("Lounching Chicken");
-                                proyectile = Instantiate(proyectiles[0], projectilePos, Quaternion.identity);
-                                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-
-                                //chickenType = 0;
-                                break;
-
-                            case 2:
-                                projectilePos = transform.position;
-                                projectilePos += transform.forward;
-                                projectilePos += transform.up;
-                                //Debug.Log("Lounching Chicken");
-                                proyectile = Instantiate(proyectiles[1], projectilePos, Quaternion.identity);
-                                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-
-                                //chickenType = 0;
-                                break;
-
-                            case 3:
-                                projectilePos = transform.position;
-                                projectilePos += transform.forward;
-                                projectilePos += transform.up;
-                                //Debug.Log("Lounching Chicken");
-                                proyectile = Instantiate(proyectiles[2], projectilePos, Quaternion.identity);
-                                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-
-                                //chickenType = 0;
-                                break;
-
-                            case 4:
-                                projectilePos = transform.position;
-                                projectilePos += transform.forward;
-                                projectilePos += transform.up;
-                                //Debug.Log("Lounching Chicken");
-                                proyectile = Instantiate(proyectiles[3], projectilePos, Quaternion.identity);
-                                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-
-                                //chickenType = 0;
-                                break;
-                        }
-                        //currentProyectile.Remove(pollo);
-                        Destroy(pollo);
-                    }
-                }
-                chickenType = 0;
-                currentProyectile.Clear();
-            }
+            HandleFrenezziMode();
         }
     }
 
-    public void Attack(int AmmoType)
+    Vector3 CalculateProjectileStartPosition()
     {
-       
-            switch (AmmoType)
-            {
-                case 0:
-                    if (Time.time >= nextAttackTime) //Inicio Comprobación Cooldown Ataque
-                    {
-                        /*CanAttack = true;
-                    }
-                    if (CanAttack)
-                    {
-                        CanAttack = false;*/
-                        anim.SetTrigger("Attack");
-                        nextAttackTime = Time.time + AttackCooldown; //Final Comprobación Cooldown Ataque
-                        HeadBut();
-                    } 
+        return transform.position + transform.forward + transform.up;
+    }
 
-                    //Debug.Log("Got no chickens");
-                    //HeadBut();
-                    break;
-                case 1:
-                    ChickenSwing();
-                    UpdateWeapon();
-                    break;
-                case 2:
-                    ChickenSwing();
-                    UpdateWeapon();
-                    break;
-                case 3:
-                    ChickenSwing();
-                    UpdateWeapon();
-                    break;
-                case 4:
-                    ChickenSwing();
-                    UpdateWeapon();
-                    break;
-            } 
-        
+    void HandleProjectileLaunch(int AmmoType)
+    {
+        if (AmmoType > 0 && AmmoType <= proyectiles.Length)
+        {
+            proyectile = Instantiate(proyectiles[AmmoType - 1], projectilePos, Quaternion.identity);
+            proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+            musicManager.Play_FX_PLayer_DispararPollo();
+            chickenType = 0;
+        }
+    }
+
+    void ClearProjectiles()
+    {
+        if (currentProyectile != null)
+        {
+            foreach (GameObject pollo in currentProyectile)
+            {
+                pollo.transform.SetParent(handPosition, false);
+                Destroy(pollo);
+            }
+            currentProyectile.Clear();
+        }
+    }
+
+    void HandleFrenezziMode()
+    {
+        if (currentProyectile != null)
+        {
+            foreach (GameObject pollo in currentProyectile)
+            {
+                if (pollo.GetComponent<ChickenCorpse>() != null)
+                {
+                    pollo.transform.SetParent(handPosition, false);
+                    RetrieveChicken(pollo.GetComponent<ChickenCorpse>().chickenType);
+                    HandleProjectileLaunch(pollo.GetComponent<ChickenCorpse>().chickenType);
+                    Destroy(pollo);
+                }
+            }
+            chickenType = 0;
+            currentProyectile.Clear();
+        }
+    }
+
+    public void PerformAttack(int AmmoType)
+    {
+        if (AmmoType == 0)
+        {
+            HeadBut();
+        }
+        else if (AmmoType >= 1 && AmmoType <= 4)
+        {
+            ChickenSwing();
+            UpdateWeapon();
+        }
     }
 
     public void HeadBut()
     {
         if (headBox != null)
         {
-            //Debug.Log("Headbutting");
             StartCoroutine(ActivateColliderChicken(headBox));
-        }
-        else
-        {
-            //Debug.Log("Headbut Collider is missing");
         }
     }
 
@@ -337,12 +196,7 @@ public class ChickenLouncher : MonoBehaviour
     {
         if (swingBox != null)
         {
-            //Debug.Log("Swinging a chicken");
             StartCoroutine(ActivateCollider(swingBox));
-        }
-        else
-        {
-            //Debug.Log("Swing Collider is missing");
         }
     }
 
@@ -358,63 +212,35 @@ public class ChickenLouncher : MonoBehaviour
     {
         yield return new WaitForSeconds(0.15f);
         collider.SetActive(true);
+        enableBoxCollider = true;
         yield return new WaitForSeconds(0.2f);
         collider.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Si el trigger que activó el evento es el CapsuleCollider
-        if (other == capsuleCollider)
+        if (enableBoxCollider && other.gameObject.CompareTag("CorpseCollider"))
         {
-            Debug.Log("El CapsuleCollider ha activado el trigger.");
-            // Lógica específica para el CapsuleCollider
+            HandleCorpseCollision(other);
+            enableBoxCollider = false;
         }
+    }
 
-        // Si el trigger que activó el evento es el BoxCollider
-        if (other == boxCollider)
+    void HandleCorpseCollision(Collider other)
+    {
+        if (other.gameObject.GetComponentInParent<ChickenCorpse>() != null)
         {
-            Debug.Log("El BoxCollider ha activado el trigger.");
+            musicManager.Play_FX_RecogerPollo();
+            int type = other.gameObject.GetComponentInParent<ChickenCorpse>().chickenType;
+            Destroy(other.GetComponentInParent<ChickenCorpse>().gameObject);
+            Destroy(arma);
+            arma = Instantiate(ragdolls[type - 1], handPosition.position, Quaternion.identity, GetComponent<ChickenLouncher>().gameObject.transform);
+            RetrieveChicken(type);
 
-            if (other.gameObject.CompareTag("Corpse"))
-            {
-                Debug.Log("Detecta Corpse 1");
-            }
-            // Lógica específica para el BoxCollider
-        }
-
-        if (enableBoxCollider)
-        {
-            if (other.gameObject.CompareTag("CorpseCollider"))
-            {
-                Debug.Log("Detecta Corpse 2");
-
-                if (other.gameObject.GetComponentInParent<ChickenCorpse>() != null)
-                {
-                    musicManager.Play_FX_RecogerPollo();
-                    int type = other.gameObject.GetComponentInParent<ChickenCorpse>().chickenType;
-                    Destroy(other.GetComponentInParent<ChickenCorpse>().gameObject);
-                    Destroy(arma);
-                    Debug.Log("type:" + type);
-                    Debug.Log(ragdolls[type - 1]);
-
-                    arma = Instantiate(ragdolls[type - 1], handPosition.position, Quaternion.identity, GetComponent<ChickenLouncher>().gameObject.transform);
-                    RetrieveChicken(type);
-
-                    if (currentProyectile.Count == 0)
-                        currentProyectile.Add(arma);
-                    else
-                        currentProyectile[0] = arma;
-                }
-
-                enableBoxCollider = false;
-            }
-        }
-
-        // Debug.Log("He colisionado con " + other.gameObject.name);
-        if (other.gameObject.CompareTag("Corpse"))
-        {
-            Debug.Log("Detecta Corpse 3");
+            if (currentProyectile.Count == 0)
+                currentProyectile.Add(arma);
+            else
+                currentProyectile[0] = arma;
         }
     }
 
