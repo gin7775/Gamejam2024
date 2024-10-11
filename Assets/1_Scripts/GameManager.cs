@@ -57,9 +57,9 @@ public class GameManager : MonoBehaviour
     public Slider musicSlider;                                                          // Control deslizante de música
     public Slider SFXSlider;                                                            // Control deslizante de efectos
 
-   
-    
-    
+
+
+
     // Singleton pattern
 
     private void Awake()
@@ -220,7 +220,7 @@ public class GameManager : MonoBehaviour
         canvasRound.gameObject.SetActive(true);
 
         //Audio
-        musicManager.FX_ActivarCorutina(waveCurrent - 1, waveCurrent);
+        musicManager.FX_ActivarCorutina((waveCurrent - 1) < 0 ? 0 : waveCurrent - 1, waveCurrent);
 
         yield return new WaitForSeconds(seconds - 2f);
 

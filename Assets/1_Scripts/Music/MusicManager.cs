@@ -144,7 +144,7 @@ public class MusicManager : MonoBehaviour
     //FX
     public void Play_FX_Player_CacareoPollo() //Cacareo Jugador
     {
-        sonidoPolloJugador.Play();
+       // sonidoPolloJugador.Play();
     }
 
     public void Play_FX_Player_PolloMuerto()        // Pollo Muerto
