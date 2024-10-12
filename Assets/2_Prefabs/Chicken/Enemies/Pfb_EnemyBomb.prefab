@@ -118,10 +118,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c551f5a3f09699c40931bd17cbe56aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5
   chickensToDie: []
+  timer: 5
   radius: 5
-  player: {fileID: 0}
+  activationDistance: 5
+  tickingLightAnimator: {fileID: 7575000805608449300}
+  enemyAudio: {fileID: 3029763233906989388}
 --- !u!65 &-8190619795984172847
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -258,7 +260,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 70.95
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1190,6 +1192,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba679c19f3b2d834bb665b4e508f104b, type: 3}
+--- !u!114 &3029763233906989388 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 462915846516842860, guid: ba679c19f3b2d834bb665b4e508f104b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3199660309641541664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c4318decbdebf74fa6997b210962faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3270229816304180083 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 73547055823987539, guid: ba679c19f3b2d834bb665b4e508f104b,

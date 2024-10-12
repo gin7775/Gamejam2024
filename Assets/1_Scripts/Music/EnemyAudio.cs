@@ -7,7 +7,7 @@ public class EnemyAudio : MonoBehaviour
 
     [SerializeField] AudioSource[] sonidoPolloEnemigo;
     [SerializeField] AudioSource polloMuerto;
-    [SerializeField] AudioSource tickingPollo;
+    [SerializeField] public AudioSource tickingPollo;
 
     [SerializeField] bool isExplosive;
 
@@ -20,7 +20,8 @@ public class EnemyAudio : MonoBehaviour
        sonidoPolloEnemigo[indexElegido].Play();
         if (isExplosive)
         {
-            tickingPollo.Play();
+          //  tickingPollo.Play();
+        
         }
     }
 

@@ -11,6 +11,9 @@ public class Pollo_Bomba : MonoBehaviour
     [SerializeField] private float activationDistance = 5f; // Distancia mínima para activar la cuenta atrás
     private bool isCodeExecuting = false;
     private bool countdownStarted = false;
+    [SerializeField] Animator tickingLightAnimator;
+
+    [SerializeField] private EnemyAudio enemyAudio;
 
     void OnDrawGizmos()
     {
@@ -38,6 +41,7 @@ public class Pollo_Bomba : MonoBehaviour
             // Si el jugador está dentro de la distancia de activación y la cuenta atrás no ha comenzado, comenzamos el Countdown
             if (distanceToPlayer <= activationDistance)
             {
+                
                 StartCoroutine(CountdownAndExplode());
                 countdownStarted = true;
             }
@@ -47,13 +51,17 @@ public class Pollo_Bomba : MonoBehaviour
     // Corrutina para contar hacia atrás y realizar la explosión
     IEnumerator CountdownAndExplode()
     {
+        enemyAudio.Play_Enemy_FX_TickingPollo();
+        tickingLightAnimator.SetTrigger("PlayerDetected");
+        
         //while (timer > 0f)
         //{
         //    timer -= Time.deltaTime;
         //    yield return null; // Esperar hasta el siguiente frame
         //}
 
-        yield return new WaitForSeconds(timer);
+       // yield return new WaitForSeconds(timer);
+        yield return new WaitForSeconds(enemyAudio.tickingPollo.clip.length);
 
         Explosion();
     }
