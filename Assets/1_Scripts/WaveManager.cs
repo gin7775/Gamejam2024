@@ -172,10 +172,10 @@ public class WaveManager : MonoBehaviour
         }
 
         // Mostrar el resultado en consola
-        //foreach (var wave in waveDificulty)
-        //{
-            //Debug.Log($"Ronda {wave.Key} -- {wave.Value} puntos");
-        //}
+        foreach (var wave in waveDificulty)
+        {
+            Debug.Log($"Ronda {wave.Key} -- {wave.Value} puntos");
+        }
 
         return waveDificulty;
     }
