@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class MusicManager : MonoBehaviour
 {
@@ -91,7 +92,7 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
     {
-        if (oleadaSiguiente <= mainTheme.Length)
+        if (oleadaSiguiente < mainTheme.Length)
         {
            
            if(oleadaSiguiente >= mainTheme.Length)
@@ -105,10 +106,25 @@ public class MusicManager : MonoBehaviour
             yield return new WaitForSeconds(3f);
             Play_FX_StartRound();
             yield return new WaitForSeconds(1f);
-            mainTheme[oleadaSiguiente].Play();
+           mainTheme[oleadaSiguiente].Play();
             transitionTheme.Stop();
             yield return new WaitForSeconds(1f);
 
+
+        }
+        else
+        {
+           
+            transitionTheme.Play();
+            yield return new WaitForSeconds(1f);
+            sirena.Play();
+            StopAllMusic(); 
+            yield return new WaitForSeconds(3f);
+            Play_FX_StartRound();
+            yield return new WaitForSeconds(4f);
+            mainTheme[2].Play();
+            transitionTheme.Stop();
+            yield return new WaitForSeconds(1f);
 
         }
 
