@@ -30282,6 +30282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7256543223286012308, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
+      propertyPath: waveForLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7256543223286012308, guid: d35b1007e1e770c44ad53f8d3bdfa331,
+        type: 3}
       propertyPath: 'spawnPositions.Array.data[0]'
       value: 
       objectReference: {fileID: 573692167}

@@ -49,7 +49,7 @@ public class WaveManager : MonoBehaviour
     // Método para generar escuadrones de pollos
     public void GenerateChickenSquad()
     {
-        int difficultyPointsLeft = waveDificulty[waveCurrent]; // Obtener dificultad de la oleada actual
+        int difficultyPointsLeft = GetDifficultyPointsByWave(waveCurrent); // Obtener dificultad de la oleada actual
         totalDifficultyPoints = difficultyPointsLeft; // Almacenar la puntuación total
 
         // Generar pollos hasta que quede el 25% de la dificultad total
@@ -186,7 +186,14 @@ public class WaveManager : MonoBehaviour
 
     public int GetDifficultyPointsByWave(int waveCurrent)
     {
-        return waveDificulty[waveCurrent];
+        int adjustedWaveCurrent = waveCurrent;
+
+        if (level == 2)
+            adjustedWaveCurrent += 10;
+        else if (level == 3)
+            adjustedWaveCurrent += 20;
+
+        return waveDificulty[adjustedWaveCurrent];
     }
 
 }

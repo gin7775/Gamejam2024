@@ -180,11 +180,12 @@ public class GameManager : MonoBehaviour
     public void UpdateWave()
     {
         //Debug.Log("INI - GAMEMANAGER - UpdateWave");
-        ++waveCurrent;
+        // Incrementar la oleada actual
+        waveCurrent++;
 
-        if (waveCurrent > WaveManager.Instance.waveForLevel && level <= 2)
+        if ((waveCurrent > WaveManager.Instance.waveForLevel) && level <= 2)
         {
-            ++level;
+            level++;
             waveCurrent = 1;
         }
 
