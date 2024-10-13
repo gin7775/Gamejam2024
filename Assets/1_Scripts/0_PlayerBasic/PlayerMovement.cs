@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.UIElements;
 public class PlayerMovement : MonoBehaviour
 {
     
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Camera mainCamera;
     private Animator animator;
     private GameManager gameManager;
+    public GameObject dashIcon;
 
    
     [Header("Estados del Jugador")]
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = Camera.main;
         animator = GetComponent<Animator>();
         playerCollider = this.GetComponent<Collider>();
+        dashIcon.gameObject.SetActive(true);
     }
 
     void Update()
@@ -127,7 +130,8 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;  // Desactivar el dash hasta que se complete el cooldown
         isDashing = true;
         dashParticle.Play();
-        
+        dashIcon.gameObject.SetActive(false);
+
         SetCollisionWithEnemies(false);                              // Hacer al jugador inmune y no detectable
         gameObject.layer = LayerMask.NameToLayer("Invisible");      
        
@@ -150,6 +154,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Cooldown del dash
         yield return new WaitForSeconds(dashCooldown);
+        dashIcon.gameObject.SetActive(true);
         canDash = true;  // Ahora el dash se puede usar nuevamente
     }
 
