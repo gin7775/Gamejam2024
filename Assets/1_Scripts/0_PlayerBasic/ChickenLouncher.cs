@@ -64,6 +64,8 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
+        enableBoxCollider = false;
+
         if (Time.time >= nextAttackTime)
         {
             nextAttackTime = Time.time + AttackCooldown;
@@ -83,14 +85,9 @@ public class ChickenLouncher : MonoBehaviour
     {
         anim.SetBool("Carrying", true);
         chickenType = chickenNumber;
-        if (chickenType == 3)
-        {
-            playerHealth.LifeUp(1);
-        }
+
         if (chickenType >= 5 || chickenType < 0)
-        {
             chickenType = 1;
-        }
     }
 
     IEnumerator DisableColliderAfterTime(float delay)
@@ -103,15 +100,19 @@ public class ChickenLouncher : MonoBehaviour
     void UpdateWeapon()
     {
         chickenCurrentUses++;
+
         if (chickenCurrentUses == chickenMaxUses)
-        {
             chickenType = 0;
-        }
     }
 
     void Shoot(int AmmoType)
     {
+        enableBoxCollider = false;
         projectilePos = CalculateProjectileStartPosition();
+
+        if (chickenType == 2)
+            playerHealth.LifeUp(1);
+
         if (!gameModeFrenezzi)
         {
             HandleProjectileLaunch(AmmoType);
@@ -226,7 +227,6 @@ public class ChickenLouncher : MonoBehaviour
         if (enableBoxCollider && other.gameObject.CompareTag("CorpseCollider"))
         {
             HandleCorpseCollision(other);
-            enableBoxCollider = false;
         }
     }
 
@@ -251,6 +251,8 @@ public class ChickenLouncher : MonoBehaviour
                 currentProyectile.Add(arma);
             else
                 currentProyectile[0] = arma;
+
+            enableBoxCollider = false;
         }
     }
 

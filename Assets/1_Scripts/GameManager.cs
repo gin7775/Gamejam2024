@@ -180,7 +180,13 @@ public class GameManager : MonoBehaviour
     public void UpdateWave()
     {
         //Debug.Log("INI - GAMEMANAGER - UpdateWave");
-        waveCurrent++;
+        ++waveCurrent;
+
+        if (waveCurrent > WaveManager.Instance.waveForLevel && level <= 2)
+        {
+            ++level;
+            waveCurrent = 1;
+        }
 
         // Restablecer el puntaje de la oleada actual
         currentWaveScore = 0;
@@ -411,9 +417,20 @@ public class GameManager : MonoBehaviour
         //Debug.Log(musicSlider.value);
         myMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
     }
+
     public void SetSFXVolume()
     {
         float volume = SFXSlider.value;
         myMixer.SetFloat("FX", Mathf.Log10(volume) * 20);
     }
+
+    public void changeLevel()
+    {
+        level++;
+        player.GetComponent<PlayerMovement>().enabled = false;
+        player.transform.position = new Vector3(0, 5, 0);
+
+
+    }
+
 }

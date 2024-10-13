@@ -41,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(InvulnerabilityCoroutine());
             cinemachineImpulseSource.GenerateImpulse();
             hitParticle.Play();
-            UpdateLifeUI();
+            eggs[Mathf.Max(0, health - 1)].GetComponent<Animator>().SetTrigger("Break");
             health -= damage;
 
             musicManager.Play_FX_PLayer_RecibirDaño();
@@ -98,14 +98,6 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    private void UpdateLifeUI()
-    {
-        if (eggs != null)
-        {
-            eggs[health - 1].GetComponent<Animator>().SetTrigger("Break");
-        }
-    }
-
     public void PlayerDeath()
     {
         if (!muriendo)
@@ -141,9 +133,12 @@ public class PlayerHealth : MonoBehaviour
     public void LifeUp(int extraLife)
     {
         health += extraLife;
+
         if (health > maxHealth)
         {
             health = maxHealth;
         }
+
+        eggs[Mathf.Max(0, health - 1)].GetComponent<Animator>().SetTrigger("UnBreak");
     }
 }

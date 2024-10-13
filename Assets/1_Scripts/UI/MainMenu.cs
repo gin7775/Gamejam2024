@@ -49,7 +49,7 @@ public class MainMenu : MonoBehaviour
         sonidoClic.Play();
         yield return new WaitForSeconds(1f);
         musica.Stop();
-        SceneManager.LoadScene("8_Blocking_riky");
+        SceneManager.LoadScene("1_MainGame");
     }
 
     public void CargarNivel(string nombreNivel)

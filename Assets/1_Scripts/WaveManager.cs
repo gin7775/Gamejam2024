@@ -12,7 +12,7 @@ public class WaveManager : MonoBehaviour
     // ---- Control de oleadas ----
     public int level = 1;                                                               // Nivel  /  Mapa
     [SerializeField] int waveCurrent = 1;                                               // Oleada /  Ronda
-    [SerializeField] int waveForLevel = 10;                                             // Total numero de rondas por nivel
+    public int waveForLevel = 10;                                                       // Total numero de rondas por nivel
     [SerializeField] int numTotalLevel = 3;                                             // Total numero de niveles
     [SerializeField] double incremento = 1.2;                                           // Multiplicador para el incremento entre rondas
     [SerializeField] double initialDifficult = 15;                                      // Puntuación inicial o dificultad inicial
@@ -86,6 +86,7 @@ public class WaveManager : MonoBehaviour
     private void SpawnWhiteChickenSquad(ref int difficultyPointsLeft)
     {
         int chickensToSpawn = Mathf.Min(10, difficultyPointsLeft); // Si hay menos puntos, genera menos pollos
+
         for (int i = 0; i < chickensToSpawn; i++)
         {
             GameObject chickenPrefab = GameManager.Instance.prepareChikenGenerator();
@@ -93,6 +94,7 @@ public class WaveManager : MonoBehaviour
             GameManager.Instance.listEnemies.Add(auxNewChicken);
             GameManager.Instance.enemyCount++;
         }
+
         difficultyPointsLeft -= chickensToSpawn;
     }
 
@@ -100,14 +102,16 @@ public class WaveManager : MonoBehaviour
     private void SpawnMixedSquad(ref int difficultyPointsLeft)
     {
         int chickensToSpawn = Mathf.Min(5, difficultyPointsLeft); // Si hay menos puntos, genera menos pollos
+        GameObject chickenPrefab = GameManager.Instance.prepareChikenGenerator();
+
         for (int i = 0; i < chickensToSpawn; i++)
         {
             // Lógica para mezclar blancos y otros tipos de pollos
-            GameObject chickenPrefab = GameManager.Instance.prepareChikenGenerator();
             GameObject auxNewChicken = Instantiate(chickenPrefab, GetRandomSpawnPosition(), Quaternion.identity);
             GameManager.Instance.listEnemies.Add(auxNewChicken);
             GameManager.Instance.enemyCount++;
         }
+
         difficultyPointsLeft -= chickensToSpawn; // Ajustar la puntuación según el escuadrón
     }
 

@@ -8,7 +8,7 @@ public class Pollo_Bomba : MonoBehaviour
     private GameObject player;
     public float timer = 2f; // Tiempo de cuenta atrás
     public float radius = 5f; // Radio para iniciar la explosión
-    [SerializeField] private float activationDistance = 5f; // Distancia mínima para activar la cuenta atrás
+    [SerializeField] private float activationDistance = 10f; // Distancia mínima para activar la cuenta atrás
     private bool isCodeExecuting = false;
     private bool countdownStarted = false;
     [SerializeField] Animator tickingLightAnimator;
@@ -26,8 +26,8 @@ public class Pollo_Bomba : MonoBehaviour
 
     void Start()
     {
-        timer = 1f;
-        activationDistance = 5f;
+        timer = 2f;
+        activationDistance = 10f;
         // Asignamos la referencia al jugador
         player = GameManager.Instance.player;
     }

@@ -746,7 +746,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
       propertyPath: m_Name
-      value: PolloAnimadoEnemy (1)
+      value: PolloAnimadoEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 1027224107346117909, guid: 9180f7a89082245469129c61a9f8d359,
         type: 3}
@@ -1060,7 +1060,7 @@ Animator:
   m_GameObject: {fileID: 441314845557799830}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3a57140d0c3cdd84db76c547933facd8, type: 2}
+  m_Controller: {fileID: 9100000, guid: efae78217fbdd734ab9c15a1198944e6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
