@@ -48,7 +48,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -78,7 +78,7 @@ MonoBehaviour:
   distanceToEnemy: 3
   destination: {fileID: 0}
   lifes: 1
-  speed: 3.5
+  speed: 6
   distanceToAttack: 2
   corpse: {fileID: 7062845070779954322, guid: 87184fae2b3eff349be7848278e9befb, type: 3}
   canDamage: 0
