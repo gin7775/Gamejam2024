@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour
         try
         {
             // Mostrar el texto de la ronda actual
-            textMesh.GetComponent<TextMeshProUGUI>().text = "Round " + waveCurrent;
+            textMesh.GetComponent<TextMeshProUGUI>().text = $"Level {level}\nRound {waveCurrent}";
 
             // Obtenemos la dificultad en base a la oleada actual
             dificultiLevel = WaveManager.Instance.GetDifficultyPointsByWave(waveCurrent);
