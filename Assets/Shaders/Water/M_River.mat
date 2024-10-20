@@ -66,9 +66,9 @@ Material:
     - _QueueOffset: 0
     - _RefScall: 5.96
     - _RefStrength: 0
-    - _RimFill: 1.48
+    - _RimFill: 1.29
     - _RimStrength: 2.68
-    - _Rimscall: 21.31
+    - _Rimscall: 25.39
     - _Rimspeed: 1.06
     - _Smothness: 1
     - _normalFromHeight: 4.08
@@ -77,5 +77,5 @@ Material:
     - _ColorOUT: {r: 0.09019611, g: 0, b: 1, a: 0.78431374}
     - _NormalDirection: {r: 0.52, g: 0, b: 0, a: 0}
     - _RefDirection: {r: 1, g: 0, b: 0, a: 0}
-    - _RimColor: {r: 1, g: 1, b: 1, a: 0.84313726}
+    - _RimColor: {r: 3.211117, g: 3.211117, b: 3.211117, a: 0.84313726}
   m_BuildTextureStacks: []
