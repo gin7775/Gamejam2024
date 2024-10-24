@@ -559,7 +559,7 @@ MonoBehaviour:
   lifes: 1
   speed: 6
   distanceToAttack: 2
-  corpse: {fileID: 7062845070779954322, guid: 87184fae2b3eff349be7848278e9befb, type: 3}
+  corpse: {fileID: 7062845070779954322, guid: 40c95d612a2b0d94a93e3f4dad8cb940, type: 3}
   canDamage: 0
 --- !u!114 &9127791943796149023
 MonoBehaviour:
