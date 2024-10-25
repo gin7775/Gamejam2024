@@ -33,6 +33,8 @@ public class ChickenLouncher : MonoBehaviour
     Vector3 projectilePos;
     private Animator anim;
 
+    public int BigChickenImpulse = 10;
+
     [SerializeField] private bool gameModeFrenezzi = false;
 
     private CapsuleCollider capsuleCollider;
@@ -110,7 +112,7 @@ public class ChickenLouncher : MonoBehaviour
         enableBoxCollider = false;
         projectilePos = CalculateProjectileStartPosition();
 
-        if (chickenType == 2)
+        if (chickenType == 2) // Aquí modificar y poner el valor del pollo vida extra
             playerHealth.LifeUp(1);
 
         if (!gameModeFrenezzi)
@@ -126,7 +128,14 @@ public class ChickenLouncher : MonoBehaviour
 
     Vector3 CalculateProjectileStartPosition()
     {
-        return transform.position + transform.forward + transform.up;
+        if(chickenType == 2)
+        {
+            return (transform.position + (transform.forward * 2) + (transform.up * 2));
+        }
+        else
+        {
+            return transform.position + transform.forward + transform.up;
+        }
     }
 
     void HandleProjectileLaunch(int AmmoType)
@@ -134,7 +143,20 @@ public class ChickenLouncher : MonoBehaviour
         if (AmmoType > 0 && AmmoType <= proyectiles.Length)
         {
             proyectile = Instantiate(proyectiles[AmmoType - 1], projectilePos, Quaternion.identity);
-            proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+            if (chickenType == 2)
+            {
+                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * BigChickenImpulse, ForceMode.Impulse);
+            }
+            else if (chickenType == 4)
+            {
+                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce * 1.5f);
+            }
+            else
+            {
+                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
+
+            }
+
             musicManager.Play_FX_PLayer_DispararPollo();
             chickenType = 0;
         }

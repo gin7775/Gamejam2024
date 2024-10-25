@@ -5,7 +5,7 @@ using UnityEngine;
 public class AddImpulse : MonoBehaviour
 {
     private Rigidbody rb;
-    public float impulse = 5f;
+    //public float impulse = 5f;
     public float drag = 0.1f;
     public float angularDrag = 0.1f;
 
@@ -14,13 +14,13 @@ public class AddImpulse : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
         rb.drag = drag;
         rb.angularDrag = drag;
-        AddForce();
+        //AddForce();
     }
 
     public void AddForce()
     {
         // Aplicar impulso a la bola
-        rb.AddForce(transform.forward * impulse, ForceMode.Impulse);
+        //rb.AddForce(transform.forward * impulse, ForceMode.Impulse);
     }
 
 }
