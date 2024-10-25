@@ -5798,6 +5798,8 @@ GameObject:
   - component: {fileID: 8182388685221084263}
   - component: {fileID: 6386048617122178258}
   - component: {fileID: 8185611917649251579}
+  - component: {fileID: 7148413172201227946}
+  - component: {fileID: 3209114632950549049}
   m_Layer: 0
   m_Name: Pbf_ChickenPlayer
   m_TagString: Player
@@ -5849,10 +5851,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.23262922
-  m_Height: 1.9687345
+  m_Radius: 0.39
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: -0.015277654, y: 1.15, z: -0.047497645}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1499675197100328886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5865,13 +5867,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4f4f6cd59b4f848a9386de3e82d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 8
   rotationSpeed: 500
   dashSpeed: 20
   dashDuration: 0.35
   dashCooldown: 2
   dashParticle: {fileID: 4825037157008807007}
   controller: {fileID: 6354709594561634940}
+  dashIcon: {fileID: 0}
   gravity: 9.81
 --- !u!114 &539183189401168150
 MonoBehaviour:
@@ -5914,6 +5917,13 @@ MonoBehaviour:
   - {fileID: 8464458607440672315, guid: 31fbe86feaad5a0479d7dc37329db290, type: 3}
   - {fileID: 8464458607440672315, guid: 4daa061a417ab9a4ca6fe15f881e7d23, type: 3}
   - {fileID: 8464458607440672315, guid: 0a3ef1ed9a95eb14195df951bd54f212, type: 3}
+  - {fileID: 8464458607440672315, guid: 1571e85a4213a2e408c61be9ad24d090, type: 3}
+  ragdolls:
+  - {fileID: 8707362965608281174, guid: 9a130c6b446546e4ab081b290c6008ee, type: 3}
+  - {fileID: 8156453373880305070, guid: 10850339a1ea9184292895c8e82e29c6, type: 3}
+  - {fileID: 8310774612278701237, guid: 10e5b7cb341184e4f835b0c3354c950d, type: 3}
+  - {fileID: 617502787671287447, guid: c8e947cc4bbd01b4f9ce157b597900b8, type: 3}
+  - {fileID: 8707362965608281174, guid: 7014fb605147cfc4186f89b07803c0c0, type: 3}
   proyectileForce: 1000
   chickenCurrentUses: 0
   chickenMaxUses: 3
@@ -6091,6 +6101,48 @@ MonoBehaviour:
     m_DissipationDistance: 30
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 7, y: 7, z: 7}
+--- !u!65 &7148413172201227946
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356357138508783368}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &3209114632950549049
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356357138508783368}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3458630795539636802
 GameObject:
   m_ObjectHideFlags: 0

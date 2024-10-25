@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1192762296817916217}
   - component: {fileID: 2448007936746961529}
   - component: {fileID: 2351156814771184459}
-  - component: {fileID: -5919614931601574036}
+  - component: {fileID: -7098342463395711287}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: EnemyBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 778af0995106d8e40bbc406b7957a430, type: 2}
+  - {fileID: 2100000, guid: e3e4aef28c7de644ab56313b34d0eb7b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -132,9 +132,9 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &-5919614931601574036
+--- !u!114 &-7098342463395711287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

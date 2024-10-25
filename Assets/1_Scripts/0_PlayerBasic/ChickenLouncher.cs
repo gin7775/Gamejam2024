@@ -86,7 +86,7 @@ public class ChickenLouncher : MonoBehaviour
         anim.SetBool("Carrying", true);
         chickenType = chickenNumber;
 
-        if (chickenType >= 5 || chickenType < 0)
+        if (chickenType >= 6 || chickenType < 0)
             chickenType = 1;
     }
 

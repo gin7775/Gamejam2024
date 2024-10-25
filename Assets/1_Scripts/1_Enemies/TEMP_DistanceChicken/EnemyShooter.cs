@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyShooter : MonoBehaviour
 {
-    // Parámetros configurables
     [SerializeField] private GameObject projectilePrefab; // Prefab del proyectil
     [SerializeField] private Transform shootingPoint; // Punto de origen del disparo
     [SerializeField] private float projectileSpeed = 10f; // Velocidad del proyectil
@@ -15,7 +14,7 @@ public class EnemyShooter : MonoBehaviour
 
     private void Start()
     {
-        // Encontrar al jugador por etiqueta, puedes ajustarlo a tu caso
+        // Encontrar al jugador por etiqueta
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         fireCooldown = 0f;
     }
@@ -38,17 +37,15 @@ public class EnemyShooter : MonoBehaviour
 
     private void ShootAtPlayer()
     {
-        // Verificar que el jugador esté presente
         if (playerTransform != null)
         {
-            // Crear el proyectil en el punto de disparo (shootingPoint)
             GameObject projectile = Instantiate(projectilePrefab, shootingPoint.position, shootingPoint.rotation);
 
             // Obtener la dirección hacia el jugador en el momento del disparo
             Vector3 directionToPlayer = playerTransform.position - shootingPoint.position;
 
-            // Asegurar que la componente Y (vertical) sea 0 para evitar disparar hacia arriba o abajo
-            directionToPlayer.y = shootingPoint.position.y;
+            // Eliminar la componente Y para asegurar un disparo plano
+            directionToPlayer.y = 0f;
 
             // Normalizar la dirección para que tenga longitud 1
             directionToPlayer = directionToPlayer.normalized;

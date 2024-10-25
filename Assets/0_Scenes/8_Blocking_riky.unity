@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11871,10 +11871,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pfb_EnemyShoot
       objectReference: {fileID: 0}
+    - target: {fileID: 4351264026991261956, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
+        type: 3}
+      propertyPath: fireRate
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6062319219416829764, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.53
+      value: -9.83
       objectReference: {fileID: 0}
     - target: {fileID: 6062319219416829764, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
         type: 3}
@@ -11884,7 +11889,7 @@ PrefabInstance:
     - target: {fileID: 6062319219416829764, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -24
+      value: -31.25
       objectReference: {fileID: 0}
     - target: {fileID: 6062319219416829764, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
         type: 3}
@@ -11920,11 +11925,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9127791943796149023, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
-        type: 3}
-      propertyPath: fireRate
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12407,27 +12407,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8053072838908176740}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &2070763596500298135
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070763596500298125}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2605607468437061045 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 967404805593289463, guid: bfd15e2b04599b34b94dae4e8a98ed0b,
@@ -13478,11 +13457,6 @@ PrefabInstance:
       objectReference: {fileID: 3856775006313460390}
     - target: {fileID: 1499675197100328886, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
-      propertyPath: speed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1499675197100328886, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
       propertyPath: dashIcon
       value: 
       objectReference: {fileID: 1746131285}
@@ -13541,83 +13515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChickenPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 5766796021346521786, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: m_Height
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5766796021346521786, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 5766796021346521786, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5766796021346521786, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5766796021346521786, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5766796021346521786, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6354709594561634940, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: ragdolls.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: 'ragdolls.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8707362965608281174, guid: 9a130c6b446546e4ab081b290c6008ee,
-        type: 3}
-    - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: 'ragdolls.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8156453373880305070, guid: 10850339a1ea9184292895c8e82e29c6,
-        type: 3}
-    - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: 'ragdolls.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8310774612278701237, guid: 10e5b7cb341184e4f835b0c3354c950d,
-        type: 3}
-    - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: 'ragdolls.Array.data[3]'
-      value: 
-      objectReference: {fileID: 617502787671287447, guid: c8e947cc4bbd01b4f9ce157b597900b8,
-        type: 3}
-    - target: {fileID: 8182388685221084263, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3356357138508783368, guid: 698ccce49678b3b4d90631fe1d040e6d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2070763596500298135}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 698ccce49678b3b4d90631fe1d040e6d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

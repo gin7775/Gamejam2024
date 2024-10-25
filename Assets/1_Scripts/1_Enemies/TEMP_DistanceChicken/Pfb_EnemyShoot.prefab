@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 6062319219416829764}
   - component: {fileID: 8485981160104049883}
   - component: {fileID: 6028616469229789346}
-  - component: {fileID: 9127791943796149023}
+  - component: {fileID: 4351264026991261956}
   - component: {fileID: 614269451533515104}
   - component: {fileID: 6604334440030679816}
   - component: {fileID: 3008997807768124337}
@@ -554,14 +554,14 @@ MonoBehaviour:
   animEnemy: {fileID: 684597594024183887}
   playerReference: {fileID: 0}
   enemyTipe: 0
-  distanceToEnemy: 15
+  distanceToEnemy: 20
   destination: {fileID: 0}
   lifes: 1
   speed: 6
   distanceToAttack: 2
   corpse: {fileID: 7062845070779954322, guid: 40c95d612a2b0d94a93e3f4dad8cb940, type: 3}
   canDamage: 0
---- !u!114 &9127791943796149023
+--- !u!114 &4351264026991261956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

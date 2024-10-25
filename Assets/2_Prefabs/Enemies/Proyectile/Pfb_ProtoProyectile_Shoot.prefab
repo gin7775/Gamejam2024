@@ -2084,6 +2084,7 @@ GameObject:
   - component: {fileID: 4840851951825858916}
   - component: {fileID: 3353794482949223439}
   - component: {fileID: 7762939117392060085}
+  - component: {fileID: -1712470286594429782}
   m_Layer: 0
   m_Name: Pfb_ProtoProyectile_Shoot
   m_TagString: Untagged
@@ -2179,6 +2180,22 @@ MonoBehaviour:
   - {fileID: 8427427352162472809}
   chickensToDie: []
   radius: 5
+--- !u!114 &-1712470286594429782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464458607440672315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b51d394fef2ed54db971f057aa992cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4041853856763468405, guid: e2e2222339b35444ea7a724a139047a8,
+    type: 3}
+  bulletCount: 4
+  bulletSpeed: 10
 --- !u!1 &8619857555060344572
 GameObject:
   m_ObjectHideFlags: 0
