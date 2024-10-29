@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyShooter : MonoBehaviour
 {
@@ -8,30 +9,55 @@ public class EnemyShooter : MonoBehaviour
     [SerializeField] private Transform shootingPoint; // Punto de origen del disparo
     [SerializeField] private float projectileSpeed = 10f; // Velocidad del proyectil
     [SerializeField] private float fireRate = 2f; // Frecuencia de disparo (Disparos por segundo)
+    [SerializeField] private float stopDistance = 10f; // Distancia mínima para detenerse y disparar
+    [SerializeField] private float moveDistance = 15f; // Distancia máxima para moverse hacia el jugador
 
     private Transform playerTransform; // Referencia al jugador
     private float fireCooldown; // Controla el tiempo entre disparos
+    private NavMeshAgent agent; // Componente NavMeshAgent para el movimiento
 
     private void Start()
     {
         // Encontrar al jugador por etiqueta
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+
+        // Configurar la distancia mínima a la que el agente se detiene
+        agent.stoppingDistance = stopDistance;
         fireCooldown = 0f;
     }
 
     private void Update()
     {
-        Vector3 lookPosition = new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z);
-        transform.LookAt(lookPosition);
+        if (playerTransform == null) return;
 
         // Actualizar el cooldown para disparar
         fireCooldown -= Time.deltaTime;
 
-        // Disparar si el cooldown ha terminado
-        if (fireCooldown <= 0f)
+        // Calcular la distancia al jugador
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
+        // Si el enemigo está fuera de la distancia de movimiento, se dirige al jugador
+        if (distanceToPlayer > moveDistance)
         {
-            ShootAtPlayer();
-            fireCooldown = 1f / fireRate; // Reiniciar el cooldown basado en la tasa de disparo
+            agent.isStopped = false; // Activar el movimiento
+            agent.SetDestination(playerTransform.position);
+        }
+        else
+        {
+            // Si está dentro de cualquier distancia de disparo, se detiene
+            agent.isStopped = true;
+
+            // Mirar hacia el jugador
+            Vector3 lookPosition = new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z);
+            transform.LookAt(lookPosition);
+
+            // Disparar siempre que esté quieto y el cooldown ha terminado
+            if (fireCooldown <= 0f)
+            {
+                ShootAtPlayer();
+                fireCooldown = 1f / fireRate; // Reiniciar el cooldown basado en la tasa de disparo
+            }
         }
     }
 

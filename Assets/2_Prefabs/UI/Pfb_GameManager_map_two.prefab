@@ -555,19 +555,23 @@ MonoBehaviour:
   - chickenPrefab: {fileID: 1570130104802229714, guid: 9fb28a391b887db4db9086cd85de82c9,
       type: 3}
     probability: 60
-    difficultyScore: 0
+    difficultyScore: 1
   - chickenPrefab: {fileID: 4184036453883938847, guid: 884705e063edfe74f9d053f20ba2aaf0,
       type: 3}
     probability: 15
-    difficultyScore: 0
+    difficultyScore: 3
   - chickenPrefab: {fileID: 1723300209522017659, guid: 466fab495fabb824f9aee8381bb00e51,
       type: 3}
-    probability: 5
-    difficultyScore: 0
+    probability: 3
+    difficultyScore: 7
   - chickenPrefab: {fileID: 454032083427569727, guid: 5921031b03d6c4b408a3e91a96db6a61,
       type: 3}
-    probability: 5
-    difficultyScore: 0
+    probability: 3
+    difficultyScore: 10
+  - chickenPrefab: {fileID: 3100536965024992119, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
+      type: 3}
+    probability: 15
+    difficultyScore: 5
   chikenToSpawnWave: []
   difficult: []
   totalChicken: 0

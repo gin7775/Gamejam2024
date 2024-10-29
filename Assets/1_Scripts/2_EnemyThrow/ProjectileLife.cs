@@ -87,7 +87,7 @@ public class ProjectileLife : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
                 {
-                    GameManager.Instance.chickenEnemyTakeDamage(chicken, 99);
+                    GameManager.Instance.chickenEnemyTakeDamage(chicken, 2);
                 }
             }
 

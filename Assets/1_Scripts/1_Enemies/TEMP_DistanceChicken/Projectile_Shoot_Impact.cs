@@ -4,40 +4,41 @@ using UnityEngine;
 
 public class Projectile_Shoot_Impact : MonoBehaviour
 {
-    public GameObject bulletPrefab;  // Prefab de la bala
-    public int bulletCount = 8;      // Número de balas generadas en el impacto
-    public float bulletSpeed = 5f;   // Velocidad de las balas
+    public GameObject bulletPrefab;     // Prefab de la bala
+    public int bulletCount = 8;         // Número de balas generadas en el abanico
+    public float bulletSpeed = 5f;      // Velocidad de las balas
+    public float fanAngle = 150f;       // Ángulo total del abanico
 
     private void OnCollisionEnter(Collision collision)
     {
         // Verificar si el objeto impactado tiene una etiqueta específica (opcional)
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            SpawnBulletsInCircle();
+            SpawnBulletsInFan();
             Destroy(this.gameObject);
         }
     }
 
-    void SpawnBulletsInCircle()
+   
+    void SpawnBulletsInFan()
     {
         // Ángulo inicial y diferencia de ángulo entre cada bala
-        float angleStep = 360f / bulletCount; // Divide 360 grados entre el número de balas
+        float startAngle = -fanAngle / 2;         // Empezar el abanico desde el lado izquierdo (-105 grados)
+        float angleStep = fanAngle / (bulletCount - 1); // Espacio entre cada bala en el abanico
 
         for (int i = 0; i < bulletCount; i++)
         {
-            // Calcular el ángulo para la bala actual
-            float angle = i * angleStep;
+            // Calcular el ángulo para la bala actual dentro del abanico
+            float angle = startAngle + (i * angleStep);
 
-            // Convertir el ángulo a radianes para calcular la posición y dirección de la bala
+            // Convertir el ángulo a radianes y calcular la dirección en el plano X-Z
             float radian = angle * Mathf.Deg2Rad;
-
-            // Calcular la dirección de la bala en el plano X-Z
-            Vector3 direction = new Vector3(Mathf.Cos(radian), 0, Mathf.Sin(radian));
+            Vector3 direction = Quaternion.Euler(0, angle, 0) * transform.forward;
 
             // Instanciar la bala en la posición actual
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
-            // Obtener el Rigidbody de la bala y aplicar la fuerza en la dirección calculada
+            // Obtener el Rigidbody de la bala y aplicar la velocidad en la dirección calculada
             Rigidbody rb = bullet.GetComponent<Rigidbody>();
             if (rb != null)
             {
@@ -46,5 +47,6 @@ public class Projectile_Shoot_Impact : MonoBehaviour
             }
         }
     }
+
 
 }
