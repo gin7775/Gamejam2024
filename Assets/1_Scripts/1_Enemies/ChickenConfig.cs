@@ -17,6 +17,7 @@ public class ChickenConfigWave
     public int level;                   // Mapa al que se aplica
     public GameObject chickenPrefab;    // El tipo de enemigo
     public float probability;           // La probabilidad de que aparezca este enemigo
+    public int cantidad;                // Ignora la probabilidad y se limita a la cantidad total de ronda
     public int difficultyScore;         // Puntuación de dificultad del pollo (1, 5, 10, etc.)
 }
 
