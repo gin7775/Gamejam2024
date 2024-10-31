@@ -1691,6 +1691,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 537359600757783605, guid: e531d359d2cc2cf42b5a4c5788ed5147,
+        type: 3}
+      propertyPath: m_FirstSelected
+      value: 
+      objectReference: {fileID: 1584280275580946296}
     - target: {fileID: 7635306599484468306, guid: e531d359d2cc2cf42b5a4c5788ed5147,
         type: 3}
       propertyPath: m_Name
@@ -1746,10 +1751,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2494280271500587835, guid: e531d359d2cc2cf42b5a4c5788ed5147, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7635306599484468306, guid: e531d359d2cc2cf42b5a4c5788ed5147,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 450685888}
   m_SourcePrefab: {fileID: 100100000, guid: e531d359d2cc2cf42b5a4c5788ed5147, type: 3}
 --- !u!1001 &156387225
 PrefabInstance:
@@ -7890,6 +7900,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 446313210}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &450685884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7635306599484468306, guid: e531d359d2cc2cf42b5a4c5788ed5147,
+    type: 3}
+  m_PrefabInstance: {fileID: 148498392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &450685888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450685884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1001 &455171222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42849,6 +42906,7 @@ MonoBehaviour:
   dashCooldown: 2
   dashParticle: {fileID: 0}
   controller: {fileID: 143217572830352860}
+  dashIcon: {fileID: 0}
   gravity: 9.81
 --- !u!1 &413556273130189321
 GameObject:
@@ -42929,7 +42987,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: efc853e50ae0c1f4bb99c7996711dcf8,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: efc853e50ae0c1f4bb99c7996711dcf8, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -43080,6 +43138,7 @@ MonoBehaviour:
   - {fileID: 8464458607440672315, guid: 31fbe86feaad5a0479d7dc37329db290, type: 3}
   - {fileID: 8464458607440672315, guid: 4daa061a417ab9a4ca6fe15f881e7d23, type: 3}
   - {fileID: 8464458607440672315, guid: 0a3ef1ed9a95eb14195df951bd54f212, type: 3}
+  ragdolls: []
   proyectileForce: 1000
   chickenCurrentUses: 0
   chickenMaxUses: 3
@@ -43097,6 +43156,7 @@ MonoBehaviour:
   handPosition: {fileID: 2936902302847129025}
   currentProyectile: []
   shildCounter: []
+  BigChickenImpulse: 10
   gameModeFrenezzi: 0
 --- !u!1 &870164277485141197
 GameObject:
@@ -43602,6 +43662,11 @@ PrefabInstance:
     - target: {fileID: 631425269643085267, guid: 1ed0504aad7e4104097e77e26f7fd867,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 707428597244121768, guid: 1ed0504aad7e4104097e77e26f7fd867,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4324587666118870470, guid: 1ed0504aad7e4104097e77e26f7fd867,
@@ -44526,6 +44591,7 @@ GameObject:
   - component: {fileID: 1616273941929374979}
   - component: {fileID: 6708942920603969255}
   - component: {fileID: 8097626794502145498}
+  - component: {fileID: 8097626794502145499}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46417,7 +46483,6 @@ MonoBehaviour:
     chickenPrefab: {fileID: 0}
     probability: 0
     difficultyScore: 0
-  player: {fileID: 0}
 --- !u!114 &4426541626744503638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46450,7 +46515,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 2a084859fa99d0a48be2db0b1e0b73d2,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 2a084859fa99d0a48be2db0b1e0b73d2, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 2a084859fa99d0a48be2db0b1e0b73d2, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -47141,6 +47206,7 @@ MonoBehaviour:
   - {fileID: 8464458607440672315, guid: 31fbe86feaad5a0479d7dc37329db290, type: 3}
   - {fileID: 8464458607440672315, guid: 4daa061a417ab9a4ca6fe15f881e7d23, type: 3}
   - {fileID: 8464458607440672315, guid: 0a3ef1ed9a95eb14195df951bd54f212, type: 3}
+  ragdolls: []
   proyectileForce: 1000
   chickenCurrentUses: 0
   chickenMaxUses: 3
@@ -47158,6 +47224,7 @@ MonoBehaviour:
   handPosition: {fileID: 7368150215055019724}
   currentProyectile: []
   shildCounter: []
+  BigChickenImpulse: 10
   gameModeFrenezzi: 0
 --- !u!114 &5183248433825485494
 MonoBehaviour:
@@ -47336,6 +47403,7 @@ MonoBehaviour:
   dashCooldown: 2
   dashParticle: {fileID: 0}
   controller: {fileID: 5727975228132150993}
+  dashIcon: {fileID: 0}
   gravity: 9.81
 --- !u!1 &5380228128267579920
 GameObject:
@@ -47632,7 +47700,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: cdeab0a9b02feef45a79e9dcab9ebefa,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: cdeab0a9b02feef45a79e9dcab9ebefa, type: 3}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: cdeab0a9b02feef45a79e9dcab9ebefa, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -48710,6 +48778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79ad7dc74bf46743bd29733fc9dbe96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   level: 1
   timeWave: 5
   timeGeneration: 0
@@ -48722,8 +48791,12 @@ MonoBehaviour:
   canvasRound: {fileID: 0}
   canvasAnimator: {fileID: 0}
   textMesh: {fileID: 0}
+  listEnemies: []
+  listCorpses: []
   listSpawns: []
   chikenToSpawn: []
+  chikenToSpawnWave: []
+  difficult: []
   totalChicken: 0
   spawnPosition: {x: 0, y: 0, z: 0}
   vfxHitEffect: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,
@@ -48745,6 +48818,7 @@ MonoBehaviour:
   myMixer: {fileID: 24100000, guid: 4a4e7e06e7ebba840afcfa549c9e4c22, type: 2}
   musicSlider: {fileID: 0}
   SFXSlider: {fileID: 0}
+  firstGameObjectMenu: {fileID: 0}
 --- !u!4 &6754540507841557597
 Transform:
   m_ObjectHideFlags: 0
@@ -49607,6 +49681,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8ef73568de8874e8aa74ff1872f366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8097626794502145499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2167223929717705149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 60887d3de52b8b14f878e3e3d5754b23,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerActions
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &8104139133337663226
 GameObject:
   m_ObjectHideFlags: 0
@@ -50236,7 +50341,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 21300000, guid: 10ba7e90dc4a4cc4cae3c8358ba7483c,
       type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 21300000, guid: 10ba7e90dc4a4cc4cae3c8358ba7483c, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal

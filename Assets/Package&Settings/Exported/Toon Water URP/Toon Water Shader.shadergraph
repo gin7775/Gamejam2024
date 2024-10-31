@@ -9271,7 +9271,7 @@
 }
 
 {
-    "m_SGVersion": 1,
+    "m_SGVersion": 2,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalLitSubTarget",
     "m_ObjectId": "71c278eb9bb54d1ca69d050795abd646",
     "m_WorkflowMode": 0,
@@ -11562,7 +11562,8 @@
     },
     "m_TextureType": 0,
     "m_NormalMapSpace": 0,
-    "m_EnableGlobalMipBias": true
+    "m_EnableGlobalMipBias": true,
+    "m_MipSamplingMode": 0
 }
 
 {
@@ -13163,6 +13164,7 @@
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget",
     "m_ObjectId": "c16392cfd3fb44fc829dc563e338118b",
+    "m_Datas": [],
     "m_ActiveSubTarget": {
         "m_Id": "71c278eb9bb54d1ca69d050795abd646"
     },
@@ -13175,6 +13177,7 @@
     "m_AlphaClip": true,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
+    "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "ToonWaterInspector",
     "m_SupportVFX": false
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -60,6 +61,9 @@ public class GameManager : MonoBehaviour
     public Slider musicSlider;                                                          // Control deslizante de música
     public Slider SFXSlider;                                                            // Control deslizante de efectos
 
+    // ---- Control de Input ----
+    public GameObject firstGameObjectMenu;
+    
     // Singleton pattern
     private void Awake()
     {
@@ -390,6 +394,7 @@ public class GameManager : MonoBehaviour
                 paused = true;
                 pausemenu.gameObject.SetActive(true);
                 Time.timeScale = 0;
+                EventSystem.current.SetSelectedGameObject(firstGameObjectMenu);
             }
             if (currentSceneName == "MenuPrincipal")
             {

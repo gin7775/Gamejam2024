@@ -59,23 +59,23 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth: 0.88
-    - _NormalScale: 3.07
-    - _NormalStrenght: 0.149
+    - _Depth: 0.73
+    - _NormalScale: 1.25
+    - _NormalStrenght: 0.253
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RefScall: 5.96
+    - _RefScall: 4.55
     - _RefStrength: 0
-    - _RimFill: 1.29
-    - _RimStrength: 2.68
-    - _Rimscall: 25.39
-    - _Rimspeed: 1.06
+    - _RimFill: 5.65
+    - _RimStrength: 2.14
+    - _Rimscall: 6.27
+    - _Rimspeed: 0.58
     - _Smothness: 1
     - _normalFromHeight: 4.08
     m_Colors:
     - _ColorIN: {r: 0, g: 0.5967741, b: 1, a: 1}
-    - _ColorOUT: {r: 0.09019611, g: 0, b: 1, a: 0.78431374}
-    - _NormalDirection: {r: 0.52, g: 0, b: 0, a: 0}
-    - _RefDirection: {r: 1, g: 0, b: 0, a: 0}
-    - _RimColor: {r: 3.211117, g: 3.211117, b: 3.211117, a: 0.84313726}
+    - _ColorOUT: {r: 0.09019613, g: 0, b: 1, a: 0.78431374}
+    - _NormalDirection: {r: 0.6, g: 0, b: 0, a: 0}
+    - _RefDirection: {r: 1.63, g: 0, b: 0, a: 0}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

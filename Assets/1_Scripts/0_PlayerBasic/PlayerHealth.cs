@@ -1,6 +1,7 @@
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int health = 3;
     [SerializeField] int maxHealth = 3;
     [SerializeField] GameObject[] eggs;
-
+    public GameObject firstGameObjectRetry;
     [Header("RECIBIR DAÑO")]
     [SerializeField] private float invulnerabilityDuration = 1f;
     private bool isInvulnerable = false;
@@ -20,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
     private static readonly int IsViewShift = Shader.PropertyToID("_Is_ViewShift");
     private Coroutine invulnerabilityCoroutine;
     private bool muriendo = false;
-
+    
     // Animations and VFX
     private Animator anim;
     CinemachineImpulseSource cinemachineImpulseSource;
@@ -125,6 +126,7 @@ public class PlayerHealth : MonoBehaviour
         musicManager.Play_FX_Player_PolloMuerto();
         anim.SetTrigger("Die");
         RetryButton.gameObject.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(firstGameObjectRetry);
         Destroy(this.gameObject);
 
         yield return new WaitForSeconds(2f);
