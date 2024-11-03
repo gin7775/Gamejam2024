@@ -26,10 +26,10 @@ public class AttackCollider : MonoBehaviour
             switch (attackType)
             {
                 case 0:
-                    GameManager.Instance.chickenEnemyTakeDamage(other.GetComponent<ContenedorEnemigo1>().gameObject, 1);
+                    GameManager.Instance.ChickenEnemyTakeDamage(other.GetComponent<ContenedorEnemigo1>().gameObject, 1);
                     break;
                 case 1:
-                    GameManager.Instance.chickenEnemyTakeDamage(other.GetComponent<ContenedorEnemigo1>().gameObject, 2);
+                    GameManager.Instance.ChickenEnemyTakeDamage(other.GetComponent<ContenedorEnemigo1>().gameObject, 2);
                     break;
             }
 

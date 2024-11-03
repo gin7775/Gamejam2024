@@ -180,11 +180,22 @@
                 },
                 {
                     "name": "",
+                    "id": "4c2f08b8-e13d-408e-ada5-f4ecb08d1f60",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a36ea63e-a402-48cc-bad4-08c30efc0834",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyBoard",
+                    "groups": "",
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -202,8 +213,19 @@
                 },
                 {
                     "name": "",
-                    "id": "c1b11c2b-7599-4448-96bb-f744666077c6",
+                    "id": "e58bab44-d4d1-4872-9e0c-0300c729908d",
                     "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyBoard",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c1b11c2b-7599-4448-96bb-f744666077c6",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyBoard",
@@ -287,6 +309,11 @@
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
                     "isOptional": true,
                     "isOR": false
                 }

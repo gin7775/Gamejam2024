@@ -40,7 +40,7 @@ public class ContenedorEnemigo1 : MonoBehaviour
         {
             cinemachineImpulseSource.GenerateImpulse();
             lifes -= damage;
-            //GameManager.Instance.chickenEnemyTakeDamage(damage);
+            //GameManager.Instance.ChickenEnemyTakeDamage(damage);
             canDamage = false;
             StartCoroutine(FrameFreeze(0.1f));
             //StartCoroutine(Contador());

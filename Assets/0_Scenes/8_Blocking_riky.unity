@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13310,8 +13310,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6972046866054049047, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
+      propertyPath: incremento
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972046866054049047, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: waveForLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972046866054049047, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
       propertyPath: initialDifficult
-      value: 20
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972046866054049047, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: spawnPositions.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6972046866054049047, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}

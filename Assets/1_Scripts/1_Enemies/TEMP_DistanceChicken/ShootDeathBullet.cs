@@ -17,7 +17,7 @@ public class ShootDeathBullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Debug.Log("Kill");
-            GameManager.Instance.chickenEnemyTakeDamage(other.gameObject, 1);
+            GameManager.Instance.ChickenEnemyTakeDamage(other.gameObject, 1);
             Destroy(this.gameObject);
         }
 

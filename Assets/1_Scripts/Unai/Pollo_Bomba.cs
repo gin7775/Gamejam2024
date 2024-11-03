@@ -82,7 +82,7 @@ public class Pollo_Bomba : MonoBehaviour
                 if (chicken == null) continue; // Verifica si el objeto aún existe
                 if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
                 {
-                    GameManager.Instance.chickenEnemyTakeDamage(chicken, 99);
+                    GameManager.Instance.ChickenEnemyTakeDamage(chicken, 99);
                 }
             }
 
