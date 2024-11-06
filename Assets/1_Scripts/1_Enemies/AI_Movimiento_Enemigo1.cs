@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AI_Movimiento_Enemigo1 : StateMachineBehaviour
 {
-    NavMeshAgent enemy;
-    ContenedorEnemigo1 contenedorEnemy;
-    Animator animatorHijo;
+    private NavMeshAgent enemy;
+    private ContenedorEnemigo1 contenedorEnemy;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -20,21 +17,25 @@ public class AI_Movimiento_Enemigo1 : StateMachineBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        if (player != null && player.layer != LayerMask.NameToLayer("Invisible"))
+        if (player != null)
         {
-            enemy.destination = player.transform.position;
+            Vector3 targetPosition = player.transform.position;
+
+            // Aplica la dirección de la corriente si el enemigo está en el agua
+            contenedorEnemy.UpdatePositionWithCurrent(enemy); // Le pasamos el NavMeshAgent para actualizar la dirección
+
+            enemy.destination = targetPosition;
+
             if (Vector3.Distance(enemy.transform.position, player.transform.position) <= contenedorEnemy.distanceToEnemy)
             {
-                contenedorEnemy.animEnemy.SetTrigger("Attack"); //la animación
-                animator.SetTrigger("Ataque"); //la IA
-                enemy.speed = 0.3f;
+                contenedorEnemy.animEnemy.SetTrigger("Attack");
+                animator.SetTrigger("Ataque");
+                enemy.speed = 0.3f;  // Baja la velocidad al atacar
+            }
+            else
+            {
+                enemy.speed = contenedorEnemy.speed; // Restablece la velocidad original
             }
         }
     }
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        
-    }
-
 }

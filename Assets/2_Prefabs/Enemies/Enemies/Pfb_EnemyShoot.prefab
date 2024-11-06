@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 614269451533515104}
   - component: {fileID: 6604334440030679816}
   - component: {fileID: 3008997807768124337}
+  - component: {fileID: -3539286098983459853}
   m_Layer: 7
   m_Name: Pfb_EnemyShoot
   m_TagString: Enemy
@@ -558,9 +559,10 @@ MonoBehaviour:
   destination: {fileID: 0}
   lifes: 1
   speed: 6
-  distanceToAttack: 2
+  distanceToAttack: 1
   corpse: {fileID: 7062845070779954322, guid: 40c95d612a2b0d94a93e3f4dad8cb940, type: 3}
   canDamage: 0
+  currentForceMultiplier: 0.05
 --- !u!114 &4351264026991261956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,6 +580,8 @@ MonoBehaviour:
   shootingPoint: {fileID: 3490452026750433824}
   projectileSpeed: 10
   fireRate: 2
+  stopDistance: 10
+  moveDistance: 15
 --- !u!95 &614269451533515104
 Animator:
   serializedVersion: 7
@@ -674,6 +678,33 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: 0.3, z: 0}
+--- !u!54 &-3539286098983459853
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3100536965024992119}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3564241085827443041
 GameObject:
   m_ObjectHideFlags: 0

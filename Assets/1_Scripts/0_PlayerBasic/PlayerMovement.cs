@@ -39,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float gravity = 9.81f;
     private Vector3 velocity;
 
+    private Vector3 waterCurrentDirection = Vector3.zero;
+    private float waterCurrentForce = 0f;
+    private bool inWaterCurrent = false;
+
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -122,6 +126,18 @@ public class PlayerMovement : MonoBehaviour
         right.Normalize();
 
         Vector3 desiredMoveDirection = forward * moveInput.y + right * moveInput.x;
+
+        if (inWaterCurrent)
+        {
+            float dotProduct = Vector3.Dot(desiredMoveDirection.normalized, waterCurrentDirection.normalized);
+
+            
+            Vector3 currentEffect = (dotProduct < 0)
+                ? waterCurrentDirection * (waterCurrentForce * 0.5f)
+                : waterCurrentDirection * waterCurrentForce;
+
+            desiredMoveDirection += currentEffect;
+        }
         controller.Move(desiredMoveDirection * speed * Time.deltaTime);
     }
 
@@ -217,6 +233,21 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ApplyWaterCurrent(Vector3 direction, float force)
+    {
+        waterCurrentDirection = direction;
+        waterCurrentForce = force;
+        inWaterCurrent = true;
+    }
+
+    
+    public void RemoveWaterCurrent()
+    {
+        inWaterCurrent = false;
+        waterCurrentDirection = Vector3.zero;
+        waterCurrentForce = 0f;
     }
 
     private void ApplyGravity()
