@@ -20685,12 +20685,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3209114632950549049, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3209114632950549049, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3356357138508783368, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
       propertyPath: m_Name
       value: ChickenPlayer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7148413172201227946, guid: 698ccce49678b3b4d90631fe1d040e6d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
