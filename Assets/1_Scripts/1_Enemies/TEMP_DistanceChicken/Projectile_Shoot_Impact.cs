@@ -7,7 +7,7 @@ public class Projectile_Shoot_Impact : MonoBehaviour
     public GameObject bulletPrefab;     // Prefab de la bala
     public int bulletCount = 8;         // Número de balas generadas en el abanico
     public float bulletSpeed = 5f;      // Velocidad de las balas
-    public float fanAngle = 150f;       // Ángulo total del abanico
+    public float fanAngle = 90f;       // Ángulo total del abanico
 
     private void OnCollisionEnter(Collision collision)
     {

@@ -88,7 +88,7 @@ public class ChickenLouncher : MonoBehaviour
         anim.SetBool("Carrying", true);
         chickenType = chickenNumber;
 
-        if (chickenType >= 6 || chickenType < 0)
+        if (chickenType >= 10 || chickenType < 0)
             chickenType = 1;
     }
 
@@ -112,7 +112,7 @@ public class ChickenLouncher : MonoBehaviour
         enableBoxCollider = false;
         projectilePos = CalculateProjectileStartPosition();
 
-        if (chickenType == 2) // Aquí modificar y poner el valor del pollo vida extra
+        if (chickenType == 6) // Aquí modificar y poner el valor del pollo vida extra
             playerHealth.LifeUp(1);
 
         if (!gameModeFrenezzi)
@@ -246,7 +246,7 @@ public class ChickenLouncher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (enableBoxCollider && other.gameObject.CompareTag("CorpseCollider"))
+        if ((enableBoxCollider || chickenType <= 0) && other.gameObject.CompareTag("CorpseCollider"))
         {
             HandleCorpseCollision(other);
         }
