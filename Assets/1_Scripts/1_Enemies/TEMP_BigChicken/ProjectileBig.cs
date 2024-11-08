@@ -53,6 +53,7 @@ public class ProjectileBig: MonoBehaviour
             obj.SetActive(true);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))

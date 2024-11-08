@@ -9,6 +9,8 @@ TagManager:
   - CHICKEN
   - CorpseCollider
   - CorseCollider
+  - Interactive
+  - Projectile
   layers:
   - Default
   - TransparentFX

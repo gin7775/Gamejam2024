@@ -2087,7 +2087,7 @@ GameObject:
   - component: {fileID: -1712470286594429782}
   m_Layer: 0
   m_Name: Pfb_ProtoProyectile_Shoot
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2196,6 +2196,7 @@ MonoBehaviour:
     type: 3}
   bulletCount: 4
   bulletSpeed: 10
+  fanAngle: 210
 --- !u!1 &8619857555060344572
 GameObject:
   m_ObjectHideFlags: 0

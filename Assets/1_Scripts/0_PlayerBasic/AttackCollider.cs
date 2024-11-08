@@ -37,6 +37,16 @@ public class AttackCollider : MonoBehaviour
 
         }
 
+        if ("Interactive".Equals(other.gameObject.tag))
+        {
+            InteractiveObject interactiveObject = other.gameObject.GetComponent<InteractiveObject>();
+            if (interactiveObject != null)
+            {
+                interactiveObject.ExecuteInteraction();
+            }
+
+        }
+
     }
 
 }

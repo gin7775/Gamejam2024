@@ -2086,7 +2086,7 @@ GameObject:
   - component: {fileID: 7762939117392060085}
   m_Layer: 0
   m_Name: Pfb_ProtoProyectile_Big
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2177,6 +2177,8 @@ MonoBehaviour:
   - {fileID: 3915427517133167876}
   ragdolls:
   - {fileID: 8427427352162472809}
+  chickensToDie: []
+  radius: 5
 --- !u!1 &8619857555060344572
 GameObject:
   m_ObjectHideFlags: 0
