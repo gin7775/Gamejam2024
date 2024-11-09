@@ -14,7 +14,7 @@ public class MusicManager : MonoBehaviour
     //CacareoPollo
     [SerializeField] AudioSource sonidoPolloJugador;
     [SerializeField] AudioSource recogerPolloSuelo;
-    //[SerializeField] AudioSource[] sonidosPollosEnemigos;
+    [SerializeField] AudioSource[] sonidosPollosEnemigos;
 
     //SoundFX
     [SerializeField] AudioSource polloJugadorMuerto;
@@ -103,10 +103,15 @@ public class MusicManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             sirena.Play();
             mainTheme[oleadaAnterior].Stop();
+
+            sonidosPollosEnemigos[0].Stop();
+            sonidosPollosEnemigos[1].Stop();
             yield return new WaitForSeconds(3f);
             Play_FX_StartRound();
             yield return new WaitForSeconds(1f);
            mainTheme[oleadaSiguiente].Play();
+            sonidosPollosEnemigos[0].Play();
+            sonidosPollosEnemigos[1].Play();
             transitionTheme.Stop();
             yield return new WaitForSeconds(1f);
 

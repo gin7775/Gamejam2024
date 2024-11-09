@@ -293,6 +293,135 @@ Transform:
   - {fileID: 9100602342215506926}
   m_Father: {fileID: 5200505305649945957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &403676546313844875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5494384747183222747}
+  - component: {fileID: 9209237015741600279}
+  m_Layer: 7
+  m_Name: ChickenEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5494384747183222747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403676546313844875}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.5596091, z: -0, w: 0.8287567}
+  m_LocalPosition: {x: -10.780796, y: 0.6999998, z: -14.703224}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8076924613965362555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &9209237015741600279
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403676546313844875}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 7050847095564836593, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 7e5ab6e2ba7f2954b8174c792ebfc49f, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.504
+  m_Pitch: 1.12
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &503718873145953095
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,6 +880,8 @@ Transform:
   - {fileID: 1657247875682762208}
   - {fileID: 6910368664470989319}
   - {fileID: 7443910174884340432}
+  - {fileID: 5494384747183222747}
+  - {fileID: 1692874668629417176}
   m_Father: {fileID: 5200505305649945957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1981540601348144629
@@ -948,6 +1079,9 @@ MonoBehaviour:
   sirena: {fileID: 5151467509278556204}
   sonidoPolloJugador: {fileID: 1944032273660063571}
   recogerPolloSuelo: {fileID: 8447992161349849097}
+  sonidosPollosEnemigos:
+  - {fileID: 9209237015741600279}
+  - {fileID: 3490786796626351710}
   polloJugadorMuerto: {fileID: 6476506933013076695}
   "recibirDa\xF1oJugador": {fileID: 3233850841761863362}
   disparoPolloJugador: {fileID: 1957075686782535266}
@@ -2137,7 +2271,8 @@ MonoBehaviour:
   enemyCount: 0
   waveNumber: 0
   waveCurrent: 0
-  dificultiLevel: 0
+  dificultPoints: 0
+  capGenerator: 200
   canvasRound: {fileID: 1487925544286375456}
   canvasAnimator: {fileID: 5863593879355949296}
   textMesh: {fileID: 3505898483721178743}
@@ -2173,7 +2308,7 @@ MonoBehaviour:
     difficultyScore: 0
   chikenToSpawnWave: []
   difficult: []
-  totalChicken: 0
+  totalWaveChicken: 0
   spawnPosition: {x: 0, y: 0, z: 0}
   vfxHitEffect: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,
     type: 3}
@@ -2187,13 +2322,19 @@ MonoBehaviour:
   LimiteZPositivo: 93
   paused: 0
   score: 0
-  scoreText: {fileID: 0}
   pausemenu: {fileID: 0}
   currentWaveScore: 0
   musicManager: {fileID: 4786303076399950479}
   myMixer: {fileID: 24100000, guid: 4a4e7e06e7ebba840afcfa549c9e4c22, type: 2}
   musicSlider: {fileID: 0}
   SFXSlider: {fileID: 0}
+  firstGameObjectMenu: {fileID: 0}
+  capSquadNormalChicken: 0
+  capSquadFastChicken: 0
+  capSquadBombChicken: 0
+  capSquadBigChicken: 0
+  instanciateChickenCount: []
+  killChickenCount: []
 --- !u!114 &2888522809517136801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2254,6 +2395,135 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1 &6695321309785629683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1692874668629417176}
+  - component: {fileID: 3490786796626351710}
+  m_Layer: 7
+  m_Name: ChickenEnemy2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1692874668629417176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6695321309785629683}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.5596091, z: -0, w: 0.8287567}
+  m_LocalPosition: {x: -10.780796, y: 0.6999998, z: -14.703224}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8076924613965362555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &3490786796626351710
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6695321309785629683}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 7050847095564836593, guid: 4a4e7e06e7ebba840afcfa549c9e4c22,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: d7c371e65e4902240a7cf474ac0563d4, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.494
+  m_Pitch: 1.2
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
