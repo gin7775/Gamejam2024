@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1119899, g: 0.3625146, b: 0.7331543, a: 1}
+  m_IndirectSpecularColor: {r: 0.11193269, g: 0.36260217, b: 0.7331328, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -40232,6 +40232,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61571d3fc808ef141bb8cc489dd48839, type: 3}
+--- !u!1 &7224855628050812360 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 709467054217806062, guid: 61571d3fc808ef141bb8cc489dd48839,
+    type: 3}
+  m_PrefabInstance: {fileID: 7224855628050812359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!33 &7224876946722349018
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42260,6 +42266,11 @@ PrefabInstance:
       propertyPath: 'eggs.Array.data[2]'
       value: 
       objectReference: {fileID: 3856775006313460390}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: firstGameObjectRetry
+      value: 
+      objectReference: {fileID: 7224855628050812360}
     - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
       propertyPath: invulnerabilityDuration

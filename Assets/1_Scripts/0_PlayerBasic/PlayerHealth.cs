@@ -33,6 +33,10 @@ public class PlayerHealth : MonoBehaviour
         musicManager = FindAnyObjectByType<MusicManager>();
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
         muriendo = false;
+        playerMaterial.SetFloat(IsColorShift, 0);
+        playerMaterial.SetFloat(IsRimLight, 0);
+        playerMaterial.SetFloat(IsViewShift, 0);
+        playerMaterial.SetFloat("_BaseColor_Step", 0.5f);
     }
 
     public void ReciveDamage(int damage)

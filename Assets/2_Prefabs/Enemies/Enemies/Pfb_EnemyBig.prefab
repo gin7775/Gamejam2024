@@ -83,7 +83,7 @@ MonoBehaviour:
   distanceToAttack: 1
   corpse: {fileID: 7062845070779954322, guid: 35efb8904c4d70b4494b56c310651763, type: 3}
   canDamage: 0
-  currentForceMultiplier: 0.05
+  currentForceMultiplier: 0.02
 --- !u!95 &4390752865680015780
 Animator:
   serializedVersion: 7

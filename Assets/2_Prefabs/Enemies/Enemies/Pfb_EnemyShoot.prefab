@@ -562,7 +562,7 @@ MonoBehaviour:
   distanceToAttack: 1
   corpse: {fileID: 7062845070779954322, guid: 40c95d612a2b0d94a93e3f4dad8cb940, type: 3}
   canDamage: 0
-  currentForceMultiplier: 0.05
+  currentForceMultiplier: 0.02
 --- !u!114 &4351264026991261956
 MonoBehaviour:
   m_ObjectHideFlags: 0

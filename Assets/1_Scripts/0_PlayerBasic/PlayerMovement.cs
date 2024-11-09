@@ -39,9 +39,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public float gravity = 9.81f;
     private Vector3 velocity;
 
+    [Header("Cruceta Settings")]
+    [SerializeField] private GameObject crosshair; // Referencia al sprite de la cruceta
+    [SerializeField] private float crosshairDistance = 2f;
+    [SerializeField] private LayerMask terrainLayer;
+
+    [Header("Water")]
     private Vector3 waterCurrentDirection = Vector3.zero;
     private float waterCurrentForce = 0f;
     private bool inWaterCurrent = false;
+
+
 
     private void Awake()
     {
@@ -65,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
         {
             RotateMouse(); // Usa el input del ratón
         }
+
+        UpdateCrosshairPositionWithRotation();
     }
 
 
@@ -234,6 +244,40 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+    private void UpdateCrosshairPositionWithRotation()
+    {
+        if (crosshair != null)
+        {
+            // Obtener la dirección hacia la que está mirando el jugador
+            Vector3 playerForward = transform.forward;
+            playerForward.y = 0;  // Ignoramos la componente Y para rotar solo alrededor del eje Y
+            playerForward.Normalize();
+
+            // Calculamos la posición de la cruceta en un círculo alrededor del jugador
+            Vector3 crosshairPosition = transform.position + playerForward * crosshairDistance;
+
+            // Raycast para obtener la altura del terreno en la posición de la cruceta (usando el LayerMask)
+            RaycastHit hitInfo;
+            if (Physics.Raycast(crosshairPosition + Vector3.up * 2f, Vector3.down, out hitInfo, Mathf.Infinity, terrainLayer))
+            {
+                // Ajustamos la posición de la cruceta para que coincida con la altura del terreno
+                crosshairPosition.y = hitInfo.point.y + 0.05f; // Ajustar el +1f para elevar la cruceta un poco por encima del terreno
+            }
+
+            // Asignar la nueva posición de la cruceta
+            crosshair.transform.position = crosshairPosition;
+
+            // Rotar la cruceta para que mire en la misma dirección que el jugador (alrededor del eje Y)
+            Quaternion lookRotation = Quaternion.LookRotation(playerForward);
+            crosshair.transform.rotation = Quaternion.Euler(90f, lookRotation.eulerAngles.y, 0f); // Asegurando que solo rote alrededor del eje Y
+        }
+
+    }
+
+
+
+
 
     public void ApplyWaterCurrent(Vector3 direction, float force)
     {
