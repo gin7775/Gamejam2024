@@ -160,7 +160,7 @@ public class MusicManager : MonoBehaviour
     //FX
     public void Play_FX_Player_CacareoPollo() //Cacareo Jugador
     {
-       // sonidoPolloJugador.Play();
+        sonidoPolloJugador.Play();
     }
 
     public void Play_FX_Player_PolloMuerto()        // Pollo Muerto
@@ -175,7 +175,7 @@ public class MusicManager : MonoBehaviour
 
     public void Play_FX_TickingPollo()          //Tic tac pollo
     {
-        tickingPollo.Play();
+       // tickingPollo.Play();
     }
     public void Play_FX_ClicPollo()         //Clic Pollo Menu Boton Jugar
     {

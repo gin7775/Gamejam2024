@@ -17,7 +17,7 @@ public class EnemyAudio : MonoBehaviour
     void Start()
     {
         indexElegido = Random.Range(0, sonidoPolloEnemigo.Length);
-       sonidoPolloEnemigo[indexElegido].Play();
+      // sonidoPolloEnemigo[indexElegido].Play(); //Pensar en retirar el audio de los enemigos 
         if (isExplosive)
         {
           //  tickingPollo.Play();
