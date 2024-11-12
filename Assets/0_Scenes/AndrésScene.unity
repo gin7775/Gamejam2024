@@ -17702,7 +17702,7 @@ PrefabInstance:
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
       propertyPath: chikenToSpawn.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
@@ -17806,8 +17806,43 @@ PrefabInstance:
       objectReference: {fileID: 1339496815}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
+      propertyPath: chikenToSpawnWave.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[2].wave
+      value: 10070809.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[3].wave
+      value: 11010203.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
       propertyPath: chikenToSpawn.Array.data[4].probability
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[5].probability
+      value: 0.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[3].quantity
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].quantity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
@@ -17817,8 +17852,59 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
+      propertyPath: chikenToSpawn.Array.data[5].chickenPrefab
+      value: 
+      objectReference: {fileID: 7042962680280417345, guid: 12ae5992593873343a4eb64259342dae,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
       propertyPath: chikenToSpawn.Array.data[4].difficultyScore
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[5].difficultyScore
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[0].chickenPrefab
+      value: 
+      objectReference: {fileID: 1570130104802229714, guid: 9fb28a391b887db4db9086cd85de82c9,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[1].chickenPrefab
+      value: 
+      objectReference: {fileID: 4184036453883938847, guid: 884705e063edfe74f9d053f20ba2aaf0,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[2].chickenPrefab
+      value: 
+      objectReference: {fileID: 1723300209522017659, guid: 466fab495fabb824f9aee8381bb00e51,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[3].chickenPrefab
+      value: 
+      objectReference: {fileID: 454032083427569727, guid: 5921031b03d6c4b408a3e91a96db6a61,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[3].quantityAlive
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].chickenPrefab
+      value: 
+      objectReference: {fileID: 3100536965024992119, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].quantityAlive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6936228951372693750, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}

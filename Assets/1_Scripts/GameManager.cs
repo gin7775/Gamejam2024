@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         // Si hay una instancia y no es esta, destruyela.
         if (Instance != null && Instance != this)
             Destroy(this);
-        
+
         Instance = this;
     }
 
@@ -306,7 +306,7 @@ public class GameManager : MonoBehaviour
             else
                 ChikenAloneGenerator();
         }
-        
+
         // Instantaneo si el total es menor de 50, entre Squads y Alone
         /*if (dificultPoints <= 50)
         {
@@ -317,28 +317,28 @@ public class GameManager : MonoBehaviour
         }
         else
         {*/
-            do
-            {
-                // Calcular un nuevo randomNumber para decidir entre las dos ultimas condiciones
-                float randomNumber = Random.Range(0, 100);
+        do
+        {
+            // Calcular un nuevo randomNumber para decidir entre las dos ultimas condiciones
+            float randomNumber = Random.Range(0, 100);
 
-                // Si ya hay el limite de enemigos en pantalla, esperar hasta que baje
-                /*if (enemyCount >= capGenerator)*/
-                if (randomNumber <= 50)
-                    yield return new WaitUntil(() => enemyCount <= (capGenerator * 0.25f));
-                else
-                    yield return new WaitUntil(() => enemyCount <= (capGenerator * 0.75f));
+            // Si ya hay el limite de enemigos en pantalla, esperar hasta que baje
+            /*if (enemyCount >= capGenerator)*/
+            if (randomNumber <= 50)
+                yield return new WaitUntil(() => enemyCount <= (capGenerator * 0.25f));
+            else
+                yield return new WaitUntil(() => enemyCount <= (capGenerator * 0.75f));
 
-                if (randomNumber <= 50)
-                    // Instantaneo 75% cuando enemyCount <= 25% del capGenerator
-                    yield return StartCoroutine(GenerateInstantEnemies());
-                else
-                    // Generar cada 3 segundos hasta alcanzar el capGenerator
-                    yield return StartCoroutine(GenerateEnemiesOverTime());
+            if (randomNumber <= 50)
+                // Instantaneo 75% cuando enemyCount <= 25% del capGenerator
+                yield return StartCoroutine(GenerateInstantEnemies());
+            else
+                // Generar cada 3 segundos hasta alcanzar el capGenerator
+                yield return StartCoroutine(GenerateEnemiesOverTime());
 
-                // Actualizar dificultad, reducimos el difficultyLevel segun los enemigos generados
-                // dificultPoints -= Mathf.Min(capGenerator, totalWaveChicken - enemyCount);
-            } while (dificultPoints > 0);
+            // Actualizar dificultad, reducimos el difficultyLevel segun los enemigos generados
+            // dificultPoints -= Mathf.Min(capGenerator, totalWaveChicken - enemyCount);
+        } while (dificultPoints > 0);
         /*}*/
     }
 
