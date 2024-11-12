@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> listSpawns;                                                 // Lista de spawns
     [SerializeField] private List<ChickenConfig> chikenToSpawn;                         // Lista de enemigos, probabilidades y puntuacion
     [SerializeField] private List<ChickenConfigWave> chikenToSpawnWave;                 // Lista de enemigos, probabilidades y puntuacion segun oleada y mapa/nivel
-    [SerializeField] private List<ChickenDifficult> difficult;                          // Lista de enemigos, probabilidades y puntuacion segun oleada y mapa/nivel
+    //[SerializeField] private List<ChickenDifficult> difficult;                          // Lista de enemigos, probabilidades y puntuacion segun oleada y mapa/nivel
 
     public int totalWaveChicken = 0;                                                        // Total de pollos
     [SerializeField] private Vector3 spawnPosition;                                     // Posicion de generacion
@@ -52,11 +52,12 @@ public class GameManager : MonoBehaviour
     public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;    // Limites de generacion
 
     // ---- Control del juego ----
-    [SerializeField] private bool paused = false;                                        // Estado de pausa
-    public int score = 0;                                              // Puntuacion
-    // public GameObject scoreText;                                                        // Texto de la puntuacion
+    [SerializeField] private bool paused = false;                                       // Estado de pausa
+    public int score = 0;                                                               // Puntuacion
+    // public GameObject scoreText;                                                     // Texto de la puntuacion
     public GameObject pausemenu;                                                        // Menu de pausa
     [SerializeField] private int currentWaveScore = 0;                                  // Puntaje de la oleada actual
+    private int isNeededHeal = 0;                                                       // Variable para controlar la aparicion del pollo heal
 
     // ---- Control de musica ----
     [SerializeField] private MusicManager musicManager;                                 // Controlador de musica
@@ -83,8 +84,8 @@ public class GameManager : MonoBehaviour
         // Si hay una instancia y no es esta, destruyela.
         if (Instance != null && Instance != this)
             Destroy(this);
-        else
-            Instance = this;
+        
+        Instance = this;
     }
 
     // Start is called before the first frame update
@@ -98,10 +99,6 @@ public class GameManager : MonoBehaviour
         enemyCount = 0;
         score = 0;
         totalWaveChicken = 0;
-        //numMaxWave1 = 20;
-        //numMaxWave2 = 50;
-        //numMaxWave3 = 100;
-        //siguiente = false;
         UpdateWave();
         //Debug.Log("FIN - GAMEMANAGER - Start");
     }
@@ -124,7 +121,7 @@ public class GameManager : MonoBehaviour
                 if (auxEnemy.lifes <= 0)
                 {
                     // Generar efecto de camara (impulso)
-                    cinemachineImpulseSource = enemy.gameObject.GetComponent<CinemachineImpulseSource>();
+                    cinemachineImpulseSource = enemy.GetComponent<CinemachineImpulseSource>();
                     cinemachineImpulseSource.GenerateImpulse();
 
                     // Instanciar efectos visuales de impacto y muerte
@@ -146,6 +143,9 @@ public class GameManager : MonoBehaviour
     public void EnemyDeath(GameObject enemy)
     {
         //Debug.Log("INI - GAMEMANAGER - enemyDeath");
+        ChickenSpawnService aux = new(chikenToSpawn, chikenToSpawnWave);
+        ChickenConfig chickenHeal = aux.SelectChicken("Heal");
+        int auxCount = 0;
         //AUDIO: Ver si funciona en lso enemigos sino, se pone aqui
         musicManager.Play_FX_ExplosionPollo();
 
@@ -158,8 +158,12 @@ public class GameManager : MonoBehaviour
         }
         */
         // Actualizar puntaje de la oleada actual
-        KillCountChicken(enemy.name);
-        enemyCount--;
+
+        if (!enemy.name.Contains("Heal"))
+        {
+            KillCountChicken(enemy.name);
+            enemyCount--;
+        }
 
         // AUDIO: Ver si funciona en los enemigos sino, se pone aqui
         musicManager.Play_FX_ExplosionPollo();
@@ -172,6 +176,17 @@ public class GameManager : MonoBehaviour
             "currentWaveScore=" + currentWaveScore + "\n" +
             "score=" + score + "\n\n\n"
         );
+
+        foreach (ChickenCount count in killChickenCount)
+        {
+            auxCount += count.quantity;
+        }
+
+        if (isNeededHeal + 10 <= auxCount)
+        {
+            Instantiate(chickenHeal.chickenPrefab, GetRandomAreaSpawn(), Quaternion.identity);
+            isNeededHeal = auxCount;
+        }
 
         // Si ya no quedan enemigos, actualizar la oleada
         if (enemyCount <= 0 && currentWaveScore >= totalWaveChicken)
@@ -197,9 +212,14 @@ public class GameManager : MonoBehaviour
             waveCurrent = 1;
         }
 
+        capGenerator = new ChickenSpawnService().GetCapGenerator(waveCurrent);
+
         // Restablecer el puntaje de la oleada actual
         totalWaveChicken = 0;
         currentWaveScore = 0;
+        // Por el momento no se reiniciarán los contadores
+        //instanciateChickenCount = new List<ChickenCount>();
+        //killChickenCount = new List<ChickenCount>();
 
         try
         {
@@ -271,8 +291,24 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GenerateEnemiesAsync()
     {
+        int auxCapGenerator = capGenerator;
+        ChickenSpawnService aux = new(chikenToSpawn, chikenToSpawnWave);
+
+        if (waveCurrent > 7)
+            auxCapGenerator = capGenerator / 2;
+
+        for (int i = 0; i < auxCapGenerator; i++)
+        {
+            float randomNumber = Random.Range(0, 100);
+
+            if (randomNumber >= 50)
+                SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints);
+            else
+                ChikenAloneGenerator();
+        }
+        
         // Instantaneo si el total es menor de 50, entre Squads y Alone
-        if (dificultPoints <= 50)
+        /*if (dificultPoints <= 50)
         {
             while (dificultPoints > 0)
             {
@@ -280,18 +316,18 @@ public class GameManager : MonoBehaviour
             }
         }
         else
-        {
+        {*/
             do
             {
                 // Calcular un nuevo randomNumber para decidir entre las dos ultimas condiciones
                 float randomNumber = Random.Range(0, 100);
 
                 // Si ya hay el limite de enemigos en pantalla, esperar hasta que baje
-                if (enemyCount >= capGenerator)
-                    if (randomNumber <= 50)
-                        yield return new WaitUntil(() => enemyCount <= capGenerator * 0.25f);
-                    else
-                        yield return new WaitUntil(() => enemyCount <= capGenerator * 0.75f);
+                /*if (enemyCount >= capGenerator)*/
+                if (randomNumber <= 50)
+                    yield return new WaitUntil(() => enemyCount <= (capGenerator * 0.25f));
+                else
+                    yield return new WaitUntil(() => enemyCount <= (capGenerator * 0.75f));
 
                 if (randomNumber <= 50)
                     // Instantaneo 75% cuando enemyCount <= 25% del capGenerator
@@ -303,11 +339,12 @@ public class GameManager : MonoBehaviour
                 // Actualizar dificultad, reducimos el difficultyLevel segun los enemigos generados
                 // dificultPoints -= Mathf.Min(capGenerator, totalWaveChicken - enemyCount);
             } while (dificultPoints > 0);
-        }
+        /*}*/
     }
 
     private IEnumerator GenerateInstantEnemies()
     {
+        ChickenSpawnService aux = new(chikenToSpawn, chikenToSpawnWave);
         //int remainingEnemies = Mathf.FloorToInt(capGenerator * 0.75f);
         yield return new WaitForSeconds(0f);
 
@@ -317,13 +354,9 @@ public class GameManager : MonoBehaviour
             float randomNumber = Random.Range(0, 100);
 
             if (randomNumber >= 50)
-            {
-                SpawnChickenSquad(SelectChickenBasedOnProb(), ref dificultPoints);
-            }
+                SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints);
             else
-            {
                 ChikenAloneGenerator();
-            }
 
             // Si dificultPoints es 0 o menor, deten el bucle
             if (dificultPoints <= 0)
@@ -333,6 +366,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GenerateEnemiesOverTime()
     {
+        ChickenSpawnService aux = new(chikenToSpawn, chikenToSpawnWave);
         //int remainingEnemies = Mathf.Min(capGenerator - enemyCount, dificultPoints);
 
         do
@@ -342,7 +376,7 @@ public class GameManager : MonoBehaviour
 
             if (randomNumber >= 50)
             {
-                SpawnChickenSquad(SelectChickenBasedOnProb(), ref dificultPoints);
+                SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints);
             }
             else
             {
@@ -361,43 +395,14 @@ public class GameManager : MonoBehaviour
         while (enemyCount < capGenerator);
     }
 
-    /*    IEnumerator chikenWaitSpawner(int numEnemies, int timeGeneration)
-        {
-            //Debug.Log("INI - GAMEMANAGER - chikenWaitSpawner");
-            //siguiente = false;
-
-            for (int i = 0; i < numEnemies; i++)
-            {
-                yield return new WaitForSeconds(timeGeneration);
-                ChikenGenerator();
-            }
-
-            //siguiente = true;
-            //Debug.Log("FIN - GAMEMANAGER - chikenWaitSpawner");
-        }*/
-
-    /*    public void ChikenGenerator()
-        {
-            //Debug.Log("INI - GAMEMANAGER - chikenGenerator");
-            // Generar un Numero aleatorio para determinar el pollo a generar
-            float randomNumber = Random.Range(0, 100);
-
-            if (randomNumber >= 50)
-            {
-
-            }
-            else
-            {
-                ChikenAloneGenerator();
-            }
-            //Debug.Log("FIN - GAMEMANAGER - chikenGenerator");
-        }*/
-
     public void ChikenAloneGenerator()
     {
+        ChickenSpawnService aux = new(chikenToSpawn, chikenToSpawnWave);
         //Debug.Log("INI - GAMEMANAGER - chikenGenerator");
-        ChickenConfig auxChicken = SelectChickenBasedOnProb();
-        GameObject auxNewChicken = Instantiate(auxChicken.chickenPrefab, getRandomAreaSpawn(), Quaternion.identity);
+        ChickenConfig auxChicken = aux.SelectChickenBasedOnProb(level, waveCurrent);
+        Debug.Log(auxChicken.chickenPrefab.name);
+        Debug.Log(GetRandomAreaSpawn());
+        GameObject auxNewChicken = Instantiate(auxChicken.chickenPrefab, GetRandomAreaSpawn(), Quaternion.identity);
         listEnemies.Add(auxNewChicken);
 
         enemyCount++;
@@ -426,64 +431,6 @@ public class GameManager : MonoBehaviour
             CountChiken(chicken.chickenPrefab.name);
         }
     }
-
-    // Metodo auxiliar para seleccionar el pollo basado en probabilidades
-    public ChickenConfig SelectChickenBasedOnProb()
-    {
-        //Debug.Log("INI - GAMEMANAGER - selectChickenBasedOnProb");
-        ChickenConfig selectedPollo = null;
-        // Generar un Numero aleatorio para determinar el pollo a generar
-        float randomNumber = Random.Range(0, 100);
-
-        // Ajusta las probabilidades de los pollos existentes a que realmente sean sobre 100 y esta balanceado
-        AdjustProbabilities();
-
-        // Selecciona uno basado en las probabilidades acumuladas
-        foreach (ChickenConfig chikenConfig in chikenToSpawn)
-        {
-            if (randomNumber < chikenConfig.probability)
-            {
-                selectedPollo = chikenConfig;
-
-                break; // Salir del loop una vez que el pollo es seleccionado
-            }
-
-            // Restar la probabilidad actual para la proxima comparacion
-            randomNumber -= chikenConfig.probability;
-        }
-
-        //Debug.Log("FIN - GAMEMANAGER - selectChickenBasedOnProb");
-        return selectedPollo; // Si no se selecciona ningun pollo, devolver null
-    }
-
-    /*    public GameObject prepareChikenGeneratorWithProb()
-        {
-            //Debug.Log("INI - GAMEMANAGER - prepareChikenGeneratorWithProb");
-            // Generar un Numero aleatorio para determinar el pollo a generar
-            float randomNumber = Random.Range(0, 100);
-            GameObject selectedPollo = null;
-            ChickenConfig auxChikenConfig = null;
-            AdjustProbabilities();
-
-            // Iterar a traves de la lista de pollos y seleccionar uno basado en las probabilidades acumuladas
-            foreach (ChickenConfig chikenConfig in chikenToSpawn)
-            {
-                if (randomNumber < chikenConfig.probability)
-                {
-                    selectedPollo = chikenConfig.chickenPrefab;
-                    auxChikenConfig = chikenConfig;
-                    countChiken(selectedPollo.name);
-                    break; // Salir del loop una vez que el pollo es seleccionado
-                }
-
-                // Restar la probabilidad actual para la proxima comparacion
-                randomNumber -= chikenConfig.probability;
-            }
-
-            dificultPoints -= auxChikenConfig.difficultyScore;
-            //Debug.Log("FIN - GAMEMANAGER - prepareChikenGeneratorWithProb");
-            return selectedPollo;
-        }*/
 
     // Cuenta dinamicamente a los pollos
     private void CountChiken(string name)
@@ -526,6 +473,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Metodo para ajustar las probabilidades de los pollos en el array chikenToSpawn
+    public void AdjustProbabilities(ref List<ChickenConfig> chikenToSpawns)
+    {
+        // Sumar todas las probabilidades actuales
+        float totalProbability = 0;
+        foreach (ChickenConfig chicken in chikenToSpawns)
+        {
+            totalProbability += chicken.probability;
+        }
+
+        // Si la suma de probabilidades es 0, evitar la division por 0
+        if (totalProbability == 0)
+        {
+            Debug.LogError("Error: Las probabilidades suman 0, no se pueden ajustar.");
+            return;
+        }
+
+        // Ajustar cada probabilidad para que sumen 100%
+        foreach (ChickenConfig chicken in chikenToSpawns)
+        {
+            chicken.probability = ((chicken.probability / totalProbability) * 100);
+        }
+
+        //Debug.Log("Probabilidades ajustadas correctamente para que sumen 100%.");
+    }
+
     // Método auxiliar para extraer el tipo de enemigo de su nombre
     private string GetEnemyTypeFromName(string name)
     {
@@ -548,39 +521,13 @@ public class GameManager : MonoBehaviour
         return auxCap;
     }
 
-    // Metodo para ajustar las probabilidades de los pollos en el array chikenToSpawn
-    public void AdjustProbabilities()
-    {
-        // Sumar todas las probabilidades actuales
-        float totalProbability = 0;
-        foreach (ChickenConfig chicken in chikenToSpawn)
-        {
-            totalProbability += chicken.probability;
-        }
-
-        // Si la suma de probabilidades es 0, evitar la division por 0
-        if (totalProbability == 0)
-        {
-            Debug.LogError("Error: Las probabilidades suman 0, no se pueden ajustar.");
-            return;
-        }
-
-        // Ajustar cada probabilidad para que sumen 100%
-        foreach (ChickenConfig chicken in chikenToSpawn)
-        {
-            chicken.probability = ((chicken.probability / totalProbability) * 100);
-        }
-
-        //Debug.Log("Probabilidades ajustadas correctamente para que sumen 100%.");
-    }
-
     /// <summary>
     /// Area para los limites de spawn del mapa, que calcula una posicion aleatoria dentro de esa area
     /// </summary>
     /// <returns>
     /// Un vector con una posicion aleatoria dentro de esa area
     /// </returns>
-    public Vector3 getRandomAreaSpawn()
+    public Vector3 GetRandomAreaSpawn()
     {
         return new Vector3(Random.Range(limiteXNegativo, LimiteXPositivo), 1.2f, Random.Range(limiteZNegativo, LimiteZPositivo));
     }
@@ -631,18 +578,18 @@ public class GameManager : MonoBehaviour
     }
 
     //Menu pausa
-    public void exit_pause_menu()
+    public void Exit_pause_menu()
     {
         Time.timeScale = 1;
         paused = false;
         pausemenu.SetActive(false);
     }
 
-    public void pause()
+    public void Pause()
     {
         if (paused)
         {
-            exit_pause_menu();
+            Exit_pause_menu();
         }
 
         if (paused == false)
@@ -651,15 +598,14 @@ public class GameManager : MonoBehaviour
             if (currentSceneName != "MenuPrincipal")
             {
                 paused = true;
-                pausemenu.gameObject.SetActive(true);
+                pausemenu.SetActive(true);
                 Time.timeScale = 0;
                 EventSystem.current.SetSelectedGameObject(firstGameObjectMenu);
             }
-            if (currentSceneName == "MenuPrincipal")
+            /*if (currentSceneName == "MenuPrincipal")
             {
                 //Debug.Log("Estas en la Escena principal");
-
-            }
+            }*/
         }
     }
 
@@ -689,7 +635,7 @@ public class GameManager : MonoBehaviour
         myMixer.SetFloat("FX", Mathf.Log10(volume) * 20);
     }
 
-    public void changeLevel()
+    public void ChangeLevel()
     {
         level++;
         player.GetComponent<PlayerMovement>().enabled = false;

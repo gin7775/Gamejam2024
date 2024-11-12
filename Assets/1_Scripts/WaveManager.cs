@@ -35,7 +35,7 @@ public class WaveManager : MonoBehaviour
     private void Start() // Cuando ya se haya inicializado todo
     {
         // Asegurarnos de que GameManager.Instance está inicializado antes de llamarlo
-        initialDifficult = 150;
+        initialDifficult = 20;
         SetWaveDificulty();
         spawnPositions = GameManager.Instance.listSpawns;
     }
@@ -77,7 +77,7 @@ public class WaveManager : MonoBehaviour
     /*private void SpawnRandomChicken(ref int difficultyPointsLeft)
     {
         GameObject chickenPrefab = GameManager.Instance.SelectChickenBasedOnProb().chickenPrefab;
-        GameObject auxNewChicken = Instantiate(chickenPrefab, GameManager.Instance.getRandomAreaSpawn(), Quaternion.identity);
+        GameObject auxNewChicken = Instantiate(chickenPrefab, GameManager.Instance.GetRandomAreaSpawn(), Quaternion.identity);
         GameManager.Instance.listEnemies.Add(auxNewChicken);
         GameManager.Instance.enemyCount++;
         difficultyPointsLeft--;

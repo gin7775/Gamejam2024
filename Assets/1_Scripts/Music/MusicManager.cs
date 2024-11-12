@@ -104,14 +104,24 @@ public class MusicManager : MonoBehaviour
             sirena.Play();
             mainTheme[oleadaAnterior].Stop();
 
-            sonidosPollosEnemigos[0].Stop();
-            sonidosPollosEnemigos[1].Stop();
+            try
+            {
+                sonidosPollosEnemigos[0].Stop();
+                sonidosPollosEnemigos[1].Stop();
+            } catch (System.Exception) {}
+
             yield return new WaitForSeconds(3f);
             Play_FX_StartRound();
             yield return new WaitForSeconds(1f);
-           mainTheme[oleadaSiguiente].Play();
-            sonidosPollosEnemigos[0].Play();
-            sonidosPollosEnemigos[1].Play();
+            mainTheme[oleadaSiguiente].Play();
+
+            try
+            {
+                sonidosPollosEnemigos[0].Play();
+                sonidosPollosEnemigos[1].Play();
+            }
+            catch (System.Exception) { }
+
             transitionTheme.Stop();
             yield return new WaitForSeconds(1f);
 

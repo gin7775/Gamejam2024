@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnMenu(InputValue value)
     {
         gameManager = FindAnyObjectByType<GameManager>();
-        gameManager.pause();
+        gameManager.Pause();
 
     }
     // Método llamado por el Player Input para el movimiento

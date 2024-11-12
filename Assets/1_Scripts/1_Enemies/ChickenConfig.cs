@@ -13,12 +13,11 @@ public class ChickenConfig
 [System.Serializable]
 public class ChickenConfigWave
 {
-    public int wave;                    // Oleada a la que se aplica
-    public int level;                   // Mapa al que se aplica
     public GameObject chickenPrefab;    // El tipo de enemigo
-    public float probability;           // La probabilidad de que aparezca este enemigo
-    public int cantidad;                // Ignora la probabilidad y se limita a la cantidad total de ronda
-    public int difficultyScore;         // Puntuación de dificultad del pollo (1, 5, 10, etc.)
+    public double wave;                 // Oleada a la que se aplica
+    public double level;                // Mapa al que se aplica
+    public int quantity;                // Se limita la cantidad total en ronda
+    public int quantityAlive;           // Se limita la cantidad instanciados
 }
 
 [System.Serializable]

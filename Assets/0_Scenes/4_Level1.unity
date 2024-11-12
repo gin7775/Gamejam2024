@@ -353,7 +353,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2428856
+  m_Name: pb_Mesh-808472
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -4960,6 +4960,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 922931891}
+    - target: {fileID: 2091726533173826946, guid: e95d7f6e7aa06854abf3e8a50e509e7d,
+        type: 3}
+      propertyPath: m_VersionIndex
+      value: 5640
+      objectReference: {fileID: 0}
     - target: {fileID: 3824923042077677397, guid: e95d7f6e7aa06854abf3e8a50e509e7d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5547,7 +5552,7 @@ PrefabInstance:
     - target: {fileID: 2091726533173826946, guid: e95d7f6e7aa06854abf3e8a50e509e7d,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 5640
+      value: 5643
       objectReference: {fileID: 0}
     - target: {fileID: 3824923042077677397, guid: e95d7f6e7aa06854abf3e8a50e509e7d,
         type: 3}
@@ -5852,7 +5857,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2427654
+  m_Name: pb_Mesh-808100
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -7919,7 +7924,7 @@ PrefabInstance:
     - target: {fileID: 2091726533173826946, guid: e95d7f6e7aa06854abf3e8a50e509e7d,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 5640
+      value: 5643
       objectReference: {fileID: 0}
     - target: {fileID: 3824923042077677397, guid: e95d7f6e7aa06854abf3e8a50e509e7d,
         type: 3}
@@ -15848,7 +15853,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2428326
+  m_Name: pb_Mesh-809078
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -17805,8 +17810,43 @@ PrefabInstance:
       objectReference: {fileID: 1339496815}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
+      propertyPath: chikenToSpawnWave.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[2].wave
+      value: 78.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[3].wave
+      value: 11010203.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].wave
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
       propertyPath: chikenToSpawn.Array.data[4].probability
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[3].quantity
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].quantity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
@@ -17819,6 +17859,52 @@ PrefabInstance:
       propertyPath: chikenToSpawn.Array.data[4].difficultyScore
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[0].chickenPrefab
+      value: 
+      objectReference: {fileID: 1570130104802229714, guid: 9fb28a391b887db4db9086cd85de82c9,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[1].chickenPrefab
+      value: 
+      objectReference: {fileID: 4184036453883938847, guid: 884705e063edfe74f9d053f20ba2aaf0,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[2].chickenPrefab
+      value: 
+      objectReference: {fileID: 1723300209522017659, guid: 466fab495fabb824f9aee8381bb00e51,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[3].chickenPrefab
+      value: 
+      objectReference: {fileID: 454032083427569727, guid: 5921031b03d6c4b408a3e91a96db6a61,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[3].quantityAlive
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].chickenPrefab
+      value: 
+      objectReference: {fileID: 3100536965024992119, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
+        type: 3}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].quantityAlive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[5].chickenPrefab
+      value: 
+      objectReference: {fileID: 3100536965024992119, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
+        type: 3}
     - target: {fileID: 6936228951372693750, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
       propertyPath: m_LocalPosition.x
