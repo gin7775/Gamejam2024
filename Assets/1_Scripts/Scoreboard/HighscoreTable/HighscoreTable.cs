@@ -21,12 +21,16 @@ public class HighscoreTable : MonoBehaviour {
         if (highscores == null) {
             // There's no stored table, initialize
             //Debug.Log("Initializing table with default values...");
-            AddHighscoreEntry(1000000, "CMK");
-            AddHighscoreEntry(897621, "JOE");
-            AddHighscoreEntry(872931, "DAV");
-            AddHighscoreEntry(785123, "CAT");
-            AddHighscoreEntry(542024, "MAX");
-            AddHighscoreEntry(68245, "AAA");
+            AddHighscoreEntry(0, " ");
+            AddHighscoreEntry(0, " ");
+            AddHighscoreEntry(0, " ");
+            AddHighscoreEntry(0, " ");
+            AddHighscoreEntry(0, " ");
+            AddHighscoreEntry(0, " ");
+            AddHighscoreEntry(0, " ");
+            AddHighscoreEntry(0, " ");
+            AddHighscoreEntry(0, " ");
+            AddHighscoreEntry(0, " ");
             // Reload
             jsonString = PlayerPrefs.GetString("highscoreTable");
             highscores = JsonUtility.FromJson<Highscores>(jsonString);
@@ -78,14 +82,14 @@ public class HighscoreTable : MonoBehaviour {
         entryTransform.Find("nameText").GetComponent<Text>().text = name;
 
         // Set background visible odds and evens, easier to read
-        entryTransform.Find("background").gameObject.SetActive(rank % 2 == 1);
+        //entryTransform.Find("background").gameObject.SetActive(rank % 2 == 1);
         
-        // Highlight First
-        if (rank == 1) {
-            entryTransform.Find("posText").GetComponent<Text>().color = Color.green;
-            entryTransform.Find("scoreText").GetComponent<Text>().color = Color.green;
-            entryTransform.Find("nameText").GetComponent<Text>().color = Color.green;
-        }
+        //// Highlight First
+        //if (rank == 1) {
+        //    entryTransform.Find("posText").GetComponent<Text>().color = Color.green;
+        //    entryTransform.Find("scoreText").GetComponent<Text>().color = Color.green;
+        //    entryTransform.Find("nameText").GetComponent<Text>().color = Color.green;
+        //}
 
         transformList.Add(entryTransform);
     }
@@ -157,6 +161,23 @@ public class HighscoreTable : MonoBehaviour {
         }
     }
 
+    public void ResetHighscoreTable()
+    {
+        // Eliminar los datos guardados en PlayerPrefs para la tabla de puntuaciones
+        PlayerPrefs.DeleteKey("highscoreTable");
+        PlayerPrefs.Save();
+
+        AddHighscoreEntry(0, " ");
+        AddHighscoreEntry(0, " ");
+        AddHighscoreEntry(0, " ");
+        AddHighscoreEntry(0, " ");
+        AddHighscoreEntry(0, " ");
+        AddHighscoreEntry(0, " ");
+        AddHighscoreEntry(0, " ");
+        AddHighscoreEntry(0, " ");
+        AddHighscoreEntry(0, " ");
+        AddHighscoreEntry(0, " ");
+    }
 
 
     private class Highscores {

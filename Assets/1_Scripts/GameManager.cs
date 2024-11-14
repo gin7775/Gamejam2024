@@ -11,72 +11,81 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
-    // Singleton
+    // ---- Singleton ----
     public static GameManager Instance { get; private set; }
 
+    [Header("Player")]
     public GameObject player;                                                           // Player
-    // ---- Control de oleadas ----
+
+    // ---- Control de Oleadas ----
+    [Header("Wave Control")]
     public int level = 1;                                                               // Nivel/Mapa
     [SerializeField] private float timeWave = 15;                                       // Tiempo por oleada
-    [SerializeField] private float timeGeneration = 15;                                 // Tiempo entre generacion de enemigos
-    public int enemyNumber = 0;                                                         // Numero total de enemigos en la ronda
-    public int enemyInitial = 5;                                                        // Numero de enemigos por oleada inicial
-    public int enemyCount = 0;                                                          // Numero de enemigos que quedan en la ronda
-    public int waveNumber = 0;                                                          // Numero de rondas totales
-    public int waveCurrent = 0;                                                         // Numero de la ronda actual
+    [SerializeField] private float timeGeneration = 15;                                 // Tiempo entre generación de enemigos
+    public int enemyNumber = 0;                                                         // Número total de enemigos en la ronda
+    public int enemyInitial = 5;                                                        // Número de enemigos por oleada inicial
+    public int enemyCount = 0;                                                          // Número de enemigos que quedan en la ronda
+    public int waveNumber = 0;                                                          // Número de rondas totales
+    public int waveCurrent = 0;                                                         // Número de la ronda actual
     public int dificultPoints = 0;                                                      // Nivel de dificultad
     public int capGenerator = 200;                                                      // Cap del Generador
-    //[SerializeField] private bool siguiente;                                          // Control para saber si continua a la siguiente oleada
-    //[SerializeField] private int numMaxWave1;                                         // Max. enemigos en la ola 1
-    //[SerializeField] private int numMaxWave2;                                         // Max. enemigos en la ola 2
-    //[SerializeField] private int numMaxWave3;                                         // Max. enemigos en la ola 3
 
+    // ---- UI y Animación ----
+    [Header("UI & Animation")]
     [SerializeField] private Canvas canvasRound;                                        // UI de la ronda
     [SerializeField] private Animator canvasAnimator;                                   // Animador para transiciones
     [SerializeField] private GameObject textMesh;                                       // Texto de la ronda
     private CinemachineImpulseSource cinemachineImpulseSource;                          // Fuente del efecto de impulso
 
-    // ---- Control de enemigos ----
+    // ---- Control de Enemigos ----
+    [Header("Enemy Control")]
     public List<GameObject> listEnemies;                                                // Lista de Enemigos
     public List<GameObject> listCorpses;                                                // Lista de Corpses
     public List<GameObject> listSpawns;                                                 // Lista de spawns
-    [SerializeField] private List<ChickenConfig> chikenToSpawn;                         // Lista de enemigos, probabilidades y puntuacion
-    [SerializeField] private List<ChickenConfigWave> chikenToSpawnWave;                 // Lista de enemigos, probabilidades y puntuacion segun oleada y mapa/nivel
-    //[SerializeField] private List<ChickenDifficult> difficult;                          // Lista de enemigos, probabilidades y puntuacion segun oleada y mapa/nivel
-
-    public int totalWaveChicken = 0;                                                        // Total de pollos
-    [SerializeField] private Vector3 spawnPosition;                                     // Posicion de generacion
+    [SerializeField] private List<ChickenConfig> chikenToSpawn;                         // Lista de enemigos, probabilidades y puntuación
+    [SerializeField] private List<ChickenConfigWave> chikenToSpawnWave;                 // Lista de enemigos por oleada y nivel
+    public int totalWaveChicken = 0;                                                    // Total de pollos
+    [SerializeField] private Vector3 spawnPosition;                                     // Posición de generación
     [SerializeField] private GameObject vfxHitEffect;                                   // Efecto al recibir golpe
     [SerializeField] private GameObject vfxHitWaveEffect;                               // Efecto al recibir golpe en oleada
     [SerializeField] private GameObject SmokeEffect;                                    // Efecto de humo al generar enemigo
-    public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;    // Limites de generacion
+    public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;    // Límites de generación
 
-    // ---- Control del juego ----
+    // ---- Control del Juego ----
+    [Header("Game Control")]
     [SerializeField] private bool paused = false;                                       // Estado de pausa
-    public int score = 0;                                                               // Puntuacion
-    // public GameObject scoreText;                                                     // Texto de la puntuacion
-    public GameObject pausemenu;                                                        // Menu de pausa
-    [SerializeField] private int currentWaveScore = 0;                                  // Puntaje de la oleada actual
-    private int isNeededHeal = 0;                                                       // Variable para controlar la aparicion del pollo heal
+    public int score = 0;                                                               // Puntuación
+    public GameObject pausemenu;                                                        // Menú de pausa
+    public GameObject highscore;
+    public HighscoreTable highscoreTable;
+    [SerializeField] private int currentWaveScore = 0;                                  // Puntuación de la oleada actual
+    private int isNeededHeal = 0;                                                       // Control para la aparición del pollo heal
 
-    // ---- Control de musica ----
-    [SerializeField] private MusicManager musicManager;                                 // Controlador de musica
+    // ---- Control de Música ----
+    [Header("Music Control")]
+    [SerializeField] private MusicManager musicManager;                                 // Controlador de música
     public AudioMixer myMixer;                                                          // Mezclador de audio
-    public Slider musicSlider;                                                          // Control deslizante de musica
+    public Slider musicSlider;                                                          // Control deslizante de música
     public Slider SFXSlider;                                                            // Control deslizante de efectos
 
     // ---- Control de Input ----
+    [Header("Input Control")]
     public GameObject firstGameObjectMenu;
 
-    // -------- TEMPORAL ------------
+    // ---- Temporales ----
+    [Header("Temporary Variables")]
     [SerializeField] private int capSquadNormalChicken = 0;
     [SerializeField] private int capSquadFastChicken = 0;
     [SerializeField] private int capSquadBombChicken = 0;
     [SerializeField] private int capSquadBigChicken = 0;
 
-    // -------- Chicken Quantity -----------------------------
+    // ---- Cantidad de Pollos ----
+    [Header("Chicken Quantity")]
     [SerializeField] private List<ChickenCount> instanciateChickenCount;                // Lista de enemigos instanciados
     [SerializeField] private List<ChickenCount> killChickenCount;                       // Lista de enemigos muertos
+
+
+
 
     // Singleton pattern
     private void Awake()
@@ -583,6 +592,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         paused = false;
         pausemenu.SetActive(false);
+        highscore.SetActive(false);
     }
 
     public void Pause()
@@ -599,6 +609,7 @@ public class GameManager : MonoBehaviour
             {
                 paused = true;
                 pausemenu.SetActive(true);
+                highscore.SetActive(true);
                 Time.timeScale = 0;
                 EventSystem.current.SetSelectedGameObject(firstGameObjectMenu);
             }
@@ -640,6 +651,16 @@ public class GameManager : MonoBehaviour
         level++;
         player.GetComponent<PlayerMovement>().enabled = false;
         player.transform.position = new Vector3(0, 5, 0);
+    }
+
+    public void EndRound()
+    {
+        int finalScore = score;
+        
+        string playerName = "PlayerDefault"; // Habrá que hacer que establezca su nombre aquí
+        highscoreTable.CheckAndAddHighscore(finalScore, playerName);
+        highscore.SetActive(true);
+
     }
 
 }

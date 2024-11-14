@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     private bool isInvulnerable = false;
     [SerializeField] private ParticleSystem hitParticle;
     public GameObject RetryButton;
+    public GameObject highScore;
     [SerializeField] private Material playerMaterial;
     private static readonly int IsColorShift = Shader.PropertyToID("_Is_ColorShift");
     private static readonly int IsRimLight = Shader.PropertyToID("_RimLight");
@@ -26,11 +27,13 @@ public class PlayerHealth : MonoBehaviour
     private Animator anim;
     CinemachineImpulseSource cinemachineImpulseSource;
     [SerializeField] MusicManager musicManager;
+    GameManager gameManager;
 
     void Start()
     {
         anim = GetComponent<Animator>();
         musicManager = FindAnyObjectByType<MusicManager>();
+        gameManager = FindAnyObjectByType<GameManager>();
         cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
         muriendo = false;
         playerMaterial.SetFloat(IsColorShift, 0);
@@ -129,9 +132,11 @@ public class PlayerHealth : MonoBehaviour
     {
         musicManager.Play_FX_Player_PolloMuerto();
         anim.SetTrigger("Die");
+        gameManager.EndRound();
         RetryButton.gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(firstGameObjectRetry);
         Destroy(this.gameObject);
+
 
         yield return new WaitForSeconds(2f);
     }
