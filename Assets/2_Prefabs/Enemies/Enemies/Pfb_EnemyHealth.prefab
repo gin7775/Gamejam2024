@@ -7258,11 +7258,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  detectionDistance: 5
-  escapeDistance: 10
+  detectionDistance: 10
+  escapeDistance: 15
   restTime: 5
   staminaTime: 5
-  fleeSpeed: 5
+  fleeSpeed: 15
   agent: {fileID: 0}
 --- !u!95 &2445773470122509887
 Animator:
