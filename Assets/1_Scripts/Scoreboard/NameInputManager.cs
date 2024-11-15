@@ -8,22 +8,24 @@ public class NameInputManager : MonoBehaviour
     public GameObject nameInputPanel;        // Panel que pide el nombre
     public TMP_InputField nameInputField;    // Campo de texto para el nombre
     public Button submitButton;              // Botón de confirmar
-    public HighscoreTable highscoreTable;    // Referencia a la tabla de puntuaciones
+    public HighscoreTable highscoreTable;
+    public GameObject highscore;
+    public GameObject RetryButton;
 
-    private int finalScore;
+    private GameManager gameManager;
+
 
     private void Start()
     {
         // Asegurarse de que el panel esté oculto al inicio
         nameInputPanel.SetActive(false);
-
+        gameManager = FindAnyObjectByType<GameManager>();
         // Añadir listener al botón de confirmar
         submitButton.onClick.AddListener(SubmitName);
     }
 
-    public void ShowNameInput(int score)
+    public void ShowNameInput()
     {
-        finalScore = score;
         nameInputPanel.SetActive(true);
         nameInputField.text = ""; // Limpiar el campo de texto
         nameInputField.ActivateInputField(); // Activar el campo de texto
@@ -45,8 +47,12 @@ public class NameInputManager : MonoBehaviour
         // Validar el nombre (mínimo 1 carácter)
         if (playerName.Length > 0)
         {
+
+            highscore.SetActive(true);
             // Añadir la puntuación a la tabla de puntuaciones
-            highscoreTable.CheckAndAddHighscore(finalScore, playerName);
+            highscoreTable.CheckAndAddHighscore(gameManager.score, playerName);
+            highscoreTable.RefreshHighscoreTable();
+            RetryButton.gameObject.SetActive(true);
 
             // Ocultar el panel de entrada de nombre
             nameInputPanel.SetActive(false);

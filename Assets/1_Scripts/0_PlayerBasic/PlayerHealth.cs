@@ -133,7 +133,7 @@ public class PlayerHealth : MonoBehaviour
         musicManager.Play_FX_Player_PolloMuerto();
         anim.SetTrigger("Die");
         gameManager.EndRound();
-        RetryButton.gameObject.SetActive(true);
+        //RetryButton.gameObject.SetActive(true);
         EventSystem.current.SetSelectedGameObject(firstGameObjectRetry);
         Destroy(this.gameObject);
 

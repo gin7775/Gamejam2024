@@ -161,6 +161,61 @@ public class HighscoreTable : MonoBehaviour {
         }
     }
 
+    public bool CheckIfTop10(int score)
+    {
+        // Cargar la tabla de puntuaciones
+        string jsonString = PlayerPrefs.GetString("highscoreTable");
+        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+
+        if (highscores == null)
+        {
+            highscores = new Highscores()
+            {
+                highscoreEntryList = new List<HighscoreEntry>()
+            };
+        }
+
+        // Verificar si la nueva puntuación debería estar en el top 10
+        if (highscores.highscoreEntryList.Count < 10 || score > highscores.highscoreEntryList[highscores.highscoreEntryList.Count - 1].score)
+        {
+            return true; // La puntuación está en el Top 10
+        }
+
+        return false; // La puntuación no es lo suficientemente alta
+    }
+
+    public void RefreshHighscoreTable()
+    {
+        // Limpiar la lista actual de transformaciones
+        foreach (Transform entry in highscoreEntryTransformList)
+        {
+            Destroy(entry.gameObject);
+        }
+        highscoreEntryTransformList.Clear();
+
+        // Cargar la tabla de puntuaciones
+        string jsonString = PlayerPrefs.GetString("highscoreTable");
+        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+
+        if (highscores == null)
+        {
+            highscores = new Highscores()
+            {
+                highscoreEntryList = new List<HighscoreEntry>()
+            };
+        }
+
+        // Ordenar la lista de puntuaciones
+        highscores.highscoreEntryList.Sort((x, y) => y.score.CompareTo(x.score));
+
+        // Crear las entradas del scoreboard nuevamente
+        foreach (HighscoreEntry highscoreEntry in highscores.highscoreEntryList)
+        {
+            CreateHighscoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
+        }
+    }
+
+
     public void ResetHighscoreTable()
     {
         // Eliminar los datos guardados en PlayerPrefs para la tabla de puntuaciones

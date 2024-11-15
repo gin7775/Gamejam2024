@@ -7262,7 +7262,7 @@ MonoBehaviour:
   escapeDistance: 15
   restTime: 5
   staminaTime: 5
-  fleeSpeed: 15
+  fleeSpeed: 12
   agent: {fileID: 0}
 --- !u!95 &2445773470122509887
 Animator:

@@ -58,6 +58,8 @@ public class GameManager : MonoBehaviour
     public GameObject pausemenu;                                                        // Menú de pausa
     public GameObject highscore;
     public HighscoreTable highscoreTable;
+    public GameObject nameInput;
+    public GameObject RetryButton;
     [SerializeField] private int currentWaveScore = 0;                                  // Puntuación de la oleada actual
     private int isNeededHeal = 0;                                                       // Control para la aparición del pollo heal
 
@@ -653,13 +655,39 @@ public class GameManager : MonoBehaviour
         player.transform.position = new Vector3(0, 5, 0);
     }
 
-    public void EndRound()
+    //public void EndRound()
+    //{
+    //    nameInput.SetActive(true);
+    //    //int finalScore = score;
+
+    //    //string playerName = "PlayerDefault"; // Habrá que hacer que establezca su nombre aquí
+    //    //highscoreTable.CheckAndAddHighscore(finalScore, playerName);
+    //    //highscore.SetActive(true);
+
+    //}
+
+    public void EndRound() // Se llama cuando el jugador muere
     {
+
+        // Obtener la puntuación final
         int finalScore = score;
-        
-        string playerName = "PlayerDefault"; // Habrá que hacer que establezca su nombre aquí
-        highscoreTable.CheckAndAddHighscore(finalScore, playerName);
-        highscore.SetActive(true);
+
+        // Verificar si la puntuación está en el Top 10
+        bool isTop10 = highscoreTable.CheckIfTop10(finalScore);
+
+        if (isTop10)
+        {
+            // Llamar al método PATATA si está en el Top 10
+            nameInput.SetActive(true);
+        }
+
+        else
+        {
+            highscore.SetActive(true);
+            RetryButton.gameObject.SetActive(true);
+
+        }
+
 
     }
 
