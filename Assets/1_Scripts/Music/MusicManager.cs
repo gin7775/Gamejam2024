@@ -31,12 +31,12 @@ public class MusicManager : MonoBehaviour
 
     [SerializeField] AudioSource comenzarOleadaFX;
 
-  
+
 
     public static MusicManager Instance { get; private set; }
 
 
-
+    int oleadaAnterior, oleadaSiguiente;
     private void Awake()
     {
         // If there is an instance and it's not me, delete myself.
@@ -48,13 +48,16 @@ public class MusicManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        oleadaAnterior = mainTheme.Length -1;
+        oleadaSiguiente = 0;
     }
 
     private void Update()
     {
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
-           
+
         //}
 
         //if (Input.GetKeyDown(KeyCode.W))
@@ -90,66 +93,112 @@ public class MusicManager : MonoBehaviour
 
     }
 
-    public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
+    //public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
+    //{
+    //    if (oleadaSiguiente < mainTheme.Length)
+    //    {
+
+    //       if(oleadaSiguiente >= mainTheme.Length)
+    //        {
+    //            oleadaSiguiente = 3;
+    //        }
+    //        transitionTheme.Play();
+    //        yield return new WaitForSeconds(1f);
+    //        sirena.Play();
+    //        mainTheme[oleadaAnterior].Stop();
+
+    //        try
+    //        {
+    //            sonidosPollosEnemigos[0].Stop();
+    //            sonidosPollosEnemigos[1].Stop();
+    //        } catch (System.Exception) {}
+
+    //        yield return new WaitForSeconds(3f);
+    //        Play_FX_StartRound();
+    //        yield return new WaitForSeconds(1f);
+    //        mainTheme[oleadaSiguiente].Play();
+
+    //        try
+    //        {
+    //            sonidosPollosEnemigos[0].Play();
+    //            sonidosPollosEnemigos[1].Play();
+    //        }
+    //        catch (System.Exception) { }
+
+    //        transitionTheme.Stop();
+    //        yield return new WaitForSeconds(1f);
+
+
+    //    }
+    //    else
+    //    {
+
+    //        transitionTheme.Play();
+    //        yield return new WaitForSeconds(1f);
+    //        sirena.Play();
+    //        StopAllMusic(); 
+    //        yield return new WaitForSeconds(3f);
+    //        Play_FX_StartRound();
+    //        yield return new WaitForSeconds(4f);
+    //        mainTheme[2].Play();
+    //        transitionTheme.Stop();
+    //        yield return new WaitForSeconds(1f);
+
+    //    }
+
+    //}
+    //public void FX_ActivarCorutina(int oleadaAnterior, int oleadaSiguiente)
+    //{
+    //    StartCoroutine(ChangeRaidTheme(oleadaAnterior,oleadaSiguiente));
+    //}
+
+    public IEnumerator ChangeRaidTheme()
     {
-        if (oleadaSiguiente < mainTheme.Length)
+
+        transitionTheme.Play();
+        yield return new WaitForSeconds(1f);
+        sirena.Play();
+        mainTheme[oleadaAnterior].Stop();
+        try
         {
-           
-           if(oleadaSiguiente >= mainTheme.Length)
-            {
-                oleadaSiguiente = 3;
-            }
-            transitionTheme.Play();
-            yield return new WaitForSeconds(1f);
-            sirena.Play();
-            mainTheme[oleadaAnterior].Stop();
-
-            try
-            {
-                sonidosPollosEnemigos[0].Stop();
-                sonidosPollosEnemigos[1].Stop();
-            } catch (System.Exception) {}
-
-            yield return new WaitForSeconds(3f);
-            Play_FX_StartRound();
-            yield return new WaitForSeconds(1f);
-            mainTheme[oleadaSiguiente].Play();
-
-            try
-            {
-                sonidosPollosEnemigos[0].Play();
-                sonidosPollosEnemigos[1].Play();
-            }
-            catch (System.Exception) { }
-
-            transitionTheme.Stop();
-            yield return new WaitForSeconds(1f);
-
-
+            sonidosPollosEnemigos[0].Stop();
+            sonidosPollosEnemigos[1].Stop();
         }
-        else
+        catch (System.Exception) { }
+
+        yield return new WaitForSeconds(3f);
+        Play_FX_StartRound();
+        yield return new WaitForSeconds(1f);
+
+        mainTheme[oleadaSiguiente].Play();
+        try
         {
-           
-            transitionTheme.Play();
-            yield return new WaitForSeconds(1f);
-            sirena.Play();
-            StopAllMusic(); 
-            yield return new WaitForSeconds(3f);
-            Play_FX_StartRound();
-            yield return new WaitForSeconds(4f);
-            mainTheme[2].Play();
-            transitionTheme.Stop();
-            yield return new WaitForSeconds(1f);
-
+            sonidosPollosEnemigos[0].Play();
+            sonidosPollosEnemigos[1].Play();
         }
+        catch (System.Exception) { }
+
+        transitionTheme.Stop();
+        yield return new WaitForSeconds(1f);
+        oleadaAnterior = oleadaSiguiente;
+        oleadaSiguiente++;
+
+        if (oleadaSiguiente >= mainTheme.Length)
+        {
+            oleadaSiguiente = 0;
+            oleadaAnterior = mainTheme.Length - 1;
+        }
+
+
 
     }
-    public void FX_ActivarCorutina(int oleadaAnterior, int oleadaSiguiente)
+
+    public void FX_ActivarCorutina()
     {
-        StartCoroutine(ChangeRaidTheme(oleadaAnterior,oleadaSiguiente));
+        StartCoroutine(ChangeRaidTheme());
     }
 
-  
+
 
     //Themes  
     public void PlayMaintheme(int track)
@@ -190,7 +239,7 @@ public class MusicManager : MonoBehaviour
 
     public void Play_FX_TickingPollo()          //Tic tac pollo
     {
-       // tickingPollo.Play();
+        // tickingPollo.Play();
     }
     public void Play_FX_ClicPollo()         //Clic Pollo Menu Boton Jugar
     {

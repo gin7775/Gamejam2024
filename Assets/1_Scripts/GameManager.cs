@@ -262,7 +262,9 @@ public class GameManager : MonoBehaviour
         canvasRound.gameObject.SetActive(true);
 
         //Audio
-        musicManager.FX_ActivarCorutina((waveCurrent - 1) < 0 ? 0 : waveCurrent - 1, waveCurrent);
+        // musicManager.FX_ActivarCorutina((waveCurrent - 1) < 0 ? 0 : waveCurrent - 1, waveCurrent);
+        musicManager.FX_ActivarCorutina();
+
 
         yield return new WaitForSeconds(timeWave - 2f);
 
