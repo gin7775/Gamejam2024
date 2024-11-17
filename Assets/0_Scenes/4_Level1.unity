@@ -17635,6 +17635,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5505946646493654382}
+    - target: {fileID: 6395169966993468134, guid: 9cc5256655d8c244b80207362681c9fa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8162297140148536153, guid: 9cc5256655d8c244b80207362681c9fa,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -17831,22 +17836,22 @@ PrefabInstance:
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
       propertyPath: chikenToSpawnWave.Array.data[2].wave
-      value: 10070809.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
-        type: 3}
-      propertyPath: chikenToSpawnWave.Array.data[3].wave
-      value: 11010203.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
-        type: 3}
-      propertyPath: chikenToSpawnWave.Array.data[4].wave
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[3].wave
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].wave
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
       propertyPath: chikenToSpawnWave.Array.data[4].level
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
@@ -17866,7 +17871,7 @@ PrefabInstance:
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
       propertyPath: chikenToSpawn.Array.data[5].probability
-      value: 0.0001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}

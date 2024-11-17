@@ -453,7 +453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3132866743299220087}
   m_Layer: 0
-  m_Name: Menus
+  m_Name: Pfb_0_Menus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3381,7 +3381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7719639067711687413
 RectTransform:
   m_ObjectHideFlags: 0
