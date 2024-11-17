@@ -152,4 +152,10 @@ public class PlayerHealth : MonoBehaviour
 
         eggs[Mathf.Max(0, health - 1)].GetComponent<Animator>().SetTrigger("UnBreak");
     }
+
+    public int GetHealth()
+    {
+        return health;
+    }
+
 }

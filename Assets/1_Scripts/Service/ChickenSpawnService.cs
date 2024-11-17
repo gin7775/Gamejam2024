@@ -23,10 +23,10 @@ public class ChickenSpawnService
     {
         ChickenConfig selectedPollo = null;
 
-        // Generar un Número aleatorio para determinar el pollo a generar
+        // Generar un Nï¿½mero aleatorio para determinar el pollo a generar
         float randomNumber = Random.Range(0, 100);
 
-        // Filtrar la lista de pollos que pueden aparecer según el nivel y la oleada
+        // Filtrar la lista de pollos que pueden aparecer segï¿½n el nivel y la oleada
         List<ChickenConfig> validChickens = chikenToSpawn.Where( chickenConfig => IsChickenValidForLevelAndWave(chickenConfig.chickenPrefab.name, currentLevel, currentWave) ).ToList();
 
         // Ajusta las probabilidades de los pollos existentes a que sumen 100%
@@ -42,11 +42,11 @@ public class ChickenSpawnService
                 break; // Salir del bucle una vez que el pollo es seleccionado
             }
 
-            // Restar la probabilidad actual para la próxima comparación
+            // Restar la probabilidad actual para la prï¿½xima comparaciï¿½n
             randomNumber -= chickenConfig.probability;
         }
 
-        return selectedPollo; // Si no se selecciona ningún pollo, devolver null
+        return selectedPollo; // Si no se selecciona ningï¿½n pollo, devolver null
     }
 
     public ChickenConfig SelectChicken(string enemyType)
@@ -62,10 +62,10 @@ public class ChickenSpawnService
             }
         }
 
-        return selectedPollo; // Si no se selecciona ningún pollo, devolver null
+        return selectedPollo; // Si no se selecciona ningï¿½n pollo, devolver null
     }
 
-    // Método auxiliar para verificar si un pollo es válido según el nivel y la oleada
+    // Mï¿½todo auxiliar para verificar si un pollo es vï¿½lido segï¿½n el nivel y la oleada
     private bool IsChickenValidForLevelAndWave(string enemyType, int level, int wave)
     {
         foreach (ChickenConfigWave chickenConfigWave in chikenToSpawnWave)
@@ -80,8 +80,8 @@ public class ChickenSpawnService
                 if (!IsWaveConditionMet(chickenConfigWave.wave, wave))
                     continue;
 
-                // Verificar la cantidad si es necesario (puedes añadir esta lógica)
-                // if (chickenConfigWave.cantidad <= someLimit) // Añadir lógica si hay límite
+                // Verificar la cantidad si es necesario (puedes aï¿½adir esta lï¿½gica)
+                // if (chickenConfigWave.cantidad <= someLimit) // Aï¿½adir lï¿½gica si hay lï¿½mite
                 //    continue;
 
                 return true;
@@ -91,7 +91,7 @@ public class ChickenSpawnService
     }
 
     /// <summary>
-    /// Método para verificar las condiciones de nivel:<br/>
+    /// Mï¿½todo para verificar las condiciones de nivel:<br/>
     /// <br/>
     /// <code>
     /// {
@@ -111,21 +111,21 @@ public class ChickenSpawnService
         {
             0 => true,                                                                                         // Aparece en todos los niveles
             double n when n == currentLevel => true,                                                           // Aparece solo en este nivel
-            double n when n / 10 <= currentLevel && n % 10 == 0 => true,                                       // Aparece a partir de este nivel si el segundo dígito es 0
-            double n when n > 100 && (n / 100 == currentLevel || (n / 10) % 10 == currentLevel) => true,       // Aparece si currentLevel es uno de los dos primeros dígitos
+            double n when n / 10 <= currentLevel && n % 10 == 0 => true,                                       // Aparece a partir de este nivel si el segundo dï¿½gito es 0
+            double n when n > 100 && (n / 100 == currentLevel || (n / 10) % 10 == currentLevel) => true,       // Aparece si currentLevel es uno de los dos primeros dï¿½gitos
             _ => false,
         };
     }
 
     /// <summary>
-    /// Método para verificar las condiciones de oleada:<br/>
+    /// Mï¿½todo para verificar las condiciones de oleada:<br/>
     /// <br/>
     /// <code>
     /// {
     /// - 0           : Aparece en cualquier oleada
-    /// - XX          : Solo aparece en esa oleada --> 01, 02, 10, 20 ... (Por encima de la 10 solo sería en las oleadas infinitas)
+    /// - XX          : Solo aparece en esa oleada --> 01, 02, 10, 20 ... (Por encima de la 10 solo serï¿½a en las oleadas infinitas)
     /// - 1XX         : Aparece a partir de esa oleada --> 01, 02, 10, 20   
-    /// - ...XXYYZZ.F : Cada agrupación de 2 determina las rondas que se controlan.
+    /// - ...XXYYZZ.F : Cada agrupaciï¿½n de 2 determina las rondas que se controlan.
     /// .             : La F es una flag de 1 u 2, que controla que en esas rondas sale o no sale el enemigo.
     /// }
     /// </code>
@@ -144,7 +144,7 @@ public class ChickenSpawnService
         if (configWave / 100 == 1 && configWave % 100 <= currentWave)
             return true; // Aparece a partir de esta oleada
 
-        // Verificación avanzada basada en el patrón XXYYZZ.F
+        // Verificacion avanzada basada en el patron XXYYZZ.F
         string wavePattern = configWave.ToString();
         Debug.Log(wavePattern);
 
@@ -162,15 +162,23 @@ public class ChickenSpawnService
         return false;
     }
 
-    public int GetCapGenerator(int wave)
+    public int GetCapGenerator(int level, int wave)
     {
+        double auxMultiplier = 1;
+
+        if (level == 2)
+            auxMultiplier = 1.2;
+
+        if (level == 3)
+            auxMultiplier = 1.3;
+
         // Determina el valor de capGenerator basado en la wave
         return wave switch
         {
-            <= 4 => 20,
-            >= 5 and <= 7 => 50,
-            >= 8 and <= 10 => 100,
-            _ => 150
+            <= 4 =>             (int) auxMultiplier * 10,
+            >= 5 and <= 7 =>    (int) auxMultiplier * 25,
+            >= 8 and <= 10 =>   (int) auxMultiplier * 40,
+            _ =>                (int) auxMultiplier * 150
         };
     }
 

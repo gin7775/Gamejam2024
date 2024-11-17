@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
             auxCount += count.quantity;
         }
 
-        if (isNeededHeal + 10 <= auxCount)
+        if (isNeededHeal + 30 <= auxCount && player.GetComponent<PlayerHealth>().GetHealth() < 3)
         {
             Instantiate(chickenHeal.chickenPrefab, GetRandomAreaSpawn(), Quaternion.identity);
             isNeededHeal = auxCount;
@@ -223,12 +223,12 @@ public class GameManager : MonoBehaviour
             waveCurrent = 1;
         }
 
-        capGenerator = new ChickenSpawnService().GetCapGenerator(waveCurrent);
+        capGenerator = new ChickenSpawnService().GetCapGenerator(level, waveCurrent);
 
         // Restablecer el puntaje de la oleada actual
         totalWaveChicken = 0;
         currentWaveScore = 0;
-        // Por el momento no se reiniciarán los contadores
+        // Por el momento no se reiniciarï¿½n los contadores
         //instanciateChickenCount = new List<ChickenCount>();
         //killChickenCount = new List<ChickenCount>();
 
@@ -307,15 +307,15 @@ public class GameManager : MonoBehaviour
         int auxCapGenerator = capGenerator;
         ChickenSpawnService aux = new(chikenToSpawn, chikenToSpawnWave);
 
-        if (waveCurrent > 7)
-            auxCapGenerator = capGenerator / 2;
+        //if (waveCurrent > 7)
+        //    auxCapGenerator = capGenerator / 2;
 
         for (int i = 0; i < auxCapGenerator; i++)
         {
             float randomNumber = Random.Range(0, 100);
 
             if (randomNumber >= 50)
-                SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints);
+                i += SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints) - 1;
             else
                 ChikenAloneGenerator();
         }
@@ -330,7 +330,9 @@ public class GameManager : MonoBehaviour
         }
         else
         {*/
-        do
+        //do
+        //{
+        for (int i = 0; i < 1; i++)
         {
             // Calcular un nuevo randomNumber para decidir entre las dos ultimas condiciones
             float randomNumber = Random.Range(0, 100);
@@ -351,7 +353,8 @@ public class GameManager : MonoBehaviour
 
             // Actualizar dificultad, reducimos el difficultyLevel segun los enemigos generados
             // dificultPoints -= Mathf.Min(capGenerator, totalWaveChicken - enemyCount);
-        } while (dificultPoints > 0);
+        }
+        //} while (dificultPoints > 0);
         /*}*/
     }
 
@@ -362,12 +365,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0f);
 
         // Generar 75% de los enemigos de manera instantanea
-        while (enemyCount < capGenerator)
+        //while (enemyCount < capGenerator)
+        //{
+        for (int i = 0; i < capGenerator; i++)
         {
             float randomNumber = Random.Range(0, 100);
 
             if (randomNumber >= 50)
-                SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints);
+                i += SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints) - 1;
             else
                 ChikenAloneGenerator();
 
@@ -375,6 +380,7 @@ public class GameManager : MonoBehaviour
             if (dificultPoints <= 0)
                 break;
         }
+        //}
     }
 
     private IEnumerator GenerateEnemiesOverTime()
@@ -382,30 +388,29 @@ public class GameManager : MonoBehaviour
         ChickenSpawnService aux = new(chikenToSpawn, chikenToSpawnWave);
         //int remainingEnemies = Mathf.Min(capGenerator - enemyCount, dificultPoints);
 
-        do
+        //do
+        //{
+        for (int i = 0; i < capGenerator; i++)
         {
             // Generar un enemigo
             float randomNumber = Random.Range(0, 100);
 
             if (randomNumber >= 50)
-            {
-                SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints);
-            }
+                i += SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints) - 1;
             else
-            {
                 ChikenAloneGenerator();
-            }
             //enemyCount++;
             //dificultPoints--;
             //remainingEnemies--;
 
-            yield return new WaitForSeconds(3f); // Esperar 3 segundos entre generaciones
+            yield return new WaitForSeconds(2f); // Esperar 3 segundos entre generaciones
 
             // Si dificultPoints es 0 o menor, deten el bucle
             if (dificultPoints <= 0)
                 break;
         }
-        while (enemyCount < capGenerator);
+        //}
+        //while (enemyCount < capGenerator);
     }
 
     public void ChikenAloneGenerator()
@@ -427,12 +432,13 @@ public class GameManager : MonoBehaviour
     }
 
     // Metodo para generar escuadron de pollos blancos
-    private void SpawnChickenSquad(ChickenConfig chicken, ref int difficultyPointsLeft)
+    private int SpawnChickenSquad(ChickenConfig chicken, ref int difficultyPointsLeft)
     {
         //int chickensToSpawn = Mathf.Min(10, difficultyPointsLeft); // Si hay menos puntos, genera menos pollos
         Vector3 auxPosition = GetRandomSpawnPosition();
+        int auxTotal = CapSquadChicken(chicken.chickenPrefab.name);
 
-        for (int i = 0; i < CapSquadChicken(chicken.chickenPrefab.name); i++)
+        for (int i = 0; i < auxTotal; i++)
         {
             GameObject auxNewChicken = Instantiate(chicken.chickenPrefab, auxPosition, Quaternion.identity);
             listEnemies.Add(auxNewChicken);
@@ -443,6 +449,8 @@ public class GameManager : MonoBehaviour
 
             CountChiken(chicken.chickenPrefab.name);
         }
+
+        return auxTotal;
     }
 
     // Cuenta dinamicamente a los pollos
@@ -453,14 +461,14 @@ public class GameManager : MonoBehaviour
         AddOrUpdateChickenCount(instanciateChickenCount, new(enemyType));
     }
 
-    // Método para contar el puntaje de un enemigo eliminado
+    // Metodo para contar el puntaje de un enemigo eliminado
     private void KillCountChicken(string name)
     {
         // Extraer el tipo de enemigo desde el nombre
         string enemyType = GetEnemyTypeFromName(name);
         AddOrUpdateChickenCount(killChickenCount, new(enemyType));
 
-        // Buscar en la lista chikenToSpawn la configuración que coincide con el tipo de enemigo
+        // Buscar en la lista chikenToSpawn la configuracion que coincide con el tipo de enemigo
         int scoreIncrement = chikenToSpawn.FirstOrDefault(c => c.chickenPrefab.name.Contains(enemyType))?.difficultyScore ?? 1;
 
         // Sumar al puntaje
@@ -468,7 +476,7 @@ public class GameManager : MonoBehaviour
         score += scoreIncrement;
     }
 
-    // Método para agregar o actualizar un ChickenCount en la lista
+    // Metodo para agregar o actualizar un ChickenCount en la lista
     public void AddOrUpdateChickenCount(List<ChickenCount> array, string enemyType)
     {
         // Busca si ya existe un ChickenCount con el mismo typeName
@@ -512,7 +520,7 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Probabilidades ajustadas correctamente para que sumen 100%.");
     }
 
-    // Método auxiliar para extraer el tipo de enemigo de su nombre
+    // Mï¿½todo auxiliar para extraer el tipo de enemigo de su nombre
     private string GetEnemyTypeFromName(string name)
     {
         int startIndex = name.IndexOf("Pfb_Enemy") + "Pfb_Enemy".Length;
