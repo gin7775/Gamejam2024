@@ -20,7 +20,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] AudioSource polloJugadorMuerto;
 
 
-    [SerializeField] AudioSource recibirDañoJugador;
+    [SerializeField] AudioSource recibirDanoJugador;
     [SerializeField] AudioSource disparoPolloJugador;
 
 
@@ -257,7 +257,7 @@ public class MusicManager : MonoBehaviour
 
     public void Play_FX_PLayer_RecibirDaño()         //Sonido de dolor del Jugador
     {
-        recibirDañoJugador.Play();
+        recibirDanoJugador.Play();
     }
 
     public void Play_FX_PLayer_DispararPollo()         //Sonido de disparo del Jugador
