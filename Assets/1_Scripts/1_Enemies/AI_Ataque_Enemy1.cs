@@ -7,17 +7,23 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
 {
     NavMeshAgent enemy;
     ContenedorEnemigo1 contenedorEnemy;
-
+    private GameObject player;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy = animator.gameObject.GetComponent<NavMeshAgent>();
         contenedorEnemy = animator.gameObject.GetComponent<ContenedorEnemigo1>();
+        player = GameObject.FindGameObjectWithTag("Player");
         //contenedorEnemy.animEnemy.SetTrigger("Attack");
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player"); 
+        // Forzar al enemigo a mirar al jugador
+        Vector3 direction = (player.transform.position - enemy.transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 10f);
+
+
         if (player != null)
         {
             float distanceToPlayer = Vector3.Distance(player.transform.position, animator.transform.position);

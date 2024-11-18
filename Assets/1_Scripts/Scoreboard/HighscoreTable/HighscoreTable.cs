@@ -10,6 +10,10 @@ public class HighscoreTable : MonoBehaviour {
     private List<Transform> highscoreEntryTransformList;
 
     private void Awake() {
+
+
+
+        ResetHighscoreTable();
         entryContainer = transform.Find("highscoreEntryContainer");
         entryTemplate = entryContainer.Find("highscoreEntryTemplate");
 

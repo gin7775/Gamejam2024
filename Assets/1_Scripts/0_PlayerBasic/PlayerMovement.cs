@@ -262,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
             if (Physics.Raycast(crosshairPosition + Vector3.up * 2f, Vector3.down, out hitInfo, Mathf.Infinity, terrainLayer))
             {
                 // Ajustamos la posición de la cruceta para que coincida con la altura del terreno
-                crosshairPosition.y = hitInfo.point.y + 0.05f; // Ajustar el +1f para elevar la cruceta un poco por encima del terreno
+                crosshairPosition.y = hitInfo.point.y + 0.25f; // Ajustar el +1f para elevar la cruceta un poco por encima del terreno
             }
 
             // Asignar la nueva posición de la cruceta

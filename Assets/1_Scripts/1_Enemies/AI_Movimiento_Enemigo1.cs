@@ -28,10 +28,19 @@ public class AI_Movimiento_Enemigo1 : StateMachineBehaviour
 
             if (Vector3.Distance(enemy.transform.position, player.transform.position) <= contenedorEnemy.distanceToEnemy)
             {
+                // Forzar al enemigo a mirar al jugador
+                Vector3 direction = (player.transform.position - enemy.transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 10f);
+
+
                 contenedorEnemy.animEnemy.SetTrigger("Attack");
                 animator.SetTrigger("Ataque");
                 enemy.speed = 0.3f;  // Baja la velocidad al atacar
+
+                
             }
+
             else
             {
                 enemy.speed = contenedorEnemy.speed; // Restablece la velocidad original

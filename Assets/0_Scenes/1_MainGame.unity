@@ -30643,12 +30643,12 @@ PrefabInstance:
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawnWave.Array.data[2].wave
-      value: 10070809.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawnWave.Array.data[3].wave
-      value: 11010203.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
@@ -30658,22 +30658,22 @@ PrefabInstance:
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawn.Array.data[2].probability
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawn.Array.data[3].probability
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawn.Array.data[4].probability
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawn.Array.data[5].probability
-      value: 0.0001
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
@@ -42379,6 +42379,11 @@ PrefabInstance:
       objectReference: {fileID: 1681855571}
     - target: {fileID: 1499675197100328886, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499675197100328886, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -42386,6 +42391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: dashCooldown
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499675197100328886, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: crosshairDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1805291318609319816, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
