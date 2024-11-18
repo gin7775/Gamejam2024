@@ -968,8 +968,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3250772957893698697}
   - {fileID: 4105123957577148385}
+  - {fileID: 1805291318609319816}
   - {fileID: 4095114798396698474}
   m_Father: {fileID: 1841614332391349478}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6055,7 +6055,7 @@ MonoBehaviour:
   controller: {fileID: 6354709594561634940}
   dashIcon: {fileID: 0}
   gravity: 9.81
-  crosshair: {fileID: 7227314661538044895}
+  crosshair: {fileID: 9110446445148916639}
   crosshairDistance: 1
   terrainLayer:
     serializedVersion: 2
@@ -6081,7 +6081,6 @@ MonoBehaviour:
   firstGameObjectRetry: {fileID: 0}
   invulnerabilityDuration: 1
   hitParticle: {fileID: 5532761033942213253}
-  RetryButton: {fileID: 0}
   highScore: {fileID: 0}
   playerMaterial: {fileID: 2100000, guid: f55a29c15d40f1d4fa7138c10c0a506d, type: 2}
   musicManager: {fileID: 0}
@@ -6575,6 +6574,81 @@ Transform:
   - {fileID: 8115023016226495213}
   m_Father: {fileID: 1515426944729334363}
   m_LocalEulerAnglesHint: {x: 2.8153155, y: -0.016973512, z: -0.69053984}
+--- !u!1 &4435559970099290798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1805291318609319816}
+  - component: {fileID: 9132644654250956294}
+  - component: {fileID: 7561924051451666717}
+  m_Layer: 5
+  m_Name: CrucetaPlayer Circle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1805291318609319816
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4435559970099290798}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -17.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4431316078649520941}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1291.65, y: -722.77203}
+  m_SizeDelta: {x: 4, y: 4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9132644654250956294
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4435559970099290798}
+  m_CullTransparentMesh: 1
+--- !u!114 &7561924051451666717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4435559970099290798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 0c2e02147de4b274eb61e13ab9b76305, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4523228645825785263
 GameObject:
   m_ObjectHideFlags: 0
@@ -7055,81 +7129,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4778229784837839218}
   m_LocalEulerAnglesHint: {x: -2.9786618, y: -0.38171667, z: -0.21923667}
---- !u!1 &7227314661538044895
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3250772957893698697}
-  - component: {fileID: 2944362739149840616}
-  - component: {fileID: 8156861070545524782}
-  m_Layer: 5
-  m_Name: CrucetaPlayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &3250772957893698697
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7227314661538044895}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -16.41}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 4431316078649520941}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1291.65, y: -722.8361}
-  m_SizeDelta: {x: 1.5, y: 2}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2944362739149840616
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7227314661538044895}
-  m_CullTransparentMesh: 1
---- !u!114 &8156861070545524782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7227314661538044895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aafa18280770dee428510be68a230106, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7375622582570068496
 GameObject:
   m_ObjectHideFlags: 0
@@ -12450,7 +12449,7 @@ GameObject:
   - component: {fileID: 6540374035909621244}
   - component: {fileID: 9094248344274585959}
   m_Layer: 5
-  m_Name: CrucetaPlayer (2)
+  m_Name: CrucetaPlayer Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12464,7 +12463,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9110446445148916639}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: -17.5}
+  m_LocalPosition: {x: 0, y: 0, z: -16.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12472,8 +12471,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1291.65, y: -722.8361}
-  m_SizeDelta: {x: 4, y: 4}
+  m_AnchoredPosition: {x: -1291.65, y: -722.77594}
+  m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6540374035909621244
 CanvasRenderer:
@@ -12503,7 +12502,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f00c5c16bde696747ad80b23774b0dc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 714ff1d640b77784d92c7caee3cfd057, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

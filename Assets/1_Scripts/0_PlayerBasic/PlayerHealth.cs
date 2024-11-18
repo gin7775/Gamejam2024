@@ -14,7 +14,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float invulnerabilityDuration = 1f;
     private bool isInvulnerable = false;
     [SerializeField] private ParticleSystem hitParticle;
-    public GameObject RetryButton;
     public GameObject highScore;
     [SerializeField] private Material playerMaterial;
     private static readonly int IsColorShift = Shader.PropertyToID("_Is_ColorShift");
@@ -52,10 +51,11 @@ public class PlayerHealth : MonoBehaviour
             eggs[Mathf.Max(0, health - 1)].GetComponent<Animator>().SetTrigger("Break");
             health -= damage;
 
-            musicManager.Play_FX_PLayer_RecibirDaño();
+            //musicManager.Play_FX_PLayer_RecibirDaño();
 
             if (health <= 0)
             {
+                Debug.Log("HE MUERTO DEBERA QUEDARME QUIETO");
                 PlayerDeath();
             }
         }
