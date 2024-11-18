@@ -13,7 +13,7 @@ public class HighscoreTable : MonoBehaviour {
 
 
 
-        ResetHighscoreTable();
+        //ResetHighscoreTable();
         entryContainer = transform.Find("highscoreEntryContainer");
         entryTemplate = entryContainer.Find("highscoreEntryTemplate");
 
