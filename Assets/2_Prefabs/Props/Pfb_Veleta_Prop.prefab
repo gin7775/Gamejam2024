@@ -11,32 +11,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d16dc2e55b2a10540822b5729a653d63,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 10
+      value: 19.634
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d16dc2e55b2a10540822b5729a653d63,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 19.634
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d16dc2e55b2a10540822b5729a653d63,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 10
+      value: 19.634
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d16dc2e55b2a10540822b5729a653d63,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.032606
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d16dc2e55b2a10540822b5729a653d63,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.5617
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d16dc2e55b2a10540822b5729a653d63,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.15098
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d16dc2e55b2a10540822b5729a653d63,
         type: 3}
@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d16dc2e55b2a10540822b5729a653d63,
         type: 3}
       propertyPath: m_Name
-      value: Veleta
+      value: Pfb_Veleta_Prop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
