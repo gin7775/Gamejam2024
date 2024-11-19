@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.UIElements;
+using UnityEngine.VFX;
 public class PlayerMovement : MonoBehaviour
 {
     
@@ -12,8 +13,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private float dashCooldown = 2f;
     [SerializeField] private ParticleSystem dashParticle;
+    [SerializeField] private VisualEffect walkingEffect;
+    private Coroutine walkingEffectCoroutine;
+    [SerializeField] private float particleTimeToSpawn;
+    [SerializeField] private ParticleSystem jumpEffect; 
+    [SerializeField] private float heightThreshold = 0.5f; 
+    private float lastGroundHeight = 0f;  
+    private bool hasActivatedHeightEffect = false;
+    private bool wasGrounded = true;
+    private float groundContactDelay = 0.1f; // Tiempo de espera tras aterrizar
+    private float lastGroundContactTime = 0f; // Último momento en que tocó el suelo
 
-   
     [Header("Control de Input")]
     private Vector2 moveInput;
     private Vector2 lookInput;
@@ -33,8 +43,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Estados del Jugador")]
     private bool isDashing = false;
     private bool canDash = true;
+    private bool isWalking = false;
 
-   
     [Header("Física")]
     [SerializeField] public float gravity = 9.81f;
     private Vector3 velocity;
@@ -73,8 +83,10 @@ public class PlayerMovement : MonoBehaviour
         {
             RotateMouse(); // Usa el input del ratón
         }
-
+        IsGround();
         UpdateCrosshairPositionWithRotation();
+        
+        CheckLanding();
     }
 
 
@@ -274,10 +286,139 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    private void CheckLanding()
+    {
+        // Si el jugador está en el aire y ahora está en el suelo
+        if (!wasGrounded && controller.isGrounded)
+        {
+            // Verificar si el tiempo desde el último contacto es mayor al delay
+            if (Time.time - lastGroundContactTime > groundContactDelay)
+            {
+                // Calcular la diferencia de altura al aterrizar
+                float fallHeight = lastGroundHeight - transform.position.y;
+
+                if (fallHeight >= heightThreshold)
+                {
+                    PlayJumpEffect(); // Reproducir el efecto de partícula
+                }
+
+                // Actualizar la última altura del suelo
+                lastGroundHeight = transform.position.y;
+
+                // Actualizar el tiempo del último contacto
+                lastGroundContactTime = Time.time;
+            }
+        }
+
+        // Si está tocando el suelo, actualizar la altura
+        if (controller.isGrounded)
+        {
+            lastGroundHeight = transform.position.y;
+        }
+
+        // Actualizar el estado anterior
+        wasGrounded = controller.isGrounded;
+    }
+    private void PlayJumpEffect()
+    {
+        if (jumpEffect != null)
+        {
+            jumpEffect.Play();
+        }
+    }
+
+    private void IsGround()
+    {
+        if (controller.isGrounded && moveInput.magnitude > 0.1f) // Usamos moveInput para verificar movimiento
+        {
+            if (!isWalking)
+            {
+                // Si el jugador comienza a caminar, empezar el efecto visual
+                isWalking = true;
+                if (walkingEffectCoroutine == null)
+                {
+                    walkingEffectCoroutine = StartCoroutine(PlayWalkingEffect());
+                }
+            }
+        }
+        else
+        {
+            if (isWalking)
+            {
+                // Si el jugador deja de caminar o no está tocando el suelo, detener el efecto visual
+                isWalking = false;
+                if (walkingEffectCoroutine != null)
+                {
+                    StopCoroutine(walkingEffectCoroutine);
+                    walkingEffectCoroutine = null;
+                }
+
+                // Detener las partículas si deja de caminar
+                walkingEffect.Stop();
+            }
+        }
+
+
+    }
 
 
 
+    private IEnumerator PlayWalkingEffect()
+    {
+        while (isWalking)
+        {
+            // Activar la partícula
+            walkingEffect.Play();
 
+            // Esperar 1 segundo
+            yield return new WaitForSeconds(particleTimeToSpawn);
+
+            // Desactivar la partícula después de 1 segundo
+            walkingEffect.Stop();
+
+            // Esperar 1 segundo antes de volver a activarla
+            yield return new WaitForSeconds(particleTimeToSpawn);
+        }
+    }
+
+    //private void JumpParticle()
+    //{
+    //    bool isGrounded = controller.isGrounded; // Verificar si el jugador está tocando el suelo
+    //    Debug.Log($"Is player grounded: {isGrounded}");
+
+    //    if (!isGrounded)
+    //    {
+    //        // Si el jugador está en el aire, medir la distancia desde la última altura registrada
+    //        float heightDifference = Mathf.Abs(transform.position.y - lastGroundHeight); // Asegurarnos de que la diferencia sea positiva
+    //        Debug.Log($"Height difference: {heightDifference}");
+
+    //        if (!hasActivatedHeightEffect && heightDifference >= heightThreshold)
+    //        {
+    //            // Si ha superado la distancia mínima, activar la partícula
+    //            if (jumpEffect != null)
+    //            {
+    //                Debug.Log("Activating jump effect!");
+    //                jumpEffect.Play();
+    //            }
+    //            hasActivatedHeightEffect = true; // Asegurarse de que la partícula solo se active una vez
+    //        }
+    //    }
+    //    else
+    //    {
+    //        // Si el jugador toca el suelo, detener la partícula
+    //        if (jumpEffect != null && jumpEffect.isPlaying)
+    //        {
+    //            Debug.Log("Deactivating jump effect!");
+    //            jumpEffect.Stop();
+    //        }
+
+    //        hasActivatedHeightEffect = false;  // Reiniciar para la próxima vez que el jugador se eleve
+
+    //        // Actualizar la altura de la última vez que tocó el suelo
+    //        lastGroundHeight = transform.position.y;
+    //        Debug.Log($"Updating last ground height: {lastGroundHeight}");
+    //    }
+    //}
 
     public void ApplyWaterCurrent(Vector3 direction, float force)
     {
