@@ -61,7 +61,7 @@ Material:
     m_Floats:
     - _Depth: 0.73
     - _NormalScale: 1.25
-    - _NormalStrenght: 0.253
+    - _NormalStrenght: 0.294
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RefScall: 4.55
