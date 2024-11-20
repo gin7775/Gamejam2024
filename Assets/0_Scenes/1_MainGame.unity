@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1119899, g: 0.3625146, b: 0.7331543, a: 1}
+  m_IndirectSpecularColor: {r: 0.11193269, g: 0.36260217, b: 0.7331328, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30653,7 +30653,7 @@ PrefabInstance:
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawnWave.Array.data[4].level
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
@@ -30678,12 +30678,12 @@ PrefabInstance:
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawnWave.Array.data[3].quantity
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawnWave.Array.data[4].quantity
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
@@ -30766,7 +30766,7 @@ PrefabInstance:
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawnWave.Array.data[3].quantityAlive
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
@@ -30777,7 +30777,7 @@ PrefabInstance:
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawnWave.Array.data[4].quantityAlive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5072480570598053830, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
