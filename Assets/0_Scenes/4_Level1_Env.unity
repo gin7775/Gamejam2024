@@ -10212,7 +10212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1600245743
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19834,6 +19834,11 @@ PrefabInstance:
       propertyPath: dashIcon
       value: 
       objectReference: {fileID: 1746131285}
+    - target: {fileID: 1499675197100328886, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1841614332391349478, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
       propertyPath: m_LocalPosition.x
