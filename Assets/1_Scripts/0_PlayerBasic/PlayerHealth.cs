@@ -51,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
             eggs[Mathf.Max(0, health - 1)].GetComponent<Animator>().SetTrigger("Break");
             health -= damage;
 
-            //musicManager.Play_FX_PLayer_RecibirDaño();
+            musicManager.Play_FX_PLayer_RecibirDano();
 
             if (health <= 0)
             {

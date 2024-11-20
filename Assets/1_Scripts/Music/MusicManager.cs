@@ -255,7 +255,7 @@ public class MusicManager : MonoBehaviour
         comenzarOleadaFX.Play();
     }
 
-    public void Play_FX_PLayer_RecibirDaño()         //Sonido de dolor del Jugador
+    public void Play_FX_PLayer_RecibirDano()         //Sonido de dolor del Jugador
     {
         recibirDanoJugador.Play();
     }

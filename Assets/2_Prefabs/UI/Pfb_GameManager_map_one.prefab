@@ -1083,7 +1083,7 @@ MonoBehaviour:
   - {fileID: 9209237015741600279}
   - {fileID: 3490786796626351710}
   polloJugadorMuerto: {fileID: 6476506933013076695}
-  "recibirDa\xF1oJugador": {fileID: 3233850841761863362}
+  recibirDanoJugador: {fileID: 3233850841761863362}
   disparoPolloJugador: {fileID: 1957075686782535266}
   explosionPollo: {fileID: 7067143550166351404}
   tickingPollo: {fileID: 5544472290709839311}
@@ -2307,7 +2307,6 @@ MonoBehaviour:
     probability: 5
     difficultyScore: 0
   chikenToSpawnWave: []
-  difficult: []
   totalWaveChicken: 0
   spawnPosition: {x: 0, y: 0, z: 0}
   vfxHitEffect: {fileID: 9221058093655817346, guid: 954f5b51172264f4586384ccce545d48,
@@ -2323,6 +2322,10 @@ MonoBehaviour:
   paused: 0
   score: 0
   pausemenu: {fileID: 0}
+  highscore: {fileID: 0}
+  highscoreTable: {fileID: 0}
+  nameInput: {fileID: 0}
+  RetryButton: {fileID: 0}
   currentWaveScore: 0
   musicManager: {fileID: 4786303076399950479}
   myMixer: {fileID: 24100000, guid: 4a4e7e06e7ebba840afcfa549c9e4c22, type: 2}

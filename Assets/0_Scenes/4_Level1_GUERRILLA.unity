@@ -22458,6 +22458,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3100536965024992119, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
         type: 3}
+    - target: {fileID: 6738796526735938395, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: recibirDanoJugador
+      value: 
+      objectReference: {fileID: 7476890478831607755}
     - target: {fileID: 6936228951372693750, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22583,6 +22588,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dab2c49b78cb9944c82ca288da2c8485, type: 3}
+--- !u!82 &7476890478831607755 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5177648344131987790, guid: dab2c49b78cb9944c82ca288da2c8485,
+    type: 3}
+  m_PrefabInstance: {fileID: 7476890478831607754}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7662298928064684544
 GameObject:
   m_ObjectHideFlags: 0
