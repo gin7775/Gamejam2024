@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0_Scenes/4_Level1.unity
     guid: 6fdc4e2f99c8c8040a67686e760e6853
+  - enabled: 1
+    path: Assets/0_Scenes/4_Level1_GUERRILLA.unity
+    guid: 84f83b2aa93848649902be52ab4a0301
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
