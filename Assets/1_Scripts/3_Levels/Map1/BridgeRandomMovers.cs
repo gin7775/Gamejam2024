@@ -1,83 +1,137 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BridgeRandomMovers : MonoBehaviour
 {
     [SerializeField]
-    private GameObject[] targetObjects; // Array de objetos con Animator
+    private GameObject[] targetObjects; // Array de objetos que tienen un Lever
 
     [SerializeField]
     private float triggerInterval = 2f; // Intervalo de tiempo en segundos
 
-    public bool TwoRandoms = false;
-
-    //public const string triggerName = "Lever"; // Nombre del Trigger en los Animators
-
     void Start()
     {
-        // Iniciar la corrutina para activar los triggers periódicamente
-        StartCoroutine(ActivateAnimatorTrigger());
+        // Ajustar el estado inicial para asegurar 2 puentes abiertos y 1 cerrado
+        AdjustBridgesToTwoOpenOneClosed();
+
+        // Iniciar la corrutina
+        StartCoroutine(CycleBridges());
     }
 
-    private IEnumerator ActivateAnimatorTrigger()
+    private IEnumerator CycleBridges()
     {
-        if(TwoRandoms == false)
+        while (true)
         {
-            while (true)
-            {
-                if (targetObjects.Length > 0)
-                {
-                    // Seleccionar un índice aleatorio
-                    int randomIndex = Random.Range(0, targetObjects.Length);
+            // Antes de la siguiente rotación, asegurarse de que estamos en el estado correcto
+            AdjustBridgesToTwoOpenOneClosed();
 
-                    GameObject selectedObject = targetObjects[randomIndex];
+            // Ahora rotar: abrir el que estaba cerrado y cerrar uno de los que estaban abiertos
+            RotateBridges();
 
-                    // Verificar si el objeto no es nulo y tiene el componente Lever
-                    if (selectedObject != null)
-                    {
-                        Lever lever = selectedObject.GetComponent<Lever>();
-                        if (lever != null)
-                        {
-                            lever.Interact();
-                        }
-                        else
-                        {
-                            Debug.LogWarning($"El objeto {selectedObject.name} no tiene un componente Lever.");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"El índice {randomIndex} del arreglo targetObjects es nulo.");
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning("El arreglo targetObjects está vacío.");
-                }
-
-                // Esperar el intervalo definido
-                yield return new WaitForSeconds(triggerInterval);
-            }
+            yield return new WaitForSeconds(triggerInterval);
         }
-
-        if (TwoRandoms) 
-        {
-            while (true)
-            {
-                foreach (GameObject obj in targetObjects)
-                {
-
-                    obj.GetComponent<Lever>().Interact();
-
-                }
-                yield return new WaitForSeconds(triggerInterval);
-            }
-        }
-
-
-
     }
 
+    /// <summary>
+    /// Ajusta el estado de los puentes para que siempre haya 2 abiertos y 1 cerrado.
+    /// Si no se cumple esta condición, realiza las interacciones necesarias.
+    /// </summary>
+    private void AdjustBridgesToTwoOpenOneClosed()
+    {
+        List<Lever> openBridges = new List<Lever>();
+        List<Lever> closedBridges = new List<Lever>();
+
+        // Separar puentes en abiertos y cerrados
+        foreach (GameObject obj in targetObjects)
+        {
+            Lever lever = obj.GetComponent<Lever>();
+            if (lever != null)
+            {
+                if (!lever.blocked) // !blocked = abierto
+                {
+                    openBridges.Add(lever);
+                }
+                else // blocked = cerrado
+                {
+                    closedBridges.Add(lever);
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"El objeto {obj.name} no tiene un componente Lever.");
+            }
+        }
+
+        // Corregir exceso de abiertos
+        while (openBridges.Count > 2)
+        {
+            Lever leverToClose = openBridges[0];
+            openBridges.RemoveAt(0);
+            leverToClose.Interact(); // Cerrar
+            closedBridges.Add(leverToClose);
+        }
+
+        // Si hay menos de 2 abiertos, abrir suficientes hasta tener 2
+        while (openBridges.Count < 2 && closedBridges.Count > 0)
+        {
+            Lever leverToOpen = closedBridges[0];
+            closedBridges.RemoveAt(0);
+            leverToOpen.Interact(); // Abrir
+            openBridges.Add(leverToOpen);
+        }
+
+        // Si de alguna forma quedan más de un cerrado, cerramos uno solo y abrimos el resto, manteniendo 2 abiertos - 1 cerrado
+        while (closedBridges.Count > 1)
+        {
+            // Abrimos uno más para dejar sólo uno cerrado
+            Lever leverToOpen = closedBridges[0];
+            closedBridges.RemoveAt(0);
+            leverToOpen.Interact();
+            openBridges.Add(leverToOpen);
+        }
+
+        // En este punto deberíamos tener 2 abiertos y 1 cerrado.
+    }
+
+    /// <summary>
+    /// Realiza la rotación: cierra uno de los abiertos y abre el que estaba cerrado.
+    /// Esto mantiene el patrón pero permite cambio constante.
+    /// </summary>
+    private void RotateBridges()
+    {
+        List<Lever> openBridges = new List<Lever>();
+        Lever closedBridge = null;
+
+        // Identificar nuevamente el estado actual (debería ser 2 abiertos, 1 cerrado)
+        foreach (GameObject obj in targetObjects)
+        {
+            Lever lever = obj.GetComponent<Lever>();
+            if (lever != null)
+            {
+                if (!lever.blocked)
+                    openBridges.Add(lever);
+                else
+                    closedBridge = lever;
+            }
+        }
+
+        // Debemos tener 2 abiertos y 1 cerrado
+        if (openBridges.Count == 2 && closedBridge != null)
+        {
+            // Escoger uno de los abiertos para cerrar
+            int randomOpenIndex = Random.Range(0, openBridges.Count);
+            Lever openToClose = openBridges[randomOpenIndex];
+            Lever toOpen = closedBridge;
+
+            // Intercambiar estados
+            openToClose.Interact(); // Cerrar el que estaba abierto
+            toOpen.Interact();      // Abrir el que estaba cerrado
+        }
+        else
+        {
+            // Si no cumple la condición, corregimos
+            AdjustBridgesToTwoOpenOneClosed();
+        }
+    }
 }

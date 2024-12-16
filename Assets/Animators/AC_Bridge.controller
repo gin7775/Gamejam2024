@@ -32,7 +32,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Close
+  m_Name: CanNotPass
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -88,7 +88,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Open
+  m_Name: CanPass
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

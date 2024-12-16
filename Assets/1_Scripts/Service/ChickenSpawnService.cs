@@ -35,7 +35,7 @@ public class ChickenSpawnService
         // Selecciona uno basado en las probabilidades acumuladas
         foreach (ChickenConfig chickenConfig in validChickens)
         {
-            Debug.Log(chickenConfig.probability);
+            //Debug.Log(chickenConfig.probability);
             if (randomNumber < chickenConfig.probability)
             {
                 selectedPollo = chickenConfig;

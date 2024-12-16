@@ -11,14 +11,14 @@ public class Lever : MonoBehaviour, IInteractable
 
     public GameObject bridge1ForAnimation;
     public GameObject bridge2ForAnimation;
-    public GameObject bridgeColliderOpen;
-    public GameObject bridgeColliderClosed;
+    public GameObject ColliderCanPass;
+    public GameObject ColliderCanNotPass;
 
     private void Start()
     {
         if(blocked)
         {
-            Close();
+            CannotPass();
         }
     }
     public void Interact()
@@ -27,46 +27,39 @@ public class Lever : MonoBehaviour, IInteractable
 
         if (blocked)
         {
-            Open();
+            CanPass(); 
         }
         else
         {
-            Close();
+            CannotPass();
         }
 
         canInteract = false;
         Invoke(nameof(ResetInteraction), interactionCooldown);
     }
 
-    void Open()
+    void CanPass()
     {
         obstacle.SetActive(false);
         blocked = false;
         bridge1ForAnimation.GetComponent<Animator>().SetTrigger("Lever");
         bridge2ForAnimation.GetComponent<Animator>().SetTrigger("Lever");
-        bridgeColliderClosed.SetActive(true);
-        bridgeColliderOpen.SetActive(false);
-        Debug.Log("Puente abierto");
+        ColliderCanNotPass.SetActive(false);
+        ColliderCanPass.SetActive(true);
+
+        Debug.Log("Se puede cruzar " + this.gameObject.name);
     }
 
-    void Close()
+    void CannotPass ()
     {
         obstacle.SetActive(true);
         blocked = true;
         bridge1ForAnimation.GetComponent<Animator>().SetTrigger("Lever");
         bridge2ForAnimation.GetComponent<Animator>().SetTrigger("Lever");
-        bridgeColliderClosed.SetActive(false);
-        bridgeColliderOpen.SetActive(true);
-        Debug.Log("Puente cerrado");
-    }
-
-    void Close2()
-    {
-        obstacle.SetActive(true);
-        blocked = true;
-        bridgeColliderClosed.SetActive(false);
-        bridgeColliderOpen.SetActive(true);
-        Debug.Log("Puente cerrado");
+        ColliderCanNotPass.SetActive(true);
+        ColliderCanPass.SetActive(false);
+        
+        Debug.Log("No se puede cruzar " + this.gameObject.name);
     }
 
     void ResetInteraction()
