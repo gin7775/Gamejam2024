@@ -14,6 +14,13 @@ public class Lever : MonoBehaviour, IInteractable
     public GameObject bridgeColliderOpen;
     public GameObject bridgeColliderClosed;
 
+    private void Start()
+    {
+        if(blocked)
+        {
+            Close();
+        }
+    }
     public void Interact()
     {
         if (!canInteract) return;
@@ -37,8 +44,8 @@ public class Lever : MonoBehaviour, IInteractable
         blocked = false;
         bridge1ForAnimation.GetComponent<Animator>().SetTrigger("Lever");
         bridge2ForAnimation.GetComponent<Animator>().SetTrigger("Lever");
-        bridgeColliderClosed.SetActive(false);
-        bridgeColliderOpen.SetActive(true);
+        bridgeColliderClosed.SetActive(true);
+        bridgeColliderOpen.SetActive(false);
         Debug.Log("Puente abierto");
     }
 
@@ -48,8 +55,17 @@ public class Lever : MonoBehaviour, IInteractable
         blocked = true;
         bridge1ForAnimation.GetComponent<Animator>().SetTrigger("Lever");
         bridge2ForAnimation.GetComponent<Animator>().SetTrigger("Lever");
-        bridgeColliderClosed.SetActive(true);
-        bridgeColliderOpen.SetActive(false);
+        bridgeColliderClosed.SetActive(false);
+        bridgeColliderOpen.SetActive(true);
+        Debug.Log("Puente cerrado");
+    }
+
+    void Close2()
+    {
+        obstacle.SetActive(true);
+        blocked = true;
+        bridgeColliderClosed.SetActive(false);
+        bridgeColliderOpen.SetActive(true);
         Debug.Log("Puente cerrado");
     }
 
