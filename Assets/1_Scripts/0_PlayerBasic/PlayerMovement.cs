@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         gameManager.Pause();
 
     }
-    // Método llamado por el Player Input para el movimiento
+    // Método llamado por el Player Input para el  movimiento
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();

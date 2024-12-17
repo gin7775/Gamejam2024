@@ -15,7 +15,7 @@ public class AttackCollider : MonoBehaviour
     void LounchAttack()
     { 
         attacker = fatherPlayer.GetComponent<ChickenLouncher>();
-        attackType = attacker.chickenType;
+        attackType = attacker.currentChickenType;
     }
 
     private void OnTriggerEnter(Collider other)

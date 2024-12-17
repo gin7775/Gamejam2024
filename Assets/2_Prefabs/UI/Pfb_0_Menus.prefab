@@ -1399,7 +1399,7 @@ GameObject:
   - component: {fileID: 6254576614990210480}
   - component: {fileID: 2636714106229876639}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: MENU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2401,7 +2401,7 @@ GameObject:
   - component: {fileID: 1755319725547903049}
   - component: {fileID: 482650978759581003}
   m_Layer: 5
-  m_Name: Quit
+  m_Name: EXIT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4416,7 +4416,7 @@ GameObject:
   - component: {fileID: 7545109700369552211}
   - component: {fileID: 7077845231497258207}
   m_Layer: 5
-  m_Name: Continue
+  m_Name: RESUME
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4548,7 +4548,7 @@ GameObject:
   - component: {fileID: 3747257098435917766}
   - component: {fileID: 6255262843492189515}
   m_Layer: 5
-  m_Name: SALIR
+  m_Name: EXIT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

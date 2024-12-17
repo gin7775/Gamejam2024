@@ -72,7 +72,7 @@ public class Pollo_Bomba1 : MonoBehaviour
 
         if (player != null && Vector3.Distance(transform.position, player.transform.position) <= radius)
         {
-            player.GetComponent<PlayerHealth>().ReciveDamage(1);
+            player.GetComponent<PlayerHealth>().ReceiveDamage(1);
         }
 
         StartCoroutine(ForceToChickens());

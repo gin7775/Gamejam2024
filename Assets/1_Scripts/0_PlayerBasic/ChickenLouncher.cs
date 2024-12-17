@@ -2,45 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Cinemachine;
 
 public class ChickenLouncher : MonoBehaviour
 {
-    public int chickenType = 0;
-    [SerializeField] GameObject[] proyectiles = null;
-    [SerializeField] GameObject[] ragdolls = null;
-    [SerializeField] float proyectileForce = 10;
-    [SerializeField] int chickenCurrentUses = 0;
-    [SerializeField] int chickenMaxUses = 3;
-    [SerializeField] GameObject headBox;
-    [SerializeField] GameObject swingBox;
+    [Header("Chicken Settings")]
+    public int currentChickenType = 0; // Tipo de pollo seleccionado
+    [SerializeField] private GameObject[] proyectiles; // Prefabs de proyectiles de pollo
+    [SerializeField] private GameObject[] ragdolls; // Prefabs de ragdolls de pollo
+    [SerializeField] private float proyectileForce = 10; // Fuerza de los proyectiles
+    public int bigChickenImpulseForce = 10; // Impulso especial para el pollo grande
 
-    // Control del Player
-    [SerializeField] float AttackCooldown = 0.5f;
-    [SerializeField] float nextAttackTime = 0f;
+    [Header("Chicken Usage")]
+    [SerializeField] private int chickenCurrentUses = 0; // Uso actual del pollo
+    [SerializeField] private int chickenMaxUses = 3; // Usos máximos permitidos
+    [SerializeField] private Transform handPosition; // Posición donde aparece el pollo
+    public List<GameObject> currentProjectile; // Proyectiles activos actualmente
+    private GameObject currentWeapon; // Referencia al arma actual
 
-    // Gestor de Vidas Player
-    [SerializeField] PlayerHealth playerHealth;
-    [SerializeField] Collider[] shickensDetected;
-    [SerializeField] int pickUpRange = 3;
-    [SerializeField] float distanciaComparativa, distanciaActual;
-    [SerializeField] GameObject polloElegido;
-    [SerializeField] MusicManager musicManager;
-    [SerializeField] Transform handPosition;
-    public List<GameObject> currentProyectile;
-    public GameObject[] shildCounter;
-    GameObject proyectile;
-    Vector3 projectilePos;
-    private Animator anim;
+    [Header("Combat Settings")]
+    [SerializeField] private float attackCooldown = 0.5f; // Tiempo entre ataques
+    [SerializeField] private float nextAllowedAttackTime = 0f; // Tiempo permitido para el siguiente ataque
+    [SerializeField] private GameObject headBox; // Collider para ataques con la cabeza
+    [SerializeField] private GameObject swingBox; // Collider para ataques cuerpo a cuerpo
 
-    public int BigChickenImpulse = 10;
+    [Header("Player Health")]
+    [SerializeField] private PlayerHealth playerHealth; // Referencia al script de salud del jugador
 
-    [SerializeField] private bool gameModeFrenezzi = false;
+    [Header("Detection Settings")]
+    [SerializeField] private Collider[] chickensDetected; // Pollos detectados en el rango
+    [SerializeField] private int pickUpRange = 3; // Rango de recogida de pollos
+    [SerializeField] private float comparativeDistance, currentDistance; // Distancias para la lógica de recogida
+    [SerializeField] private GameObject selectedChicken; // Pollo seleccionado más cercano
 
+    [Header("Music Manager")]
+    [SerializeField] private MusicManager musicManager; // Gestor de música y sonidos
+
+    [Header("Game Mode Settings")]
+    [SerializeField] private bool gameModeFrenezzi = false; // Modo de juego Frenezzi
+
+    [Header("Colliders")]
     private CapsuleCollider capsuleCollider;
     private BoxCollider boxCollider;
     private bool enableBoxCollider = false;
-    private GameObject arma;
+
+    private Animator anim; // Controlador de animaciones
 
     private void Awake()
     {
@@ -51,7 +56,7 @@ public class ChickenLouncher : MonoBehaviour
     private void Start()
     {
         musicManager = FindAnyObjectByType<MusicManager>();
-        distanciaComparativa = 1000;
+        comparativeDistance = 1000;
         anim = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
     }
@@ -61,18 +66,18 @@ public class ChickenLouncher : MonoBehaviour
         anim.SetBool("Carrying", false);
         anim.SetTrigger("Throw");
         musicManager.Play_FX_RecogerPollo();
-        Shoot(chickenType);
+        Shoot(currentChickenType);
     }
 
     public void OnAttack(InputValue value)
     {
         enableBoxCollider = false;
 
-        if (Time.time >= nextAttackTime)
+        if (Time.time >= nextAllowedAttackTime)
         {
-            nextAttackTime = Time.time + AttackCooldown;
+            nextAllowedAttackTime = Time.time + attackCooldown;
             anim.SetTrigger("Attack");
-            PerformAttack(chickenType);
+            PerformAttack(currentChickenType);
         }
     }
 
@@ -86,10 +91,10 @@ public class ChickenLouncher : MonoBehaviour
     void RetrieveChicken(int chickenNumber)
     {
         anim.SetBool("Carrying", true);
-        chickenType = chickenNumber;
+        currentChickenType = chickenNumber;
 
-        if (chickenType >= 10 || chickenType < 0)
-            chickenType = 1;
+        if (currentChickenType >= 10 || currentChickenType < 0)
+            currentChickenType = 1;
     }
 
     IEnumerator DisableColliderAfterTime(float delay)
@@ -104,20 +109,20 @@ public class ChickenLouncher : MonoBehaviour
         chickenCurrentUses++;
 
         if (chickenCurrentUses == chickenMaxUses)
-            chickenType = 0;
+            currentChickenType = 0;
     }
 
-    void Shoot(int AmmoType)
+    void Shoot(int ammoType)
     {
         enableBoxCollider = false;
-        projectilePos = CalculateProjectileStartPosition();
+        Vector3 projectilePos = CalculateProjectileStartPosition();
 
-        if (chickenType == 6) // Aquí modificar y poner el valor del pollo vida extra
-            playerHealth.LifeUp(1);
+        if (currentChickenType == 6) // Pollo que da vida extra
+            playerHealth.IncreaseHealth(1);
 
         if (!gameModeFrenezzi)
         {
-            HandleProjectileLaunch(AmmoType);
+            HandleProjectileLaunch(ammoType, projectilePos);
             ClearProjectiles();
         }
         else
@@ -128,9 +133,9 @@ public class ChickenLouncher : MonoBehaviour
 
     Vector3 CalculateProjectileStartPosition()
     {
-        if(chickenType == 2)
+        if (currentChickenType == 2)
         {
-            return (transform.position + (transform.forward * 2) + (transform.up * 2));
+            return transform.position + (transform.forward * 2) + (transform.up * 2);
         }
         else
         {
@@ -138,73 +143,70 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
-    void HandleProjectileLaunch(int AmmoType)
+    void HandleProjectileLaunch(int ammoType, Vector3 projectilePos)
     {
-        if (AmmoType > 0 && AmmoType <= proyectiles.Length)
+        if (ammoType > 0 && ammoType <= proyectiles.Length)
         {
-            proyectile = Instantiate(proyectiles[AmmoType - 1], projectilePos, Quaternion.identity);
-            if (chickenType == 2)
+            GameObject projectile = Instantiate(proyectiles[ammoType - 1], projectilePos, Quaternion.identity);
+
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+            if (currentChickenType == 2)
             {
-                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * BigChickenImpulse, ForceMode.Impulse);
+                rb.AddForce(transform.forward * bigChickenImpulseForce, ForceMode.Impulse);
             }
-            else if (chickenType == 4)
+            else if (currentChickenType == 4)
             {
-                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce * 1.5f);
+                rb.AddForce(transform.forward * proyectileForce * 1.5f);
             }
             else
             {
-                proyectile.GetComponent<Rigidbody>().AddForce(transform.forward * proyectileForce);
-
+                rb.AddForce(transform.forward * proyectileForce);
             }
 
             musicManager.Play_FX_PLayer_DispararPollo();
-            chickenType = 0;
+            currentChickenType = 0;
         }
     }
 
     void ClearProjectiles()
     {
-        if (currentProyectile != null)
+        if (currentProjectile != null)
         {
-            foreach (GameObject pollo in currentProyectile)
+            foreach (GameObject chicken in currentProjectile)
             {
-                try
-                {
-                    pollo.transform.SetParent(handPosition, false);
-                    Destroy(pollo);
-                }
-                catch (System.Exception) { }
+                chicken.transform.SetParent(handPosition, false);
+                Destroy(chicken);
             }
-            currentProyectile.Clear();
+            currentProjectile.Clear();
         }
     }
 
     void HandleFrenezziMode()
     {
-        if (currentProyectile != null)
+        if (currentProjectile != null)
         {
-            foreach (GameObject pollo in currentProyectile)
+            foreach (GameObject chicken in currentProjectile)
             {
-                if (pollo.GetComponent<ChickenCorpse>() != null)
+                if (chicken.GetComponent<ChickenCorpse>() != null)
                 {
-                    pollo.transform.SetParent(handPosition, false);
-                    RetrieveChicken(pollo.GetComponent<ChickenCorpse>().chickenType);
-                    HandleProjectileLaunch(pollo.GetComponent<ChickenCorpse>().chickenType);
-                    Destroy(pollo);
+                    chicken.transform.SetParent(handPosition, false);
+                    RetrieveChicken(chicken.GetComponent<ChickenCorpse>().chickenType);
+                    HandleProjectileLaunch(chicken.GetComponent<ChickenCorpse>().chickenType, CalculateProjectileStartPosition());
+                    Destroy(chicken);
                 }
             }
-            chickenType = 0;
-            currentProyectile.Clear();
+            currentChickenType = 0;
+            currentProjectile.Clear();
         }
     }
 
-    public void PerformAttack(int AmmoType)
+    public void PerformAttack(int ammoType)
     {
-        if (AmmoType == 0)
+        if (ammoType == 0)
         {
             HeadBut();
         }
-        else if (AmmoType >= 1 && AmmoType <= 4)
+        else if (ammoType >= 1 && ammoType <= 4)
         {
             ChickenSwing();
             UpdateWeapon();
@@ -246,7 +248,7 @@ public class ChickenLouncher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((enableBoxCollider || chickenType <= 0) && other.gameObject.CompareTag("CorpseCollider"))
+        if ((enableBoxCollider || currentChickenType <= 0) && other.gameObject.CompareTag("CorpseCollider"))
         {
             HandleCorpseCollision(other);
         }
@@ -259,23 +261,21 @@ public class ChickenLouncher : MonoBehaviour
             musicManager.Play_FX_RecogerPollo();
             int type = other.gameObject.GetComponentInParent<ChickenCorpse>().chickenType;
             Destroy(other.GetComponentInParent<ChickenCorpse>().gameObject);
-            Destroy(arma);
+            Destroy(currentWeapon);
             GameObject weaponChicken = ragdolls[type - 1];
-            GameObject player = GetComponent<ChickenLouncher>().gameObject;
+            weaponChicken.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
 
-            // Inicializamos la position y la rotacion a 0
-            weaponChicken.transform.SetPositionAndRotation(new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+            currentWeapon = Instantiate(weaponChicken, handPosition.position, Quaternion.Euler(transform.rotation.eulerAngles), transform);
 
-            arma = Instantiate(weaponChicken, handPosition.position, Quaternion.Euler(player.transform.rotation.eulerAngles), player.gameObject.transform);
             RetrieveChicken(type);
 
-            if (currentProyectile.Count == 0)
-                currentProyectile.Add(arma);
+            if (currentProjectile.Count == 0)
+                currentProjectile.Add(currentWeapon);
             else
-                currentProyectile[0] = arma;
+                currentProjectile[0] = currentWeapon;
 
             enableBoxCollider = false;
         }
     }
-
 }
+

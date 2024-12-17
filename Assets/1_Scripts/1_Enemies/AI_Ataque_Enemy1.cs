@@ -18,22 +18,42 @@ public class AI_Ataque_Enemy1 : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Forzar al enemigo a mirar al jugador
-        Vector3 direction = (player.transform.position - enemy.transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 10f);
 
 
         if (player != null)
         {
+            // Rotar hacia el jugador
+            Vector3 direction = (player.transform.position - enemy.transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 10f);
+
+            // Evaluar la distancia
             float distanceToPlayer = Vector3.Distance(player.transform.position, animator.transform.position);
             if (distanceToPlayer >= contenedorEnemy.distanceToEnemy)
             {
-                contenedorEnemy.animEnemy.SetTrigger("move"); //la animación
-
+                contenedorEnemy.animEnemy.SetTrigger("move");
                 animator.SetTrigger("Movimiento");
             }
         }
+
+
+
+        //// Forzar al enemigo a mirar al jugador
+        //Vector3 direction = (player.transform.position - enemy.transform.position).normalized;
+        //Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        //enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, lookRotation, Time.deltaTime * 10f);
+
+
+        //if (player != null)
+        //{
+        //    float distanceToPlayer = Vector3.Distance(player.transform.position, animator.transform.position);
+        //    if (distanceToPlayer >= contenedorEnemy.distanceToEnemy)
+        //    {
+        //        contenedorEnemy.animEnemy.SetTrigger("move"); //la animación
+
+        //        animator.SetTrigger("Movimiento");
+        //    }
+        //}
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

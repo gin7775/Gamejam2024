@@ -40,7 +40,7 @@ public class RiverDamage : MonoBehaviour
     {
         while (true) // Bucle infinito controlado por OnCollisionExit
         {
-            playerHealth.ReciveDamage(damageAmount);
+            playerHealth.ReceiveDamage(damageAmount);
             yield return new WaitForSeconds(damageInterval);
         }
     }

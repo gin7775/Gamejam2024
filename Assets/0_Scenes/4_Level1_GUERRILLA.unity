@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 500891738}
-  m_IndirectSpecularColor: {r: 0.14758761, g: 0.36533707, b: 0.58205324, a: 1}
+  m_IndirectSpecularColor: {r: 0.147579, g: 0.3661612, b: 0.5820993, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3462,6 +3462,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296959723797970615, guid: bcfc321754196a54c973dcfad1ef4137,
+        type: 3}
+      propertyPath: m_Name
+      value: MenuRestart
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296959723797970615, guid: bcfc321754196a54c973dcfad1ef4137,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2636714106229876639, guid: bcfc321754196a54c973dcfad1ef4137,
         type: 3}
@@ -7193,6 +7203,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 857647296}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &868963866 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6738796526735938395, guid: dab2c49b78cb9944c82ca288da2c8485,
+    type: 3}
+  m_PrefabInstance: {fileID: 7476890478831607754}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9d30302d6c39e4390d62596a2c82f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &877496470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8730,7 +8752,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1741230916}
   - {fileID: 908809491}
   - {fileID: 1292539221}
   - {fileID: 722976538}
@@ -12586,7 +12607,7 @@ Transform:
   - {fileID: 1994941526}
   - {fileID: 103804030}
   - {fileID: 1339496816}
-  m_Father: {fileID: 1183430867}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1746131285 stripped
 GameObject:
@@ -15088,6 +15109,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1741230916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &1916655015 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5532761033942213253, guid: 698ccce49678b3b4d90631fe1d040e6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8053072838908176740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1919392854
 GameObject:
   m_ObjectHideFlags: 0
@@ -15916,7 +15943,7 @@ PrefabInstance:
     - target: {fileID: 6244852911927319507, guid: a18df18a585a38e4b8f0cd4c11185a95,
         type: 3}
       propertyPath: m_SelectedFaces.Array.size
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6244852911927319507, guid: a18df18a585a38e4b8f0cd4c11185a95,
         type: 3}
@@ -19473,6 +19500,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8053072838908176740}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2070763596500298133 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8053072838908176740}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070763596500298125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bf4cdc7830177b4f80f439615838461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2091875608806022376
 GameObject:
   m_ObjectHideFlags: 0
@@ -22202,6 +22241,26 @@ PrefabInstance:
       objectReference: {fileID: 825839682}
     - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
+      propertyPath: restartMenu
+      value: 
+      objectReference: {fileID: 1705181684}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: retryButton
+      value: 
+      objectReference: {fileID: 983022178}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: spawnParent
+      value: 
+      objectReference: {fileID: 1741230916}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: restartButton
+      value: 
+      objectReference: {fileID: 983022178}
+    - target: {fileID: 4925059606375536570, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
       propertyPath: highscoreTable
       value: 
       objectReference: {fileID: 1503699591}
@@ -22747,6 +22806,16 @@ PrefabInstance:
       objectReference: {fileID: 8174068723624965227}
     - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
+      propertyPath: musicManager
+      value: 
+      objectReference: {fileID: 868963866}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: highScorePanel
+      value: 
+      objectReference: {fileID: 1503699589}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
       propertyPath: 'eggs.Array.data[0]'
       value: 
       objectReference: {fileID: 3856775006313460392}
@@ -22762,9 +22831,44 @@ PrefabInstance:
       objectReference: {fileID: 3856775006313460390}
     - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
+      propertyPath: damageParticleEffect
+      value: 
+      objectReference: {fileID: 1916655015}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
       propertyPath: firstGameObjectRetry
       value: 
       objectReference: {fileID: 983022178}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: retryButtonFirstObject
+      value: 
+      objectReference: {fileID: 983022178}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: restartButtonFirstObject
+      value: 
+      objectReference: {fileID: 983022178}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: healthIndicators.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: 'healthIndicators.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3856775006313460392}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: 'healthIndicators.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3856775006313460391}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: 'healthIndicators.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3856775006313460390}
     - target: {fileID: 815464214200030851, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
       propertyPath: m_IsActive
@@ -22895,6 +22999,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChickenPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: musicManager
+      value: 
+      objectReference: {fileID: 868963866}
+    - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 2070763596500298133}
     - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
       propertyPath: ragdolls.Array.size
@@ -23362,13 +23476,14 @@ SceneRoots:
   - {fileID: 250082271}
   - {fileID: 8053072838908176740}
   - {fileID: 1066692931}
-  - {fileID: 1429321085}
   - {fileID: 7476890478831607754}
   - {fileID: 472054940}
+  - {fileID: 1429321085}
   - {fileID: 7830288254481096351}
   - {fileID: 1017636870}
   - {fileID: 500891739}
   - {fileID: 214114114}
+  - {fileID: 1741230916}
   - {fileID: 1183430867}
   - {fileID: 732711211}
   - {fileID: 662807234}

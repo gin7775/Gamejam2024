@@ -27,7 +27,7 @@ public class EnemyAttack : MonoBehaviour
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.ReciveDamage(damageAmount);
+                playerHealth.ReceiveDamage(damageAmount);
             }
         }
     }

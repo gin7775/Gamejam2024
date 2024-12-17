@@ -30,17 +30,11 @@ public class GameManager : MonoBehaviour
     public int dificultPoints = 0;                                                      // Nivel de dificultad
     public int capGenerator = 200;                                                      // Cap del Generador
 
-    // ---- UI y Animación ----
-    [Header("UI & Animation")]
-    [SerializeField] private Canvas canvasRound;                                        // UI de la ronda
-    [SerializeField] private Animator canvasAnimator;                                   // Animador para transiciones
-    [SerializeField] private GameObject textMesh;                                       // Texto de la ronda
-    private CinemachineImpulseSource cinemachineImpulseSource;                          // Fuente del efecto de impulso
-
     // ---- Control de Enemigos ----
     [Header("Enemy Control")]
     public List<GameObject> listEnemies;                                                // Lista de Enemigos
     public List<GameObject> listCorpses;                                                // Lista de Corpses
+    public Transform spawnParent;
     public List<GameObject> listSpawns;                                                 // Lista de spawns
     [SerializeField] private List<ChickenConfig> chikenToSpawn;                         // Lista de enemigos, probabilidades y puntuación
     [SerializeField] private List<ChickenConfigWave> chikenToSpawnWave;                 // Lista de enemigos por oleada y nivel
@@ -50,29 +44,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject vfxHitWaveEffect;                               // Efecto al recibir golpe en oleada
     [SerializeField] private GameObject SmokeEffect;                                    // Efecto de humo al generar enemigo
     public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;    // Límites de generación
-
-    // ---- Control del Juego ----
-    [Header("Game Control")]
-    [SerializeField] private bool paused = false;                                       // Estado de pausa
-    public int score = 0;                                                               // Puntuación
-    public GameObject pausemenu;                                                        // Menú de pausa
-    public GameObject highscore;
-    public HighscoreTable highscoreTable;
-    public GameObject nameInput;
-    public GameObject RetryButton;
-    [SerializeField] private int currentWaveScore = 0;                                  // Puntuación de la oleada actual
-    private int isNeededHeal = 0;                                                       // Control para la aparición del pollo heal
-
-    // ---- Control de Música ----
-    [Header("Music Control")]
-    [SerializeField] private MusicManager musicManager;                                 // Controlador de música
-    public AudioMixer myMixer;                                                          // Mezclador de audio
-    public Slider musicSlider;                                                          // Control deslizante de música
-    public Slider SFXSlider;                                                            // Control deslizante de efectos
-
-    // ---- Control de Input ----
-    [Header("Input Control")]
-    public GameObject firstGameObjectMenu;
 
     // ---- Temporales ----
     [Header("Temporary Variables")]
@@ -86,7 +57,35 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<ChickenCount> instanciateChickenCount;                // Lista de enemigos instanciados
     [SerializeField] private List<ChickenCount> killChickenCount;                       // Lista de enemigos muertos
 
+    // ---- UI y Animación ----
+    [Header("UI & Animation")]
+    [SerializeField] private Canvas canvasRound;                                        // UI de la ronda
+    [SerializeField] private Animator canvasAnimator;                                   // Animador para transiciones
+    [SerializeField] private GameObject textMesh;                                       // Texto de la ronda
+    private CinemachineImpulseSource cinemachineImpulseSource;                          // Fuente del efecto de impulso
 
+    // ---- Control del Juego ----
+    [Header("Game Control")]
+    [SerializeField] private bool paused = false;                                       // Estado de pausa
+    public int score = 0;                                                               // Puntuación
+    public GameObject pausemenu;                                                        // Menú de pausa
+    public GameObject highscore;
+    public HighscoreTable highscoreTable;
+    public GameObject nameInput;
+    public GameObject restartMenu;
+    [SerializeField] private int currentWaveScore = 0;                                  // Puntuación de la oleada actual
+    private int isNeededHeal = 0;                                                       // Control para la aparición del pollo heal
+
+    // ---- Control de Música ----
+    [Header("Music Control")]
+    [SerializeField] private MusicManager musicManager;                                 // Controlador de música
+    public AudioMixer myMixer;                                                          // Mezclador de audio
+    public Slider musicSlider;                                                          // Control deslizante de música
+    public Slider SFXSlider;                                                            // Control deslizante de efectos
+
+    // ---- Control de Input ----
+    [Header("Input Control")]
+    public GameObject firstGameObjectMenu;
 
 
     // Singleton pattern
@@ -103,6 +102,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //Debug.Log("INI - GAMEMANAGER - Start");
+
+        PopulateSpawnList(spawnParent); // Rellena la lista con los hijos
+
+
         timeGeneration = 3f;
         timeWave = 6f;
         enemyInitial = 5;
@@ -113,6 +116,22 @@ public class GameManager : MonoBehaviour
         UpdateWave();
         //Debug.Log("FIN - GAMEMANAGER - Start");
     }
+
+    /// <summary>
+    /// Rellena el array listSpawns con los hijos de un objeto padre especificado.
+    /// </summary>
+    /// <param name="parentObject">El objeto padre cuyos hijos serán añadidos a listSpawns.</param>
+    public void PopulateSpawnList(Transform parentObject)
+    {
+        listSpawns.Clear(); // Limpiamos la lista antes de rellenarla
+
+        // Recorremos todos los hijos del objeto padre
+        foreach (Transform child in parentObject)
+        {
+            listSpawns.Add(child.gameObject); // Añadimos el GameObject del hijo a la lista
+        }
+    }
+
 
     public void ChickenEnemyTakeDamage(GameObject enemy, int damage)
     {
@@ -694,7 +713,7 @@ public class GameManager : MonoBehaviour
         else
         {
             highscore.SetActive(true);
-            RetryButton.gameObject.SetActive(true);
+            restartMenu.gameObject.SetActive(true);
 
         }
 
