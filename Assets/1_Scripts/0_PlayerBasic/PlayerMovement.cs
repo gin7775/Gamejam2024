@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         playerCollider = this.GetComponent<Collider>();
         dashIcon.gameObject.SetActive(true);
+        
     }
 
     void Update()
@@ -161,6 +162,7 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveDirection += currentEffect;
         }
         controller.Move(desiredMoveDirection * speed * Time.deltaTime);
+      
     }
 
     private IEnumerator PerformDash()
@@ -211,6 +213,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+   
+
 
     // Rotación basada en el input del joystick
     private void RotateController()

@@ -150,6 +150,8 @@ public class GameManager : MonoBehaviour
 
                 if (auxEnemy.lifes <= 0)
                 {
+
+
                     // Generar efecto de camara (impulso)
                     cinemachineImpulseSource = enemy.GetComponent<CinemachineImpulseSource>();
                     cinemachineImpulseSource.GenerateImpulse();
