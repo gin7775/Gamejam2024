@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1119899, g: 0.3625146, b: 0.7331543, a: 1}
+  m_IndirectSpecularColor: {r: 0.11193269, g: 0.36260217, b: 0.7331328, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,6 +256,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &296523213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8963872204118715606, guid: bcfc321754196a54c973dcfad1ef4137,
+    type: 3}
+  m_PrefabInstance: {fileID: 864130858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &320377423
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,6 +1455,12 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &1948517580 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1449114652226712655, guid: bcfc321754196a54c973dcfad1ef4137,
+    type: 3}
+  m_PrefabInstance: {fileID: 864130858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1956471083
 GameObject:
   m_ObjectHideFlags: 0
@@ -30584,7 +30596,7 @@ PrefabInstance:
         type: 3}
       propertyPath: firstGameObjectMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 296523213}
     - target: {fileID: 390793439868172444, guid: d35b1007e1e770c44ad53f8d3bdfa331,
         type: 3}
       propertyPath: chikenToSpawn.Array.size
@@ -42372,6 +42384,11 @@ PrefabInstance:
       propertyPath: invulnerabilityDuration
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: restartButtonFirstObject
+      value: 
+      objectReference: {fileID: 1948517580}
     - target: {fileID: 1499675197100328886, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
       propertyPath: speed
