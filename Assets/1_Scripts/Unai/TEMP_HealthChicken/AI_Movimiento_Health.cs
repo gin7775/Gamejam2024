@@ -11,13 +11,13 @@ public class AI_Movimiento_Health : StateMachineBehaviour
     GameObject player;
 
     
-    float detectionDistance = 5f; // Distancia a la que el NPC detecta al jugador
-    float escapeDistance = 10f; // Distancia a la que el NPC se detiene
-    float restTime = 3f; // Tiempo de descanso en segundos
-    float fleeSpeed = 5f; // Velocidad a la que el NPC huye
+    //float detectionDistance = 5f; // Distancia a la que el NPC detecta al jugador
+    //float escapeDistance = 10f; // Distancia a la que el NPC se detiene
+    //float restTime = 3f; // Tiempo de descanso en segundos
+    //float fleeSpeed = 5f; // Velocidad a la que el NPC huye
 
-    bool isResting = false;
-    bool isExhausted = false;
+    //bool isResting = false;
+    //bool isExhausted = false;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

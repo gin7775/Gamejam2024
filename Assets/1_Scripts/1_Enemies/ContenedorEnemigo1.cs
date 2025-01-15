@@ -3,14 +3,16 @@ using UnityEngine.AI;
 
 public class ContenedorEnemigo1 : MonoBehaviour
 {
+    [SerializeField] public int lifes = 3;
+    public float speed;
+    public float distanceToAttack = 1f;
+
     public Animator animEnemy;
     public GameObject playerReference;
     public int enemyTipe;
     public float distanceToEnemy;
     public Transform destination;
-    [SerializeField] public int lifes = 3;
-    public float speed;
-    public float distanceToAttack = 1f;
+    
     public GameObject corpse;
     public bool canDamage;
 
