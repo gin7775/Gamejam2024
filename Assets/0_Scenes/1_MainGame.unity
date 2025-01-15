@@ -358,6 +358,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1167705917753951425}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &793103233 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5532761033942213253, guid: 698ccce49678b3b4d90631fe1d040e6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8053072838908176740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &864130858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37461,7 +37467,7 @@ GameObject:
   - component: {fileID: 7214791133081316662}
   - component: {fileID: 7194220012979261883}
   - component: {fileID: 795010784233983044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42361,6 +42367,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
+      propertyPath: highScorePanel
+      value: 
+      objectReference: {fileID: 864130864}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
       propertyPath: 'eggs.Array.data[0]'
       value: 
       objectReference: {fileID: 3856775006313460392}
@@ -42376,6 +42387,11 @@ PrefabInstance:
       objectReference: {fileID: 3856775006313460390}
     - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
+      propertyPath: damageParticleEffect
+      value: 
+      objectReference: {fileID: 793103233}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
       propertyPath: firstGameObjectRetry
       value: 
       objectReference: {fileID: 864130861}
@@ -42389,6 +42405,26 @@ PrefabInstance:
       propertyPath: restartButtonFirstObject
       value: 
       objectReference: {fileID: 1948517580}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: healthIndicators.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: 'healthIndicators.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3856775006313460392}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: 'healthIndicators.Array.data[1]'
+      value: 
+      objectReference: {fileID: 3856775006313460391}
+    - target: {fileID: 539183189401168150, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: 'healthIndicators.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3856775006313460390}
     - target: {fileID: 1499675197100328886, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
       propertyPath: speed
@@ -42527,6 +42563,11 @@ PrefabInstance:
     - target: {fileID: 6354709594561634940, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
+        type: 3}
+      propertyPath: pickUpRange
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7092941069084657438, guid: 698ccce49678b3b4d90631fe1d040e6d,
