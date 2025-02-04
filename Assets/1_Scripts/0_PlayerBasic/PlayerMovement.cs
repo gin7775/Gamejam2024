@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private float dashCooldown = 2f;
-    [SerializeField] private ParticleSystem dashParticle;
+    
     [SerializeField] private VisualEffect walkingEffect;
     private Coroutine walkingEffectCoroutine;
     [SerializeField] private float particleTimeToSpawn;
@@ -169,7 +169,8 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = false;  // Desactivar el dash hasta que se complete el cooldown
         isDashing = true;
-        dashParticle.Play();
+        VFXManager.Instance.PlayEffect("DashParticle", transform, new Vector3(0f, 0.7f, 0f), Quaternion.identity);
+
         dashIcon.gameObject.SetActive(false);
 
         SetCollisionWithEnemies(false);                              // Hacer al jugador inmune y no detectable
@@ -327,7 +328,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (jumpEffect != null)
         {
-            jumpEffect.Play();
+            VFXManager.Instance.PlayEffect("BigJumpParticle", transform, Vector3.zero, Quaternion.Euler(-90f, 0f, 0f));
         }
     }
 

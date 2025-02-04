@@ -197,24 +197,52 @@ public class ChickenLouncher : MonoBehaviour
         if (chickenCurrentUses == chickenMaxUses)
             currentChickenType = 0;
     }
+    private Dictionary<int, string> chickenVFXEffects = new Dictionary<int, string>
+{
+    { 1, "WhiteMuzzle" },  // Pollo normal
+    { 2, "RedMuzzle" },   // Pollo grande
+    { 3, "RedMuzzle" },   // 
+    { 4, "RedMuzzle" }, // Pollo eléctrico
+    { 5, "RedMuzzle" },   // Pollo venenoso
+    { 6, "RedMuzzle" }  // Pollo curativo
+};
+
 
     void Shoot(int ammoType)
     {
         enableBoxCollider = false;
-        Vector3 projectilePos = CalculateProjectileStartPosition();
+    Vector3 projectilePos = CalculateProjectileStartPosition();
 
-        if (currentChickenType == 6) // Pollo que da vida extra
-            playerHealth.IncreaseHealth(1);
+    if (currentChickenType == 6) // Pollo que da vida extra
+        playerHealth.IncreaseHealth(1);
 
-        if (!gameModeFrenezzi)
-        {
+    if (!gameModeFrenezzi)
+    {
+            int chickenTypeBeforeLaunch = currentChickenType;  // Guardamos el tipo antes de lanzarlo
+
             HandleProjectileLaunch(ammoType, projectilePos);
+
+            // Verifica antes de llamar el efecto
+            Debug.Log($"Intentando reproducir efecto para tipo: {chickenTypeBeforeLaunch}");
+
+            if (chickenVFXEffects.TryGetValue(chickenTypeBeforeLaunch, out string effectName)) // Busca si el tipo de pollo tiene un efecto
+            {
+                VFXManager.Instance.PlayEffect(effectName, transform, new Vector3(0.09000015f, 0.8f, 0.2800007f), Quaternion.Euler(0f, 0f, 0f));
+            }
+            else
+            {
+                Debug.LogWarning($"No hay efecto asociado para el tipo de pollo {chickenTypeBeforeLaunch}");
+            }
+
+            currentChickenType = 0;  // Ahora lo reseteamos después de todo.
             ClearProjectiles();
+
+
         }
         else
-        {
-            HandleFrenezziMode();
-        }
+    {
+        HandleFrenezziMode();
+    }
     }
 
     Vector3 CalculateProjectileStartPosition()

@@ -138,7 +138,7 @@ public class PlayerHealth : MonoBehaviour
     public void IncreaseHealth(int extraLife) // Incrementa la vida del jugador (antes: "LifeUp")
     {
         currentHealth += extraLife;
-
+        VFXManager.Instance.PlayEffect("HealthParticle", transform, Vector3.zero, Quaternion.Euler(-90f, 0f, 0f));
         if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
