@@ -201,9 +201,9 @@ public class ChickenLouncher : MonoBehaviour
 {
     { 1, "WhiteMuzzle" },  // Pollo normal
     { 2, "RedMuzzle" },   // Pollo grande
-    { 3, "RedMuzzle" },   // 
-    { 4, "RedMuzzle" }, // Pollo eléctrico
-    { 5, "RedMuzzle" },   // Pollo venenoso
+    { 3, "RedMuzzle" },   //Pollo Bomba
+    { 4, "RedMuzzle" }, // Pollo Rápido
+    { 5, "RedMuzzle" },   // Pollo Disparo
     { 6, "RedMuzzle" }  // Pollo curativo
 };
 
