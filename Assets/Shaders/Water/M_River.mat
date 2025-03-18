@@ -73,8 +73,8 @@ Material:
     - _Smothness: 1
     - _normalFromHeight: 4.08
     m_Colors:
-    - _ColorIN: {r: 0.2863564, g: 0.9339623, b: 0.75651413, a: 1}
-    - _ColorOUT: {r: 0.27058822, g: 0.6901961, b: 0.65005994, a: 0.78431374}
+    - _ColorIN: {r: 0.65581506, g: 0.33521718, b: 0.8773585, a: 1}
+    - _ColorOUT: {r: 0.68766725, g: 0.27058822, b: 0.6901961, a: 0.78431374}
     - _NormalDirection: {r: 0.6, g: 0, b: 0, a: 0}
     - _RefDirection: {r: 1.63, g: 0, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
