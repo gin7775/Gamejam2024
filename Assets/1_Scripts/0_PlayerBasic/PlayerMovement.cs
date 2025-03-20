@@ -178,8 +178,17 @@ public class PlayerMovement : MonoBehaviour
        
 
         float dashStartTime = Time.time;
-        Vector3 dashDirection = mainCamera.transform.forward * moveInput.y + mainCamera.transform.right * moveInput.x;
-        dashDirection.y = 0; // No aplicar fuerza en el eje Y
+        Vector3 dashDirection;
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            dashDirection = mainCamera.transform.forward * moveInput.y + mainCamera.transform.right * moveInput.x;
+        }
+        else
+        {
+            dashDirection = transform.forward; // Usa la dirección en la que el personaje está mirando
+        }
+        dashDirection.y = 0;
+       
 
         // Movimiento del dash
         while (Time.time < dashStartTime + dashDuration)
