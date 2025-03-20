@@ -671,12 +671,12 @@ PrefabInstance:
     - target: {fileID: 3655976275778782488, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.6495986
+      value: 3.9402366
       objectReference: {fileID: 0}
     - target: {fileID: 3655976275778782488, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 155.01534
+      value: 156.00224
       objectReference: {fileID: 0}
     - target: {fileID: 3763036725031112654, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
@@ -768,12 +768,12 @@ PrefabInstance:
     - target: {fileID: 4669750291914346424, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.6308765
+      value: -4.3402376
       objectReference: {fileID: 0}
     - target: {fileID: 4669750291914346424, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 148.10269
+      value: 149.08958
       objectReference: {fileID: 0}
     - target: {fileID: 4693244652178383558, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
@@ -847,12 +847,12 @@ PrefabInstance:
     - target: {fileID: 6325794065292173531, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.630877
+      value: -14.340238
       objectReference: {fileID: 0}
     - target: {fileID: 6325794065292173531, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -31.897316
+      value: -30.910416
       objectReference: {fileID: 0}
     - target: {fileID: 6325794065292173531, guid: a349b031db0ba3743bac9e83dd684048,
         type: 3}
@@ -1187,6 +1187,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3100536965024992119, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
         type: 3}
+    - target: {fileID: 6658884870187280841, guid: dab2c49b78cb9944c82ca288da2c8485,
+        type: 3}
+      propertyPath: RetryScene
+      value: 4_Level1_Env_Andriu 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6738796526735938395, guid: dab2c49b78cb9944c82ca288da2c8485,
         type: 3}
       propertyPath: recibirDanoJugador
@@ -1420,7 +1425,7 @@ PrefabInstance:
     - target: {fileID: 1841614332391349478, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.106199
+      value: -10.08
       objectReference: {fileID: 0}
     - target: {fileID: 1841614332391349478, guid: 698ccce49678b3b4d90631fe1d040e6d,
         type: 3}

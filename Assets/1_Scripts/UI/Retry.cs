@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class Retry : MonoBehaviour
 {
+
+    public string RetryScene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,8 @@ public class Retry : MonoBehaviour
 
     public void Reload()
     {
-        SceneManager.LoadScene("1_MainGame");
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 
     public void Quit()
