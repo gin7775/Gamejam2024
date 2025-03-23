@@ -2,7 +2,7 @@ using System.Collections;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using MoreMountains.Feedbacks;
 public class PlayerHealth : MonoBehaviour
 {
     // Gestor de Vidas Player
@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private MusicManager musicManager; // Gestor de música y efectos de sonido
     private GameManager gameManager; // Gestor del juego
 
-
+    public MMFeedbacks damageFeedback;
 
 
     private void Start()
@@ -59,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
             damageParticleEffect.Play();
             healthIndicators[Mathf.Max(0, currentHealth - 1)].GetComponent<Animator>().SetTrigger("Break");
             currentHealth -= damage;
-
+            damageFeedback?.PlayFeedbacks();
             musicManager.Play_FX_PLayer_RecibirDano();
 
             if (currentHealth <= 0)

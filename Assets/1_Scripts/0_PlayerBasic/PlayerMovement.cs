@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
+using MoreMountains.Feedbacks;
+using JetBrains.Annotations;
 public class PlayerMovement : MonoBehaviour
 {
     
@@ -58,8 +60,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 waterCurrentDirection = Vector3.zero;
     private float waterCurrentForce = 0f;
     private bool inWaterCurrent = false;
-
-
+    public MMFeedbacks dashFeedback;
+    
 
     private void Awake()
     {
@@ -124,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         float characterSpeed = controller.velocity.magnitude;
         if (animator != null)
         {
-            animator.SetFloat("SpeedBlendTree", characterSpeed);
+            animator.SetFloat("SpeedBlendTree", characterSpeed, 0.1f, Time.deltaTime);
 
         }
     }
@@ -170,7 +172,7 @@ public class PlayerMovement : MonoBehaviour
         canDash = false;  // Desactivar el dash hasta que se complete el cooldown
         isDashing = true;
         VFXManager.Instance.PlayEffect("DashParticle", transform, new Vector3(0f, 0.7f, 0f), Quaternion.identity);
-
+        dashFeedback?.PlayFeedbacks();
         dashIcon.gameObject.SetActive(false);
 
         SetCollisionWithEnemies(false);                              // Hacer al jugador inmune y no detectable
