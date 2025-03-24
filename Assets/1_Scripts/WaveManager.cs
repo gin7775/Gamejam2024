@@ -53,68 +53,68 @@ public class WaveManager : MonoBehaviour
         int difficultyPointsLeft = GetDifficultyPointsByWave(level, waveCurrent); // Obtener dificultad de la oleada actual
         totalDifficultyPoints = difficultyPointsLeft; // Almacenar la puntuación total
 
-        // Generar pollos hasta que quede el 25% de la dificultad total
+         Generar pollos hasta que quede el 25% de la dificultad total
         while (difficultyPointsLeft > totalDifficultyPoints * 0.25)
         {
             float randomNumber = Random.Range(0, 100);
 
-            // Generar escuadrón o de pollos blancos o mixto / único
+             Generar escuadrón o de pollos blancos o mixto / único
             if (randomNumber <= (120 - totalDifficultyPoints))
                 SpawnWhiteChickenSquad(ref difficultyPointsLeft);
             else
                 SpawnMixedSquad(ref difficultyPointsLeft);
         }
 
-        // Resto de generación aleatoria
+         Resto de generación aleatoria
         while (difficultyPointsLeft > 0)
         {
-            // Generación de pollos aleatoria con los puntos restantes
+             Generación de pollos aleatoria con los puntos restantes
             SpawnRandomChicken(ref difficultyPointsLeft);
         }
     }*/
 
     // Método para generar pollos de manera aleatoria
-    /*private void SpawnRandomChicken(ref int difficultyPointsLeft)
-    {
-        GameObject chickenPrefab = GameManager.Instance.SelectChickenBasedOnProb().chickenPrefab;
-        GameObject auxNewChicken = Instantiate(chickenPrefab, GameManager.Instance.GetRandomAreaSpawn(), Quaternion.identity);
-        GameManager.Instance.listEnemies.Add(auxNewChicken);
-        GameManager.Instance.enemyCount++;
-        difficultyPointsLeft--;
-    }*/
+    ///*private void SpawnRandomChicken(ref int difficultyPointsLeft)
+    //{
+    //    GameObject chickenPrefab = GameManager.Instance.SelectChickenBasedOnProb().chickenPrefab;
+    //    GameObject auxNewChicken = Instantiate(chickenPrefab, GameManager.Instance.GetRandomAreaSpawn(), Quaternion.identity);
+    //    GameManager.Instance.listEnemies.Add(auxNewChicken);
+    //    GameManager.Instance.enemyCount++;
+    //    difficultyPointsLeft--;
+    //}*/
 
     // Método para generar escuadrón de pollos blancos
-    /*private void SpawnWhiteChickenSquad(ref int difficultyPointsLeft)
-    {
-        int chickensToSpawn = Mathf.Min(10, difficultyPointsLeft); // Si hay menos puntos, genera menos pollos
+    ///*private void SpawnWhiteChickenSquad(ref int difficultyPointsLeft)
+    //{
+    //    int chickensToSpawn = Mathf.Min(10, difficultyPointsLeft); // Si hay menos puntos, genera menos pollos
 
-        for (int i = 0; i < chickensToSpawn; i++)
-        {
-            GameObject chickenPrefab = GameManager.Instance.SelectChickenBasedOnProb().chickenPrefab;
-            GameObject auxNewChicken = Instantiate(chickenPrefab, GetRandomSpawnPosition(), Quaternion.identity);
-            GameManager.Instance.listEnemies.Add(auxNewChicken);
-            GameManager.Instance.enemyCount++;
-        }
+    //    for (int i = 0; i < chickensToSpawn; i++)
+    //    {
+    //        GameObject chickenPrefab = GameManager.Instance.SelectChickenBasedOnProb().chickenPrefab;
+    //        GameObject auxNewChicken = Instantiate(chickenPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+    //        GameManager.Instance.listEnemies.Add(auxNewChicken);
+    //        GameManager.Instance.enemyCount++;
+    //    }
 
-        difficultyPointsLeft -= chickensToSpawn;
-    }*/
+    //    difficultyPointsLeft -= chickensToSpawn;
+    //}*/
 
     // Método para generar un escuadrón mixto
-    /*private void SpawnMixedSquad(ref int difficultyPointsLeft)
-    {
-        int chickensToSpawn = Mathf.Min(5, difficultyPointsLeft); // Si hay menos puntos, genera menos pollos
+    ///*private void SpawnMixedSquad(ref int difficultyPointsLeft)
+    //{
+    //    int chickensToSpawn = Mathf.Min(5, difficultyPointsLeft); // Si hay menos puntos, genera menos pollos
 
-        for (int i = 0; i < chickensToSpawn; i++)
-        {
-            GameObject chickenPrefab = GameManager.Instance.SelectChickenBasedOnProb().chickenPrefab;
-            // Lógica para mezclar blancos y otros tipos de pollos
-            GameObject auxNewChicken = Instantiate(chickenPrefab, GetRandomSpawnPosition(), Quaternion.identity);
-            GameManager.Instance.listEnemies.Add(auxNewChicken);
-            GameManager.Instance.enemyCount++;
-        }
+    //    for (int i = 0; i < chickensToSpawn; i++)
+    //    {
+    //        GameObject chickenPrefab = GameManager.Instance.SelectChickenBasedOnProb().chickenPrefab;
+    //         Lógica para mezclar blancos y otros tipos de pollos
+    //        GameObject auxNewChicken = Instantiate(chickenPrefab, GetRandomSpawnPosition(), Quaternion.identity);
+    //        GameManager.Instance.listEnemies.Add(auxNewChicken);
+    //        GameManager.Instance.enemyCount++;
+    //    }
 
-        difficultyPointsLeft -= chickensToSpawn; // Ajustar la puntuación según el escuadrón
-    }*/
+    //    difficultyPointsLeft -= chickensToSpawn; // Ajustar la puntuación según el escuadrón
+    //}*/
 
     // Método para obtener una posición aleatoria del array
     private Vector3 GetRandomSpawnPosition()

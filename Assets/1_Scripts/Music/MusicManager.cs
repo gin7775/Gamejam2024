@@ -1,45 +1,35 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+using MoreMountains.Tools;
 
 public class MusicManager : MonoBehaviour
 {
-    //Themes
-    [SerializeField] AudioSource[] mainTheme;
-    [SerializeField] AudioSource transitionTheme;
-    [SerializeField] AudioSource sirena;
+    // === MUSIC TRACKS ===
+    [SerializeField] private AudioClip[] mainThemes;
+    [SerializeField] private AudioClip transitionTheme;
+    [SerializeField] private AudioClip sirena;
 
-    bool reproduciendoMusic;
-    //CacareoPollo
-    [SerializeField] AudioSource sonidoPolloJugador;
-    [SerializeField] AudioSource recogerPolloSuelo;
-    [SerializeField] AudioSource[] sonidosPollosEnemigos;
+    // === FX SFX ===
+    [SerializeField] private AudioClip sonidoPolloJugador;
+    [SerializeField] private AudioClip recogerPolloSuelo;
+    [SerializeField] private AudioClip[] sonidosPollosEnemigos;
 
-    //SoundFX
-    [SerializeField] AudioSource polloJugadorMuerto;
-
-
-    [SerializeField] AudioSource recibirDanoJugador;
-    [SerializeField] AudioSource disparoPolloJugador;
-
-
-    [SerializeField] AudioSource explosionPollo;
-    [SerializeField] AudioSource tickingPollo;
-
-    [SerializeField] AudioSource clicPollo;
-
-    [SerializeField] AudioSource comenzarOleadaFX;
-
-
+    [SerializeField] private AudioClip polloJugadorMuerto;
+    [SerializeField] private AudioClip recibirDanoJugador;
+    [SerializeField] private AudioClip disparoPolloJugador;
+    [SerializeField] private AudioClip explosionPollo;
+    [SerializeField] private AudioClip tickingPollo;
+    [SerializeField] private AudioClip clicPollo;
+    [SerializeField] private AudioClip comenzarOleadaFX;
 
     public static MusicManager Instance { get; private set; }
 
+    private int oleadaAnterior;
+    private int oleadaSiguiente;
 
-    int oleadaAnterior, oleadaSiguiente;
     private void Awake()
     {
-        // If there is an instance and it's not me, delete myself.
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -49,226 +39,141 @@ public class MusicManager : MonoBehaviour
             Instance = this;
         }
 
-        oleadaAnterior = mainTheme.Length -1;
+        oleadaAnterior = mainThemes.Length - 1;
         oleadaSiguiente = 0;
     }
 
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    //Play_FX_Jugador_PolloMuerto();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.N))
-        //{
-        //    Play_FX_RecogerPollo();
-        //}
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-        //    Play_FX_StartRound();
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    StartCoroutine(ChangeRaidTheme(0, 0));
-        //}
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    StartCoroutine(ChangeRaidTheme(0, 1));
-        //}
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    StartCoroutine(ChangeRaidTheme(1, 2));
-        //}
-
-
-
-
-
-    }
-
-    //public IEnumerator ChangeRaidTheme(int oleadaAnterior, int oleadaSiguiente)
-    //{
-    //    if (oleadaSiguiente < mainTheme.Length)
-    //    {
-
-    //       if(oleadaSiguiente >= mainTheme.Length)
-    //        {
-    //            oleadaSiguiente = 3;
-    //        }
-    //        transitionTheme.Play();
-    //        yield return new WaitForSeconds(1f);
-    //        sirena.Play();
-    //        mainTheme[oleadaAnterior].Stop();
-
-    //        try
-    //        {
-    //            sonidosPollosEnemigos[0].Stop();
-    //            sonidosPollosEnemigos[1].Stop();
-    //        } catch (System.Exception) {}
-
-    //        yield return new WaitForSeconds(3f);
-    //        Play_FX_StartRound();
-    //        yield return new WaitForSeconds(1f);
-    //        mainTheme[oleadaSiguiente].Play();
-
-    //        try
-    //        {
-    //            sonidosPollosEnemigos[0].Play();
-    //            sonidosPollosEnemigos[1].Play();
-    //        }
-    //        catch (System.Exception) { }
-
-    //        transitionTheme.Stop();
-    //        yield return new WaitForSeconds(1f);
-
-
-    //    }
-    //    else
-    //    {
-
-    //        transitionTheme.Play();
-    //        yield return new WaitForSeconds(1f);
-    //        sirena.Play();
-    //        StopAllMusic(); 
-    //        yield return new WaitForSeconds(3f);
-    //        Play_FX_StartRound();
-    //        yield return new WaitForSeconds(4f);
-    //        mainTheme[2].Play();
-    //        transitionTheme.Stop();
-    //        yield return new WaitForSeconds(1f);
-
-    //    }
-
-    //}
-    //public void FX_ActivarCorutina(int oleadaAnterior, int oleadaSiguiente)
-    //{
-    //    StartCoroutine(ChangeRaidTheme(oleadaAnterior,oleadaSiguiente));
-    //}
-
-    public IEnumerator ChangeRaidTheme()
-    {
-
-        transitionTheme.Play();
-        yield return new WaitForSeconds(1f);
-        sirena.Play();
-        mainTheme[oleadaAnterior].Stop();
-        try
-        {
-            sonidosPollosEnemigos[0].Stop();
-            sonidosPollosEnemigos[1].Stop();
-        }
-        catch (System.Exception) { }
-
-        yield return new WaitForSeconds(3f);
-        Play_FX_StartRound();
-        yield return new WaitForSeconds(1f);
-
-        mainTheme[oleadaSiguiente].Play();
-        try
-        {
-            sonidosPollosEnemigos[0].Play();
-            sonidosPollosEnemigos[1].Play();
-        }
-        catch (System.Exception) { }
-
-        transitionTheme.Stop();
-        yield return new WaitForSeconds(1f);
-        oleadaAnterior = oleadaSiguiente;
-        oleadaSiguiente++;
-
-        if (oleadaSiguiente >= mainTheme.Length)
-        {
-            oleadaSiguiente = 0;
-            oleadaAnterior = mainTheme.Length - 1;
-        }
-
-
-
-    }
+    // === CAMBIO DE OLEADA ===
 
     public void FX_ActivarCorutina()
     {
         StartCoroutine(ChangeRaidTheme());
     }
 
-
-
-    //Themes  
-    public void PlayMaintheme(int track)
+    public IEnumerator ChangeRaidTheme()
     {
-        mainTheme[track].Play();
-    }
+        // 1. Parar música actual para evitar solapamientos
+        MMSoundManager.Instance.StopTrack(MMSoundManager.MMSoundManagerTracks.Music);
 
-    public void StopMainTheme(int track)
-    {
-        mainTheme[track].Stop();
-    }
+        // 2. Sonido transición
+        MMSoundManagerSoundPlayEvent.Trigger(transitionTheme, GetSfxOptions());
 
-    public void StopAllMusic()
-    {
-        for (int i = 0; i < mainTheme.Length; i++)
+        yield return new WaitForSeconds(1f);
+
+        // 3. Sirena
+        MMSoundManagerSoundPlayEvent.Trigger(sirena, GetSfxOptions());
+
+        // 4. Parar sonidos enemigos anteriores
+        foreach (var s in sonidosPollosEnemigos)
         {
-            mainTheme[i].Stop();
+            var src = MMSoundManager.Instance.FindByClip(s);
+            if (src != null) MMSoundManager.Instance.StopSound(src);
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        // 5. Quiquiriquí del inicio
+        Play_FX_StartRound();
+        yield return new WaitForSeconds(1f);
+
+        // 6. Nueva canción de oleada con fade
+        MMSoundManagerPlayOptions opcionesMusica = MMSoundManagerPlayOptions.Default;
+        opcionesMusica.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Music;
+        opcionesMusica.Location = transform.position;
+        opcionesMusica.Volume = 1f;
+        opcionesMusica.Loop = true;
+        opcionesMusica.Fade = true;
+        opcionesMusica.FadeDuration = 1f;
+        opcionesMusica.FadeInitialVolume = 0f;
+
+        MMSoundManagerSoundPlayEvent.Trigger(mainThemes[oleadaSiguiente], opcionesMusica);
+
+        // 7. Sonidos de enemigos en loop
+        foreach (var s in sonidosPollosEnemigos)
+        {
+            MMSoundManagerPlayOptions opciones = MMSoundManagerPlayOptions.Default;
+            opciones.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+            opciones.Location = transform.position;
+            opciones.Volume = 1f;
+            opciones.Loop = true;
+            MMSoundManagerSoundPlayEvent.Trigger(s, opciones);
+        }
+
+        // 8. Actualizar oleadas
+        oleadaAnterior = oleadaSiguiente;
+        oleadaSiguiente++;
+
+        if (oleadaSiguiente >= mainThemes.Length)
+        {
+            oleadaSiguiente = 0;
+            oleadaAnterior = mainThemes.Length - 1;
         }
     }
 
+    // === FX / SFX ===
 
-
-    //FX
-    public void Play_FX_Player_CacareoPollo() //Cacareo Jugador
+    public void Play_FX_Player_CacareoPollo()
     {
-        sonidoPolloJugador.Play();
+        MMSoundManagerSoundPlayEvent.Trigger(sonidoPolloJugador, GetSfxOptions());
     }
 
-    public void Play_FX_Player_PolloMuerto()        // Pollo Muerto
+    public void Play_FX_Player_PolloMuerto()
     {
-        polloJugadorMuerto.Play();
+        MMSoundManagerSoundPlayEvent.Trigger(polloJugadorMuerto, GetSfxOptions());
     }
 
-    public void Play_FX_ExplosionPollo()          //Explosion Pollo
+    public void Play_FX_ExplosionPollo()
     {
-        explosionPollo.Play();
+        MMSoundManagerSoundPlayEvent.Trigger(explosionPollo, GetSfxOptions());
     }
 
-    public void Play_FX_TickingPollo()          //Tic tac pollo
+    public void Play_FX_TickingPollo()
     {
-        // tickingPollo.Play();
-    }
-    public void Play_FX_ClicPollo()         //Clic Pollo Menu Boton Jugar
-    {
-        clicPollo.Play();
-    }
-    public void Play_FX_RecogerPollo()         //Recoger Pollo
-    {
-        recogerPolloSuelo.Play();
+        MMSoundManagerSoundPlayEvent.Trigger(tickingPollo, GetSfxOptions());
     }
 
-    public void Play_FX_StartRound()         //Quiquiriqu�
+    public void Play_FX_ClicPollo()
     {
-        comenzarOleadaFX.Play();
+        MMSoundManagerSoundPlayEvent.Trigger(clicPollo, GetSfxOptions());
     }
 
-    public void Play_FX_PLayer_RecibirDano()         //Sonido de dolor del Jugador
+    public void Play_FX_RecogerPollo()
     {
-        recibirDanoJugador.Play();
+        MMSoundManagerSoundPlayEvent.Trigger(recogerPolloSuelo, GetSfxOptions());
     }
 
-    public void Play_FX_PLayer_DispararPollo()         //Sonido de disparo del Jugador
+    public void Play_FX_StartRound()
     {
-        disparoPolloJugador.Play();
+        MMSoundManagerSoundPlayEvent.Trigger(comenzarOleadaFX, GetSfxOptions());
     }
 
+    public void Play_FX_PLayer_RecibirDano()
+    {
+        MMSoundManagerSoundPlayEvent.Trigger(recibirDanoJugador, GetSfxOptions());
+    }
 
+    public void Play_FX_PLayer_DispararPollo()
+    {
+        MMSoundManagerSoundPlayEvent.Trigger(disparoPolloJugador, GetSfxOptions());
+    }
 
+    // === UTILIDAD ===
 
+    private MMSoundManagerPlayOptions GetSfxOptions(float volume = 1f)
+    {
+        MMSoundManagerPlayOptions opciones = MMSoundManagerPlayOptions.Default;
+        opciones.MmSoundManagerTrack = MMSoundManager.MMSoundManagerTracks.Sfx;
+        opciones.Location = transform.position;
+        opciones.Volume = volume;
+        return opciones;
+    }
 
-
-
+    public void StopAllMainThemes()
+    {
+        foreach (var clip in mainThemes)
+        {
+            var src = MMSoundManager.Instance.FindByClip(clip);
+            if (src != null) MMSoundManager.Instance.StopSound(src);
+        }
+    }
 }
