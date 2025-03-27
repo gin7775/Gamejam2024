@@ -153,8 +153,8 @@ public class GameManager : MonoBehaviour
 
 
                     // Generar efecto de camara (impulso)
-                    cinemachineImpulseSource = enemy.GetComponent<CinemachineImpulseSource>();
-                    cinemachineImpulseSource.GenerateImpulse();
+                   // cinemachineImpulseSource = enemy.GetComponent<CinemachineImpulseSource>();
+                    //cinemachineImpulseSource.GenerateImpulse();
 
                     // Instanciar efectos visuales de impacto y muerte
                     Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
