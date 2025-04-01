@@ -118,7 +118,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.4
+    - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
@@ -147,7 +147,7 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 2.79544, g: 2.79544, b: 2.79544, a: 1}
+    - _FaceColor: {r: 268.0114, g: 12.025564, b: 0, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
@@ -166,11 +166,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Grinched 3
+  m_Name: Grinched 5
   m_EditorClassIdentifier: 
-  hashCode: 144836651
+  hashCode: 144836653
   material: {fileID: -1530772712865745639}
-  materialHashCode: -2092284117
+  materialHashCode: -1865269523
   m_Version: 1.1.0
   m_SourceFontFileGUID: c98633f3820232b4da323905885a8b09
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: c98633f3820232b4da323905885a8b09,

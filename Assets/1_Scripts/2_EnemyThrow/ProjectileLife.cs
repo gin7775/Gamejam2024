@@ -66,6 +66,7 @@ public class ProjectileLife : MonoBehaviour
             //Debug.Log("Enemy hitted with chicken");
             DealDamage(other.gameObject, 2);
             Explosion();
+            
         }
     }
 
