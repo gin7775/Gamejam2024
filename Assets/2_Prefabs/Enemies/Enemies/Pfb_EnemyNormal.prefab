@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1570130104802229714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.584354, y: 0.5, z: 1.25}
+  m_LocalPosition: {x: 0, y: 0.5, z: 1.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -73,14 +73,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6716f70240bb2a540b7606e15d08c0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifes: 1
+  speed: 6
+  distanceToAttack: 1
   animEnemy: {fileID: 3175585437531734586}
   playerReference: {fileID: 0}
   enemyTipe: 0
   distanceToEnemy: 3
   destination: {fileID: 0}
-  lifes: 1
-  speed: 6
-  distanceToAttack: 1
   corpse: {fileID: 7062845070779954322, guid: 87184fae2b3eff349be7848278e9befb, type: 3}
   canDamage: 0
   currentForceMultiplier: 0.02
