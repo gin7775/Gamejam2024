@@ -7,13 +7,18 @@ public class RiverDamage : MonoBehaviour
     private Coroutine damageCoroutine;
     public float damageInterval = 3f; // Intervalo de tiempo entre daños (en segundos)
     public int damageAmount = 1; // Daño que se inflige inicialmente
+    public PlayerHealth playerHealth;
 
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log("En contacto");
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            //Debug.Log("PLAYER En contacto");
+
+            playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 if (damageCoroutine == null) // Evitar múltiples corrutinas activas

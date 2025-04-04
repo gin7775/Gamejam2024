@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0_Scenes/4_Level1_Env_Andriu 1.unity
     guid: 2cb56f7bfa7594c44bcd8fef7f6fc20b
+  - enabled: 1
+    path: Assets/0_Scenes/5_TutorialNEW.unity
+    guid: ddd51d5e7a8fb4147bd8e14c01df0283
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

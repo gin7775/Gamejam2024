@@ -55,6 +55,7 @@ public class WaterDamage : MonoBehaviour
     {
         while (true) // Bucle infinito controlado por OnCollisionExit
         {
+            Debug.Log("Daño");
             playerHealth.ReceiveDamage(damageAmount);
             yield return new WaitForSeconds(damageInterval);
         }
