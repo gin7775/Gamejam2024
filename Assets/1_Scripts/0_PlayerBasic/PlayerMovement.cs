@@ -7,20 +7,20 @@ using MoreMountains.Feedbacks;
 using JetBrains.Annotations;
 public class PlayerMovement : MonoBehaviour
 {
-    
+
     [Header("Movimiento y Dash Settings")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float rotationSpeed = 100f;
     [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private float dashCooldown = 2f;
-    
+
     [SerializeField] private VisualEffect walkingEffect;
     private Coroutine walkingEffectCoroutine;
     [SerializeField] private float particleTimeToSpawn;
-    [SerializeField] private ParticleSystem jumpEffect; 
-    [SerializeField] private float heightThreshold = 0.5f; 
-    private float lastGroundHeight = 0f;  
+    [SerializeField] private ParticleSystem jumpEffect;
+    [SerializeField] private float heightThreshold = 0.5f;
+    private float lastGroundHeight = 0f;
     private bool hasActivatedHeightEffect = false;
     private bool wasGrounded = true;
     private float groundContactDelay = 0.1f; // Tiempo de espera tras aterrizar
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 lookInputController;
     private bool isUsingController = false;
 
-    
+
     [Header("Referencias a Componentes")]
     [SerializeField] private CharacterController controller;
     private Collider playerCollider;
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     private GameManager gameManager;
     public GameObject dashIcon;
 
-   
+
     [Header("Estados del Jugador")]
     private bool isDashing = false;
     private bool canDash = true;
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     private float waterCurrentForce = 0f;
     private bool inWaterCurrent = false;
     public MMFeedbacks dashFeedback;
-    
+
 
     private void Awake()
     {
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         playerCollider = this.GetComponent<Collider>();
         dashIcon.gameObject.SetActive(true);
-        
+
     }
 
     void Update()
@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         }
         IsGround();
         UpdateCrosshairPositionWithRotation();
-        
+
         CheckLanding();
     }
 
@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float dotProduct = Vector3.Dot(desiredMoveDirection.normalized, waterCurrentDirection.normalized);
 
-            
+
             Vector3 currentEffect = (dotProduct < 0)
                 ? waterCurrentDirection * (waterCurrentForce * 0.5f)
                 : waterCurrentDirection * waterCurrentForce;
@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveDirection += currentEffect;
         }
         controller.Move(desiredMoveDirection * speed * Time.deltaTime);
-      
+
     }
 
     private IEnumerator PerformDash()
@@ -176,8 +176,8 @@ public class PlayerMovement : MonoBehaviour
         dashIcon.gameObject.SetActive(false);
 
         SetCollisionWithEnemies(false);                              // Hacer al jugador inmune y no detectable
-        gameObject.layer = LayerMask.NameToLayer("Invisible");      
-       
+        gameObject.layer = LayerMask.NameToLayer("Invisible");
+
 
         float dashStartTime = Time.time;
         Vector3 dashDirection;
@@ -190,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
             dashDirection = transform.forward; // Usa la dirección en la que el personaje está mirando
         }
         dashDirection.y = 0;
-       
+
 
         // Movimiento del dash
         while (Time.time < dashStartTime + dashDuration)
@@ -221,11 +221,11 @@ public class PlayerMovement : MonoBehaviour
             if (enemyCollider != null)
             {
                 Physics.IgnoreCollision(playerCollider, enemyCollider, !enableCollision);
-                
+
             }
         }
     }
-   
+
 
 
     // Rotación basada en el input del joystick
@@ -377,8 +377,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
-
     private IEnumerator PlayWalkingEffect()
     {
         while (isWalking)
@@ -443,7 +441,6 @@ public class PlayerMovement : MonoBehaviour
         inWaterCurrent = true;
     }
 
-    
     public void RemoveWaterCurrent()
     {
         inWaterCurrent = false;
@@ -464,4 +461,5 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
     }
+
 }

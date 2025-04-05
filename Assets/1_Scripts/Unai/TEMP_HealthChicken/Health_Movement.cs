@@ -25,32 +25,30 @@ public class Health_Movement : MonoBehaviour
 
     private void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (transform != null && player != null)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= detectionDistance && !isExhausted)
-        {
-            FleeFromPlayer();
-        }
-        else if (distanceToPlayer > detectionDistance && !isExhausted)
-        {
-            isGettingExhausted = false; // Reinicia el agotamiento si el jugador se aleja
-        }
+            if (distanceToPlayer <= detectionDistance && !isExhausted)
+                FleeFromPlayer();
+            else if (distanceToPlayer > detectionDistance && !isExhausted)
+                isGettingExhausted = false; // Reinicia el agotamiento si el jugador se aleja
 
-        // Manejo de resistencia
-        if (isGettingExhausted)
-        {
-            timeRunning += Time.deltaTime;
-            if (timeRunning >= staminaTime) // Usamos >= para activar agotamiento
+            // Manejo de resistencia
+            if (isGettingExhausted)
             {
-                isExhausted = true;
-                StartCoroutine(Rest()); // Inicia el descanso
-            }
-        }
+                timeRunning += Time.deltaTime;
 
-        // Recuperación de stamina si está en reposo
-        if (agent.remainingDistance <= 1f && !isExhausted)
-        {
-            timeRunning = Mathf.Max(0, timeRunning - Time.deltaTime / 2); // Reduce stamina
+                if (timeRunning >= staminaTime) // Usamos >= para activar agotamiento
+                {
+                    isExhausted = true;
+                    StartCoroutine(Rest()); // Inicia el descanso
+                }
+            }
+
+            // Recuperación de stamina si está en reposo
+            if (agent.remainingDistance <= 1f && !isExhausted)
+                timeRunning = Mathf.Max(0, timeRunning - Time.deltaTime / 2); // Reduce stamina
         }
     }
 

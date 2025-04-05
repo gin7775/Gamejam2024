@@ -112,29 +112,39 @@ public class ProjectileLife : MonoBehaviour
 
             if (dist <= 100)
             {
+                Transform childTransform = listaChickens[i].gameObject.transform.GetChild(0).transform.GetChild(0);
                 GameObject bodyOne = listaChickens[i].gameObject.transform.GetChild(0).transform.GetChild(0).gameObject;
-                GameObject bodyTwo = bodyOne.gameObject.transform.GetChild(0).gameObject;
-                GameObject bodyNeck = bodyTwo.gameObject.transform.GetChild(2).gameObject;
-                GameObject bodyHead = bodyNeck.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+                GameObject bodyTwo = null, bodyNeck = null, bodyHead = null;
+
+                if (childTransform.childCount > 0)
+                {
+                    bodyTwo = bodyOne.gameObject.transform.GetChild(0).gameObject;
+                    bodyNeck = bodyTwo.gameObject.transform.GetChild(2).gameObject;
+                    bodyHead = bodyNeck.gameObject.transform.GetChild(0).gameObject.transform.GetChild(1).gameObject;
+                }
 
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 100);
 
                 foreach (Collider collider in colliders)
                 {
                     bodyOne.GetComponent<CapsuleCollider>().enabled = false;
-                    bodyTwo.GetComponent<CapsuleCollider>().enabled = false;
-                    bodyNeck.GetComponent<CapsuleCollider>().enabled = false;
-                    bodyHead.GetComponent<CapsuleCollider>().enabled = false;
-
                     bodyOne.GetComponent<Rigidbody>().AddExplosionForce(25.0f, this.gameObject.transform.position, 10, 25.0f);
-                    bodyTwo.GetComponent<Rigidbody>().AddExplosionForce(25.0f, this.gameObject.transform.position, 10, 25.0f);
-                    bodyNeck.GetComponent<Rigidbody>().AddExplosionForce(25.0f, this.gameObject.transform.position, 10, 25.0f);
-                    bodyHead.GetComponent<Rigidbody>().AddExplosionForce(25.0f, this.gameObject.transform.position, 10, 25.0f);
-
                     bodyOne.GetComponent<CapsuleCollider>().enabled = true;
-                    bodyTwo.GetComponent<CapsuleCollider>().enabled = true;
-                    bodyNeck.GetComponent<CapsuleCollider>().enabled = true;
-                    bodyHead.GetComponent<CapsuleCollider>().enabled = true;
+
+                    if (childTransform.childCount > 0)
+                    {
+                        bodyTwo.GetComponent<CapsuleCollider>().enabled = false;
+                        bodyNeck.GetComponent<CapsuleCollider>().enabled = false;
+                        bodyHead.GetComponent<CapsuleCollider>().enabled = false;
+
+                        bodyTwo.GetComponent<Rigidbody>().AddExplosionForce(25.0f, this.gameObject.transform.position, 10, 25.0f);
+                        bodyNeck.GetComponent<Rigidbody>().AddExplosionForce(25.0f, this.gameObject.transform.position, 10, 25.0f);
+                        bodyHead.GetComponent<Rigidbody>().AddExplosionForce(25.0f, this.gameObject.transform.position, 10, 25.0f);
+
+                        bodyTwo.GetComponent<CapsuleCollider>().enabled = true;
+                        bodyNeck.GetComponent<CapsuleCollider>().enabled = true;
+                        bodyHead.GetComponent<CapsuleCollider>().enabled = true;
+                    }
                 }
             }
         }
