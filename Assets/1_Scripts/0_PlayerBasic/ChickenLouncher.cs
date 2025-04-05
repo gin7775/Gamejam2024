@@ -47,12 +47,24 @@ public class ChickenLouncher : MonoBehaviour
     private bool isInRange = false;
     private Animator anim; // Controlador de animaciones
 
+    private Dictionary<int, string> chickenVFXEffects = new Dictionary<int, string>
+    {
+        { 1, "WhiteMuzzle" },  // Pollo normal
+        { 2, "RedMuzzle" },   // Pollo grande
+        { 3, "RedMuzzle" },   //Pollo Bomba
+        { 4, "RedMuzzle" }, // Pollo R�pido
+        { 5, "RedMuzzle" },   // Pollo Disparo
+        { 6, "RedMuzzle" }  // Pollo curativo
+    };
+
     private void Awake()
     {
         capsuleCollider = GetComponent<CapsuleCollider>();
         boxCollider = GetComponent<BoxCollider>();
+        currentProjectile = new List<GameObject>();
     }
-    public void LateUpdate()
+
+    private void LateUpdate()
     {
         DetectNearbyChickens();
     }
@@ -65,23 +77,39 @@ public class ChickenLouncher : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
     }
 
-    public void OnShoot(InputValue value)
+    private void DetectNearbyChickens()
     {
-        anim.SetBool("Carrying", false);
-        anim.SetTrigger("Throw");
-        musicManager.Play_FX_RecogerPollo();
-        Shoot(currentChickenType);
-    }
+        Vector3 detectionCenter = transform.position + Vector3.up * 1f; // Ajustar 1f dependiendo de la altura del jugador
+        Collider[] hitColliders = Physics.OverlapSphere(detectionCenter, pickUpRange); // Usamos OverlapSphere para detectar todos los objetos dentro del rango desde la posicion ajustada
+        bool chickenDetected = false; // Bandera para saber si hemos detectado un pollo
 
-    public void OnAttack(InputValue value)
-    {
-        enableBoxCollider = false;
-
-        if (Time.time >= nextAllowedAttackTime)
+        foreach (var hitCollider in hitColliders)
         {
-            nextAllowedAttackTime = Time.time + attackCooldown;
-            anim.SetTrigger("Attack");
-            PerformAttack(currentChickenType);
+            // Verificamos si el collider tiene el tag "CorpseCollider"
+            // Si encontramos un pollo, lo seleccionamos como el pollo mas cercano
+            if (hitCollider.CompareTag("CorpseCollider"))
+            {
+                selectedChicken = hitCollider.GetComponentInParent<ChickenCorpse>().gameObject;
+                isInRange = true; // Marcamos que hay un pollo en rango
+                chickenDetected = true; // Hemos detectado un pollo
+
+                // Verificamos si el jugador ya tiene un pollo en la mano
+                // Si ya tienes un pollo, no hacemos nada, salimos de la funcion
+                if (currentChickenType > 0)
+                    return;
+
+                // Llamamos al metodo HandleCorpseCollision para gestionar la recogida del pollo
+                HandleCorpseCollision(hitCollider);
+
+                break; // Salimos despues de encontrar el primer pollo
+            }
+        }
+
+        // Si no encontramos ningun pollo, desmarcamos el estado
+        if (!chickenDetected)
+        {
+            isInRange = false;
+            selectedChicken = null;
         }
     }
 
@@ -108,99 +136,27 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
-    private void DetectNearbyChickens()
+    public void OnAttack(InputValue value)
     {
-        // Verificamos si el jugador ya tiene un pollo en la mano
-        // Si ya tienes un pollo, no hacemos nada, salimos de la funcion
-        if (currentChickenType > 0)
-            return;
-
-        Vector3 detectionCenter = transform.position + Vector3.up * 1f; // Ajustar 1f dependiendo de la altura del jugador
-        Collider[] hitColliders = Physics.OverlapSphere(detectionCenter, pickUpRange); // Usamos OverlapSphere para detectar todos los objetos dentro del rango desde la posicion ajustada
-        bool chickenDetected = false; // Bandera para saber si hemos detectado un pollo
-
-        foreach (var hitCollider in hitColliders)
-        {
-            // Verificamos si el collider tiene el tag "CorpseCollider"
-            // Si encontramos un pollo, lo seleccionamos como el pollo mas cercano
-            if (hitCollider.CompareTag("CorpseCollider"))
-            {
-                selectedChicken = hitCollider.gameObject;
-                isInRange = true; // Marcamos que hay un pollo en rango
-                chickenDetected = true; // Hemos detectado un pollo
-
-                // Llamamos al metodo HandleCorpseCollision para gestionar la recogida del pollo
-                HandleCorpseCollision(hitCollider);
-
-                break; // Salimos despues de encontrar el primer pollo
-            }
-        }
-
-        // Si no encontramos ningun pollo, desmarcamos el estado
-        if (!chickenDetected)
-        {
-            isInRange = false;
-            selectedChicken = null;
-        }
-    }
-
-    void ReplaceChickenWithNew(GameObject newChicken)
-    {
-        // Destruimos el pollo actual que el jugador tiene en la mano (si existe)
-        if (currentWeapon != null)
-            Destroy(currentWeapon);
-
-        currentChickenType = 0; // Restablecemos el tipo de pollo en la mano
-
-        // Obtenemos el tipo de pollo del nuevo pollo que se ha recogido
-        int chickenType = newChicken.GetComponent<ChickenCorpse>().chickenType;
-
-        // Actualizamos el tipo de pollo en la mano
-        RetrieveChicken(chickenType);
-
-        // Creamos el nuevo pollo en la mano del jugador
-        GameObject weaponChicken = ragdolls[chickenType - 1];  // Usamos el prefab correspondiente al tipo de pollo
-        currentWeapon = Instantiate(weaponChicken, handPosition.position, Quaternion.Euler(transform.rotation.eulerAngles), transform);
-
-        // Destruimos el pollo en el suelo despu�s de que lo hayamos recogido
-        Destroy(newChicken);  // Este es el pollo del suelo
-    }
-
-    void RetrieveChicken(int chickenNumber)
-    {
-        anim.SetBool("Carrying", true);
-        currentChickenType = chickenNumber;
-
-        if (currentChickenType >= 10 || currentChickenType < 0)
-            currentChickenType = 1;
-    }
-
-    IEnumerator DisableColliderAfterTime(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        boxCollider.enabled = false;
         enableBoxCollider = false;
+
+        if (Time.time >= nextAllowedAttackTime)
+        {
+            nextAllowedAttackTime = Time.time + attackCooldown;
+            anim.SetTrigger("Attack");
+            PerformAttack(currentChickenType);
+        }
     }
 
-    void UpdateWeapon()
+    public void OnShoot(InputValue value)
     {
-        chickenCurrentUses++;
-
-        if (chickenCurrentUses == chickenMaxUses)
-            currentChickenType = 0;
+        anim.SetBool("Carrying", false);
+        anim.SetTrigger("Throw");
+        musicManager.Play_FX_RecogerPollo();
+        Shoot(currentChickenType);
     }
 
-    private Dictionary<int, string> chickenVFXEffects = new Dictionary<int, string>
-    {
-        { 1, "WhiteMuzzle" },  // Pollo normal
-        { 2, "RedMuzzle" },   // Pollo grande
-        { 3, "RedMuzzle" },   //Pollo Bomba
-        { 4, "RedMuzzle" }, // Pollo R�pido
-        { 5, "RedMuzzle" },   // Pollo Disparo
-        { 6, "RedMuzzle" }  // Pollo curativo
-    };
-
-    void Shoot(int ammoType)
+    private void Shoot(int ammoType)
     {
         enableBoxCollider = false;
 
@@ -218,7 +174,7 @@ public class ChickenLouncher : MonoBehaviour
                 HandleProjectileLaunch(ammoType, projectilePos);
 
                 // Verifica antes de llamar el efecto
-                Debug.Log($"Intentando reproducir efecto para tipo: {chickenTypeBeforeLaunch}");
+                // Debug.Log($"Intentando reproducir efecto para tipo: {chickenTypeBeforeLaunch}");
 
                 if (chickenVFXEffects.TryGetValue(chickenTypeBeforeLaunch, out string effectName)) // Busca si el tipo de pollo tiene un efecto
                 {
@@ -227,7 +183,6 @@ public class ChickenLouncher : MonoBehaviour
                 else
                     Debug.LogWarning($"No hay efecto asociado para el tipo de pollo {chickenTypeBeforeLaunch}");
 
-                currentChickenType = 0;  // Ahora lo reseteamos despues de todo.
                 ClearProjectiles();
             }
             else
@@ -235,66 +190,65 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
-    Vector3 CalculateProjectileStartPosition()
+    /// <summary>
+    /// Requiere que previamente se haya creado un objeto de CurrentWeapon
+    /// </summary>
+    /// <param name="chickenNumber"></param>
+    private void RetrieveChicken(int chickenNumber)
     {
-        if (currentChickenType == 2)
-            return transform.position + (transform.forward * 2) + (transform.up * 2);
-        else
-            return transform.position + transform.forward + transform.up;
-    }
+        anim.SetBool("Carrying", true);
+        currentChickenType = chickenNumber;
 
-    void HandleProjectileLaunch(int ammoType, Vector3 projectilePos)
-    {
-        if (ammoType > 0 && ammoType <= proyectiles.Length)
+        if (currentChickenType >= 10 || currentChickenType < 0)
+            currentChickenType = 1;
+
+        if (currentWeapon != null)
         {
-            GameObject projectile = Instantiate(proyectiles[ammoType - 1], projectilePos, Quaternion.identity);
-
-            Rigidbody rb = projectile.GetComponent<Rigidbody>();
-
-            if (currentChickenType == 2)
-                rb.AddForce(transform.forward * bigChickenImpulseForce, ForceMode.Impulse);
-            else if (currentChickenType == 4)
-                rb.AddForce(transform.forward * proyectileForce * 1.5f);
+            if (currentProjectile != null && currentProjectile.Count == 0)
+                currentProjectile.Add(currentWeapon);
             else
-                rb.AddForce(transform.forward * proyectileForce);
-
-            musicManager.Play_FX_PLayer_DispararPollo();
-            currentChickenType = 0;
+                currentProjectile[0] = currentWeapon;
         }
     }
 
-    void ClearProjectiles()
+    private void ReplaceChickenWithNew(GameObject newChicken)
     {
-        if (currentProjectile != null)
-        {
-            foreach (GameObject chicken in currentProjectile)
-            {
-                chicken.transform.SetParent(handPosition, false);
-                Destroy(chicken);
-            }
+        // Destruimos el pollo actual que el jugador tiene en la mano (si existe)
+        if (currentWeapon != null)
+            Destroy(currentWeapon);
 
-            currentProjectile.Clear();
-        }
+        currentChickenType = 0; // Restablecemos el tipo de pollo en la mano
+
+        // Obtenemos el tipo de pollo del nuevo pollo que se ha recogido
+        int chickenType = newChicken.GetComponent<ChickenCorpse>().chickenType;
+
+        // Creamos el nuevo pollo en la mano del jugador
+        GameObject weaponChicken = ragdolls[chickenType - 1];  // Usamos el prefab correspondiente al tipo de pollo
+        currentWeapon = Instantiate(weaponChicken, handPosition.position, Quaternion.Euler(transform.rotation.eulerAngles), transform);
+
+        // Actualizamos el tipo de pollo en la mano
+        RetrieveChicken(chickenType);
+
+        // Destruimos el pollo en el suelo despues de que lo hayamos recogido
+        Destroy(newChicken);  // Este es el pollo del suelo
     }
 
-    void HandleFrenezziMode()
+    private void ClearProjectiles()
     {
         if (currentProjectile != null)
         {
-            foreach (GameObject chicken in currentProjectile)
-            {
-                if (chicken.GetComponent<ChickenCorpse>() != null)
-                {
-                    chicken.transform.SetParent(handPosition, false);
-                    RetrieveChicken(chicken.GetComponent<ChickenCorpse>().chickenType);
-                    HandleProjectileLaunch(chicken.GetComponent<ChickenCorpse>().chickenType, CalculateProjectileStartPosition());
-                    Destroy(chicken);
-                }
-            }
-
-            currentChickenType = 0;
+            GameObject auxProjectile = currentProjectile[0];
             currentProjectile.Clear();
+
+            if (auxProjectile != null)
+            {
+                Destroy(auxProjectile);
+            }
         }
+
+        currentWeapon = null;
+        currentProjectile = new List<GameObject>();
+        currentChickenType = 0;
     }
 
     public void PerformAttack(int ammoType)
@@ -317,7 +271,7 @@ public class ChickenLouncher : MonoBehaviour
             StartCoroutine(ActivateCollider(swingBox));
     }
 
-    IEnumerator ActivateCollider(GameObject collider)
+    private IEnumerator ActivateCollider(GameObject collider)
     {
         yield return new WaitForSeconds(0.2f);
         collider.SetActive(true);
@@ -325,7 +279,7 @@ public class ChickenLouncher : MonoBehaviour
         collider.SetActive(false);
     }
 
-    IEnumerator ActivateColliderChicken(GameObject collider)
+    private IEnumerator ActivateColliderChicken(GameObject collider)
     {
         yield return new WaitForSeconds(0.15f);
         collider.SetActive(true);
@@ -334,15 +288,7 @@ public class ChickenLouncher : MonoBehaviour
         collider.SetActive(false);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if ((enableBoxCollider || currentChickenType <= 0) && other.gameObject.CompareTag("CorpseCollider"))
-    //    {
-    //        HandleCorpseCollision(other);
-    //    }
-    //}
-
-    void HandleCorpseCollision(Collider other)
+    private void HandleCorpseCollision(Collider other)
     {
         // Comprobamos que el objeto que hemos detectado es un pollo
         if (other.gameObject.GetComponentInParent<ChickenCorpse>() != null)
@@ -362,16 +308,57 @@ public class ChickenLouncher : MonoBehaviour
                 Destroy(currentWeapon);
 
             currentWeapon = Instantiate(weaponChicken, handPosition.position, Quaternion.Euler(transform.rotation.eulerAngles), transform);
-
             RetrieveChicken(type); // Actualizar el tipo de pollo en la mano
-
-            if (currentProjectile.Count == 0)
-                currentProjectile.Add(currentWeapon);
-            else
-                currentProjectile[0] = currentWeapon;
-
             enableBoxCollider = false;
         }
     }
-}
 
+    private Vector3 CalculateProjectileStartPosition()
+    {
+        if (currentChickenType == 2)
+            return transform.position + (transform.forward * 2) + (transform.up * 2);
+        else
+            return transform.position + transform.forward + transform.up;
+    }
+
+    private void HandleProjectileLaunch(int ammoType, Vector3 projectilePos)
+    {
+        if (ammoType > 0 && ammoType <= proyectiles.Length)
+        {
+            GameObject projectile = Instantiate(proyectiles[ammoType - 1], projectilePos, Quaternion.identity);
+
+            Rigidbody rb = projectile.GetComponent<Rigidbody>();
+
+            if (currentChickenType == 2)
+                rb.AddForce(transform.forward * bigChickenImpulseForce, ForceMode.Impulse);
+            else if (currentChickenType == 4)
+                rb.AddForce(transform.forward * proyectileForce * 1.5f);
+            else
+                rb.AddForce(transform.forward * proyectileForce);
+
+            musicManager.Play_FX_PLayer_DispararPollo();
+            currentChickenType = 0;
+        }
+    }
+
+    private void HandleFrenezziMode()
+    {
+        if (currentProjectile != null)
+        {
+            foreach (GameObject chicken in currentProjectile)
+            {
+                if (chicken.GetComponent<ChickenCorpse>() != null)
+                {
+                    chicken.transform.SetParent(handPosition, false);
+                    RetrieveChicken(chicken.GetComponent<ChickenCorpse>().chickenType);
+                    HandleProjectileLaunch(chicken.GetComponent<ChickenCorpse>().chickenType, CalculateProjectileStartPosition());
+                    Destroy(chicken);
+                }
+            }
+
+            currentChickenType = 0;
+            currentProjectile.Clear();
+        }
+    }
+
+}

@@ -199,6 +199,7 @@ public class GameManager : MonoBehaviour
 
         // AUDIO: Ver si funciona en los enemigos sino, se pone aqui
         musicManager.Play_FX_ExplosionPollo();
+        /*
         Debug.Log(
             "\n\n\n" +
             "Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.1f, waveCurrent))=" + Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.1f, waveCurrent)) + "\n" +
@@ -208,6 +209,7 @@ public class GameManager : MonoBehaviour
             "currentWaveScore=" + currentWaveScore + "\n" +
             "score=" + score + "\n\n\n"
         );
+        */
 
         foreach (ChickenCount count in killChickenCount)
         {
@@ -439,8 +441,8 @@ public class GameManager : MonoBehaviour
         ChickenSpawnService aux = new(chikenToSpawn, chikenToSpawnWave);
         //Debug.Log("INI - GAMEMANAGER - chikenGenerator");
         ChickenConfig auxChicken = aux.SelectChickenBasedOnProb(level, waveCurrent);
-        Debug.Log(auxChicken.chickenPrefab.name);
-        Debug.Log(GetRandomAreaSpawn());
+        //Debug.Log(auxChicken.chickenPrefab.name);
+        //Debug.Log(GetRandomAreaSpawn());
         GameObject auxNewChicken = Instantiate(auxChicken.chickenPrefab, GetRandomAreaSpawn(), Quaternion.identity);
         listEnemies.Add(auxNewChicken);
 

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 public class VFXManager : MonoBehaviour
 {
-   public static VFXManager Instance;
-
+    public static VFXManager Instance;
     [SerializeField] private List<VFXEffect> effects; // Lista de efectos configurados en el editor.
-
     private Dictionary<string, VFXEffect> effectDictionary;
 
     private void Awake()
@@ -31,7 +29,7 @@ public class VFXManager : MonoBehaviour
     {
         if (effectDictionary.TryGetValue(effectName, out var effect))
         {
-            Debug.Log($"Reproduciendo efecto: {effectName}");
+            //Debug.Log($"Reproduciendo efecto: {effectName}");
             var instance = effect.GetInstance();
             instance.transform.SetParent(parent);
             instance.transform.localPosition = localPosition;
