@@ -7,6 +7,7 @@ public class CameraSwitch : MonoBehaviour
     [SerializeField] private Animator cinemachineAnim;
     [SerializeField] private string cameraAAnim = "";
     [SerializeField] private string cameraBAnim = "";
+    [SerializeField] private string cameraCAnim = "";
     public GameObject OptionsMenu;
 
     private bool usingCameraA = false;
@@ -31,6 +32,16 @@ public class CameraSwitch : MonoBehaviour
       
     }
 
+    public void SetCameraC()
+    {
+
+        cinemachineAnim.Play(cameraCAnim);
+        usingCameraA = false;
+        cinemachineAnim.SetTrigger("ActiveC");
+        Debug.Log("Volviendo a Cámara B");
+
+    }
+
     // Si querés hacer un toggle (opcional)
     public void ToggleCamera()
     {
@@ -43,5 +54,11 @@ public class CameraSwitch : MonoBehaviour
     public void ActiveGameObject()
     {
         OptionsMenu.SetActive(true);
+    }
+
+    public void QuitApp()
+    {
+        Application.Quit();
+        Debug.Log("Cerrando Aplicación");
     }
 }
