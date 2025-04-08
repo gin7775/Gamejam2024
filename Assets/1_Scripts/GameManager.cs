@@ -663,7 +663,7 @@ public class GameManager : MonoBehaviour
     public void Back_to_Main_Menu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("0_MenuPrincipal");
+        SceneManager.LoadScene("MainMenu");
     }
 
     //Music Manager
