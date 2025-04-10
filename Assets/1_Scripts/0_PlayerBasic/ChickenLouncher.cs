@@ -204,10 +204,11 @@ public class ChickenLouncher : MonoBehaviour
 
         if (currentWeapon != null)
         {
-            if (currentProjectile != null && currentProjectile.Count == 0)
-                currentProjectile.Add(currentWeapon);
-            else
-                currentProjectile[0] = currentWeapon;
+            if (currentProjectile != null)
+                if (currentProjectile.Count == 0)
+                    currentProjectile.Add(currentWeapon);
+                else
+                    currentProjectile[0] = currentWeapon;
         }
     }
 

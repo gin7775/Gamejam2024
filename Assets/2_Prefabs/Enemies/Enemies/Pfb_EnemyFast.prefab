@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4584185370742652186}
   - component: {fileID: 5292473553391112257}
   - component: {fileID: 4745780941302509565}
-  - component: {fileID: -7428932078053114274}
   m_Layer: 7
   m_Name: Pfb_EnemyFast
   m_TagString: Enemy
@@ -73,14 +72,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6716f70240bb2a540b7606e15d08c0b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifes: 1
+  speed: 12
+  distanceToAttack: 1
   animEnemy: {fileID: 7965123140641105686}
   playerReference: {fileID: 0}
   enemyTipe: 0
   distanceToEnemy: 3
   destination: {fileID: 0}
-  lifes: 1
-  speed: 12
-  distanceToAttack: 1
   corpse: {fileID: 7062845070779954322, guid: ee9bfb3d9884cc947a03262d7d7bcb60, type: 3}
   canDamage: 0
   currentForceMultiplier: 0.02
@@ -180,33 +179,6 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: 0.3, z: 0}
---- !u!54 &-7428932078053114274
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4184036453883938847}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1797842822476880643
 PrefabInstance:
   m_ObjectHideFlags: 0
