@@ -4,35 +4,25 @@ using UnityEngine;
 
 public class OnTouchWater : MonoBehaviour
 {
-    public Transform respawn;
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Collision");
-
-
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Respawn");
-            collision.gameObject.transform.position = respawn.position;
-        }
-    }
+     [Tooltip("Arrastra aquí el Transform de la posición de reset")]
+    [SerializeField] private Transform resetPoint;
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
+        if (!other.CompareTag("Player")) return;
 
+        var controller = other.GetComponent<CharacterController>();
+        if (controller == null) return;
 
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Respawn");
-            //other.gameObject.transform.position = respawn.position;
-            other.GetComponent<CharacterController>().enabled = false;
-            other.gameObject.GetComponent<Rigidbody>().position = respawn.position;
-            other.GetComponent<CharacterController>().enabled = true;
-        }
+        controller.enabled = false;
+
+        // Posición
+        other.transform.position = resetPoint.position;
+        // Rotación: alineamos el forward del jugador con el del resetPoint
+        other.transform.rotation = Quaternion.LookRotation(resetPoint.forward);
+
+        controller.enabled = true;
     }
-
 
 
 }

@@ -29,7 +29,7 @@ public class TutorialImpact : MonoBehaviour
 
             activated = true;
 
-            ShootTutorialManager.GetComponent<ShootTutorial>().UpdateClick();
+            ShootTutorialManager.GetComponent<newShootTutoManager>().UpdateClick();
             //Send message
         }
     }
