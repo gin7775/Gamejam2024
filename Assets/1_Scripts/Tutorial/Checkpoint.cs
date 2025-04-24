@@ -1,6 +1,15 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class Checkpoint : MonoBehaviour
 {
-    // Puedes añadir más datos si quieres (nombre, evento asociado, etc.)
+
+    public Transform spawnCheckPoint;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player")) return;
+        ResetManager.Instance.SetCheckpoint(spawnCheckPoint);
+        Debug.Log("Checkpoint");
+    }
 }

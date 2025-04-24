@@ -4,38 +4,21 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    public List<Checkpoint> checkpoints = new List<Checkpoint>();
-    public int currentCheckpointIndex = 0;
-    public GameObject player;
-
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        if (player == null)
-            Debug.LogError("CheckpointManager: No se ha asignado el jugador.");
+        if (!other.CompareTag("Player")) return;
+        var controller = other.GetComponent<CharacterController>();
+        if (controller == null) return;
+
+        var resetPoint = ResetManager.Instance.GetCurrentSpawn();
+        if (resetPoint == null) return;
+
+        controller.enabled = false;
+        other.transform.position = resetPoint.position;
+        other.transform.rotation = Quaternion.LookRotation(resetPoint.forward);
+        controller.enabled = true;
+        Debug.Log("Teleported");
     }
 
-    // Avanza al siguiente checkpoint
-    public void AdvanceCheckpoint()
-    {
-        if (currentCheckpointIndex < checkpoints.Count - 1)
-        {
-            currentCheckpointIndex++;
-            Debug.Log("Checkpoint avanzado a: " + currentCheckpointIndex);
-        }
-        else
-        {
-            Debug.Log("Ya estás en el último checkpoint.");
-        }
-    }
-
-    // Teletransporta al jugador al checkpoint actual
-    public void RespawnAtCheckpoint()
-    {
-        if (player != null && checkpoints.Count > 0)
-        {
-            player.transform.position = checkpoints[currentCheckpointIndex].transform.position;
-            Debug.Log("Jugador respawneado en checkpoint " + currentCheckpointIndex);
-        }
-    }
 
 }

@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/0_Scenes/3_Opciones.unity
     guid: 0b677c1313f57434ba4dec7bf564495c
   - enabled: 0
-    path: Assets/0_Scenes/Descatalogados/4_Level1.unity
+    path: Assets/0_Scenes/+scenes/Descatalogados/4_Level1.unity
     guid: 6fdc4e2f99c8c8040a67686e760e6853
   - enabled: 0
     path: Assets/0_Scenes/4_Level1_GUERRILLA.unity
