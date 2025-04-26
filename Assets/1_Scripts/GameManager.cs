@@ -8,6 +8,8 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Linq;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -105,7 +107,7 @@ public class GameManager : MonoBehaviour
 
         PopulateSpawnList(spawnParent); // Rellena la lista con los hijos
 
-
+       
         timeGeneration = 3f;
         timeWave = 6f;
         enemyInitial = 5;
@@ -628,6 +630,7 @@ public class GameManager : MonoBehaviour
         paused = false;
         pausemenu.SetActive(false);
         highscore.SetActive(false);
+        
     }
 
     public void Pause()
@@ -635,6 +638,7 @@ public class GameManager : MonoBehaviour
         if (paused)
         {
             Exit_pause_menu();
+            
         }
 
         if (paused == false)
@@ -644,7 +648,8 @@ public class GameManager : MonoBehaviour
             {
                 paused = true;
                 pausemenu.SetActive(true);
-                highscore.SetActive(true);
+                
+                highscore.SetActive(false);
                 Time.timeScale = 0;
                 EventSystem.current.SetSelectedGameObject(firstGameObjectMenu);
             }
