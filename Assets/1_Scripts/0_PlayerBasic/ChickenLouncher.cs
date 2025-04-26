@@ -251,7 +251,7 @@ public class ChickenLouncher : MonoBehaviour
         }
 
         currentWeapon = null;
-        currentProjectile = new List<GameObject>();
+        //currentProjectile = new List<GameObject>();
         currentChickenType = 0;
     }
 
