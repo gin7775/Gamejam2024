@@ -139,12 +139,12 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth += extraLife;
         VFXManager.Instance.PlayEffect("HealthParticle", transform, Vector3.zero, Quaternion.Euler(-90f, 0f, 0f));
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
 
-        healthIndicators[Mathf.Max(0, currentHealth - 1)].GetComponent<Animator>().SetTrigger("UnBreak");
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+        int index = Mathf.Clamp(currentHealth - 1, 0, healthIndicators.Length - 1);
+        healthIndicators[index]?.GetComponent<Animator>()?.SetTrigger("UnBreak");
     }
 
     public int GetHealth()
