@@ -150,10 +150,13 @@ public class ChickenLouncher : MonoBehaviour
 
     public void OnShoot(InputValue value)
     {
-        anim.SetBool("Carrying", false);
-        anim.SetTrigger("Throw");
-        musicManager.Play_FX_RecogerPollo();
-        Shoot(currentChickenType);
+        if (currentChickenType > 0)
+        {
+            anim.SetBool("Carrying", false);
+            anim.SetTrigger("Throw");
+            musicManager.Play_FX_RecogerPollo();
+            Shoot(currentChickenType);
+        }
     }
 
     private void Shoot(int ammoType)
