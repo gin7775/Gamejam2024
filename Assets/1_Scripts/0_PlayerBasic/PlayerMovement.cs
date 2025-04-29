@@ -293,7 +293,16 @@ public class PlayerMovement : MonoBehaviour
     private void PlayJumpEffect()
     {
         if (jumpEffect != null)
-            VFXManager.Instance.PlayEffect("BigJumpParticle", transform, Vector3.zero, Quaternion.Euler(-90f, 0f, 0f));
+        {
+            if (VFXManager.Instance != null)
+            {
+                VFXManager.Instance.PlayEffect("BigJumpParticle", transform, Vector3.zero, Quaternion.Euler(-90f, 0f, 0f));
+            }
+            else
+            {
+                Debug.LogWarning("VFXManager.Instance is null");
+            }
+        }
     }
 
     private void IsGround()

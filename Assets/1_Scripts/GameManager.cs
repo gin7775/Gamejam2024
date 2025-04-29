@@ -88,8 +88,10 @@ public class GameManager : MonoBehaviour
     // ---- Control de Input ----
     [Header("Input Control")]
     public GameObject firstGameObjectMenu;
-
-
+    public GameObject firstGameObjectMusic;
+    public GameObject firstGameObjectMusicToMenu;
+    public GameObject firstGameObjectRanking;
+    public GameObject restartButtonFirstObject;
     // Singleton pattern
     private void Awake()
     {
@@ -704,6 +706,28 @@ public class GameManager : MonoBehaviour
 
     //}
 
+    public void FirstGameGameObjectMusic() 
+    {
+        EventSystem.current.SetSelectedGameObject(firstGameObjectMusic);
+
+    }
+    public void FirstGameGameObjectMusicToMenu()
+    {
+        EventSystem.current.SetSelectedGameObject(firstGameObjectMusicToMenu);
+
+    }
+    public void FirstGameGameObjectRanking()
+    {
+        EventSystem.current.SetSelectedGameObject(firstGameObjectRanking);
+
+    }
+    public void FirstGameGameObjectRestart()
+    {
+        EventSystem.current.SetSelectedGameObject(restartButtonFirstObject);
+
+    }
+    
+
     public void EndRound() // Se llama cuando el jugador muere
     {
 
@@ -717,6 +741,7 @@ public class GameManager : MonoBehaviour
         {
             // Llamar al método PATATA si está en el Top 10
             nameInput.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(firstGameObjectRanking);
         }
 
         else

@@ -135,15 +135,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Proteger
         VFXManager.Instance.PlayEffect("HealthParticle", transform, Vector3.zero, Quaternion.Euler(-90f, 0f, 0f));
 
-<<<<<<< Updated upstream
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
-
-        int index = Mathf.Clamp(currentHealth - 1, 0, healthIndicators.Length - 1);
-        healthIndicators[index]?.GetComponent<Animator>()?.SetTrigger("UnBreak");
-=======
         UpdateHealthUI(); // Actualizar barra
->>>>>>> Stashed changes
     }
 
     public int GetHealth()

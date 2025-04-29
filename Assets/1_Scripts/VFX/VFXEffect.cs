@@ -29,15 +29,21 @@ public class VFXEffect : MonoBehaviour
 
     public VFXEffect GetInstance()
     {
+        if (this == null)
+        {
+            Debug.LogWarning("Tried to get instance from a destroyed VFXEffect.");
+            return null;
+        }
+
         if (usePooling && poolDictionary.TryGetValue(effectName, out var pool) && pool.Count > 0)
         {
             var instance = pool.Dequeue();
+            if (instance == null) return null;
+
             instance.gameObject.SetActive(true);
-            Debug.Log($"Instanciando desde el pool: {effectName}");
             return instance;
         }
 
-        Debug.Log($"Instanciando nuevo efecto: {effectName}");
         return Instantiate(this);
     }
 

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class VFXManager : MonoBehaviour
@@ -16,7 +16,8 @@ public class VFXManager : MonoBehaviour
 
             foreach (var effect in effects)
             {
-                effectDictionary.Add(effect.EffectName, effect);
+                effectDictionary.Add(effect.EffectName, Instantiate(effect)); // ✅ siempre instanciamos una copia
+                effectDictionary[effect.EffectName].gameObject.SetActive(false); // Para no dejarla visible
             }
         }
         else
@@ -27,10 +28,21 @@ public class VFXManager : MonoBehaviour
 
     public void PlayEffect(string effectName, Transform parent, Vector3 localPosition, Quaternion localRotation)
     {
-        if (effectDictionary.TryGetValue(effectName, out var effect))
+        if (effectDictionary == null)
         {
-            //Debug.Log($"Reproduciendo efecto: {effectName}");
+            Debug.LogError("VFXManager: effectDictionary is null. Did Awake() run");
+            return;
+        }
+
+        if (effectDictionary.TryGetValue(effectName, out var effect) && effect != null)
+        {
             var instance = effect.GetInstance();
+            if (instance == null)
+            {
+                Debug.LogWarning("VFXManager: effect '{effectName}' returned null instance.");
+                return;
+            }
+
             instance.transform.SetParent(parent);
             instance.transform.localPosition = localPosition;
             instance.transform.localRotation = localRotation;
@@ -38,7 +50,7 @@ public class VFXManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Effect {effectName} not found in dictionary!");
+            Debug.LogWarning("Effect '{effectName}' not found in dictionary!");
         }
     }
 

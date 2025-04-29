@@ -147,7 +147,7 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 268.0114, g: 12.025564, b: 0, a: 1}
+    - _FaceColor: {r: 8.574187, g: 0.93760246, b: 0, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
@@ -166,11 +166,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Grinched 5
+  m_Name: RankMat
   m_EditorClassIdentifier: 
-  hashCode: 144836653
+  hashCode: -2000196018
   material: {fileID: -1530772712865745639}
-  materialHashCode: -1865269523
+  materialHashCode: 300739502
   m_Version: 1.1.0
   m_SourceFontFileGUID: c98633f3820232b4da323905885a8b09
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: c98633f3820232b4da323905885a8b09,
