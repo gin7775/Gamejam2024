@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         // Destruir el proyectil después de X segundos
-        Destroy(this, projectileLifetime);
+        Destroy(this.gameObject, projectileLifetime);
     }
 
     public void OnTriggerEnter(Collider other)
