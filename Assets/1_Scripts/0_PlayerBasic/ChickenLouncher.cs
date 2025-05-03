@@ -197,7 +197,7 @@ public class ChickenLouncher : MonoBehaviour
     /// Requiere que previamente se haya creado un objeto de CurrentWeapon
     /// </summary>
     /// <param name="chickenNumber"></param>
-    private void RetrieveChicken(int chickenNumber)
+    public void RetrieveChicken(int chickenNumber)
     {
         anim.SetBool("Carrying", true);
         currentChickenType = chickenNumber;
@@ -259,7 +259,7 @@ public class ChickenLouncher : MonoBehaviour
     {
         if (ammoType == 0)
             HeadBut();
-        else if (ammoType >= 1 && ammoType <= 4)
+        else if (ammoType >= 1 && ammoType <= 4) //hay que hacer esto dinámico, porque cada vez que se añade un nuevo pollo hay que venir aquí a incrementar el límite máximo
             ChickenSwing();
     }
 

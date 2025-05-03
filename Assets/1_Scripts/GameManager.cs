@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
     // ---- Singleton ----
     public static GameManager Instance { get; private set; }
 
+    // Player
     [Header("Player")]
-    public GameObject player;                                                           // Player
+    public GameObject player; 
+    private ChickenLouncher launcher;
 
     // ---- Control de Oleadas ----
     [Header("Wave Control")]
@@ -106,7 +108,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //Debug.Log("INI - GAMEMANAGER - Start");
-
+        launcher = player.GetComponent<ChickenLouncher>();
         PopulateSpawnList(spawnParent); // Rellena la lista con los hijos
 
        
@@ -166,10 +168,25 @@ public class GameManager : MonoBehaviour
                     // Pausa de la animacion para dar efecto visual
                     StartCoroutine(FrameFreeze(0.03f));
 
-                    auxEnemy.PolloMansy();
-                    //Debug.Log(enemy.name);
+                    //SISTEMA DE MELEE EN PROGRESO
+                    //if (launcher.currentChickenType > 0) //Si el jugador ya tiene un pollo en la mano
+                    //{
+                    //    auxEnemy.PolloMansy();
+                    //}
+                    //else
+                    //{
+                    //    launcher.RetrieveChicken(auxEnemy.corpse.GetComponent<ChickenCorpse>().chickenType); //DIOS MIO LOS MALABARES PARA SACAR EL CHICKEN TYPE
+                    //}
+
+
+                    auxEnemy.PolloMansy(); //QUITAR CUANDO EL SISTEMA DE MELEE ESTE BIEN
                     EnemyDeath(enemy);
                     Destroy(enemy);
+
+                    //auxEnemy.PolloMansy();
+                    ////Debug.Log(enemy.name);
+                    //EnemyDeath(enemy);
+                    //Destroy(enemy);
                 }
             }
         }
