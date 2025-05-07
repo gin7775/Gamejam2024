@@ -349,8 +349,17 @@ public class ChickenLouncher : MonoBehaviour
 
             Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
+            // ← AÑADIR: Ignorar colisión con el jugador
+            Collider projectileCollider = projectile.GetComponent<Collider>();
+            Collider playerCollider = GetComponent<Collider>(); // suponiendo que este script está en el jugador
+
+            if (projectileCollider != null && playerCollider != null)
+                Physics.IgnoreCollision(projectileCollider, playerCollider);
+
+            // Final AÑADIDO
+
             if (currentChickenType == 2)
-                rb.AddForce(transform.forward * bigChickenImpulseForce, ForceMode.Impulse);
+                rb.AddForce(transform.forward * bigChickenImpulseForce, ForceMode.Impulse); //darle físicas al pollo bola
             else if (currentChickenType == 4)
                 rb.AddForce(transform.forward * proyectileForce * 1.5f);
             else
