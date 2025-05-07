@@ -13,7 +13,7 @@ public class ChickenLouncher : MonoBehaviour
     public int bigChickenImpulseForce = 10; // Impulso especial para el pollo grande
 
     [Header("Chicken Usage")]
-    [SerializeField] private int chickenCurrentUses = 0; // Uso actual del pollo
+    //[SerializeField] private int chickenCurrentUses = 0; // Uso actual del pollo
     [SerializeField] private int chickenMaxUses = 3; // Usos m�ximos permitidos
     [SerializeField] private Transform handPosition; // Posici�n donde aparece el pollo
     public List<GameObject> currentProjectile; // Proyectiles activos actualmente
@@ -159,7 +159,7 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
-    private void Shoot(int ammoType)
+    public void Shoot(int ammoType)
     {
         enableBoxCollider = false;
 
@@ -193,6 +193,22 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
+    public void ThrowCurrentChicken() //PRUEBA DE LANZAR CON TÁCTIL
+    {
+        // Solo si tienes un pollo en la mano
+        if (currentChickenType > 0)
+        {
+            // Desactivamos la animación de 'cargando'
+            anim.SetBool("Carrying", false);
+            // Disparamos la animación de lanzamiento
+            anim.SetTrigger("Throw");
+            // Sonido de coger/pichar pollo
+            musicManager.Play_FX_RecogerPollo();
+            // Lógica de instanciar el proyectil o ragdoll
+            Shoot(currentChickenType);
+        }
+    }
+
     /// <summary>
     /// Requiere que previamente se haya creado un objeto de CurrentWeapon
     /// </summary>
@@ -215,7 +231,7 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
-    private void ReplaceChickenWithNew(GameObject newChicken)
+    public void ReplaceChickenWithNew(GameObject newChicken)
     {
         // Destruimos el pollo actual que el jugador tiene en la mano (si existe)
         if (currentWeapon != null)

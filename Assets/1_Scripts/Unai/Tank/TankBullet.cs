@@ -24,7 +24,7 @@ public class TankBullet : MonoBehaviour
 
         else if(other.CompareTag("Enemy"))
         {
-            GameManager.Instance.ChickenEnemyTakeDamage(other.gameObject, damageToEnemies);
+            GameManager.Instance.ChickenEnemyTakeDamage(other.gameObject, damageToEnemies, false);
         }
 
     }

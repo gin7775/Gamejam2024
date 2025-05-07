@@ -66,7 +66,7 @@ public class ProjectileBig: MonoBehaviour
     private void DealDamage(GameObject objetive, int damage)
     {
         //objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
-        GameManager.Instance.ChickenEnemyTakeDamage(objetive, damage);
+        GameManager.Instance.ChickenEnemyTakeDamage(objetive, damage, false);
     }
 
    

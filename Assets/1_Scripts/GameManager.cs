@@ -49,12 +49,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject SmokeEffect;                                    // Efecto de humo al generar enemigo
     public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;    // Límites de generación
 
-    // ---- Temporales ----
-    [Header("Temporary Variables")]
-    [SerializeField] private int capSquadNormalChicken = 0;
-    [SerializeField] private int capSquadFastChicken = 0;
-    [SerializeField] private int capSquadBombChicken = 0;
-    [SerializeField] private int capSquadBigChicken = 0;
+    //// ---- Temporales ----
+    //[Header("Temporary Variables")]
+    //[SerializeField] private int capSquadNormalChicken = 0;
+    //[SerializeField] private int capSquadFastChicken = 0;
+    //[SerializeField] private int capSquadBombChicken = 0;
+    //[SerializeField] private int capSquadBigChicken = 0;
 
     // ---- Cantidad de Pollos ----
     [Header("Chicken Quantity")]
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void ChickenEnemyTakeDamage(GameObject enemy, int damage)
+    public void ChickenEnemyTakeDamage(GameObject enemy, int damage, bool melee)
     {
         //Debug.Log("INI - GAMEMANAGER - ChickenEnemyTakeDamage");
 
@@ -169,17 +169,26 @@ public class GameManager : MonoBehaviour
                     StartCoroutine(FrameFreeze(0.03f));
 
                     //SISTEMA DE MELEE EN PROGRESO
-                    //if (launcher.currentChickenType > 0) //Si el jugador ya tiene un pollo en la mano
-                    //{
-                    //    auxEnemy.PolloMansy();
-                    //}
-                    //else
-                    //{
-                    //    launcher.RetrieveChicken(auxEnemy.corpse.GetComponent<ChickenCorpse>().chickenType); //DIOS MIO LOS MALABARES PARA SACAR EL CHICKEN TYPE
-                    //}
+                     if (launcher.currentChickenType == 0 && melee) //Si ES a melee, y no tengo ningún pollo en la mano.
+                    {
+                        Debug.Log("A");
+                        //launcher.RetrieveChicken(auxEnemy.corpse.GetComponent<ChickenCorpse>().chickenType); //No se le coloca en la mano pero sí le llega
+                        launcher.ReplaceChickenWithNew(auxEnemy.corpse);
+                        //Hay que hacer que diferencie si el tiro ha sido melee o distancia y si ha sido a distancia no hacer nada
+                        Debug.Log("B");
+
+                    }
+
+                    else /*(launcher.currentChickenType > 0) //Si el jugador ya tiene un pollo en la mano //Si ES a melee PERO tengo un pollo en la mano, o si NO ES a melee, pero no tengo un pollo en la mano (porque lo acabo de lanzar)*/
+                    {
+                        Debug.Log("C");
+                        auxEnemy.PolloMansy();
+                        Debug.Log("D");
+                    }
+                    
 
 
-                    auxEnemy.PolloMansy(); //QUITAR CUANDO EL SISTEMA DE MELEE ESTE BIEN
+                    //auxEnemy.PolloMansy(); //QUITAR CUANDO EL SISTEMA DE MELEE ESTE BIEN
                     EnemyDeath(enemy);
                     Destroy(enemy);
 

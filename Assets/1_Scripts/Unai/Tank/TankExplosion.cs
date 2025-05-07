@@ -37,7 +37,7 @@ public class TankExplosion : MonoBehaviour
             {
                 if (go.CompareTag("Enemy"))
                 {
-                    GameManager.Instance.ChickenEnemyTakeDamage(go, damageToEnemies);
+                    GameManager.Instance.ChickenEnemyTakeDamage(go, damageToEnemies, false);
                 }
 
                 if (go.CompareTag("Player"))

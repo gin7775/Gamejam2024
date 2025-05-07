@@ -1,11 +1,13 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using UnityEngine.VFX;
 using MoreMountains.Feedbacks;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     [Header("Movimiento y Dash Settings")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float rotationSpeed = 100f;
@@ -46,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private bool isWalking = false;
 
-    [Header("F�sica")]
+    [Header("Física")]
     [SerializeField] public float gravity = 9.81f;
     private Vector3 velocity;
 
@@ -71,6 +73,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+
+
         if (!isDashing) Movement();
         ApplyGravity();
         Animations();

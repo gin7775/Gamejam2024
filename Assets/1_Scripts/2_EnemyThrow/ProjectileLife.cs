@@ -73,7 +73,7 @@ public class ProjectileLife : MonoBehaviour
     private void DealDamage(GameObject objetive, int damage)
     {
         //objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
-        GameManager.Instance.ChickenEnemyTakeDamage(objetive, damage);
+        GameManager.Instance.ChickenEnemyTakeDamage(objetive, damage, false);
     }
 
     public void Explosion()
@@ -88,7 +88,7 @@ public class ProjectileLife : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, chicken.transform.position) <= radius)
                 {
-                    GameManager.Instance.ChickenEnemyTakeDamage(chicken, 2);
+                    GameManager.Instance.ChickenEnemyTakeDamage(chicken, 2, false);
                 }
             }
 
