@@ -94,6 +94,9 @@ public class GameManager : MonoBehaviour
     public GameObject firstGameObjectMusicToMenu;
     public GameObject firstGameObjectRanking;
     public GameObject restartButtonFirstObject;
+    public bool isPhoneBuild = false;
+    public GameObject phoneControls;
+
     // Singleton pattern
     private void Awake()
     {
@@ -102,6 +105,11 @@ public class GameManager : MonoBehaviour
             Destroy(this);
 
         Instance = this;
+
+        if (isPhoneBuild)
+        {
+            phoneControls.SetActive(true);
+        }
     }
 
     // Start is called before the first frame update
