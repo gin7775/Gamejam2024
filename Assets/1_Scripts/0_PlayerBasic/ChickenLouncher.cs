@@ -7,14 +7,14 @@ public class ChickenLouncher : MonoBehaviour
 {
     [Header("Chicken Settings")]
     public int currentChickenType = 0; // Tipo de pollo seleccionado
-    [SerializeField] private GameObject[] proyectiles; // Prefabs de proyectiles de pollo
+    public GameObject[] proyectiles; // Prefabs de proyectiles de pollo
     [SerializeField] private GameObject[] ragdolls; // Prefabs de ragdolls de pollo
     [SerializeField] private float proyectileForce = 10; // Fuerza de los proyectiles
     public int bigChickenImpulseForce = 10; // Impulso especial para el pollo grande
 
     [Header("Chicken Usage")]
     //[SerializeField] private int chickenCurrentUses = 0; // Uso actual del pollo
-    [SerializeField] private int chickenMaxUses = 3; // Usos m�ximos permitidos
+    //[SerializeField] private int chickenMaxUses = 3; // Usos maximos permitidos
     [SerializeField] private Transform handPosition; // Posici�n donde aparece el pollo
     public List<GameObject> currentProjectile; // Proyectiles activos actualmente
     private GameObject currentWeapon; // Referencia al arma actual
@@ -31,7 +31,7 @@ public class ChickenLouncher : MonoBehaviour
     [Header("Detection Settings")]
     [SerializeField] private Collider[] chickensDetected; // Pollos detectados en el rango
     [SerializeField] private int pickUpRange = 5; // Rango de recogida de pollos
-    [SerializeField] private float comparativeDistance, currentDistance; // Distancias para la l�gica de recogida
+    [SerializeField] private float currentDistance; // Distancias para la logica de recogida
     [SerializeField] private GameObject selectedChicken; // Pollo seleccionado m�s cercano
 
     [Header("Music Manager")]
@@ -72,7 +72,6 @@ public class ChickenLouncher : MonoBehaviour
     private void Start()
     {
         musicManager = FindAnyObjectByType<MusicManager>();
-        comparativeDistance = 1000;
         anim = GetComponent<Animator>();
         playerHealth = GetComponent<PlayerHealth>();
     }
@@ -159,7 +158,7 @@ public class ChickenLouncher : MonoBehaviour
         }
     }
 
-    public void Shoot(int ammoType)
+    private void Shoot(int ammoType)
     {
         enableBoxCollider = false;
 
@@ -213,7 +212,7 @@ public class ChickenLouncher : MonoBehaviour
     /// Requiere que previamente se haya creado un objeto de CurrentWeapon
     /// </summary>
     /// <param name="chickenNumber"></param>
-    public void RetrieveChicken(int chickenNumber)
+    private void RetrieveChicken(int chickenNumber)
     {
         anim.SetBool("Carrying", true);
         currentChickenType = chickenNumber;
@@ -250,13 +249,18 @@ public class ChickenLouncher : MonoBehaviour
         RetrieveChicken(chickenType);
 
         // Destruimos el pollo en el suelo despues de que lo hayamos recogido
-        Destroy(newChicken);  // Este es el pollo del suelo
+        //  Destroy(newChicken);  // Este es el pollo del suelo
     }
 
+    /// <summary>
+    /// Limpia la lista de proyectiles
+    /// </summary>
     private void ClearProjectiles()
     {
         if (currentProjectile != null)
         {
+/*
+
             GameObject auxProjectile = currentProjectile[0];
             currentProjectile.Clear();
 
@@ -264,10 +268,17 @@ public class ChickenLouncher : MonoBehaviour
             {
                 Destroy(auxProjectile);
             }
+*/
+            // Destruir cada proyectil
+            foreach (var proj in currentProjectile)
+                if (proj != null)
+                    Destroy(proj);
+
+            // Vaciar la lista
+            currentProjectile.Clear();
         }
 
         currentWeapon = null;
-        //currentProjectile = new List<GameObject>();
         currentChickenType = 0;
     }
 
@@ -275,7 +286,7 @@ public class ChickenLouncher : MonoBehaviour
     {
         if (ammoType == 0)
             HeadBut();
-        else if (ammoType >= 1 && ammoType <= 4) //hay que hacer esto dinámico, porque cada vez que se añade un nuevo pollo hay que venir aquí a incrementar el límite máximo
+        else if (ammoType >= 1)
             ChickenSwing();
     }
 

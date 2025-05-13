@@ -15,7 +15,7 @@ public class SpawnerManager : MonoBehaviour
     public int capGenerator = 200;                                                      // Cap del Generador
 
     [Header("Enemy Spawning")]
-    [SerializeField] private float timeWave = 15f;                                      // Tiempo por oleada
+    //[SerializeField] private float timeWave = 15f;                                      // Tiempo por oleada
     [SerializeField] private List<ChickenConfig> chickensToSpawn;                       // Lista de enemigos con sus probabilidades
     [SerializeField] private List<ChickenConfigWave> chickensToSpawnWave;               // Enemigos por oleada y nivel
     [SerializeField] private Vector3 spawnPosition;                                     // Posición de spawn

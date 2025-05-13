@@ -9,7 +9,7 @@ public class ProjectileBig: MonoBehaviour
     [SerializeField] Collider[] colliders;
     [SerializeField] GameObject[] ragdolls;
 
-    private bool isCodeExecuting = false;
+    //private bool isCodeExecuting = false;
     public GameObject[] chickensToDie;
     public float radius = 5f;
 
@@ -48,10 +48,9 @@ public class ProjectileBig: MonoBehaviour
     IEnumerator SetRagdoll()
     {
         yield return new WaitForSeconds(0.5f);
+
         foreach(GameObject obj in ragdolls)
-        {
             obj.SetActive(true);
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -68,7 +67,5 @@ public class ProjectileBig: MonoBehaviour
         //objetive.GetComponent<ContenedorEnemigo1>().ReciveDamage(damage);
         GameManager.Instance.ChickenEnemyTakeDamage(objetive, damage, false);
     }
-
-   
 
 }

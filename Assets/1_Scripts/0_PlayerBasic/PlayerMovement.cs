@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ParticleSystem jumpEffect;
     [SerializeField] private float heightThreshold = 0.5f;
     private float lastGroundHeight = 0f;
-    private bool hasActivatedHeightEffect = false;
+    //private bool hasActivatedHeightEffect = false;
     private bool wasGrounded = true;
     private float groundContactDelay = 0.1f;
     private float lastGroundContactTime = 0f;

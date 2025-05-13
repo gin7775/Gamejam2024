@@ -10,6 +10,7 @@ using UnityEngine.EventSystems;
 using System.Linq;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using NUnit.Framework;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,14 +19,15 @@ public class GameManager : MonoBehaviour
 
     // Player
     [Header("Player")]
-    public GameObject player; 
-    private ChickenLouncher launcher;
+    public GameObject player;                                                           // Player
+    private ChickenLouncher launcher;                                                   // Launcher
+    [SerializeField] private GameObject chickenLife;                                    // Chicken Life
 
     // ---- Control de Oleadas ----
     [Header("Wave Control")]
     public int level = 1;                                                               // Nivel/Mapa
     [SerializeField] private float timeWave = 15;                                       // Tiempo por oleada
-    [SerializeField] private float timeGeneration = 15;                                 // Tiempo entre generación de enemigos
+    //[SerializeField] private float timeGeneration = 15;                                 // Tiempo entre generación de enemigos
     public int enemyNumber = 0;                                                         // Número total de enemigos en la ronda
     public int enemyInitial = 5;                                                        // Número de enemigos por oleada inicial
     public int enemyCount = 0;                                                          // Número de enemigos que quedan en la ronda
@@ -49,7 +51,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject SmokeEffect;                                    // Efecto de humo al generar enemigo
     public float limiteXNegativo, LimiteXPositivo, limiteZNegativo, LimiteZPositivo;    // Límites de generación
 
-    //// ---- Temporales ----
+    // ---- Temporales ----
     //[Header("Temporary Variables")]
     //[SerializeField] private int capSquadNormalChicken = 0;
     //[SerializeField] private int capSquadFastChicken = 0;
@@ -119,8 +121,7 @@ public class GameManager : MonoBehaviour
         launcher = player.GetComponent<ChickenLouncher>();
         PopulateSpawnList(spawnParent); // Rellena la lista con los hijos
 
-       
-        timeGeneration = 3f;
+        //timeGeneration = 3f;
         timeWave = 6f;
         enemyInitial = 5;
         enemyNumber = 0;
@@ -128,6 +129,8 @@ public class GameManager : MonoBehaviour
         score = 0;
         totalWaveChicken = 0;
         UpdateWave();
+        // Arrancamos la corutina UNA sola vez al iniciar el juego (o al habilitar el componente)
+        StartCoroutine(ImprimirListasCada5Segundos());
         //Debug.Log("FIN - GAMEMANAGER - Start");
     }
 
@@ -146,7 +149,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void ChickenEnemyTakeDamage(GameObject enemy, int damage, bool melee)
     {
         //Debug.Log("INI - GAMEMANAGER - ChickenEnemyTakeDamage");
@@ -164,11 +166,9 @@ public class GameManager : MonoBehaviour
 
                 if (auxEnemy.lifes <= 0)
                 {
-
-
                     // Generar efecto de camara (impulso)
-                   // cinemachineImpulseSource = enemy.GetComponent<CinemachineImpulseSource>();
-                    //cinemachineImpulseSource.GenerateImpulse();
+                    // cinemachineImpulseSource = enemy.GetComponent<CinemachineImpulseSource>();
+                    // cinemachineImpulseSource.GenerateImpulse();
 
                     // Instanciar efectos visuales de impacto y muerte
                     Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
@@ -179,31 +179,24 @@ public class GameManager : MonoBehaviour
                     //SISTEMA DE MELEE EN PROGRESO
                      if (launcher.currentChickenType == 0 && melee) //Si ES a melee, y no tengo ningún pollo en la mano.
                     {
-                        Debug.Log("A");
                         //launcher.RetrieveChicken(auxEnemy.corpse.GetComponent<ChickenCorpse>().chickenType); //No se le coloca en la mano pero sí le llega
                         launcher.ReplaceChickenWithNew(auxEnemy.corpse);
                         //Hay que hacer que diferencie si el tiro ha sido melee o distancia y si ha sido a distancia no hacer nada
-                        Debug.Log("B");
-
                     }
 
                     else /*(launcher.currentChickenType > 0) //Si el jugador ya tiene un pollo en la mano //Si ES a melee PERO tengo un pollo en la mano, o si NO ES a melee, pero no tengo un pollo en la mano (porque lo acabo de lanzar)*/
                     {
-                        Debug.Log("C");
                         auxEnemy.PolloMansy();
-                        Debug.Log("D");
                     }
-                    
-
 
                     //auxEnemy.PolloMansy(); //QUITAR CUANDO EL SISTEMA DE MELEE ESTE BIEN
                     EnemyDeath(enemy);
                     Destroy(enemy);
 
-                    //auxEnemy.PolloMansy();
-                    ////Debug.Log(enemy.name);
-                    //EnemyDeath(enemy);
-                    //Destroy(enemy);
+                    // auxEnemy.PolloMansy();
+                    // Debug.Log(enemy.name);
+                    // EnemyDeath(enemy);
+                    // Destroy(enemy);
                 }
             }
         }
@@ -219,16 +212,7 @@ public class GameManager : MonoBehaviour
         //AUDIO: Ver si funciona en lso enemigos sino, se pone aqui
         musicManager.Play_FX_ExplosionPollo();
 
-        /*
-        enemyCount--;
-
-        if (enemyCount <= 0 && score == numMaxWave1 || enemyCount <= 0 && score == numMaxWave2 || enemyCount <= 0 && score == numMaxWave3 || enemyCount <= 0 && siguiente)
-        {
-            UpdateWave();
-        }
-        */
         // Actualizar puntaje de la oleada actual
-
         if (!enemy.name.Contains("Heal"))
         {
             KillCountChicken(enemy.name);
@@ -250,21 +234,26 @@ public class GameManager : MonoBehaviour
         */
 
         foreach (ChickenCount count in killChickenCount)
-        {
             auxCount += count.quantity;
-        }
 
-        if (isNeededHeal + 30 <= auxCount && player.GetComponent<PlayerHealth>().GetHealth() < 3)
+        if (isNeededHeal + 60 <= auxCount && player.GetComponent<PlayerHealth>().GetHealth() < 3 && chickenLife == null)
         {
-            Instantiate(chickenHeal.chickenPrefab, GetRandomAreaSpawn(), Quaternion.identity);
+            chickenLife = Instantiate(chickenHeal.chickenPrefab, GetRandomAreaSpawn(), Quaternion.identity);
             isNeededHeal = auxCount;
         }
 
-        // Si ya no quedan enemigos, actualizar la oleada
-        if (enemyCount <= 0 && currentWaveScore >= totalWaveChicken)
+        Debug.Log($"Enemy Count: {enemyCount} | List Enemies: {listEnemies.Count} | Difficult Points: {dificultPoints}");
+
+        if (enemyCount <= 0 && dificultPoints <= 0)
         {
-            UpdateWave();
+            // Lanza UpdateWave() pasados 5 segundos
+            // Sólo si no lo tienes ya pendiente
+            if (!IsInvoking(nameof(UpdateWave)))
+                Invoke(nameof(UpdateWave), 5f);
         }
+        // Si ya no quedan enemigos, actualizar la oleada
+        if (enemyCount <= 0 && dificultPoints <= 0)
+            UpdateWave();
 
         //Debug.Log("FIN - GAMEMANAGER - enemyDeath");
     }
@@ -289,7 +278,7 @@ public class GameManager : MonoBehaviour
         // Restablecer el puntaje de la oleada actual
         totalWaveChicken = 0;
         currentWaveScore = 0;
-        // Por el momento no se reiniciarï¿½n los contadores
+        // Por el momento no se reiniciarian los contadores
         //instanciateChickenCount = new List<ChickenCount>();
         //killChickenCount = new List<ChickenCount>();
 
@@ -300,15 +289,6 @@ public class GameManager : MonoBehaviour
 
             // Obtenemos la dificultad en base a la oleada actual
             dificultPoints = WaveManager.Instance.GetDifficultyPointsByWave(level, waveCurrent);
-
-            // Aumentar progresivamente la cantidad de enemigos a generar
-            // int enemiesToSpawn = Mathf.FloorToInt(enemyInitial * Mathf.Pow(1.2f, waveCurrent)); // Aumenta un 20% cada
-
-            // Calcula el total de enemigos
-            // totalWaveChicken = dificultPoints;
-
-            // Reducir el tiempo entre generacion de enemigos para hacer el juego mas desafiante
-            // timeGeneration = Mathf.Max(0.5f, 3f - (0.1f * waveCurrent)); // El tiempo se reduce gradualmente hasta un minimo de 0.5 segundos
 
             StartCoroutine(StartWave());
         }
@@ -326,35 +306,15 @@ public class GameManager : MonoBehaviour
         // musicManager.FX_ActivarCorutina((waveCurrent - 1) < 0 ? 0 : waveCurrent - 1, waveCurrent);
         musicManager.FX_ActivarCorutina();
 
-
         yield return new WaitForSeconds(timeWave - 2f);
 
         if (canvasAnimator != null)
-        {
             canvasAnimator.SetTrigger("Change");
-        }
 
         yield return new WaitForSeconds(2f);
         canvasRound.gameObject.SetActive(false);
 
-        /*if (dificultPoints <= 50)
-            
-            InstanceChicken();
-        else
-        {
-            // Iniciar la oleada con la cantidad de enemigos escalada
-            float randomNumber = Random.Range(0, 100);
-
-            if (randomNumber <= 50)
-                // Instantaneo 75%, entre Squads y Alone
-                InstanceChicken();
-            else
-                // Cada 3 segundos, entre Squads y Alone
-                InstanceChicken();
-        }*/
-
         InstanceChicken();
-        //WaveManager.Instance.GenerateChickenSquad();
         //Debug.Log("FIN - GAMEMANAGER - startWave");
     }
 
@@ -368,9 +328,6 @@ public class GameManager : MonoBehaviour
         int auxCapGenerator = capGenerator;
         ChickenSpawnService aux = new(chikenToSpawn, chikenToSpawnWave);
 
-        //if (waveCurrent > 7)
-        //    auxCapGenerator = capGenerator / 2;
-
         for (int i = 0; i < auxCapGenerator; i++)
         {
             float randomNumber = Random.Range(0, 100);
@@ -381,25 +338,12 @@ public class GameManager : MonoBehaviour
                 ChikenAloneGenerator();
         }
 
-        // Instantaneo si el total es menor de 50, entre Squads y Alone
-        /*if (dificultPoints <= 50)
-        {
-            while (dificultPoints > 0)
-            {
-                ChikenAloneGenerator();
-            }
-        }
-        else
-        {*/
-        //do
-        //{
-        for (int i = 0; i < 1; i++)
+        while (dificultPoints >= 0)
         {
             // Calcular un nuevo randomNumber para decidir entre las dos ultimas condiciones
             float randomNumber = Random.Range(0, 100);
 
             // Si ya hay el limite de enemigos en pantalla, esperar hasta que baje
-            /*if (enemyCount >= capGenerator)*/
             if (randomNumber <= 50)
                 yield return new WaitUntil(() => enemyCount <= (capGenerator * 0.25f));
             else
@@ -411,12 +355,7 @@ public class GameManager : MonoBehaviour
             else
                 // Generar cada 3 segundos hasta alcanzar el capGenerator
                 yield return StartCoroutine(GenerateEnemiesOverTime());
-
-            // Actualizar dificultad, reducimos el difficultyLevel segun los enemigos generados
-            // dificultPoints -= Mathf.Min(capGenerator, totalWaveChicken - enemyCount);
         }
-        //} while (dificultPoints > 0);
-        /*}*/
     }
 
     private IEnumerator GenerateInstantEnemies()
@@ -460,9 +399,6 @@ public class GameManager : MonoBehaviour
                 i += SpawnChickenSquad(aux.SelectChickenBasedOnProb(level, waveCurrent), ref dificultPoints) - 1;
             else
                 ChikenAloneGenerator();
-            //enemyCount++;
-            //dificultPoints--;
-            //remainingEnemies--;
 
             yield return new WaitForSeconds(2f); // Esperar 3 segundos entre generaciones
 
@@ -544,15 +480,11 @@ public class GameManager : MonoBehaviour
         ChickenCount existingChicken = array.FirstOrDefault(c => c.typeName == enemyType);
 
         if (existingChicken != null)
-        {
             // Si ya existe, incrementa la cantidad
             existingChicken.quantity++;
-        }
         else
-        {
             // Si no existe, crea uno nuevo y lo agrega a la lista
             array.Add(new ChickenCount(enemyType));
-        }
     }
 
     // Metodo para ajustar las probabilidades de los pollos en el array chikenToSpawn
@@ -561,9 +493,7 @@ public class GameManager : MonoBehaviour
         // Sumar todas las probabilidades actuales
         float totalProbability = 0;
         foreach (ChickenConfig chicken in chikenToSpawns)
-        {
             totalProbability += chicken.probability;
-        }
 
         // Si la suma de probabilidades es 0, evitar la division por 0
         if (totalProbability == 0)
@@ -574,9 +504,7 @@ public class GameManager : MonoBehaviour
 
         // Ajustar cada probabilidad para que sumen 100%
         foreach (ChickenConfig chicken in chikenToSpawns)
-        {
             chicken.probability = ((chicken.probability / totalProbability) * 100);
-        }
 
         //Debug.Log("Probabilidades ajustadas correctamente para que sumen 100%.");
     }
@@ -617,32 +545,37 @@ public class GameManager : MonoBehaviour
     // Metodo para obtener una posicion aleatoria del array
     private Vector3 GetRandomSpawnPosition()
     {
-        // Posicion del jugador
-        Vector3 playerPosition = player.transform.position;
-
-        // Crear una lista de posiciones de spawn y su distancia al jugador
-        List<(Vector3 position, float distance)> spawnDistances = new List<(Vector3, float)>();
-
-        // Rellenar la lista con las posiciones de spawn y calcular sus distancias al jugador
-        foreach (var spawnPosition in listSpawns)
+        if (player != null)
         {
-            float distance = Vector3.Distance(playerPosition, spawnPosition.transform.position);
-            spawnDistances.Add((spawnPosition.transform.position, distance));
+            // Posicion del jugador
+            Vector3 playerPosition = player.transform.position;
+
+            // Crear una lista de posiciones de spawn y su distancia al jugador
+            List<(Vector3 position, float distance)> spawnDistances = new List<(Vector3, float)>();
+
+            // Rellenar la lista con las posiciones de spawn y calcular sus distancias al jugador
+            foreach (var spawnPosition in listSpawns)
+            {
+                float distance = Vector3.Distance(playerPosition, spawnPosition.transform.position);
+                spawnDistances.Add((spawnPosition.transform.position, distance));
+            }
+
+            // Ordenar la lista por distancia al jugador
+            spawnDistances.Sort((a, b) => a.distance.CompareTo(b.distance));
+
+            // Quitar la posicion mas cercana y la mas lejana, si hay mas de dos elementos
+            if (spawnDistances.Count > 2)
+            {
+                spawnDistances.RemoveAt(0); // Eliminar la posicion mas cercana
+                spawnDistances.RemoveAt(spawnDistances.Count - 1); // Eliminar la posicion mas lejana
+            }
+
+            // Elegir una posicion aleatoria entre las posiciones restantes
+            int randomIndex = Random.Range(0, spawnDistances.Count);
+            return spawnDistances[randomIndex].position;
         }
 
-        // Ordenar la lista por distancia al jugador
-        spawnDistances.Sort((a, b) => a.distance.CompareTo(b.distance));
-
-        // Quitar la posicion mas cercana y la mas lejana, si hay mas de dos elementos
-        if (spawnDistances.Count > 2)
-        {
-            spawnDistances.RemoveAt(0); // Eliminar la posicion mas cercana
-            spawnDistances.RemoveAt(spawnDistances.Count - 1); // Eliminar la posicion mas lejana
-        }
-
-        // Elegir una posicion aleatoria entre las posiciones restantes
-        int randomIndex = Random.Range(0, spawnDistances.Count);
-        return spawnDistances[randomIndex].position;
+        return new Vector3();
     }
 
     private IEnumerator FrameFreeze(float duration)
@@ -652,6 +585,23 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(duration);
 
         Time.timeScale = 1f;
+    }
+
+    private IEnumerator ImprimirListasCada5Segundos()
+    {
+        while (true)
+        {
+            LimpiarNulos();
+            yield return new WaitForSeconds(5f);
+        }
+    }
+
+    // Llama a esto justo antes de usar / pintar las listas
+    private void LimpiarNulos()
+    {
+        // Elimina todos los elementos que sean null (o hayan sido destruidos)
+        listEnemies.RemoveAll(go => go == null);
+        listCorpses.RemoveAll(go => go == null);
     }
 
     public void ActivarFXMuerte()
@@ -764,7 +714,6 @@ public class GameManager : MonoBehaviour
 
     public void EndRound() // Se llama cuando el jugador muere
     {
-
         // Obtener la puntuación final
         int finalScore = score;
 
@@ -781,11 +730,8 @@ public class GameManager : MonoBehaviour
         else
         {
             highscore.SetActive(true);
-            restartMenu.gameObject.SetActive(true);
-
+            restartMenu.SetActive(true);
         }
-
-
     }
 
 }

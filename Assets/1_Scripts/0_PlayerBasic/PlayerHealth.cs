@@ -147,7 +147,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (healthBarImage != null)
         {
-            healthBarImage.fillAmount = (float)currentHealth / maxHealth;
+            healthBarImage.fillAmount = (float) currentHealth / maxHealth;
         }
     }
 
