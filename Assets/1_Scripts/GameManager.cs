@@ -99,6 +99,12 @@ public class GameManager : MonoBehaviour
     public bool isPhoneBuild = false;
     public GameObject phoneControls;
 
+    // ---- VFX ----
+    [Header("VFX")]
+    [SerializeField] private TextMeshPro scoreText;
+    [SerializeField] private GameObject floatingScorePrefab;
+
+
     // Singleton pattern
     private void Awake()
     {
@@ -215,7 +221,7 @@ public class GameManager : MonoBehaviour
         // Actualizar puntaje de la oleada actual
         if (!enemy.name.Contains("Heal"))
         {
-            KillCountChicken(enemy.name);
+            KillCountChicken(enemy.name, enemy);
             enemyCount--;
         }
 
@@ -459,7 +465,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Metodo para contar el puntaje de un enemigo eliminado
-    private void KillCountChicken(string name)
+    private void KillCountChicken(string name, GameObject enemy)
     {
         // Extraer el tipo de enemigo desde el nombre
         string enemyType = GetEnemyTypeFromName(name);
@@ -467,6 +473,25 @@ public class GameManager : MonoBehaviour
 
         // Buscar en la lista chikenToSpawn la configuracion que coincide con el tipo de enemigo
         int scoreIncrement = chikenToSpawn.FirstOrDefault(c => c.chickenPrefab.name.Contains(enemyType))?.difficultyScore ?? 1;
+
+        //AÑADIR AQUÍ EL VFX DE LA PUNTUACIÓN
+
+        // Mostrar puntuación flotante en el mundo
+        if (floatingScorePrefab != null)
+        {
+            Vector3 spawnPos = enemy.transform.position + Vector3.up * 2f;
+            GameObject scoreObj = Instantiate(floatingScorePrefab, spawnPos, Quaternion.identity);
+            VFX_Score fs = scoreObj.GetComponent<VFX_Score>();
+            if (fs != null)
+                fs.SetText(scoreIncrement.ToString());
+
+            //Escalado dependiendo del tamaño
+            float t = Mathf.InverseLerp(1f, 10f, scoreIncrement);
+            float scaleFactor = Mathf.Lerp(1f, 1.5f, t);
+            scoreObj.transform.localScale = Vector3.one * scaleFactor;
+
+        }
+
 
         // Sumar al puntaje
         currentWaveScore += scoreIncrement;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 500891738}
-  m_IndirectSpecularColor: {r: 0.14758761, g: 0.36533707, b: 0.58205324, a: 1}
+  m_IndirectSpecularColor: {r: 0.14823262, g: 0.36610243, b: 0.57858104, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -774,6 +774,12 @@ PrefabInstance:
       objectReference: {fileID: 6739374472765683570}
     - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 6780120778821488074, guid: 415550b1f9a68e04b89ec49931c7093a,
+        type: 3}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
       propertyPath: musicSlider
       value: 
       objectReference: {fileID: 0}
@@ -789,9 +795,20 @@ PrefabInstance:
       objectReference: {fileID: 1741230916}
     - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
+      propertyPath: isPhoneBuild
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
       propertyPath: firstGameObjectMenu
       value: 
       objectReference: {fileID: 7780705361805439759}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: floatingScorePrefab
+      value: 
+      objectReference: {fileID: 357384219860041671, guid: 415550b1f9a68e04b89ec49931c7093a,
+        type: 3}
     - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: firstGameObjectMusic
@@ -1327,6 +1344,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3464805631845149179, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -121.364136
       objectReference: {fileID: 0}
     - target: {fileID: 3480827822376033633, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
@@ -19304,7 +19326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -121.36426, y: 17.523682}
+  m_AnchoredPosition: {x: -121.364136, y: 17.523682}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1353914013
@@ -19419,7 +19441,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-3278
+  m_Name: pb_Mesh-2056
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
