@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 500891738}
-  m_IndirectSpecularColor: {r: 0.14823262, g: 0.36610243, b: 0.57858104, a: 1}
+  m_IndirectSpecularColor: {r: 0.14758761, g: 0.36533707, b: 0.58205324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -321,6 +321,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38608589}
   m_CullTransparentMesh: 1
+--- !u!1001 &42198749
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7062845070779954322, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_Name
+      value: Pfb_PolloRagdog_Big
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.902359
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5055866
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -18.331726
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588447205787528744, guid: 35efb8904c4d70b4494b56c310651763,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 35efb8904c4d70b4494b56c310651763, type: 3}
 --- !u!1 &45871576
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +951,7 @@ PrefabInstance:
         type: 3}
       propertyPath: transitionTheme
       value: 
-      objectReference: {fileID: 8300000, guid: 4813bf9ca5e694042bb5e89831120dfc, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1186868204803894502, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: comenzarOleadaFX
@@ -1445,6 +1513,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4212826611322595917, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: 'proyectiles.Array.data[1]'
+      value: 
+      objectReference: {fileID: 5726442130947395659, guid: 4e23054ac11aaba449958792ff34bb0f,
+        type: 3}
     - target: {fileID: 4244761417952015820, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_fontSize
@@ -19441,7 +19515,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2056
+  m_Name: pb_Mesh84238
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -61132,3 +61206,4 @@ SceneRoots:
   - {fileID: 3605645656135846093}
   - {fileID: 493327655}
   - {fileID: 341532168}
+  - {fileID: 42198749}

@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598965ff792de4349be1091bad9f9aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drag: 0.8
-  angularDrag: 0.8
+  drag: 1
+  angularDrag: 0.6
 --- !u!114 &3865631623878404960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faeb95bb30d52d4dbbc6790c830af9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 3
+  Life: 2
   effectLife: 3
   colliders: []
   ragdolls: []

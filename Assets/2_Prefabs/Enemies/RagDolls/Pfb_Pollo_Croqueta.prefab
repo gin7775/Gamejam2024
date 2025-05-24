@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 3bb9ab89471dce2489f5867dd7c249bc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -16.59
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3bb9ab89471dce2489f5867dd7c249bc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3bb9ab89471dce2489f5867dd7c249bc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -22.732841
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3bb9ab89471dce2489f5867dd7c249bc,
         type: 3}
@@ -58,51 +58,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7812131735297401538, guid: 3bb9ab89471dce2489f5867dd7c249bc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.84814805
-      objectReference: {fileID: 0}
-    - target: {fileID: -7812131735297401538, guid: 3bb9ab89471dce2489f5867dd7c249bc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.53750086
-      objectReference: {fileID: 0}
-    - target: {fileID: -7812131735297401538, guid: 3bb9ab89471dce2489f5867dd7c249bc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.5405297
-      objectReference: {fileID: 0}
-    - target: {fileID: -5256707155214662199, guid: 3bb9ab89471dce2489f5867dd7c249bc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.8112428
-      objectReference: {fileID: 0}
-    - target: {fileID: -5256707155214662199, guid: 3bb9ab89471dce2489f5867dd7c249bc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.537501
-      objectReference: {fileID: 0}
-    - target: {fileID: -5256707155214662199, guid: 3bb9ab89471dce2489f5867dd7c249bc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.5405297
-      objectReference: {fileID: 0}
-    - target: {fileID: -2403044985451716273, guid: 3bb9ab89471dce2489f5867dd7c249bc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0052622785
-      objectReference: {fileID: 0}
-    - target: {fileID: -2403044985451716273, guid: 3bb9ab89471dce2489f5867dd7c249bc,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -2403044985451716273, guid: 3bb9ab89471dce2489f5867dd7c249bc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.5
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3bb9ab89471dce2489f5867dd7c249bc,
         type: 3}
       propertyPath: m_Name
@@ -120,7 +75,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3bb9ab89471dce2489f5867dd7c249bc,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7171957712540684626}
+      addedObject: {fileID: 768886351640766455}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3bb9ab89471dce2489f5867dd7c249bc,
         type: 3}
       insertIndex: -1
@@ -144,7 +99,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4879932868823772442}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &7171957712540684626
+--- !u!135 &768886351640766455
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +118,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.6
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &3040517275910026303
 SphereCollider:
@@ -184,7 +139,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.65
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3702699466735199752
 MonoBehaviour:
@@ -198,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598965ff792de4349be1091bad9f9aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drag: 1
-  angularDrag: 0.1
+  drag: 0.8
+  angularDrag: 0.8
 --- !u!114 &2521421559907193888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faeb95bb30d52d4dbbc6790c830af9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Life: 2
+  Life: 3
   effectLife: 3
   colliders: []
   ragdolls: []

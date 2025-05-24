@@ -485,10 +485,10 @@ public class GameManager : MonoBehaviour
             if (fs != null)
                 fs.SetText(scoreIncrement.ToString());
 
-            //Escalado dependiendo del tamaño
-            float t = Mathf.InverseLerp(1f, 10f, scoreIncrement);
-            float scaleFactor = Mathf.Lerp(1f, 1.5f, t);
-            scoreObj.transform.localScale = Vector3.one * scaleFactor;
+            ////Escalado dependiendo del tamaño
+            //float t = Mathf.InverseLerp(1f, 10f, scoreIncrement);
+            //float scaleFactor = Mathf.Lerp(1f, 1.5f, t);
+            //scoreObj.transform.localScale = Vector3.one * scaleFactor;
 
         }
 
