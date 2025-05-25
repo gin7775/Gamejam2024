@@ -4,54 +4,74 @@ using UnityEngine;
 
 public class ProjectileBig: MonoBehaviour
 {
-    [SerializeField] int Life = 5;
-    [SerializeField] int effectLife = 2;
-    [SerializeField] Collider[] colliders;
-    [SerializeField] GameObject[] ragdolls;
 
-    //private bool isCodeExecuting = false;
-    public GameObject[] chickensToDie;
-    public float radius = 5f;
+    [Header("Duración de la vida del objeto")]
+    [SerializeField] private float lifeTime = 5f;
 
-    void Start()
+    [Header("Configuración de daño")]
+    [SerializeField] private int effectLife = 2;
+    [SerializeField] private Collider[] colliders;
+    [SerializeField] private GameObject[] ragdolls;
+
+    // … resto de tus campos …
+
+    private void Start()
     {
-        SetObjectLifeTime();
-        StartCoroutine(SetRagdoll());
+        // Destruye este GameObject automáticamente pasados lifeTime segundos
+        Destroy(gameObject, lifeTime);
     }
 
-    void SetObjectLifeTime()
-    {
-        StartCoroutine(ObjectEffectLife());
-    }
 
-    IEnumerator ObjectEffectLife()
-    {
-        yield return new WaitForSeconds(effectLife);
+    //[SerializeField] int Life = 5;
+    //[SerializeField] int effectLife = 2;
+    //[SerializeField] Collider[] colliders;
+    //[SerializeField] GameObject[] ragdolls;
 
-        if(colliders != null)
-        {
-            foreach(Collider col in colliders)
-            {
-                col.enabled = false;
-            }
-        }
+    ////private bool isCodeExecuting = false;
+    //public GameObject[] chickensToDie;
+    //public float radius = 5f;
 
-        StartCoroutine(ObjectLife());
-    }
 
-    IEnumerator ObjectLife()
-    {
-        yield return new WaitForSeconds(Life);
-        Destroy(gameObject);
-    }
 
-    IEnumerator SetRagdoll()
-    {
-        yield return new WaitForSeconds(0.5f);
+    //void Start()
+    //{
+    //    SetObjectLifeTime();
+    //    StartCoroutine(SetRagdoll());
+    //}
 
-        foreach(GameObject obj in ragdolls)
-            obj.SetActive(true);
-    }
+    //void SetObjectLifeTime()
+    //{
+    //    StartCoroutine(ObjectEffectLife());
+    //}
+
+    //IEnumerator ObjectEffectLife()
+    //{
+    //    yield return new WaitForSeconds(effectLife);
+
+    //    if(colliders != null)
+    //    {
+    //        foreach(Collider col in colliders)
+    //        {
+    //            col.enabled = false;
+    //        }
+    //    }
+
+    //    StartCoroutine(ObjectLife());
+    //}
+
+    //IEnumerator ObjectLife()
+    //{
+    //    yield return new WaitForSeconds(Life);
+    //    Destroy(gameObject);
+    //}
+
+    //IEnumerator SetRagdoll()
+    //{
+    //    yield return new WaitForSeconds(0.5f);
+
+    //    foreach(GameObject obj in ragdolls)
+    //        obj.SetActive(true);
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
