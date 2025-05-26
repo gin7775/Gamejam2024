@@ -46,7 +46,7 @@ public class InputDetector : MonoBehaviour
             (c is ButtonControl btn && btn.isPressed)))
         {
             currentDevice = DeviceType.Gamepad;
-            Debug.Log("Mando");
+            //Debug.Log("Mando");
             ControllerUI();
 
             return;

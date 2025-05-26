@@ -1,42 +1,74 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class NameInputManager : MonoBehaviour
 {
-    public GameObject nameInputPanel;        // Panel que pide el nombre
-    public TMP_InputField nameInputField;    // Campo de texto para el nombre
-    public Button submitButton;              // Botón de confirmar
-    public HighscoreTable highscoreTable;
-    public GameObject highscore;
+    public GameObject nameInputPanel;
+    public TMP_InputField nameInputField;
+    public Button submitButton;
+    public GameObject fallbackButton; // Primer botÃ³n a seleccionar al salir del input
     public GameObject RetryButton;
+    public GameObject highscore;
+    public GameObject firstGameObjectRanking;
 
+    public HighscoreTable highscoreTable;
     private GameManager gameManager;
-
+    private bool panelActivo = false;
 
     private void Start()
     {
-        // Asegurarse de que el panel esté oculto al inicio
         nameInputPanel.SetActive(false);
         gameManager = FindAnyObjectByType<GameManager>();
-        // Añadir listener al botón de confirmar
         submitButton.onClick.AddListener(SubmitName);
     }
 
     public void ShowNameInput()
     {
+        panelActivo = true;
         nameInputPanel.SetActive(true);
-        nameInputField.text = ""; // Limpiar el campo de texto
-        nameInputField.ActivateInputField(); // Activar el campo de texto
+        nameInputField.text = "";
+
+        // Activar input directamente
+        nameInputField.ActivateInputField();
+        EventSystem.current.SetSelectedGameObject(nameInputField.gameObject);
     }
 
     private void Update()
     {
-        // Detectar la tecla Enter para confirmar la entrada
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        if (!panelActivo) return;
+
+        // Confirmar nombre con Enter o botÃ³n A
+        if ((Keyboard.current?.enterKey.wasPressedThisFrame ?? false) ||
+            (Gamepad.current?.buttonSouth.wasPressedThisFrame ?? false)) // botÃ³n A
         {
             SubmitName();
+        }
+
+        // Si el jugador estÃ¡ escribiendo pero pulsa una flecha/joystick para navegar, salir del campo
+        if (nameInputField.isFocused)
+        {
+            if (
+                (Keyboard.current?.downArrowKey.wasPressedThisFrame ?? false) ||
+                (Keyboard.current?.upArrowKey.wasPressedThisFrame ?? false) ||
+                (Keyboard.current?.leftArrowKey.wasPressedThisFrame ?? false) ||
+                (Keyboard.current?.rightArrowKey.wasPressedThisFrame ?? false) ||
+                (Gamepad.current?.dpad.down.wasPressedThisFrame ?? false) ||
+                (Gamepad.current?.dpad.up.wasPressedThisFrame ?? false) ||
+                (Gamepad.current?.dpad.left.wasPressedThisFrame ?? false) ||
+                (Gamepad.current?.dpad.right.wasPressedThisFrame ?? false) ||
+                (Gamepad.current?.leftStick.down.wasPressedThisFrame ?? false) ||
+                (Gamepad.current?.leftStick.up.wasPressedThisFrame ?? false) ||
+                (Gamepad.current?.leftStick.left.wasPressedThisFrame ?? false) ||
+                (Gamepad.current?.leftStick.right.wasPressedThisFrame ?? false)
+               )
+            {
+                nameInputField.DeactivateInputField(); // salir del input
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(fallbackButton); // pasar a navegaciÃ³n
+            }
         }
     }
 
@@ -44,18 +76,17 @@ public class NameInputManager : MonoBehaviour
     {
         string playerName = nameInputField.text;
 
-        // Validar el nombre (mínimo 1 carácter)
         if (playerName.Length > 0)
         {
-
             highscore.SetActive(true);
-            // Añadir la puntuación a la tabla de puntuaciones
             highscoreTable.CheckAndAddHighscore(gameManager.score, playerName);
             highscoreTable.RefreshHighscoreTable();
-            RetryButton.gameObject.SetActive(true);
 
-            // Ocultar el panel de entrada de nombre
+            RetryButton.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(firstGameObjectRanking);
+
             nameInputPanel.SetActive(false);
+            panelActivo = false;
         }
     }
 }

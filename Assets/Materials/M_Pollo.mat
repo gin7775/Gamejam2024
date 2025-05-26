@@ -273,7 +273,7 @@ Material:
     - _AutoRenderQueue: 1
     - _BaseColorOverridden: 0
     - _BaseColorVisible: 1
-    - _BaseColor_Step: 0.5
+    - _BaseColor_Step: 1
     - _BaseShade_Feather: 0.0001
     - _Base_Speed: 0
     - _Blend: 0
@@ -367,7 +367,7 @@ Material:
     - _Is_BlendAddToHiColor: 0
     - _Is_BlendAddToMatCap: 1
     - _Is_BlendBaseColor: 0
-    - _Is_ColorShift: 0
+    - _Is_ColorShift: 1
     - _Is_Filter_HiCutPointLightColor: 1
     - _Is_Filter_LightColor: 1
     - _Is_LightColor_1st_Shade: 1
@@ -390,7 +390,7 @@ Material:
     - _Is_UseTweakHighColorOnShadow: 0
     - _Is_UseTweakMatCapOnShadow: 0
     - _Is_ViewCoord_Scroll: 0
-    - _Is_ViewShift: 0
+    - _Is_ViewShift: 1
     - _LightDirection_MaskOn: 0
     - _LinkDetailsWithBase: 1
     - _MatCap: 0
@@ -418,7 +418,7 @@ Material:
     - _ReceiveShadows: 1
     - _ReceivesSSR: 1
     - _RefractionModel: 0
-    - _RimLight: 0
+    - _RimLight: 1
     - _RimLightOverridden: 0
     - _RimLightVisible: 1
     - _RimLight_FeatherOff: 1
