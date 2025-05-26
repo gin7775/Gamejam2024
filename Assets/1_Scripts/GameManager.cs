@@ -11,6 +11,8 @@ using System.Linq;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using NUnit.Framework;
+using MoreMountains.Feedbacks;
+using MoreMountains.Tools;
 
 public class GameManager : MonoBehaviour
 {
@@ -98,7 +100,7 @@ public class GameManager : MonoBehaviour
     public GameObject restartButtonFirstObject;
     public bool isPhoneBuild = false;
     public GameObject phoneControls;
-
+    public MMFeedbacks scoreFeedback;
     // ---- VFX ----
     [Header("VFX")]
     [SerializeField] private TextMeshPro scoreText;
@@ -496,6 +498,7 @@ public class GameManager : MonoBehaviour
         // Sumar al puntaje
         currentWaveScore += scoreIncrement;
         score += scoreIncrement;
+        scoreFeedback?.PlayFeedbacks();
     }
 
     // Metodo para agregar o actualizar un ChickenCount en la lista
