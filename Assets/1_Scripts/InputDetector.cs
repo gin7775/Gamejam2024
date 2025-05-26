@@ -56,7 +56,7 @@ public class InputDetector : MonoBehaviour
         if (Mouse.current != null && Mouse.current.delta.ReadValue().sqrMagnitude > 0f)
         {
             currentDevice = DeviceType.Mouse;
-            Debug.Log("Ratón y Teclado");
+           // Debug.Log("Ratón y Teclado");
             MouseKAndKeyboardUI();
 
             return;

@@ -908,7 +908,7 @@ PrefabInstance:
         type: 3}
       propertyPath: transitionTheme
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 561bd2de89d4bab49aa627ad2b1b4e5b, type: 3}
     - target: {fileID: 1186868204803894502, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: comenzarOleadaFX
@@ -1142,6 +1142,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2708857568681902432, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2708857568681902432, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2708857568681902432, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
       propertyPath: m_LocalScale.x
       value: 3.8
       objectReference: {fileID: 0}
@@ -1158,17 +1168,17 @@ PrefabInstance:
     - target: {fileID: 2708857568681902432, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2708857568681902432, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -205
+      value: 153
       objectReference: {fileID: 0}
     - target: {fileID: 2708857568681902432, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -188
+      value: -49
       objectReference: {fileID: 0}
     - target: {fileID: 2708857568681902432, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
@@ -1423,7 +1433,7 @@ PrefabInstance:
     - target: {fileID: 3464805631845149179, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -121.364136
+      value: -121.36426
       objectReference: {fileID: 0}
     - target: {fileID: 3480827822376033633, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
@@ -17869,7 +17879,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -121.364136, y: 17.523682}
+  m_AnchoredPosition: {x: -121.36426, y: 17.523682}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1353914013

@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour
                     Instantiate(vfxHitEffect, enemy.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
 
                     // Pausa de la animacion para dar efecto visual
-                    StartCoroutine(FrameFreeze(0.03f));
+                    //StartCoroutine(FrameFreeze(0.03f));
 
                     //SISTEMA DE MELEE EN PROGRESO
                      if (launcher.currentChickenType == 0 && melee) //Si ES a melee, y no tengo ningún pollo en la mano.
@@ -226,7 +226,7 @@ public class GameManager : MonoBehaviour
         }
 
         //// AUDIO: Ver si funciona en los enemigos sino, se pone aqui
-        musicManager.Play_FX_ExplosionPollo();
+        //musicManager.Play_FX_ExplosionPollo();
         /*
         Debug.Log(
             "\n\n\n" +

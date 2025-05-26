@@ -22,7 +22,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip tickingPollo;
     [SerializeField] private AudioClip clicPollo;
     [SerializeField] private AudioClip comenzarOleadaFX;
-
+    private bool _isTransitioning = false;
     public static MusicManager Instance { get; private set; }
 
     private int oleadaAnterior;
@@ -47,6 +47,8 @@ public class MusicManager : MonoBehaviour
 
     public void FX_ActivarCorutina()
     {
+        if (_isTransitioning) return;   // si ya estamos en transición, no hacemos nada
+        _isTransitioning = true;
         StartCoroutine(ChangeRaidTheme());
     }
 
@@ -108,6 +110,7 @@ public class MusicManager : MonoBehaviour
             oleadaSiguiente = 0;
             oleadaAnterior = mainThemes.Length - 1;
         }
+        _isTransitioning = false;
     }
 
     // === FX / SFX ===
