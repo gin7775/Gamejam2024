@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf61fdcc03726040a71238aa59b7b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chickenType: 4
+  chickenType: 7
 --- !u!1 &8996372009689352545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7918272248795561822, guid: 9180f7a89082245469129c61a9f8d359,

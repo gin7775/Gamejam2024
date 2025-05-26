@@ -81,21 +81,24 @@ public class ImpulseThunder : MonoBehaviour
             {
                 Vector3 dir = (desired - transform.position).normalized;
                 transform.position += dir * speed * Time.deltaTime;
+                transform.rotation = Quaternion.LookRotation(dir);
+
                 yield return null;
             }
 
-            // Impactar al objetivo
-            if (target != null)
-            {
-                var health = target.GetComponent<ContenedorEnemigo1>();
-                if (health != null)
-                {
-                    health.lifes = 0;
-                    health.PolloMansy();
-                }
-            }
+            //// Impactar al objetivo
+            //if (target != null)
+            //{
+            //    var health = target.GetComponent<ContenedorEnemigo1>();
+            //    if (health != null)
+            //    {
+            //        health.lifes = 0;
+            //        health.PolloMansy();
+            //    }
+            //}
         }
 
         Destroy(gameObject);
     }
+
 }
