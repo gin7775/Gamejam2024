@@ -226,7 +226,7 @@ public class GameManager : MonoBehaviour
         }
 
         //// AUDIO: Ver si funciona en los enemigos sino, se pone aqui
-        //musicManager.Play_FX_ExplosionPollo();
+        musicManager.Play_FX_ExplosionPollo();
         /*
         Debug.Log(
             "\n\n\n" +
