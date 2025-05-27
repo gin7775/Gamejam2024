@@ -80,7 +80,7 @@ MonoBehaviour:
   enemyTipe: 0
   distanceToEnemy: 3
   destination: {fileID: 0}
-  corpse: {fileID: 7062845070779954322, guid: ee9bfb3d9884cc947a03262d7d7bcb60, type: 3}
+  corpse: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918, type: 3}
   canDamage: 0
   currentForceMultiplier: 0.02
 --- !u!95 &4584185370742652186

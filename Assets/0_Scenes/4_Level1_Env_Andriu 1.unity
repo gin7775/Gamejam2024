@@ -841,6 +841,11 @@ PrefabInstance:
       objectReference: {fileID: 1527494015}
     - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
+      propertyPath: chikenToSpawn.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
       propertyPath: restartButtonFirstObject
       value: 
       objectReference: {fileID: 1757128318}
@@ -849,6 +854,39 @@ PrefabInstance:
       propertyPath: firstGameObjectMusicToMenu
       value: 
       objectReference: {fileID: 387031869067185622}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[6].probability
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[6].chickenPrefab
+      value: 
+      objectReference: {fileID: 4184036453883938847, guid: d294caf5dd6c113438ee0e9cb6fb7605,
+        type: 3}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: chikenToSpawn.Array.data[6].difficultyScore
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[4].chickenPrefab
+      value: 
+      objectReference: {fileID: 4184036453883938847, guid: d294caf5dd6c113438ee0e9cb6fb7605,
+        type: 3}
+    - target: {fileID: 694902871691520007, guid: 2d900001a23a89a47acf09a7e7fbf07b,
+        type: 3}
+      propertyPath: chikenToSpawnWave.Array.data[5].chickenPrefab
+      value: 
+      objectReference: {fileID: 3100536965024992119, guid: 67a24dcc432ef8f4cbf18125fb76fca2,
+        type: 3}
     - target: {fileID: 729109124932065765, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: managedReferences[2703494156138315840].TargetGameObject
@@ -1458,7 +1496,7 @@ PrefabInstance:
     - target: {fileID: 3464805631845149179, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -121.36426
+      value: -121.3642
       objectReference: {fileID: 0}
     - target: {fileID: 3480827822376033633, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
@@ -9076,79 +9114,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1741230916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &583047479
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -709768809828078833, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: chickenType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_Name
-      value: Pfb_PolloRagdog_Thunder
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -15.784371
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.5055866
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -18.635117
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 584856c73e3bfd44da77328339e02918, type: 3}
 --- !u!1001 &583806069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18522,7 +18487,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -121.36426, y: 17.523682}
+  m_AnchoredPosition: {x: -121.3642, y: 17.523682}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1353914013
@@ -60271,4 +60236,3 @@ SceneRoots:
   - {fileID: 493327655}
   - {fileID: 341532168}
   - {fileID: 1923536399}
-  - {fileID: 583047479}
