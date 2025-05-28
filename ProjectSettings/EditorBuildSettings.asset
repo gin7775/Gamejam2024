@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/0_Scenes/MainMenu.unity
+    guid: 30bf02cba5c8f3b41a299923c14505b9
+  - enabled: 1
     path: Assets/0_Scenes/5_TutoriaVestido.unity
     guid: fab4cb1dfb9f55547bfb57c16f6fff32
   - enabled: 1
     path: Assets/0_Scenes/4_Level1_Env_Andriu 1.unity
     guid: 2cb56f7bfa7594c44bcd8fef7f6fc20b
-  - enabled: 0
-    path: Assets/0_Scenes/MainMenu.unity
-    guid: 30bf02cba5c8f3b41a299923c14505b9
   - enabled: 0
     path: Assets/0_Scenes/+scenes/5_TutorialNEW 1.unity
     guid: ddd51d5e7a8fb4147bd8e14c01df0283

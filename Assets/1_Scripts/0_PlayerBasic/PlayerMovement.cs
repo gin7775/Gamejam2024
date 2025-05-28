@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private VisualEffect walkingEffect;
     private Coroutine walkingEffectCoroutine;
     [SerializeField] private float particleTimeToSpawn;
-    [SerializeField] private ParticleSystem jumpEffect;
+    
     [SerializeField] private float heightThreshold = 0.5f;
     private float lastGroundHeight = 0f;
     //private bool hasActivatedHeightEffect = false;
@@ -296,8 +296,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayJumpEffect()
     {
-        if (jumpEffect != null)
-        {
+        
             if (VFXManager.Instance != null)
             {
                 VFXManager.Instance.PlayEffect("BigJumpParticle", transform, Vector3.zero, Quaternion.Euler(-90f, 0f, 0f));
@@ -306,7 +305,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.LogWarning("VFXManager.Instance is null");
             }
-        }
+        
     }
 
     private void IsGround()

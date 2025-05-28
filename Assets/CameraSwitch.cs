@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraSwitch : MonoBehaviour
 {
@@ -60,5 +61,10 @@ public class CameraSwitch : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Cerrando Aplicación");
+    }
+
+    public void ActiveTutorial()
+    {
+        SceneManager.LoadScene("5_TutoriaVestido");
     }
 }

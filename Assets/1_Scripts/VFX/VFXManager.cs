@@ -28,30 +28,48 @@ public class VFXManager : MonoBehaviour
 
     public void PlayEffect(string effectName, Transform parent, Vector3 localPosition, Quaternion localRotation)
     {
-        if (effectDictionary == null)
+        if (!effectDictionary.TryGetValue(effectName, out VFXEffect prefab))
         {
-            Debug.LogError("VFXManager: effectDictionary is null. Did Awake() run");
+            Debug.LogWarning($"[VFXManager] Efecto '{effectName}' no encontrado.");
             return;
         }
 
-        if (effectDictionary.TryGetValue(effectName, out var effect) && effect != null)
-        {
-            var instance = effect.GetInstance();
-            if (instance == null)
-            {
-                Debug.LogWarning("VFXManager: effect '{effectName}' returned null instance.");
-                return;
-            }
+        // Instanciar como hijo del transform deseado
+        GameObject instance = Instantiate(prefab.gameObject);
+        instance.name = effectName;
 
-            instance.transform.SetParent(parent);
-            instance.transform.localPosition = localPosition;
-            instance.transform.localRotation = localRotation;
-            instance.Play();
-        }
-        else
+        // Establecer como hijo (mismo parent que antes)
+        instance.transform.SetParent(parent);
+
+        // Restaurar la escala del prefab
+        instance.transform.localScale = prefab.transform.localScale;
+
+        // Colocar en la posición y rotación local correctas
+        instance.transform.localPosition = localPosition;
+        instance.transform.localRotation = localRotation;
+
+        // ⚠️ Mover a capa segura si quieres evitar colisiones
+        instance.layer = LayerMask.NameToLayer("Ignore Raycast");
+
+        // Desactivar colliders para evitar interferencias físicas
+        foreach (var col in instance.GetComponentsInChildren<Collider>())
         {
-            Debug.LogWarning("Effect '{effectName}' not found in dictionary!");
+            col.enabled = false;
         }
+        foreach (var col2D in instance.GetComponentsInChildren<Collider2D>())
+        {
+            col2D.enabled = false;
+        }
+
+        // Activar el objeto
+        instance.SetActive(true);
+
+        // Reproducir efecto visual
+        var vfx = instance.GetComponent<VFXEffect>();
+        if (vfx != null) vfx.Play();
+
+        // Destruir tras 5 segundos
+        Destroy(instance, 5f);
     }
 
 }

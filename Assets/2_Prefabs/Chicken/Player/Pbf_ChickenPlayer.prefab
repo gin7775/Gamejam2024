@@ -6148,18 +6148,18 @@ MonoBehaviour:
   dashSpeed: 20
   dashDuration: 0.35
   dashCooldown: 2
+  dashMaterialInstance: {fileID: 0}
   walkingEffect: {fileID: 9172731123077758878}
   particleTimeToSpawn: 0.07
-  jumpEffect: {fileID: 4663761901153266396}
   heightThreshold: 0.5
   controller: {fileID: 6354709594561634940}
-  dashIcon: {fileID: 0}
   gravity: 9.81
   crosshair: {fileID: 0}
   crosshairDistance: 1
   terrainLayer:
     serializedVersion: 2
     m_Bits: 512
+  dashFeedback: {fileID: 0}
 --- !u!114 &539183189401168150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6174,16 +6174,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 3
   maxHealth: 3
-  healthIndicators:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  healthBarImage: {fileID: 0}
   restartButtonFirstObject: {fileID: 0}
   invulnerabilityDuration: 1
   damageParticleEffect: {fileID: 5532761033942213253}
   highScorePanel: {fileID: 0}
   playerMaterial: {fileID: 2100000, guid: f55a29c15d40f1d4fa7138c10c0a506d, type: 2}
   musicManager: {fileID: 0}
+  damageFeedback: {fileID: 0}
 --- !u!114 &7092941069084657438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6213,8 +6211,6 @@ MonoBehaviour:
   - {fileID: 8707362965608281174, guid: c7533da51b9144d4a82df423116887eb, type: 3}
   proyectileForce: 1000
   bigChickenImpulseForce: 10
-  chickenCurrentUses: 0
-  chickenMaxUses: 3
   handPosition: {fileID: 567304245230328477}
   currentProjectile: []
   attackCooldown: 0.5
@@ -6224,7 +6220,6 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   chickensDetected: []
   pickUpRange: 1
-  comparativeDistance: 0
   currentDistance: 0
   selectedChicken: {fileID: 0}
   musicManager: {fileID: 0}
@@ -18574,6 +18569,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198062935211395654, guid: 21f80df4eab69924ebd245ea13ef3a6c,
         type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198062935211395654, guid: 21f80df4eab69924ebd245ea13ef3a6c,
+        type: 3}
       propertyPath: ColorModule.enabled
       value: 0
       objectReference: {fileID: 0}
@@ -18586,6 +18586,21 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.097355895
+      objectReference: {fileID: 0}
+    - target: {fileID: 198290832676273130, guid: 21f80df4eab69924ebd245ea13ef3a6c,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198631056063162334, guid: 21f80df4eab69924ebd245ea13ef3a6c,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344876172194391647, guid: 21f80df4eab69924ebd245ea13ef3a6c,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1344876172194391647, guid: 21f80df4eab69924ebd245ea13ef3a6c,
         type: 3}
@@ -18612,6 +18627,11 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 4b924f6f286e6c14287cf33a8c218dd0, type: 2}
+    - target: {fileID: 5256950541164235308, guid: 21f80df4eab69924ebd245ea13ef3a6c,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5256950541164235308, guid: 21f80df4eab69924ebd245ea13ef3a6c,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key0.b
@@ -18641,6 +18661,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410314119139226018, guid: 21f80df4eab69924ebd245ea13ef3a6c,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7410314119139226018, guid: 21f80df4eab69924ebd245ea13ef3a6c,
         type: 3}

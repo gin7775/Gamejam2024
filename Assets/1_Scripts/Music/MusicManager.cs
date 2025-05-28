@@ -25,6 +25,8 @@ public class MusicManager : MonoBehaviour
     private bool _isTransitioning = false;
     public static MusicManager Instance { get; private set; }
 
+    private List<int> shuffledThemes = new();
+    private int currentThemeIndex = 0;
     private int oleadaAnterior;
     private int oleadaSiguiente;
 
@@ -38,7 +40,7 @@ public class MusicManager : MonoBehaviour
         {
             Instance = this;
         }
-
+        ShuffleThemes();
         oleadaAnterior = mainThemes.Length - 1;
         oleadaSiguiente = 0;
     }
@@ -88,7 +90,14 @@ public class MusicManager : MonoBehaviour
         opcionesMusica.FadeDuration = 1f;
         opcionesMusica.FadeInitialVolume = 0f;
 
-        MMSoundManagerSoundPlayEvent.Trigger(mainThemes[oleadaSiguiente], opcionesMusica);
+        int nextIndex = shuffledThemes[currentThemeIndex];
+        MMSoundManagerSoundPlayEvent.Trigger(mainThemes[nextIndex], opcionesMusica);
+
+        currentThemeIndex++;
+        if (currentThemeIndex >= shuffledThemes.Count)
+        {
+            ShuffleThemes(); // reinicia la secuencia cuando se hayan tocado todas
+        }
 
         // 7. Sonidos de enemigos en loop
         foreach (var s in sonidosPollosEnemigos)
@@ -114,7 +123,23 @@ public class MusicManager : MonoBehaviour
     }
 
     // === FX / SFX ===
+    private void ShuffleThemes()
+    {
+        shuffledThemes = new List<int>();
+        for (int i = 0; i < mainThemes.Length; i++)
+        {
+            shuffledThemes.Add(i);
+        }
 
+        // Barajar
+        for (int i = 0; i < shuffledThemes.Count; i++)
+        {
+            int rnd = Random.Range(i, shuffledThemes.Count);
+            (shuffledThemes[i], shuffledThemes[rnd]) = (shuffledThemes[rnd], shuffledThemes[i]);
+        }
+
+        currentThemeIndex = 0;
+    }
     public void Play_FX_Player_CacareoPollo()
     {
         MMSoundManagerSoundPlayEvent.Trigger(sonidoPolloJugador, GetSfxOptions());

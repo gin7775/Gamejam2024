@@ -4925,7 +4925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: HealthParticle
   particleSystem: {fileID: 198290832676273130}
-  usePooling: 0
+  usePooling: 1
 --- !u!1 &1420504173772498
 GameObject:
   m_ObjectHideFlags: 0
