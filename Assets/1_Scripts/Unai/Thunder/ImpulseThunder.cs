@@ -25,27 +25,27 @@ public class ImpulseThunder : MonoBehaviour
 
     private void Start()
     {
-        // Ajustar altura inicial
+        // Ajustar altura inicial y posición
         spawnPosition = transform.position + Vector3.up * heightOffset;
         transform.position = spawnPosition;
 
-        // Detectar objetivos
+        // Detectar objetivos más cercanos
         GatherClosestTargets();
 
-        // Si no hay enemigos cercanos, destruye el proyectil
+        // Si no hay enemigos, destruir
         if (targets.Count == 0)
         {
             Destroy(gameObject);
             return;
         }
 
-        // Comenzar persecución
+        // Iniciar persecución
         StartCoroutine(ChaseTargets());
     }
 
     private void GatherClosestTargets()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        var enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         Vector3 origin = spawnPosition;
         var sorted = new List<GameObject>(enemies);
         sorted.Sort((a, b) =>
@@ -54,10 +54,10 @@ public class ImpulseThunder : MonoBehaviour
             float db = Vector3.SqrMagnitude(b.transform.position - origin);
             return da.CompareTo(db);
         });
-        for (int i = 0; i < Mathf.Min(maxTargets, sorted.Count); i++)
-        {
+
+        int count = Mathf.Min(maxTargets, sorted.Count);
+        for (int i = 0; i < count; i++)
             targets.Add(sorted[i].transform);
-        }
     }
 
     private IEnumerator ChaseTargets()
@@ -67,38 +67,27 @@ public class ImpulseThunder : MonoBehaviour
             if (target == null)
                 continue;
 
-            // Comprobar rango desde posición de spawn
-            float dist = Vector3.Distance(spawnPosition, target.position);
-            if (dist > maxRange)
+            float distToSpawn = Vector3.Distance(spawnPosition, target.position);
+            if (distToSpawn > maxRange)
             {
                 Destroy(gameObject);
                 yield break;
             }
 
-            // Mover al objetivo manteniendo altura
             Vector3 desired;
             while (target != null && Vector3.Distance(transform.position, (desired = target.position + Vector3.up * heightOffset)) > arriveThreshold)
             {
                 Vector3 dir = (desired - transform.position).normalized;
+                // Rotar hacia la dirección de movimiento
+                transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(90f, 0f, 0f); // Mantener tumbado 90° en X
+                // Mover hacia el objetivo
                 transform.position += dir * speed * Time.deltaTime;
-                transform.rotation = Quaternion.LookRotation(dir);
-
                 yield return null;
             }
 
-            //// Impactar al objetivo
-            //if (target != null)
-            //{
-            //    var health = target.GetComponent<ContenedorEnemigo1>();
-            //    if (health != null)
-            //    {
-            //        health.lifes = 0;
-            //        health.PolloMansy();
-            //    }
-            //}
+            // Aquí puedes añadir lógica de impacto si lo deseas
         }
 
         Destroy(gameObject);
     }
-
 }
