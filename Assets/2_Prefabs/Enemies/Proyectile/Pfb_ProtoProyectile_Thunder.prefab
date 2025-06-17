@@ -1833,8 +1833,9 @@ GameObject:
   - component: {fileID: 1028980137239917769}
   - component: {fileID: 4840851951825858916}
   - component: {fileID: 3353794482949223439}
-  - component: {fileID: 7762939117392060085}
   - component: {fileID: 7360712294347721583}
+  - component: {fileID: 4492756645751932093}
+  - component: {fileID: 5478606712243400074}
   m_Layer: 0
   m_Name: Pfb_ProtoProyectile_Thunder
   m_TagString: Projectile
@@ -1871,7 +1872,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16255
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1906,30 +1907,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7762939117392060085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464458607440672315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 583e63977fa2d3e4d84b69519bb35fc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Life: 3
-  effectLife: 1
-  colliders:
-  - {fileID: 4840851951825858916}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ragdolls:
-  - {fileID: 8427427352162472809}
-  chickensToDie: []
-  radius: 5
 --- !u!114 &7360712294347721583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1942,12 +1919,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fce8c5a66beb054e8507de5b4503396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTargets: 7
+  maxHits: 7
   maxRange: 20
   enemyTag: Enemy
   speed: 20
   arriveThreshold: 0.1
   heightOffset: 1
+--- !u!114 &4492756645751932093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464458607440672315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb67b44f01b8cb45a5fc0ef523d2f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5
+--- !u!114 &5478606712243400074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464458607440672315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 583e63977fa2d3e4d84b69519bb35fc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Life: 5
+  effectLife: 2
+  colliders: []
+  ragdolls: []
+  chickensToDie: []
+  radius: 5
 --- !u!1 &8619857555060344572
 GameObject:
   m_ObjectHideFlags: 0

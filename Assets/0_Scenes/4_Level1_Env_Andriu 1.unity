@@ -334,6 +334,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1599,7 +1604,7 @@ PrefabInstance:
     - target: {fileID: 3464805631845149179, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -121.364136
+      value: -121.36423
       objectReference: {fileID: 0}
     - target: {fileID: 3480827822376033633, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
@@ -1772,12 +1777,12 @@ PrefabInstance:
     - target: {fileID: 4381369802891035128, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.510581
+      value: 1.4321203
       objectReference: {fileID: 0}
     - target: {fileID: 4381369802891035128, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 152.19806
+      value: 153.39806
       objectReference: {fileID: 0}
     - target: {fileID: 4451505087656655529, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
@@ -1942,7 +1947,7 @@ PrefabInstance:
     - target: {fileID: 4726384130874700213, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.55
+      value: -10.95
       objectReference: {fileID: 0}
     - target: {fileID: 4726384130874700213, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
@@ -2252,12 +2257,12 @@ PrefabInstance:
     - target: {fileID: 5674301008506358616, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.7698936
+      value: -6.8483543
       objectReference: {fileID: 0}
     - target: {fileID: 5674301008506358616, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 145.2854
+      value: 146.48541
       objectReference: {fileID: 0}
     - target: {fileID: 5674470511510798895, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
@@ -2383,12 +2388,12 @@ PrefabInstance:
     - target: {fileID: 6465163271891510331, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.769894
+      value: -16.848354
       objectReference: {fileID: 0}
     - target: {fileID: 6465163271891510331, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34.7146
+      value: -33.514595
       objectReference: {fileID: 0}
     - target: {fileID: 6514945875479213143, guid: 2d900001a23a89a47acf09a7e7fbf07b,
         type: 3}
@@ -6177,6 +6182,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6589,6 +6599,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}
@@ -15853,6 +15868,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15999,6 +16019,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}
@@ -16518,6 +16543,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}
@@ -18628,6 +18658,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18842,7 +18877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -121.364136, y: 17.523682}
+  m_AnchoredPosition: {x: -121.36423, y: 17.523682}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1353914013
@@ -22063,6 +22098,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}
@@ -28687,6 +28727,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder
       objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29094,6 +29139,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pfb_PolloRagdog_Thunder (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7062845070779954322, guid: 584856c73e3bfd44da77328339e02918,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7588447205787528744, guid: 584856c73e3bfd44da77328339e02918,
         type: 3}

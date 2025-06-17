@@ -1,13 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ImpulseThunder : MonoBehaviour
 {
-    [Header("Configuración de objetivo múltiple")]
+    [Header("Configuración de impactos")]
     [Tooltip("Número máximo de enemigos a golpear")]
-    [SerializeField] private int maxTargets = 7;
-    [Tooltip("Distancia máxima para perseguir al siguiente objetivo; si es mayor, el proyectil desaparecerá")]
+    [SerializeField] private int maxHits = 7;
+    [Tooltip("Distancia máxima para detectar un enemigo; si supera esto, el proyectil se destruye tras agotar impactos o sin objetivos")]
     [SerializeField] private float maxRange = 20f;
     [Tooltip("Tag usado para identificar enemigos")]
     [SerializeField] private string enemyTag = "Enemy";
@@ -17,77 +16,100 @@ public class ImpulseThunder : MonoBehaviour
     [SerializeField] private float speed = 20f;
     [Tooltip("Distancia mínima para considerar que ha alcanzado al objetivo")]
     [SerializeField] private float arriveThreshold = 0.1f;
-    [Tooltip("Altura inicial sobre el suelo")]
+    [Tooltip("Altura relativa al suelo a la que vuela el proyectil")]
     [SerializeField] private float heightOffset = 1f;
 
-    private List<Transform> targets = new List<Transform>();
+    private int remainingHits;
     private Vector3 spawnPosition;
 
     private void Start()
     {
-        // Ajustar altura inicial y posición
+        remainingHits = maxHits;
+        // Ajustar altura inicial
         spawnPosition = transform.position + Vector3.up * heightOffset;
         transform.position = spawnPosition;
 
-        // Detectar objetivos más cercanos
-        GatherClosestTargets();
-
-        // Si no hay enemigos, destruir
-        if (targets.Count == 0)
+        // Solo iniciar persecución si hay al menos un enemigo en rango
+        if (FindNearestEnemy() != null)
         {
-            Destroy(gameObject);
-            return;
+            StartCoroutine(ChaseRoutine());
         }
-
-        // Iniciar persecución
-        StartCoroutine(ChaseTargets());
+        // Si no hay enemigos, no hace nada (el proyectil permanece inactivo)
     }
 
-    private void GatherClosestTargets()
+    private void OnDrawGizmos()
     {
-        var enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        Vector3 origin = spawnPosition;
-        var sorted = new List<GameObject>(enemies);
-        sorted.Sort((a, b) =>
-        {
-            float da = Vector3.SqrMagnitude(a.transform.position - origin);
-            float db = Vector3.SqrMagnitude(b.transform.position - origin);
-            return da.CompareTo(db);
-        });
+        if (!Application.isPlaying) return;
 
-        int count = Mathf.Min(maxTargets, sorted.Count);
-        for (int i = 0; i < count; i++)
-            targets.Add(sorted[i].transform);
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 0.1f); // Proyectil
+
+        Transform target = FindNearestEnemy();
+        if (target != null)
+        {
+            Vector3 desired = target.position + Vector3.up * heightOffset;
+            Vector3 dir = (desired - transform.position).normalized;
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, desired); // Línea al objetivo
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, transform.position + dir * 2f); // Dirección actual
+
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(desired, 0.1f); // Punto objetivo
+        }
     }
 
-    private IEnumerator ChaseTargets()
-    {
-        foreach (var target in targets)
-        {
-            if (target == null)
-                continue;
 
-            float distToSpawn = Vector3.Distance(spawnPosition, target.position);
-            if (distToSpawn > maxRange)
+    /// <summary>
+    /// Busca y devuelve el Transform del enemigo más cercano dentro de maxRange, o null si ninguno
+    /// </summary>
+    private Transform FindNearestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        Transform closest = null;
+        float bestDist = maxRange;
+        Vector3 currentPos = transform.position;
+
+        foreach (var go in enemies)
+        {
+            float d = Vector3.Distance(currentPos, go.transform.position);
+            if (d <= bestDist)
             {
-                Destroy(gameObject);
-                yield break;
+                bestDist = d;
+                closest = go.transform;
             }
+        }
+        return closest;
+    }
+
+    /// <summary>
+    /// Rutina que busca un objetivo, se mueve hacia él, aplica efecto, decrementa contador, y repite
+    /// </summary>
+    private IEnumerator ChaseRoutine()
+    {
+        while (remainingHits > 0)
+        {
+            Transform target = FindNearestEnemy();
+            if (target == null)
+                break;
 
             Vector3 desired;
+            // Mover en línea recta hasta llegar al objetivo
             while (target != null && Vector3.Distance(transform.position, (desired = target.position + Vector3.up * heightOffset)) > arriveThreshold)
             {
                 Vector3 dir = (desired - transform.position).normalized;
-                // Rotar hacia la dirección de movimiento
-                transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(90f, 0f, 0f); // Mantener tumbado 90° en X
-                // Mover hacia el objetivo
+                // Rotar para que el forward apunte al movimiento, manteniendo tumbado en X
+                transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(90f, 0f, 0f);
                 transform.position += dir * speed * Time.deltaTime;
                 yield return null;
             }
 
-            // Aquí puedes añadir lógica de impacto si lo deseas
+            remainingHits--;
         }
 
         Destroy(gameObject);
     }
 }
+
