@@ -15,7 +15,7 @@ public class Teleport : MonoBehaviour
 
         controller.enabled = false;
         other.transform.position = resetPoint.position;
-        other.transform.rotation = Quaternion.LookRotation(resetPoint.forward);
+        //other.transform.rotation = Quaternion.LookRotation(resetPoint.forward);
         controller.enabled = true;
         Debug.Log("Teleported");
     }

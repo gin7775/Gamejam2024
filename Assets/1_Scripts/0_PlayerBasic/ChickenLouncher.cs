@@ -25,6 +25,10 @@ public class ChickenLouncher : MonoBehaviour
     [SerializeField] private GameObject headBox; // Collider para ataques con la cabeza
     [SerializeField] private GameObject swingBox; // Collider para ataques cuerpo a cuerpo
 
+    [Header("Autoshoot Mode")]
+    public bool autoshoot = false;
+    public float cadence = 1f;
+
     [Header("Player Health")]
     [SerializeField] private PlayerHealth playerHealth; // Referencia al script de salud del jugador
 
@@ -191,6 +195,70 @@ public class ChickenLouncher : MonoBehaviour
                 HandleFrenezziMode();
         }
     }
+
+    public void autoShoot(Vector3 targetPosition)
+    {
+        enableBoxCollider = false;
+
+        if (currentChickenType != 1 && currentChickenType != 4) return;
+
+        Vector3 projectilePos = CalculateProjectileStartPosition();
+
+        if (currentChickenType == 6)
+            playerHealth.IncreaseHealth(1);
+
+        if (!gameModeFrenezzi)
+        {
+            int chickenTypeBeforeLaunch = currentChickenType;
+            Vector3 direction = (targetPosition - projectilePos).normalized;
+
+            autoHandleProjectileLaunch(currentChickenType, projectilePos, targetPosition);
+
+            if (chickenVFXEffects.TryGetValue(chickenTypeBeforeLaunch, out string effectName))
+            {
+                VFXManager.Instance.PlayEffect(effectName, transform,
+                    new Vector3(0.09000015f, 0.8f, 0.2800007f), Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogWarning($"No hay efecto asociado para el tipo de pollo {chickenTypeBeforeLaunch}");
+            }
+
+            ClearProjectiles();
+        }
+        else
+        {
+            HandleFrenezziMode();
+        }
+    }
+
+    private void autoHandleProjectileLaunch(int ammoType, Vector3 projectilePos, Vector3 targetPosition)
+    {
+        if (ammoType <= 0 || ammoType > proyectiles.Length) return;
+
+        GameObject projectile = Instantiate(proyectiles[ammoType - 1], projectilePos, Quaternion.identity);
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();
+
+        // Ignorar colisión con el jugador
+        Collider projCol = projectile.GetComponent<Collider>();
+        Collider playerCol = GetComponent<Collider>();
+        if (projCol != null && playerCol != null)
+            Physics.IgnoreCollision(projCol, playerCol);
+
+        // Direccion hacia el target
+        Vector3 direction = (targetPosition - projectilePos).normalized;
+
+        // Aplicar fuerza según tipo de pollo
+        float force = proyectileForce;
+        if (ammoType == 2) force = bigChickenImpulseForce;
+        else if (ammoType == 4) force *= 1.5f;
+
+        rb.AddForce(direction * force, ammoType == 2 ? ForceMode.Impulse : ForceMode.Force);
+
+        musicManager.Play_FX_PLayer_DispararPollo();
+        currentChickenType = 0;
+    }
+
 
     public void ThrowCurrentChicken() //PRUEBA DE LANZAR CON TÁCTIL
     {
