@@ -150,8 +150,8 @@ ModelImporter:
       name: Armature|PolloLanzar
       takeName: Armature|PolloLanzar
       internalID: -2196748267029508664
-      firstFrame: 0
-      lastFrame: 18
+      firstFrame: 5
+      lastFrame: 13.6
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

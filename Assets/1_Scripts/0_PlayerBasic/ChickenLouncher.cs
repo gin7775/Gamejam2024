@@ -156,6 +156,7 @@ public class ChickenLouncher : MonoBehaviour
         if (currentChickenType > 0)
         {
             anim.SetBool("Carrying", false);
+            Debug.Log("Carrying set to FALSE");
             anim.SetTrigger("Throw");
             musicManager.Play_FX_RecogerPollo();
             Shoot(currentChickenType);
@@ -217,7 +218,9 @@ public class ChickenLouncher : MonoBehaviour
             if (chickenVFXEffects.TryGetValue(chickenTypeBeforeLaunch, out string effectName))
             {
                 VFXManager.Instance.PlayEffect(effectName, transform,
+
                     new Vector3(0.09000015f, 0.8f, 0.2800007f), Quaternion.identity);
+                anim.SetTrigger("Throw");
             }
             else
             {
@@ -267,6 +270,7 @@ public class ChickenLouncher : MonoBehaviour
         {
             // Desactivamos la animación de 'cargando'
             anim.SetBool("Carrying", false);
+            
             // Disparamos la animación de lanzamiento
             anim.SetTrigger("Throw");
             // Sonido de coger/pichar pollo
@@ -345,17 +349,19 @@ public class ChickenLouncher : MonoBehaviour
             // Vaciar la lista
             currentProjectile.Clear();
         }
-
+        anim.SetBool("Carrying", false);
         currentWeapon = null;
         currentChickenType = 0;
     }
 
     public void PerformAttack(int ammoType)
     {
-        if (ammoType == 0)
-            HeadBut();
-        else if (ammoType >= 1)
-            ChickenSwing();
+        HeadBut(); // Siempre puede hacer cabezazo
+
+        if (ammoType >= 1)
+        {
+            ChickenSwing(); // Solo hace swing si lleva pollo
+        }
     }
 
     public void HeadBut()

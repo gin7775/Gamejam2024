@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 15f;
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private float dashCooldown = 2f;
+    private Vector3 lastPosition;
+    private float calculatedSpeed;
     public Material dashMaterialInstance;
     private Color dashReadyColor = new Color32(191, 191, 191, 255);
     private Color dashCooldownColor = new Color32(191, 103, 0, 255);
@@ -87,8 +89,14 @@ public class PlayerMovement : MonoBehaviour
         IsGround();
         UpdateCrosshairPositionWithRotation();
         CheckLanding();
-    }
+        CalculateSpeed();
 
+    }
+    private void CalculateSpeed()
+    {
+        calculatedSpeed = ((transform.position - lastPosition).magnitude) / Time.deltaTime;
+        lastPosition = transform.position;
+    }
     public void OnMenu(InputValue value)
     {
         gameManager = FindAnyObjectByType<GameManager>();
@@ -124,10 +132,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void Animations()
     {
-        float characterSpeed = controller.velocity.magnitude;
         if (animator != null)
         {
-            animator.SetFloat("SpeedBlendTree", characterSpeed, 0.1f, Time.deltaTime);
+            float blendSpeed = isDashing ? 0f : calculatedSpeed;
+
+            
+            if (blendSpeed < 0.05f)
+                blendSpeed = 0f;
+
+            animator.SetFloat("SpeedBlendTree", blendSpeed, 0.1f, Time.deltaTime);
         }
     }
 
